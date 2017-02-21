@@ -1,0 +1,12 @@
+www/js/bower_components
+www/js/.bower-cache
+www/js/.bower-registry
+www/js/.bower-tmp
+plugins/*
+
+### General ###
+.DS_Store
+
+### Platforms ###
+platforms/*
+platforms/platforms.json

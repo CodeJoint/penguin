@@ -1,0 +1,30 @@
+{
+  "name": "PickWin",
+  "homepage": "http://www.pickwin.net",
+  "authors": [
+    "John Falcon <john@tallerdecodigo.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "plugins":[
+    "org.apache.cordova.console",
+    "org.apache.cordova.contacts",
+    "org.apache.cordova.device",
+    "org.apache.cordova.dialogs",
+    "org.apache.cordova.inappbrowser",
+    "org.apache.cordova.network-information",
+    "org.apache.cordova.splashscreen"
+  ],
+  "dependencies": {
+    "handlebars": "^4.0.5"
+  }
+}

@@ -24,8 +24,6 @@ function requestHandlerAPI(){
 	
 	/*** Request headers ***/
 	this.headers = 	{
-						'X-ZUMO-APPLICATION': 'ideIHnCMutWTPsKMBlWmGVtIPXROdc92',
-						'X-ZUMO-AUTH': this.keeper.getItem('token'),
 						'Content-Type': 'application/json'
 					};
 

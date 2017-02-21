@@ -2,22 +2,22 @@
 
 		
 	<div class="contenedor">
-		{{# pools}}
+		{{# data.pools}}
 			<div class="quiniela clearfix" data-id="{{id}}">
 				<img src="images/misquinielas.png">
 				<div class="info_quiniela">
 					<div class="info_quiniela_top">
 						<h2>{{name}}</h2>
-						<span class="fecha">24/02</span>
+						<span class="fecha">{{date_format}}</span>
 					</div>
 					<div class="info_quiniela_bottom">
 						<span>${{entry_fee}}</span>
-						<span>Reg. 35</span>
-						<span>$10,000</span>
+						<span>Reg. {{entry_count}}/{{max_entries}}</span>
+						<span>${{acum}}</span>
 					</div>
 				</div>
 			</div><!-- quiniela-->
-		{{/ pools}}
+		{{/ data.pools}}
 		
 		<div class="menu clearfix">
 			<ul>

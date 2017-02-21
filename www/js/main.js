@@ -236,8 +236,34 @@
 			}, 420);
 			app.check_or_renderContainer();
 			console.log("Rendering Main Feed");
-			var extra_data = apiRH.getRequest('pools/available.json', null);	
+			var extra_data = apiRH.getRequest('pools/available.json', null);
+			extra_data.pools.forEach(function(element){
+				element.acum = element.entry_count*element.entry_fee;
+				var date_format = new Date(element.finish_date);
+				element.date_format = date_format.getFullYear()+'/'+( date_format.getMonth()+1 );
+			});
 			var data = this.gatherEnvironment(extra_data, "Feed Quinielas");
+			console.log(data);
+			data.is_scrollable = false;
+			return this.switchView('feed', data, '.view', url, 'quiniela-feed');
+		},
+		render_myfeed : function(url){
+			
+			window.is_home = true;
+			if(!app.initialized) app.initialize();
+			setTimeout(function(){
+				app.showLoader();
+			}, 420);
+			app.check_or_renderContainer();
+			console.log("Rendering Main Feed");
+			var extra_data = apiRH.getRequest('pools/available.json', null);
+			extra_data.pools.forEach(function(element){
+				element.acum = element.entry_count*element.entry_fee;
+				var date_format = new Date(element.finish_date);
+				element.date_format = date_format.getFullYear()+'/'+( date_format.getMonth()+1 );
+			});
+			var data = this.gatherEnvironment(extra_data, "Feed Quinielas");
+			console.log(data);
 			data.is_scrollable = false;
 			return this.switchView('feed', data, '.view', url, 'quiniela-feed');
 		},

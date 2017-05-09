@@ -41,16 +41,7 @@ figure {margin: 0;}
 /* For IE 6/7 (trigger hasLayout) */
 .clearfix { zoom:1; }
 
-/*** LOBBY ***/
-
 body {width: 100%;}
-header {width: 100%; border-bottom: 2px solid #000; padding: 2%; margin-bottom: 5%;}
-header .user_info {float: left; width: 75%;}
-header .user_info img {float: left; width: 25%; height: auto; margin-right: 5%}
-header .user_info .username_saldo {float: left; margin-top: 2%; font-size: 46px;}
-header .user_info span {display: block; font-size: 50px;}
-header .filtros {float: right; width: 25%; text-align: right;}
-header .filtros img {width: 35%; height: auto; margin-top: 10%;}
 
 .contenedor {width: 100%;}
 .quiniela {width: 100%; padding: 0 5% 5% 5%; margin-bottom: 5%; border-bottom: 1px solid #000;}
@@ -59,11 +50,21 @@ header .filtros img {width: 35%; height: auto; margin-top: 10%;}
 .quiniela .info_quiniela h2 {font-size: 50px; margin: 0 0 3% 0; font-weight: normal;}
 .quiniela .info_quiniela span {font-size: 40px; width: 25%; display: block; float: left;}
 
-/*** MENU ***/
-
+/*** Main menu ***/
 .menu {width: 100%; position: fixed; bottom: 0px; height: 10%; background: #666;}
 .menu ul {list-style: none; margin: 0px; padding: 0px; }
 .menu ul li {width: 20%; float: left; text-align: center; border-right: 1px solid #fff; display: block; height: 400px;}
 .menu ul li:last-child {border-right: none;}
 .menu ul li img {width: 40%; height: auto; margin-top: 20%;}
 .menu ul li.selected {background: #c3c3c3;}
+
+/*** Header ***/
+.daheader { width: 100%; background-color: #343335; border-bottom: 2px solid #000; padding: 2%; margin-bottom: 5%; }
+.daheader .logo{ float: left; background: url('../images/logo.svg') no-repeat; background-size: 100%; width: 80px; height: 32px; margin: 0; padding: 0; }
+.daheader .user_info { float: left; width: auto; max-width: 75%; border-left: 2px solid #FFF; margin-left: 1rem; }
+	.user_info .profile_pic { float: left; width: 25%; height: auto; margin-right: 5%; }
+.daheader .user_info .username_saldo { float: left; margin-top: 2%; font-size: 46px; }
+.daheader .user_info span { display: block; font-size: 50px; }
+.daheader .filtros { float: right; width: 25%; text-align: right; }
+.daheader .filtros img { width: 35%; height: auto; margin-top: 10%; }
+

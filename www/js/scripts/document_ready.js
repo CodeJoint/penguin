@@ -211,6 +211,9 @@ window.initializeEvents = function(){
 			return back_with_logout(e);
 		});
 
+		var ventana = $(window).height();
+		$('.container').css('min-height', ventana+'px');
+
 	
 	});
 

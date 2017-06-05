@@ -19,11 +19,11 @@
 			app.initialized = true;
 			var is_home 	= window.is_home;
 			var is_login 	= apiRH.has_token();
+
 			var is_client 	= localStorage.getItem('customerId');
 			var is_current 	= localStorage.getItem('valido');
 
 			window.cordova_full_path = "";
-			window.is_home = (window.is_access) ? true : false;
 
 			/*** TODO: Get this shit into a catalogue ***/
 			window.catalogues 						= [];
@@ -43,21 +43,15 @@
 			app.keeper 			= window.localStorage;
 			
 			/*----------------------- Routing user accordingly ---------------------------*/
-			// if(is_login){
-			// 	console.log('You okay, now you can start making calls');
-			// 	/* Take the user to it's timeline */
-			// 	loggedIn = true;
-			// 	var is_access 	= window.is_access;
-			// 	var is_feed 	= window.is_feed;
-			// 	_user 			= JSON.parse( app.keeper.getItem('user') );
-				
-			// 	/* Render Home */
-			// 	if(window.is_feed)
-			// 		return app.render_feed();
-			// 	return;
-			// }
-			// return app.render_login();
-			return app.render_feed();
+			if(is_login){
+				console.log('You okay, now you can start making calls');
+				/* Take the user to it's timeline */
+				loggedIn 		= true;
+				var is_feed 	= window.is_feed;
+				_user 			= JSON.parse( app.keeper.getItem('user') );
+				return app.render_feed();
+			}
+			return app.render_login();
 			/*-------------------- Code below this line won't run ------------------------*/
 		},
 		initPushNotifications: function() {

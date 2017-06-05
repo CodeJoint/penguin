@@ -48,8 +48,8 @@ figure {margin: 0;}
 
 
 /*** SIZING WITH REM ***/
-html { font-size: 62.5%; background: #000 } 
-body { font-size: 24px; font-size: 2.4rem; } /* =24px */
+html { font-size: 62.5%; background: #000; font-size: 14px;} 
+body { font-size: 14px; font-size: 1.4rem; } /* =24px */
 h1   { font-size: 24px; font-size: 2.4rem; } /* =24px */
 
 .first{ margin-left: 0; padding-left: 0;}
@@ -81,56 +81,56 @@ body {width: 100%; margin: 0 auto;  }
 .login {text-align: center;}
 .login .splash_logo {padding-top: 30%; margin-bottom: 5%;}
 .login .form {width: 100%; margin-bottom: 20%;}
-.login .form input {width: 100%; background: none; border: 1px solid #ececec; border-radius: 5px; margin-bottom: 3%; color: #d8d8d8; font-family: 'Lato'; font-size: 32px; padding: 3.5% 2%; }
+.login .form input {width: 100%; background: none; border: 1px solid #ececec; border-radius: 5px; margin-bottom: 3%; color: #d8d8d8; font-family: 'Lato'; font-size: 14px; padding: 3.5% 2%; }
 .login .form input::placeholder {color: inherit; font-family: 'Lato'}
 .login .form form {margin-bottom: 5%;}
-.login .form a.link_legal {font-size: 32px; color: #8A8A8D; display: block; margin-bottom: 10%; text-decoration: none;}
-.login .form p {font-size: 32px; color: #d8d8d8; margin-bottom: 10%;}
-.login .form p a {font-size: 32px; color: #d8d8d8; }
+.login .form a.link_legal {font-size: 14px; color: #8A8A8D; display: block; margin-bottom: 10%; text-decoration: none;}
+.login .form p {font-size: 14px; color: #d8d8d8; margin-bottom: 10%;}
+.login .form p a {font-size: 14px; color: #d8d8d8; }
 .fb_registry {width: 70%;}
 .login .legales {width: 100%;}
-.login .legales a.link_legal {font-size: 32px; color: #8A8A8D; display: inline-block; margin-bottom: 10%; text-decoration: none;}
+.login .legales a.link_legal {font-size: 14px; color: #8A8A8D; display: inline-block; margin-bottom: 10%; text-decoration: none;}
 
 /*** REGISTRO ***/
 
 .registro {text-align: center;}
 .registro .splash_logo {padding-top: 10%; margin-bottom: 5%;}
-.registro .splash_logo img {width: auto!important; margin-bottom: 10%;}
-.registro .splash_logo p {font-size: 32px; color: #d8d8d8;  line-height: 55px;  width: 75%; margin: 0 auto 10% auto;}
+.registro .splash_logo img {width: 50%!important; margin-bottom: 10%;}
+.registro .splash_logo p {font-size: 14px; color: #d8d8d8;  line-height: 22px;  width: 75%; margin: 0 auto 10% auto;}
 .registro .fb_registry {width: 70%; margin-bottom: 10%;}
 .registro .form {width: 100%; }
-.registro .form h3 {font-family: 'Lato'; font-weight: 400; font-size: 32px; color: #d8d8d8; margin-bottom: 5%;}
-.registro .form input {width: 100%; background: none; border: 1px solid #ececec; border-radius: 5px; margin-bottom: 3%; color: #d8d8d8; font-family: 'Lato'; font-size: 32px; padding: 3.5% 2%; }
+.registro .form h3 {font-family: 'Lato'; font-weight: 400; font-size: 14px; color: #d8d8d8; margin-bottom: 5%;}
+.registro .form input {width: 100%; background: none; border: 1px solid #ececec; border-radius: 5px; margin-bottom: 3%; color: #d8d8d8; font-family: 'Lato'; font-size: 14px; padding: 3.5% 2%; }
 .registro .form input::placeholder {color: inherit; font-family: 'Lato'}
 .registro .form form {margin-bottom: 5%;}
-.registro .form a.link_legal {font-size: 32px; color: #8A8A8D; display: block; margin-bottom: 10%; text-decoration: none;}
+.registro .form a.link_legal {font-size: 14px; color: #8A8A8D; display: block; margin-bottom: 10%; text-decoration: none;}
 
 .registro .legales {width: 100%;}
-.registro .legales a.link_legal {font-size: 32px; color: #8A8A8D; display: inline-block; margin-bottom: 10%; text-decoration: none;}
+.registro .legales a.link_legal {font-size: 14px; color: #8A8A8D; display: inline-block; margin-bottom: 10%; text-decoration: none;}
 
 .registro .form .selectors {margin-top: 5%; margin-bottom: 10%;} 
 .registro .form .selector {width: 100%; text-align: left;}
 .registro .form .selector input {display: inline-block; float: left; width: 5%; height: 2%; margin-right: 3%;}
-.registro .form .selector label {font-size: 32px; color: #d8d8d8;  line-height: 55px;  width: 75%; margin: 0 auto 10% auto; display: inline block;}
-.registro .form .selector label a {font-size: 32px; color: #d8d8d8; }
+.registro .form .selector label {font-size: 14px; color: #d8d8d8;  line-height: 30px;  width: 75%; margin: 0 auto 10% auto; display: inline block;}
+.registro .form .selector label a {font-size: 14px; color: #d8d8d8; }
 .registro .crearcuenta {width: 50%; margin-bottom: 10%;}
-.registro .form p {font-size: 12px; color: #8A8A8D;  line-height: 55px;  width: 100%; margin: 0 auto 2% auto;}
+.registro .form p {font-size: 12px; color: #8A8A8D;  line-height: 22px;  width: 100%; margin: 0 auto 2% auto;}
 
 /*** REGISTRO EXITOSO ***/
 
 .registro_exitoso {text-align: center;}
-.registro_exitoso .splash_logo h3 {font-family: 'Lato'; font-weight: 400; font-size: 32px; color: #d8d8d8; margin-bottom: 5%;}
+.registro_exitoso .splash_logo h3 {font-family: 'Lato'; font-weight: 400; font-size: 20px; color: #d8d8d8; margin-bottom: 20%;}
 .registro_exitoso .splash_logo {padding-top: 10%; margin-bottom: 5%;}
 .registro_exitoso .splash_logo img {width: auto!important; margin-bottom: 10%;}
-.registro_exitoso .splash_logo p {font-size: 22px; color: #d8d8d8;  line-height: 55px;  width: 100%; margin: 0 auto 5% auto;}
+.registro_exitoso .splash_logo p {font-size: 14px; color: #d8d8d8;  line-height: 22px;  width: 100%; margin: 0 auto 5% auto;}
 .registro_exitoso .enviarcodigo {width: 100%; margin-top: 10%;}
 
 /*** ACTIVAR CUENTA ***/
 
 .activacion {text-align: center;}
-.activacion .splash_logo h3 {font-family: 'Lato'; font-weight: 400; font-size: 32px; color: #d8d8d8; margin-bottom: 5%;}
+.activacion .splash_logo h3 {font-family: 'Lato'; font-weight: 400; font-size: 20px; color: #d8d8d8; margin-bottom: 5%;}
 .activacion .splash_logo {padding-top: 10%; margin-bottom: 5%;}
-.activacion .splash_logo img {width: auto!important; margin-bottom: 10%;}
-.activacion .splash_logo p {font-size: 34px; color: #d8d8d8;  line-height: 55px;  width: 100%; margin: 0 auto 5% auto;}
+.activacion .splash_logo img {width: 70%!important; margin-bottom: 10%;}
+.activacion .splash_logo p {font-size: 14px; color: #d8d8d8;  line-height: 22px;  width: 100%; margin: 0 auto 5% auto;}
 .activacion .comenzar {width: 70%; margin-top: 10%;}
 

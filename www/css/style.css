@@ -134,3 +134,50 @@ body {width: 100%; margin: 0 auto;  }
 .activacion .splash_logo p {font-size: 34px; color: #d8d8d8;  line-height: 55px;  width: 100%; margin: 0 auto 5% auto;}
 .activacion .comenzar {width: 70%; margin-top: 10%;}
 
+
+	/*Loader*/
+	@-webkit-keyframes spin {
+	  0% {
+		-webkit-transform: rotate(0deg);
+				transform: rotate(0deg);
+	  }
+	  100% {
+		-webkit-transform: rotate(360deg);
+				transform: rotate(360deg);
+	  }
+	}
+	@keyframes spin {
+	  0% {
+		-webkit-transform: rotate(0deg);
+				transform: rotate(0deg);
+	  }
+	  100% {
+		-webkit-transform: rotate(360deg);
+				transform: rotate(360deg);
+	  }
+	}
+	.loader_container{
+		width: 100%;
+		height: 100vh;
+		display: block;
+		display: none;
+		margin: 0;
+		position: fixed;
+		z-index: 99999999;
+		top: 0;
+		left: 0;
+		background-color: rgba(0, 0, 0, 0.6);
+	}
+
+	.loading {
+		width: 64px;
+	    height: 64px;
+	    position: relative;
+	    margin: 45vh auto;
+	    display: block;
+	    border-radius: 50%;
+	    border: 0.85rem solid rgb(70, 117, 39);
+	    border-top-color: white;
+	    -webkit-animation: spin 1s infinite linear;
+	    animation: spin 1s infinite linear;
+	}

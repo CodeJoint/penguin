@@ -47,7 +47,7 @@ function requestHandlerAPI(){
 /*** API sdk Methods ***/
 /***********************/
 		
-		/*!
+		/**
 		 * Manage pseudo Log in process to use protected API calls
 		 * @param data_login JSON {user_login, user_password}
 		 * @return status Bool true is successfully logged in; false if an error ocurred
@@ -55,21 +55,13 @@ function requestHandlerAPI(){
 		 
 		this.loginNative =  function(data_login){
 
-
-			var email 	= data_login.mail;
-			var pass 	= data_login.pass;
-			var data =  {
-							"tipo" 		: "cliente",
-							"mail" 		: email,
-							"password" 	: pass
-						};
-			var response = this.makeRequest( 'api/login', data, true, false );
+			console.log(data_login);
+			var response = this.makeRequest( 'api/users/login.json', data_login, true, false );
 
 			this.token = response.token;
-			apiRH.keeper.setItem( 'token'	, response.token);
-			apiRH.keeper.setItem( 'mail'	, response.mail);
-			apiRH.keeper.setItem( 'userId'	, response.userId);
-
+			apiRH.keeper.setItem( 'token'	, response.jwtoken);
+			apiRH.keeper.setItem( 'mail'	, response.user.email);
+			apiRH.keeper.setItem( 'userId'	, response.user.id);
 
 			if(!this.token)
 				return false;
@@ -77,27 +69,7 @@ function requestHandlerAPI(){
 			return this.token;
 		};
 
-		/**
-		 * Get cosumed
-		 **/
-		this.getDietCosumed = function(data){
-
-			var req = {
-				method : 'get',
-				url : api_base_url + 'tables/cliente/',
-				headers: {
-					'X-ZUMO-APPLICATION': 'ideIHnCMutWTPsKMBlWmGVtIPXROdc92',
-					'X-ZUMO-AUTH': token,
-					'Content-Type': 'application/json'
-				},
-				data : {
-					"tipo" : "cliente",
-					"mail" : email,
-					"password" : pass
-				}
-			}
-
-		};
+		
 
 		/*! 
 		 * Register a new user account the old fashioned way
@@ -177,30 +149,7 @@ function requestHandlerAPI(){
 			var response = this.patchRequest( 'tables/cliente/' + app.keeper.getItem('userId'), req);
 			return (response) ? response : false;
 		};
-		/**
-		 * Update user profile
-		 * @param Object data
-		 * @return Object / Boolean
-		 */
-		this.getCoachList = function(data){
-
-			var response 	= apiRH.getRequest('tables/dieta?opciones=1&age='+_user.perfil.edad.enum, data);
-			var coaches 	= [];
-			var flag 		= null;
-			response.forEach( function( item ) {
-				flag = false;
-				if(!item.coach) 
-					return;
-			    var myCoach = item;
-			    if(!coaches.length) coaches.push(myCoach);
-				coaches.forEach(function( itemCoach ){
-					if( itemCoach.coach._id == item.coach._id ) flag = true;
-				});
-				if(!flag)
-			    	coaches.push(myCoach);
-			});
-			return coaches;
-		};
+		
 
 		//Conekta
 		this.makePayment = function(token){
@@ -215,57 +164,7 @@ function requestHandlerAPI(){
 
 		};
 
-		this.changePayment = function(token){
-			var data = {
-					'cliente' : apiRH.keeper.getItem('userId'),
-					'tokenId' : token
-				};
-			console.log(req);
-
-			var response = this.makeRequest('api/change_payment', data);
-
-			if(response)
-				return true;
-			return false;
-		};
-
-		this.getTransactions = function(){
-			var req = {
-				method : 'GET',
-				url : api_base_url + 'tables/transaction/?cliente=' + apiRH.keeper.getItem('userId'),	//definitr tabla
-				headers: {
-					'X-ZUMO-APPLICATION': 'ideIHnCMutWTPsKMBlWmGVtIPXROdc92',
-					'X-ZUMO-AUTH': apiRH.keeper.getItem('token'),
-					'Content-Type': 'application/json'
-				}
-			}
-			console.log(req);
-
-			var response = this.getRequest('tables/transaction/?cliente=' + apiRH.keeper.getItem('userId'), req);
-
-			console.log("Request Data Cliente Transaction");
-
-			console.log(response);
-
-			return response;
-
-		};
-
-		/**
-		 * registerUpTake Registrer event from diet of user
-		 * @param data {}
-		 * @return response
-		 */	
-		this.registerUpTake = function(data){
-			var data = {};
-
-			var response = this.makeRequest('tables/consumos', data);
-
-			console.log(response);  //llega aqui con la respuesta del servidor
-
-			return (response) ? response : false;
-		};
-
+		
 		/**
 		 * Fetch user information from api
 		 * @return JSON encoded object or false if api responds badly
@@ -291,52 +190,6 @@ function requestHandlerAPI(){
 			return (response) ? response : false;
 		};
 
-
-		// GET PAYMENTS FOR USER
-		
-		this.getPaymentAccount = function(data){
-			var _data = {};
-
-			var response = this.makeRequest('api/history/' + data._id, _data);
-
-			console.log(response);  //llega aqui con la respuesta del servidor
-
-			return (response) ? response : false;
-		};
-
-		this.getResenas = function(idCoach){
-			var req = {
-				method : 'GET',
-				url : api_base_url + 'api/rating/?coach=' + idCoach,	//definitr tabla
-				headers: {
-					'X-ZUMO-APPLICATION': 'ideIHnCMutWTPsKMBlWmGVtIPXROdc92',
-					'X-ZUMO-AUTH': apiRH.keeper.getItem('token'),
-					'Content-Type': 'application/json'
-				}
-			};
-
-			var response = this.getRequest('tables/rating/?coach=' + idCoach, req);
-
-			console.log(response);  //llega aqui con la respuesta del servidor
-
-			return (response) ? response : false;
-		};
-
-		this.makeResena = function(data){
-
-			var _data = {
-					"calificacion": data.calificacion,
-					"comment": data.comentarios,
-					"coach": data.coach,
-					"dieta": data.dieta 
-				};
-
-			var response = this.makeRequest('tables/rating/', _data);
-
-			console.log(response);  //llega aqui con la respuesta del servidor
-
-			return (response) ? response : false;
-		};
 
 		/* 
 		 * Creates an internal user to make calls to the API
@@ -587,71 +440,7 @@ function requestHandlerAPI(){
 							};
 
 		
-		this.makeCosume = function(data){
-			sdk_app_context.showLoader();
-			var result = {};
-
-			var req = {
-				method : 'POST',
-				url : api_base_url + 'tables/consumo/',	//definitr tabla
-				headers: {
-					'X-ZUMO-APPLICATION': 'ideIHnCMutWTPsKMBlWmGVtIPXROdc92',
-					'X-ZUMO-AUTH': apiRH.keeper.getItem('token'),
-					'Content-Type': 'application/json'
-				},
-				data :  data
-			};
-			
-			console.log(req);
 		
-			$.ajax({
-			  type: 'POST',
-			  headers: apiRH.headers,
-			  url: req.url,
-			  data: JSON.stringify(req.data),
-			  dataType: 'json',
-			  async: false
-			})
-			 .done(function(response){
-				result = response;
-				sdk_app_context.hideLoader(response);
-				console.log(response);
-			})
-			 .fail(function(e){
-				result = false;
-				console.log(JSON.stringify(e));
-			});
-			return result;
-
-		};
-
-		this.getConsumed = function(DateStart, DateEnd){
-			// sdk_app_context.showLoader();
-			var result = {};
-			var user = window._user;
-			var idCoach = user.coach._id;
-			// console.log('tables/consumo?coach='+idCoach+'&dieta='+user.dieta._id+'&inicio='+DateStart+'&fin='+DateEnd);
-			result = this.getRequest('tables/consumo?coach='+idCoach+'&dieta='+user.dieta._id+'&inicio='+DateStart+'&fin='+DateEnd, null);
-			return result;
-		};
-
-		this.cancelarSuscripcion = function(data){
-			$.ajax({
-					url: '',
-					type: 'post',
-					data: {}
-			})
-			.done(function(response){
-				result = response;
-				sdk_app_context.hideLoader(response);
-			})
-			.fail(function(e){
-				result = false;
-				console.log(JSON.stringify(e));
-			});
-
-			return result;
-		};				
 		/* 
 		 * Perform OAuth authentication 
 		 * @param provider String Values: 'facebook', 'twitter', 'google_plus'
@@ -749,187 +538,7 @@ function requestHandlerAPI(){
 
 		};
 
-		this.transfer_win = function (r) {
-								app.toast("Se ha publicado una imagen");
-								window.location.reload(true);
-							};
-		this.profile_transfer_win = function (r) {
-										app.toast("Imagen de perfil modificada");
-										return true;
-									};
-		/*
-		 * Advanced search success callback
-		 * @param 
-		 */
-		this.search_transfer_win = function (r) {
-			setTimeout(function() {
-				app.toast("Thanks! Dedalo is processing your request.");
-				app.registerTemplate('success_advanced_search');
-				var template = Handlebars.templates['success_advanced_search'];
-				console.log(JSON.parse(r.response));
-				$('.main').html( template(JSON.parse(r.response)) );
-				setTimeout(function(){
-					app.hideLoader();
-				}, 2000);
-
-				return true;
-			}, 0);
-		};
-		/*
-		 * Advanced search fail callback
-		 * @param 
-		 */
-		this.transfer_fail = function (error) {
-			setTimeout(function() {
-				console.log(JSON.stringify(error));
-				alert("An error has occurred: Code = " + error.code);
-				console.log("upload error source " + error.source);
-				console.log("upload error target " + error.target);
-			}, 0);
-		};
 		
-		/*
-		 * Prepare params for Profile File transfer
-		 * @param fileURL
-		 */
-		this.prepareProfileFileTransfer = function(fileURL){
-
-			console.log('destination enter');
-			app.showLoader();
-			this.transfer_options = new FileUploadOptions();
-			this.transfer_options.fileUrl = fileURL;
-			this.transfer_options.fileKey = "file";
-			this.transfer_options.fileName = fileURL.substr(fileURL.lastIndexOf('/') + 1);
-			this.transfer_options.mimeType = "image/jpeg";
-			console.log(this.transfer_options.fileUrl);
-
-			console.log(this.transfer_options);
-			var params = {};
-				params.client = "app";
-			this.transfer_options.params = params;
-			this.upload_ready = true;
-			console.log("prepareProfileTransfer");
-			apiRH.keeper.setItem('avatar-admin', fileName);
-			apiRH.initializeProfileFileTransfer();
-			app.hideLoader();
-		};
-		
-		/*
-		 * Initialize Profile File transfer
-		 * @param fileURL
-		 * @see prepareProfileTransfer MUST be executed before
-		 */
-		this.initializeProfileFileTransfer = function(){
-			
-
-		};
-
-		/**
-		 * Prepare params for Chat File transfer
-		 * @param fileURL
-		 * @param source
-		 */
-		this.prepareChatFileTransfer = function(fileURL, source){
-									app.showLoader();
-									
-									var xhr = new XMLHttpRequest();
-									xhr.open('GET', fileUrl, true);
-									xhr.onreadystatechange = function(){
-										console.log(xhr.getResponseHeader('Content-Length'));
-										if ( xhr.readyState == 4 ) {
-										    if ( xhr.status == 200 ) {
-										     	alert('Size in bytes: ' + xhr.getResponseHeader('Content-Length'));
-												this.chat_upload_params = 	{
-																				name: fileURL.substr(fileURL.lastIndexOf('/') + 1), 
-																				file: fileURL, 
-																				type: "image/jpeg", 
-																				size: 123213, 
-																				public: false
-																			};
-
-												// var image = {thumb: this.transfer_options.fileLocal};
-												console.log(JSON.stringify(this.chat_upload_params));
-												// $('#image_stage').addClass("visible").append("<img src='cdvfile://"+fileUrl+"' class='chat-img' >");
-												return this.initializeChatFileTransfer(this.chat_upload_params);
-												app.hideLoader();
-										    } else {
-										      alert('ERROR');
-										    }
-										}
-									};
-									xhr.send(null);
-									
-								};
-
-		/*
-		 * Initialize Search by image File transfer
-		 * @param fileURL
-		 * @see prepareProfileTransfer MUST be executed before
-		 * Dedalo approved
-		 */
-		this.initializeChatFileTransfer = function(params){
-			console.log("You make me laugh, shaddy man");
-			QB.content.createAndUpload(params, function(err, response){
-				console.log("Response :: "+JSON.stringify(response));
-			  if (err) {
-				console.log(err);
-			  } else {
-				var uploadedFileId = response.id;
-			 
-				// prepare a message
-				//
-				var msg = {
-				  type: currentDialog.type == 3 ? 'chat' : 'groupchat',
-				  body: "attachment",
-				  extension: {
-					save_to_history: 1,
-				  }
-				};
-				msg["extension"]["attachments"] = [{id: uploadedFileId, type: 'photo'}];
-			 
-				// send a message
-				// ...
-			  }
-			});
-		};
-
-		this.fileselect_win = function (r) {
-			console.log('selected win: ' + r);
-			if(!r && r == '')
-				return;
-			return context.prepareProfileFileTransfer(r);
-		};
-
-		this.chat_fileselect_win = function (r) {
-			console.log('chat win: ' + r);
-								setTimeout(function() {
-									console.log("r ::: "+r);
-									console.log("Chat file sent");
-									if(!r && r == '')
-										return;
-									return context.prepareChatFileTransfer(r);
-								}, 0);
-							};
-
-		this.profileselect_win = function (r) {
-			console.log('profile win: ' + r);
-			if(!r && r == '')
-				return;
-			
-			console.log("IMAGE: " + r);
-
-			if(r != '')
-			{
-				$('.profile.circle-frame.edition').html('<img src="'+ r +'"/>');
-				console.log('archivo: ' + $('.profile.circle-frame').find('img').attr('src'));
-			}
-
-			return context.prepareProfileFileTransfer(r);
-		};
-
-		this.fileselect_fail = function (error) {
-								app.toast("An error has occurred: " + error);
-							};
 		/**
 		 * @param String destination Upload destination Options: "profile", "chat"
 		 * @param String source Source to get media file from Options: "camera", "gallery"
@@ -953,127 +562,5 @@ function requestHandlerAPI(){
 						mediaType: navigator.camera.MediaType.ALLMEDIA  });
 			return;
 		};
-
-		this.getProfile = function(){
-			var token 	= apiRH.keeper.getItem('token');
-			var userId 	= apiRH.keeper.getItem('userId');
-
-			if(token && userId){
-				var req = {
-					method : 'post',
-					url : api_base_url + 'tables/cliente/',
-					headers: {
-						'X-ZUMO-APPLICATION': 'ideIHnCMutWTPsKMBlWmGVtIPXROdc92',
-						'X-ZUMO-AUTH': token,
-						'Content-Type': 'application/json'
-					}
-				}
-
-				var user = this.getRequest('tables/cliente/' + userId, null);
-
-				apiRH.keeper.setItem('user', JSON.stringify(user));
-				// console.log(JSON.stringify(user));
-				// console.log(user);
-
-				if(user){
-					apiRH.keeper.setItem('coach_type', user.perfil.personalidad);
-					apiRH.keeper.setItem('user_name', user.nombre);
-					apiRH.keeper.setItem('user_last_name', user.apellido);
-					apiRH.keeper.setItem('genero', user.perfil.sexo);
-					apiRH.keeper.setItem('customerId', user.customerId);
-
-					if(user.perfil.edad !== undefined){
-						apiRH.keeper.setItem('edad', user.perfil.edad.real);
-					} else {
-						apiRH.keeper.setItem('edad', 0);
-					}
-					apiRH.keeper.setItem('zipcode', user.cp);
-					apiRH.keeper.setItem('estatura', user.perfil.estatura);
-					apiRH.keeper.setItem('peso', user.perfil.peso);
-					apiRH.keeper.setItem('peso_ideal', user.pesoDeseado);
-					apiRH.keeper.setItem('dpw', user.perfil.ejercicio);
-					apiRH.keeper.setItem('restricciones', user.restricciones);
-					apiRH.keeper.setItem('comentarios', user.comentarios);
-					apiRH.keeper.setItem('customerId', user.customerId);
-					apiRH.keeper.setItem('chatId', user.chatId);
-					if(user.dieta !== undefined){
-						apiRH.keeper.setItem('dietaId', user.dieta._id);
-					} else {
-						apiRH.keeper.setItem('dietaId', 0);
-					}
-					if(user.dieta !== undefined){
-						apiRH.keeper.setItem('dietaName', user.dieta.nombre);
-					} else {
-						apiRH.keeper.setItem('dietaName', '');
-					}
-					
-					if(user.coach !== undefined){
-						apiRH.keeper.setItem('nombre_coach', user.coach.nombre);
-						apiRH.keeper.setItem('apellido_coach', user.coach.apellido);
-						apiRH.keeper.setItem('coach_rate', user.coach.rating);
-						apiRH.keeper.setItem('chatPassword', user.coach.chatPassword);
-					}	
-					
-					return (userId) ? user : false;
-				}
-				return false;
-				
-			}
-			return false;
-		};
-
-		/* MEASUREMENT CONTROLS */
-		this.timeout;
-		this.timeoutFlag = null;
-		this.timer 		 = 200;
-		this.clickTimer  = null;
-
-		this.stickyTouchHandler = function(event) {
-
-			/*** Exit if trashy event ***/
-			if(!event.originalEvent && !event.originalEvent.changedTouches)
-				return false;
-
-		    var touches = event.originalEvent.changedTouches,
-		        first = touches[0],
-		        type = "";
-		    switch(event.type) {
-		        case "touchstart": 
-		        	type = "mousedown"; 	
-		        	break;
-		        case "touchmove":  
-		        	type = "mousemove"; 	
-		        	break;        
-		        case "touchend":   
-		        	type = "mouseup"; 	
-		        	break;
-		        default: 
-		        	break;
-		    }
-
-		    var simulatedEvent = document.createEvent("MouseEvent");
-		    simulatedEvent.initMouseEvent(type, true, true, window, 1, 
-		                              first.screenX, first.screenY, 
-		                              first.clientX, first.clientY, false, 
-		                              false, false, false, 0/*left*/, null);
-		    first.target.dispatchEvent(simulatedEvent);
-		    event.preventDefault();
-		    return true;
-		}
-
-		this.clearTimeoutLogic = function(){
-			console.log("Clear timeout logic");
-			if(apiRH.timeoutFlag){
-				clearInterval(apiRH.timeout);
-		 	}else{
-		 		setTimeout(function(){
-		 			clearInterval(apiRH.timeout);
-		 			apiRH.timeoutFlag = false;
-		 			return true;
-		 		}, apiRH.timer);
-		 	}
-			apiRH.timeoutFlag = false;
-			return false;
-		}
 		
 	}

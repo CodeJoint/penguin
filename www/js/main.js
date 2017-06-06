@@ -186,8 +186,16 @@
 		},
 		/* Returns the values in a form as an associative array */
 		/* IMPORTANT: Does NOT include password type fields */
-		getFormData: function (selector) {
-			return $(selector).serializeJSON();
+		getFormData: function (selector, format) {
+			var result = [],
+				object = {},
+				data   = $(selector).serializeArray();
+
+			$.map(data, function (attr) {
+				result[attr.name] = attr.value;
+				object[attr.name] = attr.value;
+			});
+			return (format == 'object') ? object : result;
 		},
 		isObjEmpty: function (obj) {
 

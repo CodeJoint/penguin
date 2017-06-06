@@ -134,24 +134,18 @@ window.initializeEvents = function(){
 			window.init_scripts.push("login_validate");
 			$('#login_form').validate({
 				rules:{
-					mail :{
-						required : true,
-						email : true
-					},
-					pass :"required"
+					user : "required",
+					pass : "required"
 				},
 				messages:{
-					mail : {
-						required: "Debes proporcionar un correo",
-						email: "Proporciona un correo válido"
-					},
+					user : "Debes proporcionar un correo",
 					pass : "Este campo es requerido para ingresar"
 				},
 				submitHandler:function( form, event ){
 					event.preventDefault();
-					var data_login		= app.getFormData(form);
+					var data_login		= app.getFormData(form, 'object');
 					var login_response 	= apiRH.loginNative(data_login);
-
+					console.log(login_response);
 					if(login_response){
 
 						apiRH.headers['X-ZUMO-AUTH'] = login_response;

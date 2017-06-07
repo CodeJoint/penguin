@@ -24,7 +24,7 @@ function requestHandlerAPI(){
 	
 	/*** Request headers ***/
 	this.headers = 	{
-						'Content-Type': 'application/json'
+						'Content-Type': 'application/x-www-form-urlencoded'
 					};
 
 	var context = this;
@@ -55,10 +55,8 @@ function requestHandlerAPI(){
 		 
 		this.loginNative =  function(data_login){
 
-			console.log(data_login);
 			var response = this.makeRequest( 'api/users/login.json', data_login, true, false );
-
-			this.token = response.token;
+			this.token = response.jwtoken;
 			apiRH.keeper.setItem( 'token'	, response.jwtoken);
 			apiRH.keeper.setItem( 'mail'	, response.user.email);
 			apiRH.keeper.setItem( 'userId'	, response.user.id);
@@ -66,7 +64,7 @@ function requestHandlerAPI(){
 			if(!this.token)
 				return false;
 
-			return this.token;
+			return response;
 		};
 
 		
@@ -213,42 +211,8 @@ function requestHandlerAPI(){
 		 */
 		this.save_user_data_clientside = function(user){
 
-			if(user){
-				app.keeper.setItem('coach_type', user.perfil.personalidad);
-				app.keeper.setItem('user_name', user.nombre);
-				app.keeper.setItem('user_last_name', user.apellido);
-				app.keeper.setItem('genero', user.perfil.sexo);
-
-				if(user.perfil.edad !== undefined)
-					app.keeper.setItem('edad', user.perfil.edad.real);
-				else
-					app.keeper.setItem('edad', 0);
-					app.keeper.setItem('zipcode', user.cp);
-					app.keeper.setItem('estatura', user.perfil.estatura);
-					app.keeper.setItem('peso', user.perfil.peso);
-					app.keeper.setItem('peso_ideal', user.pesoDeseado);
-					app.keeper.setItem('dpw', user.perfil.ejercicio);
-					app.keeper.setItem('restricciones', user.perfil.restricciones);
-					app.keeper.setItem('comentarios', user.comentarios);
-					app.keeper.setItem('customerId', user.customerId);
-					app.keeper.setItem('chatId', user.chatId);
-				if(user.dieta !== undefined)
-					app.keeper.setItem('dietaId', user.dieta._id);
-				else
-					app.keeper.setItem('dietaId', 0);
-				if(user.dieta !== undefined)
-					app.keeper.setItem('dietaName', user.dieta.nombre);
-				else
-					app.keeper.setItem('dietaName', '');
-				
-				if(user.coach !== undefined){
-					app.keeper.setItem('nombre_coach', user.coach.nombre);
-					app.keeper.setItem('apellido_coach', user.coach.apellido);
-					app.keeper.setItem('coach_rate', user.coach.rating);
-					app.keeper.setItem('chatPassword', user.coach.chatPassword);
-				}
-				return;
-			}
+			if(user)
+				return app.keeper.setItem('user', user);
 		};
 		/* 
 		 * Request new passive token from the API 
@@ -314,16 +278,16 @@ function requestHandlerAPI(){
 				var result = {};
 
 				var options = 	{
-									type 		: 'POST',
+									method 		: 'POST',
 									url			: window.api_base_url+endpoint,
 									data 		: data,
 									dataType 	: 'json',
-									async 		: false
+									async 		: false,
+									crossDomain	: true
 								};
-				var myHeaders = (!noHeaders || typeof(noHeaders) == 'undefined') ? apiRH.headers : {'X-ZUMO-APPLICATION': apiRH.headers['X-ZUMO-APPLICATION']};
+				var myHeaders = (!noHeaders || typeof(noHeaders) == 'undefined') ? apiRH.headers : apiRH.headers;
 				if(myHeaders)
 					options.headers = myHeaders;
-				console.log(options);
 
 				$.ajax(options)
 				 .always( function(response){
@@ -486,7 +450,7 @@ function requestHandlerAPI(){
 				var register_response 	= apiRH.registerNative(data_login);
 				if( register_response ){
 					
-					apiRH.headers['X-ZUMO-AUTH'] = register_response;
+					// apiRH.headers['X-ZUMO-AUTH'] = register_response;
 					var userInfo = apiRH.getInfoUser();
 					if(userInfo){
 
@@ -508,7 +472,7 @@ function requestHandlerAPI(){
 					var login_response 	= apiRH.loginNative(data_login);
 					if( login_response ){
 
-						apiRH.headers['X-ZUMO-AUTH'] = login_response;
+						// apiRH.headers['X-ZUMO-AUTH'] = login_response;
 						var userInfo = apiRH.getInfoUser();
 						console.log(userInfo);
 						if(userInfo){

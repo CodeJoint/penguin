@@ -246,7 +246,7 @@
 			});
 			var data = this.gatherEnvironment(extra_data, "Feed Quinielas");
 			console.log(data);
-			data.is_scrollable = false;
+			// data.is_scrollable = false;
 			return this.switchView('feed', data, '.view', url, 'quiniela-feed');
 		},
 		render_myfeed : function(url){

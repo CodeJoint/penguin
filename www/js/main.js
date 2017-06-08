@@ -247,7 +247,7 @@
 			var data = this.gatherEnvironment(extra_data, "Feed Quinielas");
 			console.log(data);
 			// data.is_scrollable = false;
-			return this.switchView('feed', data, '.view', url, 'quiniela-feed');
+			return this.switchView('lobby', data, '.view', url, 'quiniela-feed');
 		},
 		render_myfeed : function(url){
 			
@@ -271,6 +271,29 @@
 		},
 		render_register : function( url ){
 			
+			if(!app.initialized) app.initialize();
+			setTimeout(function(){
+				app.showLoader();
+			}, 420);
+			app.check_or_renderContainer();
+			console.log("Rendering Register");
+
+			var data = this.gatherEnvironment(null, "Registro");
+			// data.is_scrollable = false;
+			return this.switchView('register', data, '.view', url, 'registro');
+		},
+		render_register_success : function( url ){
+			
+			if(!app.initialized) app.initialize();
+			setTimeout(function(){
+				app.showLoader();
+			}, 420);
+			app.check_or_renderContainer();
+			console.log("Rendering Register success");
+
+			var data = this.gatherEnvironment(null, "Registro exitoso");
+			// data.is_scrollable = false;
+			return this.switchView('register-success', data, '.view', url, 'registro exitoso');
 		},
 		render_settings : function(url){
 			

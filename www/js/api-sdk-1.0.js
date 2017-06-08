@@ -212,7 +212,7 @@ function requestHandlerAPI(){
 		this.save_user_data_clientside = function(user){
 
 			if(user)
-				return app.keeper.setItem('user', user);
+				return app.keeper.setItem('user', JSON.stringify(user));
 		};
 		/* 
 		 * Request new passive token from the API 

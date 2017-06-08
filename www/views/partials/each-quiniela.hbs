@@ -6,8 +6,8 @@
 						soccer natural garantizado clearfix">
 			<div class="quiniela_header clearfix">
 				<div class="quiniela_iconos clearfix">
-					<img src="images/natural.png">
-					<img src="images/soccer.png">
+					<img src="{{cordova_full_path}}images/natural.png">
+					<img src="{{cordova_full_path}}images/soccer.png">
 				</div><!-- iconos -->
 				<h2>{{# tournament_instances}}{{name}}- {{/ tournament_instances}}{{name_replaced}}</h2>
 			</div><!-- quiniela_header -->
@@ -19,7 +19,7 @@
 				</div><!-- quiniela_info -->
 				<div class="quiniela_picks_ok clearfix">
 					<span class="titulo">PICKS</span>
-					<img src="images/acierto.png">
+					<img src="{{cordova_full_path}}images/acierto.png">
 				</div>
 				<div class="quiniela_aganar clearfix">
 					<span class="titulo">A GANAR</span>
@@ -27,12 +27,12 @@
 				</div>
 				<div class="quiniela_entrada clearfix">
 					<span class="titulo">ENTRADA</span>
-					<img src="images/billecoin.png">
+					<img src="{{cordova_full_path}}images/billecoin.png">
 					<span class="number">${{entry_fee}}</span>
 				</div>
 				<div class="quiniela_bolsa clearfix">
 					<span class="titulo">BOLSA</span>
-					<img src="images/garantizado.png">
+					<img src="{{cordova_full_path}}images/garantizado.png">
 					<span class="number guarantee">${{acum}}</span>
 				</div>
 			</div><!-- quiniela_content -->

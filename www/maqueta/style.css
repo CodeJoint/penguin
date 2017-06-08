@@ -240,7 +240,7 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 
 /*** MIS QUINIELAS OVERLAY ***/
 
-.misquinielas {position: fixed; top: 90px; width: 100%; margin-left: 97%; background: url('images/bg_trans_quinielas.png') repeat; height: 100%; padding-left: 1%;}
+.misquinielas {position: fixed; top: 87px; width: 100%; margin-left: 97%; background: url('images/bg_trans_quinielas.png') repeat; height: 100%; padding-left: 1%;}
 .misquinielas a.link_wrapper .quiniela_open {border-left: 3px solid #77BC1F;}
 .misquinielas a.link_wrapper .quiniela_live {border-left: 3px solid #F6A623;}
 .misquinielas a.link_wrapper .quiniela_closed {border-left: 3px solid #FF576C;}

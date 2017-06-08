@@ -210,8 +210,15 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 .quiniela.quiniela_live .quiniela_content .quiniela_bolsa img {margin-top: -2px;}
 
 
+/*** FILTROS ***/
 
+.filtros {position: fixed; top: 90px; right: 0; background: #000; width: 85%; text-align: center; padding: 20px;}
+.filtros ul {list-style: none; margin: 0px; padding: 0px; width: 100%;}
+.filtros ul li {display: inline-block; float: left; background: url('images/bg_gradient_32.png') repeat-x; height: 32px; vertical-align: middle;}
+.filtros ul li img {width: 24px; height: auto; display: inline-block; vertical-align: middle;}
+.filtros h3 {font-size: 12px; font-weight: 400; margin: 0px; padding-top: 15px;}
 
+.filtros .filtros_moneda ul li {width: 33.3%}
 
-
-
+.filtros .filtros_deporte ul li:first-child {width: 100%;} 
+.filtros .filtros_deporte ul li {width: 14.28%;}

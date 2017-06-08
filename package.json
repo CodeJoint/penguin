@@ -1,0 +1,17 @@
+{
+    "name": "app.pickwin.net",
+    "version": "1.0.0",
+    "displayName": "PickWin",
+    "cordova": {
+        "platforms": [
+            "android"
+        ],
+        "plugins": {
+            "cordova-plugin-whitelist": {}
+        }
+    },
+    "dependencies": {
+        "cordova-android": "~6.2.3",
+        "cordova-plugin-whitelist": "1"
+    }
+}

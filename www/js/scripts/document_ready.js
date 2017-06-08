@@ -131,51 +131,36 @@ window.initializeEvents = function(){
 
 
 		if($('#login_form').length){
+
 			window.init_scripts.push("login_validate");
 			$('#login_form').validate({
 				rules:{
-					mail :{
-						required : true,
-						email : true
-					},
-					pass :"required"
+					user : "required",
+					pass : "required"
 				},
 				messages:{
-					mail : {
-						required: "Debes proporcionar un correo",
-						email: "Proporciona un correo válido"
-					},
+					user : "Debes proporcionar un correo",
 					pass : "Este campo es requerido para ingresar"
 				},
 				submitHandler:function( form, event ){
 					event.preventDefault();
-					var data_login		= app.getFormData(form);
+					var data_login		= app.getFormData(form, 'object');
 					var login_response 	= apiRH.loginNative(data_login);
 
 					if(login_response){
 
-						apiRH.headers['X-ZUMO-AUTH'] = login_response;
-						var userInfo = apiRH.getInfoUser();
-
-						if(userInfo){
-							window._user = (userInfo) ? userInfo : null;
-							app.keeper.setItem( 'user', JSON.stringify(_user) );
-							var verified = app.keeper.getItem( 'email_verification' );
-							if( typeof _user.customerId !== undefined && _user.customerId !== 'not_set' ){
-								// TODO: Load interface via switch method
-								app.keeper.setItem( 'email_verification', true );
-								return app.render_myPlan('dieta.html');
-							} else if(!verified){
-								return app.render_validate_code('code.html');
-							}else{
-								return app.render_initial_record('record.html');
-							} 	
+						apiRH.headers['Authorization'] = "Bearer "+login_response.jwtoken;
+						apiRH.save_user_data_clientside(login_response.user);
+						if(login_response.user){
+							console.log(login_response.user);
+							window._user = (login_response.user) ? login_response.user : null; 
+							return app.render_feed('feed.html');
 						}
 
 					}else{
 						app.toast("Ocurrió un error, por favor revisa que tus datos sean correctos.")
+						return app.hideLoader();
 					}
-					return app.hideLoader();
 				}
 			});
 
@@ -210,6 +195,9 @@ window.initializeEvents = function(){
 		$('.back_with_logout').click(function(e){
 			return back_with_logout(e);
 		});
+
+		var ventana = $(window).height();
+		$('.container').css('min-height', ventana+'px');
 
 	
 	});

@@ -150,7 +150,7 @@ window.initializeEvents = function(){
 					if(login_response){
 
 						apiRH.headers['Authorization'] = "Bearer "+login_response.jwtoken;
-						apiRH.save_user_data_clientside(login_response.user);
+						apiRH.save_user_data_clientside(login_response);
 						if(login_response.user){
 							console.log(login_response.user);
 							window._user = (login_response.user) ? login_response.user : null; 
@@ -197,7 +197,6 @@ window.initializeEvents = function(){
 		});
 
 		var ventana = $(window).height();
-
 		$('.container').css('min-height', ventana+'px');
 
 		/*** FILTROS ***/

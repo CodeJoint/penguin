@@ -23,7 +23,6 @@
         <allow-intent href="itms-apps:*" />
     </platform>
 
-    <icon src="icon.png" />
 
     <icon gap:platform="ios" height="60" width="60" src="res/icons/ios/icon-60.png" />
     <icon gap:platform="ios" height="120" width="120" src="res/icons/ios/icon-60-2x.png" />
@@ -48,7 +47,6 @@
     <icon gap:platform="android" gap:qualifier="xxhdpi" src="res/icons/android/icon-144-xxhdpi.png" />
     <icon gap:platform="android" gap:qualifier="xxxhdpi" src="res/icons/android/icon-192-xxxhdpi.png" />
 
-    <splash src="splash.png" />
 
     <splash gap:platform="ios" height="480" width="320" src="res/screens/ios/screen-iphone-portrait.png" />
     <splash gap:platform="ios" height="960" width="640" src="res/screens/ios/screen-iphone-portrait-2x.png" />

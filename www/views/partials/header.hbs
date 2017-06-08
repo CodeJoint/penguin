@@ -6,17 +6,24 @@
 			<div class="header_right clearfix">
 				<div class="header_user_info clearfix">
 					<div class="user_info clearfix">
-						<img src="images/profile_placeholder.png">
-						<h2>Lorem Ipsum Dolor</h2>
+						{{^ me.avatar}}
+							<img src="images/profile_placeholder.png">
+						{{/ me.avatar}}
+						{{# me.avatar}}
+							<div class="avatar_container">
+								<img src="http://pickwin.astrata.mx/img/avatars/{{../me.avatar}}">
+							</div>
+						{{/ me.avatar}}
+						<h2>{{me.nick}}</h2>
 					</div>
 					<div class="user_money clearfix">
 						<div class="money_pesos clearfix">
 							<img src="images/billete.png">
-							<span class="money_ammount">$1,235</span>
+							<span class="money_ammount">${{me.balancePc}}</span>
 						</div>
 						<div class="money_pickcoins clearfix">
 							<img src="images/pickcoin.png">
-							<span class="money_ammount">$1,234</span>
+							<span class="money_ammount">${{me.balanceReal}}</span>
 						</div>
 					</div>
 				</div><!-- header_user_info -->

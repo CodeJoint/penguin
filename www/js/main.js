@@ -87,7 +87,7 @@
 		},
 		registerCompiledPartials: function() {
 			/* Add files to be loaded here */
-			var filenames = ['header', 'loader'];
+			var filenames = ['header', 'loader', 'each-quiniela', 'filters'];
 			filenames.forEach(function (filename) {
 					Handlebars.registerPartial(filename, Handlebars.templates[filename]);
 			});
@@ -242,7 +242,7 @@
 			extra_data.pools.forEach(function(element){
 				element.acum = element.entry_count*element.entry_fee;
 				var date_format = new Date(element.finish_date);
-				element.date_format = date_format.getFullYear()+'/'+( date_format.getMonth()+1 );
+				element.date_format = date_format.getFullYear()+'/'+ date_format.getMonth()+'/'+ date_format.getDate();
 			});
 			var data = this.gatherEnvironment(extra_data, "Feed Quinielas");
 			console.log(data);

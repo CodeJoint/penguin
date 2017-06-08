@@ -57,6 +57,7 @@ function requestHandlerAPI(){
 
 			var response = this.makeRequest( 'api/users/login.json', data_login, true, false );
 			this.token = response.jwtoken;
+			console.log(response);
 			apiRH.keeper.setItem( 'token'	, response.jwtoken);
 			apiRH.keeper.setItem( 'mail'	, response.user.email);
 			apiRH.keeper.setItem( 'userId'	, response.user.id);
@@ -205,14 +206,17 @@ function requestHandlerAPI(){
 		};
 
 		/* 
-		 * Save user data client side to execute auth requests to the API
+		 * Save /Update user data client side to execute auth requests to the API
 		 * @return null
 		 * @see this.create_internal_user
 		 */
-		this.save_user_data_clientside = function(user){
-
-			if(user)
-				return app.keeper.setItem('user', JSON.stringify(user));
+		this.save_user_data_clientside = function(data_login){
+			if(data_login){
+				data_login.user.balancePc = data_login.balancePc;
+				data_login.user.balancePcReal = data_login.balancePcReal;
+				data_login.user.balanceReal = data_login.balanceReal;
+				return app.keeper.setItem('user', JSON.stringify(data_login.user));
+			}
 		};
 		/* 
 		 * Request new passive token from the API 

@@ -1,6 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="app.pickwin.net" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>PickWin</name>
+    <preference name="Fullscreen" value="true" />
+    <preference name="Orienation" value="portrait" />
     <description>
         Dummy app for PickWin api consumption
     </description>
@@ -8,8 +10,6 @@
         John Falcon for Taller de Código
     </author>
     <content src="index.html" />
-    <preference name="orienation" value="portrait" />
-    <preference name="fullscreen" value="true" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -63,6 +63,7 @@
         <splash height="2208" src="res/screens/ios/screen-iphone-portrait-736h.png" width="1242" />
         <splash height="1242" src="res/screens/ios/screen-iphone-landscape-736h.png" width="2208" />
     </platform>
-    <engine name="android" spec="~6.2.3" />
+    <engine name="android" spec="^6.2.3" />
+    <plugin name="cordova-plugin-device" spec="^1.1.6" />
     <plugin name="cordova-plugin-whitelist" spec="1" />
 </widget>

@@ -282,13 +282,13 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 	}
 
 	.loading {
-		width: 64px;
-	    height: 64px;
+		width: 36px;
+	    height: 36px;
 	    position: relative;
 	    margin: 45vh auto;
 	    display: block;
 	    border-radius: 50%;
-	    border: 0.85rem solid rgb(70, 117, 39);
+	    border: 0.55rem solid rgb(70, 117, 39);
 	    border-top-color: white;
 	    -webkit-animation: spin 1s infinite linear;
 	    animation: spin 1s infinite linear;

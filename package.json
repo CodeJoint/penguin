@@ -7,11 +7,13 @@
             "android"
         ],
         "plugins": {
-            "cordova-plugin-whitelist": {}
+            "cordova-plugin-whitelist": {},
+            "cordova-plugin-device": {}
         }
     },
     "dependencies": {
-        "cordova-android": "~6.2.3",
+        "cordova-android": "^6.2.3",
+        "cordova-plugin-device": "^1.1.6",
         "cordova-plugin-whitelist": "1"
     }
 }

@@ -93,6 +93,7 @@
 			});
 		},
 		bindEvents: function() {
+			console.log("Bind");
 			document.addEventListener('deviceready', app.onDeviceReady, false);
 			document.addEventListener('mobileinit', app.onDMobileInit, false);
 		},
@@ -114,10 +115,11 @@
 		// deviceready Event Handler
 		onDeviceReady: function() {
 			app.receivedEvent('deviceready');
+			console.log("Device ready");
 			window.cordova_full_path = (typeof(cordova) != 'undefined') 
 									 	? cordova.file.applicationDirectory+"www/"
 									 	: '';
-
+			console.log(window.cordova_full_path);
 			/*   ___    _         _   _     
 			*  / _ \  / \  _   _| |_| |__  
 			* | | | |/ _ \| | | | __| '_ \ 

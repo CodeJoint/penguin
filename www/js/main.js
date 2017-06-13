@@ -72,7 +72,9 @@
 					return opts.inverse(this);
 				}
 			});
-			return;
+			Handlebars.registerHelper('formatCurrency', function(value) {
+			    return value.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+			});
 		},
 		registerTemplate : function(name) {
 			$.ajax({

@@ -187,7 +187,7 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 .quiniela_content .quiniela_info span {display: block; margin-bottom: 2px;}
 .quiniela_content .quiniela_info span.limite {color: #F6A623;}
 
-.quiniela .quiniela_content div {float: left;}
+.quiniela .quiniela_content div {float: left; margin-right: 0.5rem;}
 .quiniela .quiniela_content span {display: block;}
 .quiniela .quiniela_content span.titulo {margin-bottom: 15px;}
 .quiniela .quiniela_content span.number {float: left; margin-left: 5px;}

@@ -17,51 +17,12 @@ window.initializeEvents = function(){
 			console.log("Initializing hooks");
 			/* Hook soft links */
 			$('.hook').on('click', function(e){
+				console.log("Hook click");
 				e.preventDefault();
 				app.showLoader();
-				// if( $(this).data('resource') == "entermode" )
-				// 	return app.render_entermode( $(this).attr('href') );
-				// if( $(this).data('resource') == "register" )
-				// 	return app.render_register( $(this).attr('href') );
-				// 	if( $(this).data('resource') == "register-mail" )
-				// 		return app.render_register_mail( $(this).attr('href') );
+				if( $(this).data('resource') == "register" )
+					return app.render_register( $(this).attr('href') );
 				
-				// if( $(this).data('resource') == "login" )
-				// 	return app.render_login( $(this).attr('href') );
-				// 	if( $(this).data('resource') == "login-mail" )
-				// 		return app.render_login_email( $(this).attr('href') );
-
-				// if( $(this).data('resource') == "chat" )
-				// 	return app.render_chat( $(this).attr('href') );
-				// if( $(this).data('resource') == "my-plan" )
-				// 	return app.render_myPlan( $(this).attr('href') );
-				// if( $(this).data('resource') == "main-menu" )
-				// 	return app.render_mainmenu( $(this).attr('href') );
-				// if( $(this).data('resource') == "user-profile" )
-				// 	return app.render_settings( $(this).attr('href') );
-				// if( $(this).data('resource') == "edit-profile" )
-				// 	return app.render_edit_settings( $(this).attr('href') );
-				// if( $(this).data('resource') == "change-coach" )
-				// 	return app.render_change_coach( $(this).attr('href') );
-				// if( $(this).data('resource') == "coming-soon" )
-				// 	return app.render_coming_soon( $(this).attr('href') );
-				// if( $(this).data('resource') == "about" )
-				// 	return app.render_about( $(this).attr('href') );
-				// if( $(this).data('resource') == "support" )
-				// 	return app.render_support( $(this).attr('href') );
-
-				// if( $(this).data('resource') == "add-exercise" )
-				// 	return app.render_new_record( $(this).attr('href'), 'exercise' );
-				// if( $(this).data('resource') == "add-water" )
-				// 	return app.render_new_record( $(this).attr('href'), 'water' );
-				// if( $(this).data('resource') == "add-weight" )
-				// 	return app.render_new_record( $(this).attr('href'), 'weight' );
-				// if( $(this).data('resource') == "add-measures" )
-				// 	return app.render_new_record( $(this).attr('href'), 'measures' );
-				// if( $(this).data('resource') == "add-mood" )
-				// 	return app.render_new_record( $(this).attr('href'), 'mood' );
-
-
 				e.stopPropagation();
 			});
 		};
@@ -129,6 +90,61 @@ window.initializeEvents = function(){
 			apiRH.loginOauth('facebook');
 		});
 
+
+		if($('#register_form').length){
+
+			window.init_scripts.push("register_validate");
+			$('#register_form').validate({
+				rules:{
+					name 		: "required",
+					last_name 	: "required",
+					nickname 	: "required",
+					email 		: "required",
+					password 	: "required",
+					repeat_password :{
+						required: true,
+						equalTo : "#password"
+    				},
+					accept_terms: "required",
+					is_M18		: "required"
+				},
+				messages:{
+					name 		: "Debes proporcionar un nombre",
+					last_name 	: "Debes proporcionar un apellido",
+					nickname 	: "Por favor elige un nombre de usuario",
+					email 		: "Es necesario que especifiques un correo elecrónico",
+					password 	: "Por favor ingresa tu contraseña",
+					repeat_password :{
+					 	required: "Por favor repite tu contraseña",
+						equalTo: "Las contraseñas no coinciden"
+    				},
+					accept_terms: "Debes aceptar nuestros términos para continuar",
+					is_M18		: "Debes ser mayor de edad para continuar"
+				},
+				submitHandler:function( form, event ){
+					event.preventDefault();
+					var data_login		= app.getFormData(form, 'object');
+					console.log(data_login);
+					// var login_response 	= apiRH.loginNative(data_login);
+
+					// if(login_response){
+
+					// 	apiRH.headers['Authorization'] = "Bearer "+login_response.jwtoken;
+					// 	apiRH.save_user_data_clientside(login_response);
+					// 	if(login_response.user){
+					// 		console.log(login_response.user);
+					// 		window._user = (login_response.user) ? login_response.user : null; 
+					// 		return app.render_feed('feed.html');
+					// 	}
+
+					// }else{
+					// 	app.toast("Ocurrió un error, por favor revisa que tus datos sean correctos.")
+					// 	return app.hideLoader();
+					// }
+				}
+			});
+
+		} // END register_form
 
 		if($('#login_form').length){
 

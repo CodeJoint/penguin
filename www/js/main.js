@@ -34,7 +34,7 @@
 			$.ajaxSetup({
 				 async: false
 			});
-
+			this.registerHelpers();
 			this.registerCompiledPartials();
 
 			window.loggedIn 	= false;
@@ -73,7 +73,13 @@
 				}
 			});
 			Handlebars.registerHelper('formatCurrency', function(value) {
+				value = (value/100).toFixed(2);
 			    return value.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+			});
+			Handlebars.registerHelper('formatDate', function(value) {
+				var date = Date.parse(value);
+				moment.locale('es');
+			    return moment(value).format('lll');
 			});
 		},
 		registerTemplate : function(name) {
@@ -95,7 +101,6 @@
 			});
 		},
 		bindEvents: function() {
-			console.log("Bind");
 			document.addEventListener('deviceready', app.onDeviceReady, false);
 			document.addEventListener('mobileinit', app.onDMobileInit, false);
 		},
@@ -283,7 +288,7 @@
 			console.log("Rendering Register");
 
 			var data = this.gatherEnvironment(null, "Registro");
-			// data.is_scrollable = false;
+			console.log(data);
 			return this.switchView('register', data, '.view', url, 'registro');
 		},
 		render_register_success : function( url ){
@@ -293,9 +298,7 @@
 				app.showLoader();
 			}, 420);
 			app.check_or_renderContainer();
-			console.log("Rendering Register success");
-
-			var data = this.gatherEnvironment(null, "Registro exitoso");
+			var data = this.gatherEnvironment(null, "¡REGISTRO EXITOSO!");
 			// data.is_scrollable = false;
 			return this.switchView('register-success', data, '.view', url, 'registro exitoso');
 		},

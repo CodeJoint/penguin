@@ -95,7 +95,7 @@ body {width: 100%; margin: 0 auto; font-weight: 300; font-family: 'Lato'!importa
 
 .registro {text-align: center;}
 .registro .splash_logo {padding-top: 10%; margin-bottom: 5%;}
-.registro .splash_logo img {width: 50%!important; margin-bottom: 10%;}
+.registro .splash_logo img {width: 50%!important; margin-bottom: 2rem;}
 .registro .splash_logo p {font-size: 14px; color: #d8d8d8;  line-height: 22px;  width: 75%; margin: 0 auto 10% auto;}
 .registro .fb_registry {width: 70%; margin-bottom: 10%;}
 .registro .form {width: 100%; }
@@ -115,6 +115,9 @@ body {width: 100%; margin: 0 auto; font-weight: 300; font-family: 'Lato'!importa
 .registro .form .selector label a {font-size: 14px; color: #d8d8d8; }
 .registro .crearcuenta {width: 50%; margin-bottom: 10%;}
 .registro .form p {font-size: 12px; color: #8A8A8D;  line-height: 22px;  width: 100%; margin: 0 auto 2% auto;}
+
+.form input.submit_green{ background-color: #678946; border-color: #aaca7d; border-style: double; text-transform: uppercase; letter-spacing: 1.5px; font-size: 1.25rem; width: 240px;}
+form label.error{ color: #be8d2e; text-align: left; float: left; font-size: 1.1rem; letter-spacing: 1px; margin: 0 0 1rem 0;}
 
 /*** REGISTRO EXITOSO ***/
 

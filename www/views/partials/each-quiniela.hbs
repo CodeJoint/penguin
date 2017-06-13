@@ -6,7 +6,12 @@
 						soccer natural garantizado clearfix">
 			<div class="quiniela_header clearfix">
 				<div class="quiniela_iconos clearfix">
-					<img src="{{cordova_full_path}}images/natural.png">
+					{{# if_eq point_format "line" }}
+						<img src="{{cordova_full_path}}images/natural.png">
+					{{/ if_eq }}
+					{{# if_eq point_format "natural" }}
+						<img src="{{cordova_full_path}}images/linea.png">
+					{{/ if_eq }}
 					<img src="{{cordova_full_path}}images/{{sport.icon}}.png">
 				</div><!-- iconos -->
 				<h2>{{name_replaced}}</h2>
@@ -14,27 +19,34 @@
 			<div class="quiniela_content clearfix">
 				<div class="quiniela_info clearfix">
 					<span class="registros">REG: {{entry_count}}</span>
-					<span class="cierre">CIERRE: {{date_format}}</span>
+						<span class="cierre">CIERRE: {{formatDate deadline_tz}}</span>
 					{{!-- <span class="aciertos">ACIERTOS: 3/15</span> --}}
 				</div><!-- quiniela_info -->
 				<div class="quiniela_picks_ok clearfix">
 					<span class="titulo">PICKS</span>
 					<img src="{{cordova_full_path}}images/acierto.png">
 				</div>
-				<div class="quiniela_aganar clearfix">
-					<span class="titulo">A GANAR</span>
-					<span class="number">${{available}}</span>
-				</div>
 				<div class="quiniela_entrada clearfix">
 					<span class="titulo">ENTRADA</span>
-					<img src="{{cordova_full_path}}images/billecoin.png">
-					<span class="number">${{entry_fee}}</span>
+					{{# if_eq entry_currency 'real' }}
+						<img src="{{cordova_full_path}}images/billecoin.png">
+					{{/ if_eq }}
+					{{# if_eq entry_currency 'pickcoin' }}
+						<img src="{{cordova_full_path}}images/pickcoin.png">
+					{{/ if_eq }}
+					<span class="number">${{ formatCurrency entry_fee}}</span>
 				</div>
-				<div class="quiniela_bolsa clearfix">
+				<div class="quiniela_aganar clearfix">
 					<span class="titulo">BOLSA</span>
-					<img src="{{cordova_full_path}}images/garantizado.png">
-					<span class="number guarantee">${{acum}}</span>
+					<span class="number">${{ formatCurrency available}}</span>
 				</div>
+				{{# guaranteed_prize}}
+					<div class="quiniela_bolsa clearfix">
+						<span class="titulo">GARANTIZADO</span>
+						<img src="{{cordova_full_path}}images/garantizado.png">
+						<span class="number guarantee">${{ formatCurrency guaranteed_prize}}</span>
+					</div>
+				{{/ guaranteed_prize}}
 			</div><!-- quiniela_content -->
 		</div><!-- quiniela -->
 	</a><!-- link_wrapper -->

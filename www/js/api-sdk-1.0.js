@@ -77,7 +77,7 @@ function requestHandlerAPI(){
 		 */
 		this.registerNative = function(data_login){
 
-
+			console.log(data_login);
 			var name 		= data_login.user;
 			var last_name 	= data_login.last_name;
 			var email 		= data_login.mail;
@@ -162,7 +162,6 @@ function requestHandlerAPI(){
 			return (response.code == "active_subscription") ? true : false;
 
 		};
-
 		
 		/**
 		 * Fetch user information from api

@@ -15,7 +15,7 @@
     "test",
     "tests"
   ],
-  "plugins":[
+  "plugins": [
     "org.apache.cordova.console",
     "org.apache.cordova.contacts",
     "org.apache.cordova.device",
@@ -25,6 +25,7 @@
     "org.apache.cordova.splashscreen"
   ],
   "dependencies": {
-    "handlebars": "^4.0.5"
+    "handlebars": "^4.0.5",
+    "moment": "^2.18.1"
   }
 }

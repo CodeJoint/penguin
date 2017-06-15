@@ -1,0 +1,338 @@
+<html>
+	<head>
+		<title>Quinielas uno</title>
+		<meta charset="utf-8">
+		<script src="js/jquery.js" type="text/javascript"></script>
+		<script src="js/easing.js" type="text/javascript"></script>
+		<script src="js/functions.js" type="text/javascript"></script>
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<link href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,700i" rel="stylesheet">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0, maximum-scale=1, minimum-scale=1">
+	</head>
+	<body>
+		<div class="container clearfix">
+			<div class="header clearfix">
+				<div class="content clearfix">
+					<div class="header_left">
+						<img src="images/logo.png">
+					</div>
+					<div class="header_right clearfix">
+						<div class="header_user_info clearfix">
+							<div class="user_info clearfix">
+								<img src="images/profile_placeholder.png">
+								<h2>Lorem Ipsum Dolor</h2>
+							</div>
+							<div class="user_money clearfix">
+								<div class="money_pesos clearfix">
+									<img src="images/billete.png">
+									<span class="money_ammount">$1,235</span>
+								</div>
+								<div class="money_pickcoins clearfix">
+									<img src="images/pickcoin.png">
+									<span class="money_ammount">$1,234</span>
+								</div>
+							</div>
+						</div><!-- header_user_info -->
+						<div class="header_filtros">
+							<h4>FILTROS</h4>
+							<img src="images/filtros.png">
+						</div>
+					</div>
+				</div><!-- content -->
+			</div><!-- header -->
+			<div class="content quiniela_single">
+				<div class="registro_quiniela clearfix">
+					<a href=""><img src="images/cierre.png"></a>
+					<a href=""><img src="images/registrarse.png"></a>
+				</div><!-- opciones registro -->
+				<a class="link_wrapper" href="">
+					<div class="quiniela quiniela_live soccer natural garantizado clearfix">
+						<div class="quiniela_header clearfix">
+							<div class="quiniela_iconos clearfix">
+								<img src="images/natural.png">
+								<img src="images/soccer.png">
+							</div><!-- iconos -->
+							<h2>5678 LOREM IPSUM DOLOR SIT AMET S12</h2>
+						</div><!-- quiniela_header -->
+						<div class="quiniela_content clearfix">
+							<div class="quiniela_info clearfix">
+								<span class="registros">REG: 1,234</span>
+								<span class="cierre">CIERRE: 28.feb.2017</span>
+								<span class="limite">Limitado a 1000 entradas</span>
+							</div><!-- quiniela_info -->
+							
+							<div class="quiniela_entrada clearfix">
+								<span class="titulo">ENTRADA</span>
+								<img src="images/billecoin.png">
+								<span class="number">$1,234</span>
+							</div>
+							<div class="quiniela_bolsa clearfix">
+								<span class="titulo">BOLSA</span>
+								<img src="images/garantizado.png">
+								<span class="number guarantee">$5,678</span>
+							</div>
+						</div><!-- quiniela_content -->
+					</div><!-- quiniela -->
+				</a><!-- link_wrapper -->
+
+				<div class="quinielas_dropdowns clearfix">
+					<select id="copiar_picks">
+						<option>Copiar picks</option>
+					</select>
+					<select id="registros">
+						<option>Registros</option>
+					</select>
+				</div><!-- dropdowns -->
+				<div class="partidos clearfix">
+					<h3>PARTIDOS</h3>
+					<div class="opciones_partido clearfix">
+						<span>LOCAL</span>
+						<span>EMPATE</span>
+						<span>VISITA</span>
+					</div><!-- opciones_partido -->
+					<div class="partido clearfix">
+						<div class="opcion_partido local clearfix">
+							<input type="radio" name="ganador_uno" id="local">
+							<img src="images/camisaverde.png">
+							<div class="equipo">
+								<span class="iniciales">ABC</span>
+							</div><!-- equipo -->
+							<div class="linea">
+								<span>(+4) 123</span>
+							</div><!-- linea -->
+						</div><!-- opcion_partido -->
+						<div class="opcion_partido cierre clearfix">
+							<span>CIERRE: 28.feb.17</span>
+						</div><!-- opcion_partido -->
+						<div class="opcion_partido visitante clearfix">
+							<input type="radio" name="ganador_uno" id="visitante">
+							<img src="images/camisaazul.png">
+							<div class="equipo">
+								<span class="iniciales">ABC</span>
+							</div><!-- equipo -->
+							<div class="linea">
+								<span>(+4) 123</span>
+							</div><!-- linea -->
+						</div><!-- opcion_partido -->
+					</div><!-- partido -->
+					<div class="partido clearfix">
+						<div class="opcion_partido local clearfix">
+							<input type="radio" name="ganador_dos" id="local">
+							<img src="images/camisablanca.png">
+							<div class="equipo">
+								<span class="iniciales">ABC</span>
+							</div><!-- equipo -->
+							<div class="linea">
+								<span>(+4) 123</span>
+							</div><!-- linea -->
+						</div><!-- opcion_partido -->
+						<div class="opcion_partido empate cierre clearfix">
+							<input type="radio" name="ganador_dos" id="empate">
+							<span>CIERRE: 28.feb.17</span>
+						</div><!-- opcion_partido -->
+						<div class="opcion_partido visitante clearfix">
+							<input type="radio" name="ganador_dos" id="visitante">
+							<img src="images/camisaazul.png">
+							<div class="equipo">
+								<span class="iniciales">ABC</span>
+							</div><!-- equipo -->
+							<div class="linea">
+								<span>(+4) 123</span>
+							</div><!-- linea -->
+						</div><!-- opcion_partido -->
+					</div><!-- partido -->
+					<div class="partido clearfix">
+						<div class="opcion_partido local clearfix">
+							<input type="radio" name="ganador_tres" id="local">
+							<img src="images/camisaamarilla.png">
+							<div class="equipo">
+								<span class="iniciales">ABC</span>
+							</div><!-- equipo -->
+							<div class="linea">
+								<span>(+4) 123</span>
+							</div><!-- linea -->
+						</div><!-- opcion_partido -->
+						<div class="opcion_partido empate cierre clearfix">
+							<input type="radio" name="ganador_tres" id="empate">
+							<span>CIERRE: 28.feb.17</span>
+						</div><!-- opcion_partido -->
+						<div class="opcion_partido visitante clearfix">
+							<input type="radio" name="ganador_tres" id="visitante">
+							<img src="images/camisaroja.png">
+							<div class="equipo">
+								<span class="iniciales">ABC</span>
+							</div><!-- equipo -->
+							<div class="linea">
+								<span>(+4) 123</span>
+							</div><!-- linea -->
+						</div><!-- opcion_partido -->
+					</div><!-- partido -->
+				</div><!-- partidos -->
+				<div class="props clearfix">
+					<h3>PROPS</h3>
+					<div class="prop">
+						<h3>¿Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer aliqua?</h3>
+						<div class="opciones_prop dos_opciones clearfix">
+							<div class="opcion_prop clearfix">
+								<input type="radio" name="prop_uno" vlaue="si">
+								<span>SI</span>
+							</div><!-- opcion_prop clearfix -->
+							<div class="opcion_prop clearfix">
+								<input type="radio" name="prop_uno" value="no">
+								<span>NO</span>
+							</div><!-- opcion_prop clearfix -->
+						</div><!-- opciones_prop dos_opciones -->
+					</div><!-- prop -->
+					<div class="prop clearfix">
+						<h3>¿Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer aliqua?</h3>
+						<div class="opciones_prop tres_opciones clearfix">
+							<div class="opcion_prop clearfix">
+								<input type="radio" name="prop_dos" vlaue="ame">
+								<img src="images/camisaamarilla.png">
+								<span>AME</span>
+							</div><!-- opcion_prop clearfix -->
+							<div class="opcion_prop clearfix">
+								<input type="radio" name="prop_dos" vlaue="caz">
+								<img src="images/camisaroja.png">
+								<span>CAZ</span>
+							</div><!-- opcion_prop clearfix -->
+							<div class="opcion_prop clearfix">
+								<input type="radio" name="prop_dos" vlaue="gua">
+								<img src="images/camisaverde.png">
+								<span>GUA</span>
+							</div><!-- opcion_prop clearfix -->
+						</div><!-- opciones_prop tres_opciones -->
+					</div><!-- prop -->
+					<div class="prop clearfix">
+						<h3>¿Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer aliqua?</h3>
+						<div class="opciones_prop cuatro_opciones clearfix">
+							<div class="opcion_prop clearfix">
+								<input type="radio" name="prop_tres" vlaue="ame">
+								<img src="images/camisaamarilla.png">
+								<span>AME</span>
+							</div><!-- opcion_prop clearfix -->
+							<div class="opcion_prop clearfix">
+								<input type="radio" name="prop_tres" vlaue="caz">
+								<img src="images/camisaroja.png">
+								<span>CAZ</span>
+							</div><!-- opcion_prop clearfix -->
+							<div class="opcion_prop clearfix">
+								<input type="radio" name="prop_tres" vlaue="gua">
+								<img src="images/camisaverde.png">
+								<span>GUA</span>
+							</div><!-- opcion_prop clearfix -->
+							<div class="opcion_prop clearfix">
+								<input type="radio" name="prop_tres" vlaue="nec">
+								<img src="images/camisaazul.png">
+								<span>NEC</span>
+							</div><!-- opcion_prop clearfix -->
+						</div><!-- opciones_prop cuatro_opciones -->
+					</div><!-- prop -->
+				</div><!-- props -->
+				<div class="desempates clearfix">
+					<h3>DESEMPATE</h3>
+						<div class="desempate desempate_uno clearfix">
+							<div class="desempate_left">
+								<span>Marcador del último partido</span>
+							</div>
+							<div class="desempate_input">
+								<span>LOC</span>
+								<input type="text" name="desempate_uno_local">
+								<span>-</span>
+								<input type="text" name="desempate_uno_visitante">
+								<span>VIS</span>
+							</div><!-- desempate_input -->
+						</div><!-- desempate_uno -->
+						<div class="desempate desempate_dos clearfix">
+							<div class="desempate_left">
+								<span>Minuto del primer gol</span>
+							</div>
+							<div class="desempate_input">
+								<input type="text" name="desempate_dos_minuto">
+							</div><!-- desempate_input -->
+						</div><!-- desempate_dos -->
+						<div class="desempate desempate_tres clearfix">
+							<div class="desempate_left">
+								<span>¿Lorem ipsum dolor sit amet, conse ctetur adipiscing elit?</span>
+							</div>
+							<div class="desempate_input">
+								<span>SI</span>
+								<input type="radio" name="desempate_tres" value="si">
+								<span>NO</span>
+								<input type="radio" name="desempate_tres" value="no">
+							</div><!-- desempate_input -->
+						</div><!-- desempate_tres -->
+				</div><!-- dempates -->
+
+			</div><!-- content -->
+			<div class="menu clearfix">
+				<ul>
+					<li class="menu_lobby selected"><a href=""></a></li>
+					<li class="menu_quinielas"><a href=""></a></li>
+					<li class="menu_privadas"><a href=""></a></li>
+					<li class="menu_perfil"><a href=""></a></li>
+					<li class="menu_abonar"><a href=""></a></li>
+				</ul>
+			</div><!-- menu -->
+		</div><!-- container -->
+			<div class="filtros_wrapper">
+				<div class="filtros overlay clearfix">
+					<div class="filtros_moneda clearfix">
+						<h3>MONEDA</h3>
+						<ul class="clearfix">
+							<li data="todos_moneda"><h3>TODOS</h3></li>
+							<li data="money_moneda"><img src="images/billete.png"></li>
+							<li data="pickcoin_moneda"><img src="images/pickcoin.png"></li>
+						</ul>
+						<ul class="clearfix" id="money_moneda">
+							<li data="money_moneda"><img src="images/billete.png"></li>
+							<li data="money_moneda"><img src="images/bill2.png"></li>
+							<li data="money_moneda"><img src="images/bill3.png"></li>
+						</ul>
+						<ul class="clearfix" id="pickcoin_moneda">
+							<li data="money_moneda"><img src="images/pickcoin.png"></li>
+							<li data="money_moneda"><img src="images/pic2.png"></li>
+							<li data="money_moneda"><img src="images/pic3.png"></li>
+						</ul>
+					</div><!-- filtros_moneda -->
+					<div class="filtros_deporte clearfix">
+						<h3>DEPORTE</h3>
+						<ul class="clearfix">
+							<li data="todos_deporte"><h3>TODOS</h3></li>
+							<li data="deporte_soccer"><img src="images/soccer.png"></li>
+							<li data="deporte_basket"><img src="images/basket.png"></li>
+							<li data="deporte_baseball"><img src="images/baseball.png"></li>
+							<li data="deporte_nfl"><img src="images/nfl.png"></li>
+							<li data="deporte_golf"><img src="images/golf.png"></li>
+							<li data="deporte_tennis"><img src="images/tennis.png"></li>
+							<li data="deporte_f1"><img src="images/f1.png"></li>
+						</ul>
+						<ul class="clearfix" id="deporte_soccer">
+							<li data="soccer_todas"><span>Todas</span></li>
+							<li data="soccer_ligamx"><span>Liga MX</span></li>
+							<li data="soccer_copamx"><span>Copa MX</span></li>
+							<li data="soccer_laliga"><span>La Liga</span></li>
+							<li data="soccer_premier"><span>Premier</span></li>
+							<li class="selected" data="soccer_champions"><span>Champions</span></li>
+						</ul>
+					</div><!-- filtros_deporte -->
+					<div class="filtros_tipo clearfix">
+						<h3>TIPO</h3>
+						<ul class="clearfix">
+							<li data="tipo_abiertas"><h3>Abiertas</h3></li>
+							<li data="tipo_limitadas"><h3>Cupo limitado</h3></li>
+						</ul>
+					</div><!-- filtros_deporte -->
+					<div class="filtros_estado clearfix">
+						<h3>ESTADO</h3>
+						<ul class="clearfix">
+							<li data="estado_procimas"><h3>Próximas</h3></li>
+							<li data="estado_live"><h3>En curso</h3></li>
+							<li data="estado_finalizadas"><h3>Finalizadas</h3></li>
+						</ul>
+					</div><!-- filtros_deporte -->
+				</div><!-- filtros overlay -->
+			</div>
+	</body>
+</html>

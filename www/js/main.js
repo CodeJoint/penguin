@@ -277,7 +277,9 @@
 			app.check_or_renderContainer();
 			console.log("Rendering Detail");
 			var extra_data = apiRH.getRequest('api/pools/view/'+object_id+'.json', null);
+			extra_data = (extra_data.pool) ? extra_data.pool : [];
 			var data = this.gatherEnvironment(extra_data, "Detail");
+			console.log(data);
 			return this.switchView('detail-quiniela', data, '.view', url, 'quiniela-feed');
 		},
 		render_register : function( url ){

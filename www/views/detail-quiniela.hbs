@@ -1,37 +1,55 @@
 
 	<div class="container clearfix">
 		{{> header}}
-
+		{{# data}}
 		<div class="content quiniela_single">
 			<div class="registro_quiniela clearfix">
-				<a href=""><img src="{{cordova_full_path}}images/cierre.png"></a>
+				<a class="hook" data-resource="lobby" href="lobby.html"><img src="{{cordova_full_path}}images/cierre.png"></a>
 				<a href=""><img src="{{cordova_full_path}}images/registrarse.png"></a>
 			</div><!-- opciones registro -->
 			<a class="link_wrapper" href="">
-				<div class="quiniela quiniela_live soccer natural garantizado clearfix">
+				<div class="quiniela 
+						{{# if upcoming}}quiniela_open{{/ if}} 
+						{{# if live}}quiniela_live{{/ if}} 
+						{{# if_eq status 'live'}}quiniela_live{{/ if_eq}} 
+						{{# if closed}}quiniela_closed{{/ if}} {{sport.name}} natural garantizado clearfix">
 					<div class="quiniela_header clearfix">
 						<div class="quiniela_iconos clearfix">
-							<img src="{{cordova_full_path}}images/natural.png">
-							<img src="{{cordova_full_path}}images/soccer.png">
+							{{# if_eq point_format "line" }}
+								<img src="{{cordova_full_path}}images/linea.png">
+							{{/ if_eq }}
+							{{# if_eq point_format "natural" }}
+								<img src="{{cordova_full_path}}images/natural.png">
+							{{/ if_eq }}
+							<img src="{{cordova_full_path}}images/{{sport.icon}}.png">
 						</div><!-- iconos -->
-						<h2>5678 LOREM IPSUM DOLOR SIT AMET S12</h2>
+						<h2>{{name_replaced}}</h2>
 					</div><!-- quiniela_header -->
 					<div class="quiniela_content clearfix">
 						<div class="quiniela_info clearfix">
-							<span class="registros">REG: 1,234</span>
-							<span class="cierre">CIERRE: 28.feb.2017</span>
-							<span class="limite">Limitado a 1000 entradas</span>
+							<span class="registros">REG: {{entry_count}}</span>
+							<span class="cierre">CIERRE: {{formatDate deadline_tz}}</span>
+							{{# limited_capacity}}
+								<span class="limite">Limitado a {{max_entries}} entradas</span>
+							{{/ limited_capacity}}
 						</div><!-- quiniela_info -->
 						
 						<div class="quiniela_entrada clearfix">
 							<span class="titulo">ENTRADA</span>
-							<img src="{{cordova_full_path}}images/billecoin.png">
-							<span class="number">$1,234</span>
+							{{# if_eq entry_currency 'real' }}
+								<img src="{{cordova_full_path}}images/billecoin.png">
+							{{/ if_eq }}
+							{{# if_eq entry_currency 'pickcoin' }}
+								<img src="{{cordova_full_path}}images/pickcoin.png">
+							{{/ if_eq }}
+							<span class="number">${{ formatCurrency entry_fee}}</span>
 						</div>
 						<div class="quiniela_bolsa clearfix">
 							<span class="titulo">BOLSA</span>
-							<img src="{{cordova_full_path}}images/garantizado.png">
-							<span class="number guarantee">$5,678</span>
+							{{# if guaranteed_prize}}
+								<img src="{{cordova_full_path}}images/garantizado.png">
+							{{/ if }}
+							<span class="number">${{ formatCurrency available}}</span>
 						</div>
 					</div><!-- quiniela_content -->
 				</div><!-- quiniela -->
@@ -39,12 +57,10 @@
 
 			<div class="quinielas_dropdowns clearfix">
 				
-					<a href="">Copiar picks</a>
-
-				
+					<a class="hook" data-respurce="copy-picks" href="">Copiar picks</a>
 					<a href="">Registros</a>
-			
 			</div><!-- dropdowns -->
+
 			<div class="partidos clearfix">
 				<h3>PARTIDOS</h3>
 				<div class="opciones_partido clearfix">
@@ -227,6 +243,7 @@
 			</div><!-- dempates -->
 
 		</div><!-- content -->
+		{{/ data}}
 		{{> footer}}
 	</div><!-- container -->
 		

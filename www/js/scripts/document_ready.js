@@ -24,6 +24,8 @@ window.initializeEvents = function(){
 					return app.render_register( $(this).attr('href') );
 				if( $(this).data('resource') == "lobby" )
 					return app.render_lobby( $(this).attr('href') );
+				if( $(this).data('resource') == "detail" )
+					return app.render_detail( $(this).attr('href'), $(this).data('object') );
 				
 				e.stopPropagation();
 			});
@@ -187,6 +189,14 @@ window.initializeEvents = function(){
 			});
 
 		} // END login_form
+
+		if($('#misQuinielas').length){
+			console.log("Document is ready now rendering stuff");
+			setTimeout(function(){
+
+				return app.render_myfeed();
+			}, 300);
+		} // END misQuinielas
 
 		/* Log Out from the API */
 		$('#logout').on('click', function(e){

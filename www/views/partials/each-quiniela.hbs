@@ -1,8 +1,13 @@
-	<a class="link_wrapper" href="">
+{{# if privada}}
+	{{!-- nothing --}}
+{{ else}}
+
+	<a class="link_wrapper hook" data-resource="detail" data-object="{{id}}" href="detail-quiniela.html?id={{id}}">
 		<div class="quiniela 
-						{{# upcoming}}quiniela_open{{/ upcoming}} 
-						{{# live}}quiniela_live{{/ live}} 
-						{{# closed}}quiniela_closed{{/ closed}} 
+						{{# if upcoming}}quiniela_open{{/ if}} 
+						{{# if live}}quiniela_live{{/ if}} 
+						{{# if_eq status 'live'}}quiniela_live{{/ if_eq}} 
+						{{# if closed}}quiniela_closed{{/ if}} 
 						soccer 
 						{{point_format}}
 						 garantizado clearfix">
@@ -48,3 +53,4 @@
 			</div><!-- quiniela_content -->
 		</div><!-- quiniela -->
 	</a><!-- link_wrapper -->
+{{/ if}}

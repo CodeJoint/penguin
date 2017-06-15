@@ -42,8 +42,8 @@
 	<script type="text/javascript" src="js/main.js"></script>
 	
 	<script type="text/javascript">
-		window.is_access = true;
-		app.initialize();
+		var get = app.getUrlVars();
+		app.render_detail(null, get.id);
 	</script>
     <script type="text/javascript" src="js/scripts/document_ready.js"></script>
 </html>

@@ -2,20 +2,17 @@
 	<div class="container clearfix lobby">
 		{{> header}}
 		<div class="content quinielas">
+			
 			{{# data.pools}}
 				{{> each-quiniela}}
 			{{/ data.pools}}
-
 
 		</div><!-- content -->
 		{{> footer}}
 	</div><!-- container -->
 	
 	{{> filters}}
-
+	
 	<div id="misQuinielas" class="misquinielas overlay">
-		{{# mine.pools}}
-			{{> each-my-quiniela}}
-		{{/ mine.pools}}
-
+		
 	</div><!-- misquinielas overlay -->

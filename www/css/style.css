@@ -295,6 +295,7 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 	}
 
 	/*John*/
+	.misquinielas{ top: 94px; }
 	.rootContainer{min-height: 100vh!important;}
 	.form input.submit_green{ background-color: #678946; border-color: #aaca7d; border-style: groove; text-transform: uppercase; letter-spacing: 1.5px; font-size: 1.25rem; width: 240px; -webkit-border-radius: 2px; -moz-border-radius: 2px; border-radius: 2px;}
 	.green_button{ background-color: #678946; border-color: #aaca7d; border-style: groove; text-transform: uppercase; letter-spacing: 1.5px; font-size: 1.25rem; width: 240px; -webkit-border-radius: 2px; -moz-border-radius: 2px; border-radius: 2px; color: #FFF; padding: 0.5rem 1rem; text-decoration: none; margin: 2.5rem auto 0 auto; display: block;}

@@ -95,7 +95,7 @@
 		},
 		registerCompiledPartials: function() {
 			/* Add files to be loaded here */
-			var filenames = ['header', 'footer', 'loader', 'each-quiniela', 'each-my-quiniela', 'filters'];
+			var filenames = ['header', 'footer', 'loader', 'each-quiniela', 'each-my-quiniela', 'my-lobby', 'filters'];
 			filenames.forEach(function (filename) {
 					Handlebars.registerPartial(filename, Handlebars.templates[filename]);
 			});
@@ -252,23 +252,33 @@
 			return this.switchView('lobby', data, '.view', url, 'quiniela-feed');
 		},
 		render_myfeed : function(url){
+	
+			console.log("Rendering My Quinielas");
+			var extra_data = apiRH.getRequest('api/users/pools.json', null);
+			var data = this.gatherEnvironment(extra_data, "My Lobby");
+			console.log(data);
+			var template = Handlebars.templates['my-lobby'];
+			if(!template){
+				console.log("Template doesn't exist");
+				return false;
+			}
+		
+			$('#misQuinielas').html( template(data) ).css({ "opacity": 0, "display": "block"})
+													 .animate(	{ opacity: 1 }, 220);
+			return;
+			// return this.switchView('lobby', data, '#misQuinielas', null, 'my-feed', false, false);
+		},
+		render_detail : function(url, object_id){
 			
 			if(!app.initialized) app.initialize();
 			setTimeout(function(){
 				app.showLoader();
 			}, 420);
 			app.check_or_renderContainer();
-			console.log("Rendering my games");
-			var extra_data = apiRH.getRequest('pools/available.json', null);
-			extra_data.pools.forEach(function(element){
-				element.acum = element.entry_count*element.entry_fee;
-				var date_format = new Date(element.finish_date);
-				element.date_format = date_format.getFullYear()+'/'+( date_format.getMonth()+1 );
-			});
-			var data = this.gatherEnvironment(extra_data, "Feed Quinielas");
-			console.log(data);
-			data.is_scrollable = false;
-			return this.switchView('feed', data, '.view', url, 'quiniela-feed');
+			console.log("Rendering Detail");
+			var extra_data = apiRH.getRequest('api/pools/view/'+object_id+'.json', null);
+			var data = this.gatherEnvironment(extra_data, "Detail");
+			return this.switchView('detail-quiniela', data, '.view', url, 'quiniela-feed');
 		},
 		render_register : function( url ){
 			

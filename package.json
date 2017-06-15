@@ -9,13 +9,16 @@
         "plugins": {
             "cordova-plugin-whitelist": {},
             "cordova-plugin-device": {},
-            "cordova-plugin-file": {}
+            "cordova-plugin-file": {},
+            "cordova-plugin-console": {},
+            "cordova-plugin-file-transfer": {}
         }
     },
     "dependencies": {
         "cordova-android": "^6.2.3",
         "cordova-plugin-device": "^1.1.6",
         "cordova-plugin-file": "^4.3.3",
+        "cordova-plugin-file-transfer": "^1.6.3",
         "cordova-plugin-whitelist": "1"
     }
 }

@@ -8,12 +8,14 @@
         ],
         "plugins": {
             "cordova-plugin-whitelist": {},
-            "cordova-plugin-device": {}
+            "cordova-plugin-device": {},
+            "cordova-plugin-file": {}
         }
     },
     "dependencies": {
         "cordova-android": "^6.2.3",
         "cordova-plugin-device": "^1.1.6",
+        "cordova-plugin-file": "^4.3.3",
         "cordova-plugin-whitelist": "1"
     }
 }

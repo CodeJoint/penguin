@@ -1,13 +1,17 @@
 	<div class="header clearfix">
 		<div class="content clearfix">
 			<div class="header_left">
-				<img src="{{cordova_full_path}}images/logo.png">
+				<a class="hook" data-resource="lobby" href="lobby.html">
+					<img src="{{cordova_full_path}}images/logo.png">
+				</a>
 			</div>
 			<div class="header_right clearfix">
 				<div class="header_user_info clearfix">
 					<div class="user_info clearfix">
 						{{^ me.avatar}}
-							<img src="{{cordova_full_path}}images/profile_placeholder.png">
+							<div class="avatar_container">
+								<img src="{{cordova_full_path}}images/profile_placeholder.png">
+							</div>
 						{{/ me.avatar}}
 						{{# me.avatar}}
 							<div class="avatar_container">

@@ -123,6 +123,7 @@
 		onDeviceReady: function() {
 			app.receivedEvent('deviceready');
 			console.log("Device ready");
+			console.log(JSON.stringify(cordova.file));
 			window.cordova_full_path = (typeof(cordova) != 'undefined') 
 									 	? cordova.file.applicationDirectory+"www/"
 									 	: '';

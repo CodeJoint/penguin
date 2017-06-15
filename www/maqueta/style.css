@@ -255,6 +255,10 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 .quiniela_single .registro_quiniela a:first-child {margin-right: 10px;}
 .quiniela_single .quiniela_info {margin-right: 10px; }
 
+.quinielas_dropdowns {width: 100%; margin: 20px 0;}
+.quinielas_dropdowns a {color: #fff; text-decoration: none; display: block; border: 1px solid #414042; padding: 5px; float: left; border-radius: 5px; margin-right: 5%; width: 47.5%;  text-align: center;}
+.quinielas_dropdowns a:last-child {margin-right: 0px;}
+
 .quiniela_single .partidos {width: 100%; border-top: 1px solid #77BC1F;}
 .quiniela_single .partidos h3 {font-weight: 300; margin-top: 10px; margin-bottom: 10px; text-align: center; font-size: 12px;}
 .quiniela_single .partidos .opciones_partido {width: 100%; padding: 10px 0; border-top: 1px solid #8A8A8D;  margin-bottom: 10px;}

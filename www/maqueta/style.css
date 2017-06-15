@@ -136,7 +136,7 @@ body {width: 100%; margin: 0 auto; font-weight: 300; font-family: 'Lato'!importa
 
 /*** HEADER ***/
 
-.header {width: 100%; height; background: #000; padding: 3% 0; position: fixed;}
+.header {width: 100%; height; background: #000; padding: 3% 0; position: fixed; border-bottom: 1px solid #8A8A8D; z-index: 100;}
 .header .header_left {float: left; width: 28%; text-align: center; margin-right: 2%;}
 .header .header_left img {width: 90%; vertical-align: middle; padding-top: 15%}
 .header .header_right {float: right; width: 70%; border-left: 1px solid #414042; padding: 1% 0 1% 0;}
@@ -212,7 +212,7 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 
 /*** FILTROS ***/
 
-.filtros_wrapper {width: 100%; height: 100%; position: fixed; top: 87px; left: 0px; background: url('images/bg_trans_filtros.png') repeat;}
+.filtros_wrapper {width: 100%; height: 100%; position: fixed; top: 87px; left: 0px; background: url('images/bg_trans_filtros.png') repeat; z-index: 80;}
 .filtros {position: fixed; top: 87px; right: 0; background: #000; width: 85%; text-align: center; padding: 20px; height: 100%; z-index: 90;}
 .filtros div {margin-bottom: 20px;}
 .filtros ul {list-style: none; margin: 10px 0 0px 0; padding: 0px; width: 100%;}
@@ -247,9 +247,67 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 .misquinielas .quiniela_otra {border-left: 3px solid #4A90E2;}
 
 
+/*** QUINIELA SINGLE ***/
 
+.quiniela_single {padding-top: 100px; padding-bottom: 70px; font-size: 12px;}
+.quiniela_single .quiniela {width: 100%;}
+.quiniela_single .registro_quiniela {width: 100%; text-align: center;}
+.quiniela_single .registro_quiniela a:first-child {margin-right: 10px;}
+.quiniela_single .quiniela_info {margin-right: 10px; }
 
+.quinielas_dropdowns {width: 100%; margin: 20px 0;}
+.quinielas_dropdowns a {color: #fff; text-decoration: none; display: block; border: 1px solid #414042; padding: 5px; float: left; border-radius: 5px; margin-right: 5%; width: 47.5%;  text-align: center;}
+.quinielas_dropdowns a:last-child {margin-right: 0px;}
 
+.quiniela_single .partidos {width: 100%; border-top: 1px solid #77BC1F;}
+.quiniela_single .partidos h3 {font-weight: 300; margin-top: 10px; margin-bottom: 10px; text-align: center; font-size: 12px;}
+.quiniela_single .partidos .opciones_partido {width: 100%; padding: 10px 0; border-top: 1px solid #8A8A8D;  margin-bottom: 10px;}
+.quiniela_single .partidos .opciones_partido span {width: 33.33%; float: left; display: block; text-align: center; font-size: 12px;}
+.quiniela_single .partidos .partido {width: 100%; margin-bottom: 10px; border-top: 1px solid #8A8A8D; padding-top: 10px; position: relative;}
+.quiniela_single .partidos .partido .opcion_partido .linea {width: 100%; margin-top: 0px; float: left;}
+.quiniela_single .partidos .partido .opcion_partido .linea span {width: 100%; margin-top: 20px; text-align: center; display: block;}
+.quiniela_single .partidos .partido .opcion_partido.local {width: 33.33%; float: left;}
+.quiniela_single .partidos .partido .opcion_partido.local .equipo {float: left;}
+.quiniela_single .partidos .partido .opcion_partido.local input {float: left; margin-right: 10px;}
+.quiniela_single .partidos .partido .opcion_partido.local img {float: left; margin-right: 10px;}
+.quiniela_single .partidos .partido .opcion_partido.cierre {width: 33.33%; float: left; position: relative; height: 50px;}
+.quiniela_single .partidos .partido .opcion_partido.cierre input {width: 100%; text-align: center;}
+.quiniela_single .partidos .partido .opcion_partido.cierre span {text-align: center; width: 100%; display: block; position: absolute; bottom: 0px;}
+.quiniela_single .partidos .partido .opcion_partido.visitante {width: 33.33%; float: right;}
+.quiniela_single .partidos .partido .opcion_partido.visitante .equipo {float: right; margin-left: 10px;}
+.quiniela_single .partidos .partido .opcion_partido.visitante .equipo span {display: block;}
+.quiniela_single .partidos .partido .opcion_partido.visitante input {float: right; margin-left: 10px;}
+.quiniela_single .partidos .partido .opcion_partido.visitante img {float: right; margin-left: 10px;}
+
+.quiniela_single .props {width: 100%; border-top: 1px solid #77BC1F;}
+.quiniela_single .props h3 {font-weight: 300; margin-top: 10px; margin-bottom: 10px; text-align: center; font-size: 12px;}
+.quiniela_single .props .prop {width: 100%; margin-bottom: 10px; border-top: 1px solid #8A8A8D; padding-top: 10px; position: relative;}
+.quiniela_single .props .prop h3 {margin-bottom: 20px;}
+.quiniela_single .props .prop .opcion_prop input {float: left;}
+.quiniela_single .props .prop .opcion_prop img {float: left;}
+.quiniela_single .props .prop .opcion_prop span {float: left;}
+.quiniela_single .props .prop .dos_opciones .opcion_prop {width: 50%; text-align: center; float: left;}
+.quiniela_single .props .prop .dos_opciones .opcion_prop:first-child {padding-left: 25%;}
+.quiniela_single .props .prop .dos_opciones .opcion_prop:first-child input {margin-right: 10px;}
+.quiniela_single .props .prop .dos_opciones .opcion_prop:last-child {padding-left: 15%;}
+.quiniela_single .props .prop .dos_opciones .opcion_prop:last-child input {margin-right: 10px;}
+.quiniela_single .props .prop .tres_opciones .opcion_prop {width: 33.33%; text-align: center; float: left; padding-left: 5%;}
+.quiniela_single .props .prop .tres_opciones .opcion_prop input {margin-right: 10px;}
+.quiniela_single .props .prop .tres_opciones .opcion_prop img {margin-right: 10px;}
+.quiniela_single .props .prop .cuatro_opciones .opcion_prop {width: 25%; text-align: center; float: left; padding-left: 2.5%;}
+.quiniela_single .props .prop .cuatro_opciones .opcion_prop input {margin-right: 5px;}
+.quiniela_single .props .prop .cuatro_opciones .opcion_prop img {margin-right: 5px;}
+
+.quiniela_single .desempates {width: 100%; border-top: 1px solid #77BC1F;}
+.quiniela_single .desempates h3 {font-weight: 300; margin-top: 10px; margin-bottom: 20px; text-align: center; font-size: 12px; border-bottom: 1px solid #8A8A8D; padding-bottom: 10px;}
+.quiniela_single .desempates .desempate {width: 100%; margin-bottom: 20px;}
+.quiniela_single .desempates .desempate .desempate_left {width: 50%; float: left;}
+.quiniela_single .desempates .desempate span {padding-top: 10px; display: block; float: left;}
+.quiniela_single .desempates .desempate .desempate_input {width: 40%; float: right;}
+.quiniela_single .desempates .desempate .desempate_input input[type="text"] {background: transparent; border-radius: 5px; border: 1px solid #8A8A8D; height: 30px; color: #fff; font-weight: 300; font-family: 'Lato'; padding: 5px; }
+.quiniela_single .desempates .desempate.desempate_uno .desempate_input span {float: left; margin-right: 5px; padding-top: 7px;}
+.quiniela_single .desempates .desempate.desempate_uno .desempate_input input[type="text"] {width: 30px; float: left; margin-right: 5px;}
+.quiniela_single .desempates .desempate.desempate_tres .desempate_input input[type="radio"] {width: 30px; float: left; margin-right: 5px; margin-top: 10px; }
 
 
 

@@ -57,7 +57,6 @@ function requestHandlerAPI(){
 
 			var response = this.makeRequest( 'api/users/login.json', data_login, true, false );
 			this.token = response.jwtoken;
-			console.log(response);
 			apiRH.keeper.setItem( 'token'	, response.jwtoken);
 			apiRH.keeper.setItem( 'mail'	, response.user.email);
 			apiRH.keeper.setItem( 'userId'	, response.user.id);
@@ -72,69 +71,41 @@ function requestHandlerAPI(){
 
 		/*! 
 		 * Register a new user account the old fashioned way
-		 * @param data_login JSON {user_login, user_password}
+		 * @param data_user JSON {user_login, user_password}
 		 * @return status Bool true is successfully logged in; false if an error ocurred (User already exists)
 		 */
-		this.registerNative = function(data_login){
+		this.registerNative = function(data_user){
 
-			console.log(data_login);
-			var name 		= data_login.user;
-			var last_name 	= data_login.last_name;
-			var email 		= data_login.mail;
-			var pass 		= data_login.pass;
-			var cPass		= data_login.cpass;
+			var name 		= data_user.name;
+			var last_name 	= data_user.last_name;
+			var email 		= data_user.email;
+			var pass 		= data_user.password;
+			var cPass		= data_user.repeat_password;
 
 			var data =  {
-							'nombre' 	: name,
-							'apellido' 	: last_name,
-							'mail' 		: email,
-							'password' 	: pass
+							'fingerprint' 	: window.fingerprint ? window.fingerprint.hash : '',
+							'name' 			: data_user.name,
+							'last_name' 	: data_user.last_name,
+							'nick' 			: data_user.nickname,
+							'email' 		: data_user.email,
+							'password' 		: data_user.password,
+							'cpassword' 	: data_user.repeat_password,
+							'tos' 			: data_user.accept_terms,
+							'oldenough' 	: data_user.is_M18,
+							'newsletter' 	: false
 						};
 
-			var created_response = this.makeRequest('api/signup', data, true, false);
-
-			app.keeper.setItem('token',  created_response.token);
-			app.keeper.setItem('mail', 	 created_response.mail);
-			app.keeper.setItem('chatId', created_response.jid);
-			app.keeper.setItem('userId', created_response._id);
-			this.token = app.keeper.getItem('token');
-
-			return (typeof(created_response.nuevo) != 'undefined') ? this.token : false;
-		};
-
-		/**
-		 * Validate registration code
-		 * @param String code
-		 * @param String email
-		 * 
-		 */
-		this.validateRegistrationCode = function(code, email){
-			var data = 	{
-							'code'	: code, 
-							'mail'	: email
-						};
-			console.log(data);
-			return this.makeRequest('api/validatecode/', data);
-		};
-
-		/**
-		 * Record new tracking activity
-		 * @param Integer type
-		 * @param Float amount
-		 * @return Object / Boolean
-		 */
-		this.tracking = function(type, amount){
+			var response = this.makeRequest('api/users/register.json', data, true, false);
 			
-			var data = {
-							'tipo' 		: type,
-							'magnitud' 	: amount,
-							'cliente' 	: app.keeper.getItem('userId'),
-							'coach' 	: app.keeper.getItem('coachId')
-						};
-			var response = this.makeRequest( 'tables/medicion', data );
-			console.log(response);
-			return (response) ? response : false;
+			this.token = response.jwtoken;
+			this.keeper.setItem('request_token', this.token);
+			this.keeper.setItem('token'	, response.jwtoken);
+			this.keeper.setItem('mail'	, response.user.email);
+			this.keeper.setItem('userId', response.user.id);
+
+			return (this.token) ? response : false;
 		};
+
 
 		/**
 		 * Update user profile

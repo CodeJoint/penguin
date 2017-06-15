@@ -1,27 +1,27 @@
 <div class="container registro">
 	<div class="content">
+		<h1>{{header_title}}</h1>
 		<div class="splash_logo">
 			<img src="{{cordova_full_path}}images/tuprimeravez.svg">
-			<p>Regístrate y te regalamos la entrada  a las quinielas Tu Primera Vez,  además te regalamos 100 Pickcoins  para que comiences a jugar.</p>
+			<p>Regístrate y te regalamos la entrada  a las quinielas 'Tu Primera Vez',  además te regalamos 100 Pickcoins  para que comiences a jugar.</p>
 		</div>
-		<a href=""><img class="fb_registry" src="{{cordova_full_path}}images/fb_registry.png"></a>
-
-
+		<a class="facebook" id="facebookLoginTrigger">
+			<img class="fb_registry" src="{{cordova_full_path}}images/fb_registry.png">
+		</a>
 		<div class="form">
-			<h3>{{header_title}}</h3>
-			<form id="register_form" method="POST" action="" >
-				
-				<input type="text" name="name" placeholder="Nombre*" value="">
-				<input type="text" name="last_name" placeholder="Apellido*" value="">
-				<input type="text" name="nickname" placeholder="Apodo*" value="">
-				<input type="email" name="email" placeholder="E-mail*" value="">
-				<input id="password" type="password" name="password" placeholder="Contraseña*" value="">
-				<input id="repeat_password" type="password" name="repeat_password" placeholder="Repite tu contraseña*" value="">
+			<form id="register_form" method="POST" action="">
+				<h3>o</h3>
+				<input type="text" name="name" placeholder="Nombre *" value="">
+				<input type="text" name="last_name" placeholder="Apellido *" value="">
+				<input type="text" name="nickname" placeholder="Apodo *" value="">
+				<input type="email" name="email" placeholder="E-mail *" value="">
+				<input id="password" type="password" name="password" placeholder="Contraseña *" value="">
+				<input id="repeat_password" type="password" name="repeat_password" placeholder="Repite tu contraseña *" value="">
 				<div class="selectors clearfix">
 					
 					<div class="selector clearfix">
 						<input type="checkbox" value="true" name="accept_terms">
-						<label for="acepta_terminos">Acepto los <a href="">términos y condiciones</a></label>
+						<label for="acepta_terminos">Acepto los <a onclick="window.open('https://www.pickwin.net/terminos-y-condiciones', '_blank', 'location=yes')" >términos y condiciones</a></label>
 					</div>
 					
 					<div class="selector clearfix">

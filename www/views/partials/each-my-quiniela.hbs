@@ -1,0 +1,46 @@
+	<div class="quiniela
+				{{# upcoming}}quiniela_open{{/ upcoming}} 
+				{{# live}}quiniela_live{{/ live}} 
+				{{# closed}}quiniela_closed{{/ closed}} soccer
+				{{point_format}} garantizado clearfix">
+		<a class="link_wrapper" href="">
+		<div class="quiniela_header clearfix">
+			<div class="quiniela_iconos clearfix">
+				{{# if_eq point_format "line" }}
+					<img src="{{cordova_full_path}}images/linea.png">
+				{{/ if_eq }}
+				{{# if_eq point_format "natural" }}
+					<img src="{{cordova_full_path}}images/natural.png">
+				{{/ if_eq }}
+				<img src="{{cordova_full_path}}images/{{sport.icon}}.png">
+			</div><!-- iconos -->
+			<h2>{{name_replaced}}</h2>
+		</div><!-- quiniela_header -->
+		<div class="quiniela_content clearfix">
+			<div class="quiniela_info clearfix">
+				<span class="registros">REG: {{entry_count}}</span>
+				<span class="cierre">CIERRE: {{formatDate deadline_tz}}</span>
+				{{# limited_capacity}}
+					<span class="limite">Limitado a {{max_entries}} entradas</span>
+				{{/ limited_capacity}}
+			</div><!-- quiniela_info -->
+			<div class="quiniela_entrada clearfix">
+				<span class="titulo">ENTRADA</span>
+				{{# if_eq entry_currency 'real' }}
+					<img src="{{cordova_full_path}}images/billecoin.png">
+				{{/ if_eq }}
+				{{# if_eq entry_currency 'pickcoin' }}
+					<img src="{{cordova_full_path}}images/pickcoin.png">
+				{{/ if_eq }}
+				<span class="number">${{ formatCurrency entry_fee}}</span>
+			</div>
+			<div class="quiniela_aganar clearfix">
+				<span class="titulo">BOLSA</span>
+				{{# if guaranteed_prize}}
+					<img src="{{cordova_full_path}}images/garantizado.png">
+				{{/ if }}
+				<span class="number">${{ formatCurrency available}}</span>
+			</div>
+		</div><!-- quiniela_content -->
+		</a><!-- link_wrapper -->				
+	</div><!-- quiniela -->

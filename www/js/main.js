@@ -20,7 +20,7 @@
 			var is_home 	= window.is_home;
 			var is_login 	= apiRH.has_token();
 
-			var is_client 	= localStorage.getItem('customerId');
+			var forceLogin 	= localStorage.getItem('forceLogin');
 			var is_current 	= localStorage.getItem('valido');
 
 			window.cordova_full_path = "";
@@ -43,13 +43,13 @@
 			app.keeper 			= window.localStorage;
 			
 			/*----------------------- Routing user accordingly ---------------------------*/
-			if(is_login){
+			if( is_login ){
 				console.log('You okay, now you can start making calls');
 				/* Take the user to it's timeline */
 				loggedIn 		= true;
 				var is_feed 	= window.is_feed;
 				_user 			= JSON.parse( app.keeper.getItem('user') );
-				return app.render_feed();
+				return app.render_lobby();
 			}
 			return app.render_login();
 			/*-------------------- Code below this line won't run ------------------------*/
@@ -95,7 +95,7 @@
 		},
 		registerCompiledPartials: function() {
 			/* Add files to be loaded here */
-			var filenames = ['header', 'loader', 'each-quiniela', 'filters'];
+			var filenames = ['header', 'footer', 'loader', 'each-quiniela', 'each-my-quiniela', 'filters'];
 			filenames.forEach(function (filename) {
 					Handlebars.registerPartial(filename, Handlebars.templates[filename]);
 			});
@@ -238,35 +238,26 @@
 			data.is_scrollable = false;
 			return this.switchView('login', data, '.view', url, 'login');
 		},
-		render_feed : function(url){
-			
-			window.is_home = true;
+		render_lobby : function(url){
+
 			if(!app.initialized) app.initialize();
 			setTimeout(function(){
 				app.showLoader();
 			}, 420);
 			app.check_or_renderContainer();
-			console.log("Rendering Main Feed");
+			console.log("Rendering Lobby");
 			var extra_data = apiRH.getRequest('pools/available.json', null);
-			extra_data.pools.forEach(function(element){
-				element.acum = element.entry_count*element.entry_fee;
-				var date_format = new Date(element.finish_date);
-				element.date_format = date_format.getFullYear()+'/'+ date_format.getMonth()+'/'+ date_format.getDate();
-			});
-			var data = this.gatherEnvironment(extra_data, "Feed Quinielas");
-			console.log(data);
-			// data.is_scrollable = false;
+			var data = this.gatherEnvironment(extra_data, "Lobby");
 			return this.switchView('lobby', data, '.view', url, 'quiniela-feed');
 		},
 		render_myfeed : function(url){
 			
-			window.is_home = true;
 			if(!app.initialized) app.initialize();
 			setTimeout(function(){
 				app.showLoader();
 			}, 420);
 			app.check_or_renderContainer();
-			console.log("Rendering Main Feed");
+			console.log("Rendering my games");
 			var extra_data = apiRH.getRequest('pools/available.json', null);
 			extra_data.pools.forEach(function(element){
 				element.acum = element.entry_count*element.entry_fee;
@@ -352,13 +343,13 @@
 															}, 640);
 				}else{
 
-					$(targetSelector).html( template(data) ).css("opacity", 1)
+					$(targetSelector).html( template(data) ).css("opacity", 0.7)
 															 .css("display", "block")
-															 .css("margin-left", "20px")
+															 .css("margin-left", "48px")
 															 .animate(	{
 																			'margin-left': "0",
 																			opacity: 1
-																		}, 360);
+																		}, 420, 'swing');
 				}
 				
 			});

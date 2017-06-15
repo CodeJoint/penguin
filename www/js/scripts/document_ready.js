@@ -22,12 +22,18 @@ window.initializeEvents = function(){
 				app.showLoader();
 				if( $(this).data('resource') == "register" )
 					return app.render_register( $(this).attr('href') );
+				if( $(this).data('resource') == "lobby" )
+					return app.render_lobby( $(this).attr('href') );
 				
 				e.stopPropagation();
 			});
 		};
 		initHooks();
 
+		if(!window.fingerprint)
+			new Fingerprint2().get(function(result, components){
+			  window.fingerprint = {hash: result};
+			});
 
 		//-----------------------------
 		//
@@ -123,24 +129,24 @@ window.initializeEvents = function(){
 				},
 				submitHandler:function( form, event ){
 					event.preventDefault();
-					var data_login		= app.getFormData(form, 'object');
-					console.log(data_login);
-					// var login_response 	= apiRH.loginNative(data_login);
+					app.showLoader();
+					var data_user	= app.getFormData(form, 'object');
+					var register_response 	= apiRH.registerNative(data_user);
 
-					// if(login_response){
+					if(register_response){
 
-					// 	apiRH.headers['Authorization'] = "Bearer "+login_response.jwtoken;
-					// 	apiRH.save_user_data_clientside(login_response);
-					// 	if(login_response.user){
-					// 		console.log(login_response.user);
-					// 		window._user = (login_response.user) ? login_response.user : null; 
-					// 		return app.render_feed('feed.html');
-					// 	}
+						apiRH.headers['Authorization'] = "Bearer "+register_response.jwtoken;
+						apiRH.save_user_data_clientside(register_response);
+						if(register_response.user){
+							console.log(register_response.user);
+							window._user = (register_response.user) ? register_response.user : null; 
+							return app.render_register_success('register-success.html');
+						}
 
-					// }else{
-					// 	app.toast("Ocurrió un error, por favor revisa que tus datos sean correctos.")
-					// 	return app.hideLoader();
-					// }
+					}else{
+						app.toast("Ocurrió un error, por favor revisa que tus datos sean correctos.")
+						return app.hideLoader();
+					}
 				}
 			});
 
@@ -151,12 +157,12 @@ window.initializeEvents = function(){
 			window.init_scripts.push("login_validate");
 			$('#login_form').validate({
 				rules:{
-					user : "required",
-					pass : "required"
+					username : "required",
+					password : "required"
 				},
 				messages:{
-					user : "Debes proporcionar un correo",
-					pass : "Este campo es requerido para ingresar"
+					username : "Tu cuenta de correo electrónico",
+					password : "Tu contraseña es necesaria para entrar."
 				},
 				submitHandler:function( form, event ){
 					event.preventDefault();
@@ -170,7 +176,7 @@ window.initializeEvents = function(){
 						if(login_response.user){
 							console.log(login_response.user);
 							window._user = (login_response.user) ? login_response.user : null; 
-							return app.render_feed('feed.html');
+							return app.render_lobby('lobby.html');
 						}
 
 					}else{
@@ -217,16 +223,14 @@ window.initializeEvents = function(){
 
 		/*** FILTROS ***/
 
-		$('.filtros_wrapper').hide();
-
 		$('.header_filtros').on('click', function(){
 			if($('.filtros_wrapper').hasClass('filtros_show')){
 				$('.filtros_wrapper').removeClass('filtros_show');
-				$('.filtros_wrapper').hide();
+				$('.filtros_wrapper').fadeOut('fast');
 				console.log('success');
 			} else {
 				$('.filtros_wrapper').addClass('filtros_show');
-				$('.filtros_wrapper').show();
+				$('.filtros_wrapper').fadeIn('fast');
 			}
 		});
 

@@ -4,7 +4,7 @@
     <preference name="Fullscreen" value="true" />
     <preference name="Orienation" value="portrait" />
     <description>
-        Dummy app for PickWin api consumption
+        PickWin mobile app
     </description>
     <author email="john@tallerdecodigo.com" href="http://tallerdecodigo.com">
         John Falcon for Taller de Código

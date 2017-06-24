@@ -357,7 +357,11 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 	    animation: spin 1s infinite linear;
 	}
 
-	/*John*/
+	/* John overrides */
+	
+	.header .header_right .header_user_info .user_info .avatar_container{ width: 24px; height: 24px; -webkit-border-radius: 50%; -moz-border-radius: 50%; border-radius: 50%; overflow: hidden; float: left; margin-right: 7px;}
+	.header .header_right .header_user_info .user_info img { width: 100%; height: auto; }
+
 	.misquinielas{ top: 94px; }
 	.rootContainer{min-height: 100vh!important;}
 	.form input.submit_green{ background-color: #678946; border-color: #aaca7d; border-style: groove; text-transform: uppercase; letter-spacing: 1.5px; font-size: 1.25rem; width: 240px; -webkit-border-radius: 2px; -moz-border-radius: 2px; border-radius: 2px;}

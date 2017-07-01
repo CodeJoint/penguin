@@ -241,15 +241,15 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 /*** MIS QUINIELAS OVERLAY ***/
 
 .misquinielas {position: fixed; top: 87px; width: 100%; margin-left: 97%; background: url('images/bg_trans_quinielas.png') repeat; height: 100%; padding-left: 1%;}
-.misquinielas .quiniela_open {border-left: 3px solid #77BC1F;}
-.misquinielas .quiniela_live {border-left: 3px solid #F6A623;}
-.misquinielas .quiniela_closed {border-left: 3px solid #FF576C;}
-.misquinielas .quiniela_otra {border-left: 3px solid #4A90E2;}
+.quiniela_open {border-left: 3px solid #77BC1F;}
+.quiniela_live {border-left: 3px solid #F6A623;}
+.quiniela_closed {border-left: 3px solid #FF576C;}
+.quiniela_otra {border-left: 3px solid #4A90E2;}
 
 
 /*** QUINIELA SINGLE ***/
 
-.quiniela_single {padding-top: 100px; padding-bottom: 70px; font-size: 12px;}
+.quiniela_single {padding-top: 100px; padding-bottom: 70px; font-size: 12px; position: relative;}
 .quiniela_single .quiniela {width: 100%;}
 .quiniela_single .registro_quiniela {width: 100%; text-align: center;}
 .quiniela_single .registro_quiniela a:first-child {margin-right: 10px;}
@@ -310,4 +310,48 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 .quiniela_single .desempates .desempate.desempate_tres .desempate_input input[type="radio"] {width: 30px; float: left; margin-right: 5px; margin-top: 10px; }
 
 
+.quiniela_single .quiniela_registro_overlay {position: fixed; top: 0px; padding-top: 200px; width: 95%; background: url('images/bg_trans_negro.png') repeat;  }
+.quiniela_registro {width: 100%; margin: 0 auto; border: 1px solid #8A8A8D; padding: 20px 10px; border-radius: 3px; background: #000;}
+.quiniela_registro .no_registros {width: 100%; margin-top: 30px;}
+.quiniela_registro .no_registros span {display: block; float: left; color: #fff;}
+.quiniela_registro .no_registros select {border: 1px solid #8A8A8D; float: right; background: #000; color: #fff; text-align: center;}
+.quiniela_registro .copiar_picks {width: 100%; margin-top: 10px;}
+.quiniela_registro .copiar_picks span {display: block; float: left; color: #fff;}
+.quiniela_registro .copiar_picks input {border: 1px solid #8A8A8D; float: right; background: transparent; color: #fff; text-align: center;}
+.quiniela_registro .balance {margin-top: 30px;}
+.quiniela_registro .balance p {width: 24%; float: left; text-align: right; font-size: 10px;}
+.quiniela_registro .balance .disponible {margin-bottom: 5px;}
+.quiniela_registro .balance .disponible_dinero {width: 42%; float: left; padding-left: 10px;}
+.quiniela_registro .balance .disponible_dinero img {float: left; width: 16px; height: auto; margin-right: 5px; margin-top: 3px;}
+.quiniela_registro .balance .disponible_dinero p {float: left; width: 80%; text-align: left;}
+.quiniela_registro .balance .disponible_coins {width: 30%; float: left; text-align: left; padding-left: 10px;}
+.quiniela_registro .balance .disponible_coins p {text-align: left;}
+.quiniela_registro .balance .disponible_coins img {float: left; width: 16px; height: auto; margin-right: 5px;}
+.quiniela_registro .balance .descontaran {border-bottom: 1px solid #8A8A8D; padding-bottom: 5px; margin-bottom: 5px;}
+.quiniela_registro .balance .descontaran_dinero {width: 42%; float: left; padding-left: 10px;}
+.quiniela_registro .balance .descontaran_dinero img {float: left; width: 16px; height: auto; margin-right: 5px; margin-top: 3px;}
+.quiniela_registro .balance .descontaran_dinero p {float: left; width: 80%; text-align: left;}
+.quiniela_registro .balance .descontaran_coins {width: 30%; float: left; text-align: left; padding-left: 10px;}
+.quiniela_registro .balance .descontaran_coins p {text-align: left;}
+.quiniela_registro .balance .descontaran_coins img {float: left; width: 16px; height: auto; margin-right: 5px;}
+.quiniela_registro .balance .total_dinero {width: 42%; float: left; padding-left: 10px;}
+.quiniela_registro .balance .total_dinero img {float: left; width: 16px; height: auto; margin-right: 5px; margin-top: 3px;}
+.quiniela_registro .balance .total_dinero p {float: left; width: 80%; text-align: left;}
+.quiniela_registro .balance .total_coins {width: 30%; float: left; text-align: left; padding-left: 10px;}
+.quiniela_registro .balance .total_coins p {float: left; width: 75%; text-align: left;}
+.quiniela_registro .balance .total_coins img {float: left; width: 16px; height: auto; margin-right: 5px;}
+
+.quiniela_registro .botones {width: 100%; margin-top: 20px; }
+.quiniela_registro .botones a {float: left; margin-left: 20px; margin-right: 20px;}
+.quiniela_registro .botones input {float: left; background: url('images/confirmar_y_guardar.png') no-repeat!important; width: 192px; height: 36px; border: none; text-indent: -1000000px;}
+
+
+/*** QUINIELA REGISTRADA ***/
+
+.quiniela_registrada_single {padding-top: 100px; padding-bottom: 70px; font-size: 12px; position: relative; width: 99%;}
+.quiniela_registrada_single .quiniela {width: 100%;}
+.quiniela_registrada_single .quiniela_live {border-left: 3px solid #F6A623;}
+.quiniela_registrada_single .registro_quiniela {width: 100%; text-align: center;}
+.quiniela_registrada_single .registro_quiniela a:first-child {margin-right: 10px;}
+.quiniela_registrada_single .quiniela_info {margin-right: 10px; }
 

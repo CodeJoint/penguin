@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 	<head>
 		<meta charset="utf-8">
-		<title>PickWin | Start</title>
+		<title>PickWin | User profile</title>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0, maximum-scale=1, minimum-scale=1">
 		<meta http-equiv="cleartype" content="on">
@@ -16,7 +16,7 @@
 	
 	<body class="preventEvents">
 		<div id="container" class="rootContainer">
-			
+			Perfil de usuario
 		</div>
 	</body>
 
@@ -28,14 +28,14 @@
     <script type="text/javascript" src="views/compiled/register.js"></script>
     <script type="text/javascript" src="views/compiled/register-success.js"></script>
     <script type="text/javascript" src="views/compiled/lobby.js"></script>
+    <script type="text/javascript" src="views/compiled/profile.js"></script>
+    <script type="text/javascript" src="views/compiled/deposit.js"></script>
+    <script type="text/javascript" src="views/compiled/private.js"></script>
     <script type="text/javascript" src="views/partials/my-lobby.js"></script>
     <script type="text/javascript" src="views/partials/filters.js"></script>
     <script type="text/javascript" src="views/partials/each-quiniela.js"></script>
     <script type="text/javascript" src="views/partials/each-my-quiniela.js"></script>
     <script type="text/javascript" src="views/compiled/detail-quiniela.js"></script>
-    <script type="text/javascript" src="views/compiled/profile.js"></script>
-    <script type="text/javascript" src="views/compiled/deposit.js"></script>
-    <script type="text/javascript" src="views/compiled/private.js"></script>
     
     <script type="text/javascript" src="js/api-sdk-1.0.js"></script>
 	<script type="text/javascript" src="js/plugins.js"></script>
@@ -45,7 +45,8 @@
 	<script type="text/javascript" src="js/main.js"></script>
 	
 	<script type="text/javascript">
-		app.render_lobby();
+		window.is_access = true;
+		app.initialize();
 	</script>
     <script type="text/javascript" src="js/scripts/document_ready.js"></script>
 </html>

@@ -160,6 +160,7 @@ body {width: 100%; margin: 0 auto; font-weight: 300; font-family: 'Lato'!importa
 .menu ul {list-style: none; padding: 5px 0 0 0; margin: 0px;}
 .menu ul li {display: block; float: left; border-right: 1px solid #8A8A8D; width: 20%; height: 36px; background-image: url('../images/menu_sprite.png'); background-repeat:  no-repeat; }
 .menu ul li:last-child{border-right: 0px!important;}
+.menu ul li>a{display: block; width: 100%; height: 100%;}
 .menu ul li.menu_lobby {background-position-x: 25px}
 .menu ul li.menu_quinielas {background-position-x: -45px}
 .menu ul li.menu_privadas {background-position-x: -118px}

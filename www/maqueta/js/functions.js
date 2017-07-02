@@ -5,6 +5,7 @@ $(document).ready(function(){
 	var ventana = $(window).height();
 
 	$('.container').css('min-height', ventana+'px');
+	$('.quiniela_registro_overlay').css('min-height', ventana+'px');
 
 	/*** FILTROS ***/
 

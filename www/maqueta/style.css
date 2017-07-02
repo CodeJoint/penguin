@@ -279,6 +279,20 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 .quiniela_single .partidos .partido .opcion_partido.visitante input {float: right; margin-left: 10px;}
 .quiniela_single .partidos .partido .opcion_partido.visitante img {float: right; margin-left: 10px;}
 
+.quiniela_single .partidos .partido_en_vivo .opcion_partido .linea span {width: 100%; margin-top: 20px; text-align: center; display: block; color: #77BC1F;}
+.quiniela_single .partidos .partido_en_vivo .opcion_partido.local .equipo {float: left; color: #77BC1F;}
+.quiniela_single .partidos .partido_en_vivo .opcion_partido.cierre {width: 33.33%; float: left; position: relative; height: 50px; color: #77BC1F;}
+.quiniela_single .partidos .partido_en_vivo .opcion_partido.cierre span {text-align: center; width: 100%; display: block; position: absolute; bottom: 0px; color: #77BC1F;} 
+.quiniela_single .partidos .partido_en_vivo .opcion_partido.visitante .equipo {float: right; margin-left: 10px; color: #77BC1F;}
+.quiniela_single .partidos .partido_en_vivo .opcion_partido.visitante .equipo span {display: block; color: #77BC1F;}
+
+.quiniela_single .partidos .partido_finalizado .opcion_partido .linea span {width: 100%; margin-top: 20px; text-align: center; display: block; color: #FF576C;}
+.quiniela_single .partidos .partido_finalizado .opcion_partido.local .equipo {float: left; color: #FF576C;}
+.quiniela_single .partidos .partido_finalizado .opcion_partido.cierre {width: 33.33%; float: left; position: relative; height: 50px; color: #FF576C;}
+.quiniela_single .partidos .partido_finalizado .opcion_partido.cierre span {text-align: center; width: 100%; display: block; position: absolute; bottom: 0px; color: #FF576C;} 
+.quiniela_single .partidos .partido_finalizado .opcion_partido.visitante .equipo {float: right; margin-left: 10px; color: #FF576C;}
+.quiniela_single .partidos .partido_finalizado .opcion_partido.visitante .equipo span {display: block; color: #FF576C;}
+
 .quiniela_single .props {width: 100%; border-top: 1px solid #77BC1F;}
 .quiniela_single .props h3 {font-weight: 300; margin-top: 10px; margin-bottom: 10px; text-align: center; font-size: 12px;}
 .quiniela_single .props .prop {width: 100%; margin-bottom: 10px; border-top: 1px solid #8A8A8D; padding-top: 10px; position: relative;}
@@ -348,10 +362,55 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 
 /*** QUINIELA REGISTRADA ***/
 
-.quiniela_registrada_single {padding-top: 100px; padding-bottom: 70px; font-size: 12px; position: relative; width: 99%;}
+.quiniela_registrada_single {padding-top: 100px; padding-bottom: 70px; font-size: 12px; position: relative; width: 99%; }
 .quiniela_registrada_single .quiniela {width: 100%;}
 .quiniela_registrada_single .quiniela_live {border-left: 3px solid #F6A623;}
 .quiniela_registrada_single .registro_quiniela {width: 100%; text-align: center;}
 .quiniela_registrada_single .registro_quiniela a:first-child {margin-right: 10px;}
 .quiniela_registrada_single .quiniela_info {margin-right: 10px; }
+
+.tabs_quiniela {width: 100%; background: #000; margin-top: 20px;  border-radius: 3px; border: 1px solid #414042;}
+.tabs_quiniela ul {list-style: none; margin: 0; padding: 0px;}
+.tabs_quiniela ul li {display: block; width: 100px; display: table-cell; white-space: nowrap; text-align: center; border-right: 1px solid #414042; height: 22px; padding-top: 3px;}
+.tabs_quiniela ul li:last-child {border-right: 0px; border-top-right-radius: 3px; border-bottom-right-radius: 3px; }
+.tabs_quiniela ul li:first-child {border-top-left-radius: 3px; border-bottom-left-radius: 3px; }
+.tabs_quiniela ul li.selected {background: #77BC1F;}
+.tabs_quiniela ul li a {text-decoration: none; color: #fff;}
+
+.tab_posiciones {width: 100%;}
+.tab_posiciones table {width: 100%; border: none!important; font-size: 10px; text-align: center;}
+.tab_posiciones table .table_title {border-bottom: 1px solid #fff; line-height: 20px;}
+.tab_posiciones table tr th {font-size: 10px; font-weight: normal!important;}
+.tab_posiciones table th {border: none!important;}
+.tab_posiciones table td {border: none!important; padding: 5px 0;}
+.tab_posiciones table tr.player_info:nth-child(2n){background: #414042}
+.tab_posiciones .player img {width: 16px;  margin-right: 5px;}
+.tab_posiciones .ganar img {width: 16px; margin-right: 5px;}
+
+
+.tab_premios {width: 100%;}
+.tab_premios table {width: 100%; border: none!important; font-size: 10px; text-align: center;}
+.tab_premios table .table_title {border-bottom: 1px solid #fff; line-height: 20px;}
+.tab_premios table tr th {font-size: 10px; font-weight: normal!important;}
+.tab_premios table th {border: none!important;}
+.tab_premios table td {border: none!important; padding: 5px 0;}
+.tab_premios table tr.player_info:nth-child(2n){background: #414042}
+.tab_premios .ganar img {width: 16px; margin-right: 5px; }
+
+.tab_picks_grupo {width: 100%;  white-space: nowrap; margin-right: 10%; overflow-x: scroll }
+.tab_picks_grupo table { border: none!important; font-size: 10px; text-align: center; white-space:nowrap; margin-right: 10%;}
+.tab_picks_grupo table .table_title {border-bottom: 1px solid #fff; line-height: 20px;}
+.tab_picks_grupo table tr th {font-size: 10px; font-weight: normal!important; white-space:nowrap; background: }
+.tab_picks_grupo table th {border: none!important; white-space:nowrap;}
+.tab_picks_grupo table td {border: none!important; padding: 5px; white-space:nowrap;}
+.tab_picks_grupo table tr.player_info:nth-child(2n){background: #414042;}
+.tab_picks_grupo table tr.player_info img {width: 16px;}
+.tab_picks_grupo .player img {width: 16px; margin-right: 5px;}
+.tab_picks_grupo .ganar img {width: 16px; margin-right: 5px;}
+.tab_picks_grupo .this_player {background: #5A7849!important;}
+
+.tab_marcadores {width: 100%;}
+.tab_marcadores .marcador {width: 50%; float: left; border-right: 1px solid #fff; padding: 5px; border-bottom: 1px solid #fff;}
+.tab_marcadores .marcador:nth-child(2n) {border-right: none;}
+.tab_marcadores table {text-align: right; font-size: 10px;}
 

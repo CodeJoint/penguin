@@ -128,7 +128,7 @@ window.initializeEvents = function(){
 					repeat_password :{
 						required: true,
 						equalTo : "#password"
-    				},
+					},
 					accept_terms: "required",
 					is_M18		: "required"
 				},
@@ -139,9 +139,9 @@ window.initializeEvents = function(){
 					email 		: "Es necesario que especifiques un correo elecrónico",
 					password 	: "Por favor ingresa tu contraseña",
 					repeat_password :{
-					 	required: "Por favor repite tu contraseña",
+						required: "Por favor repite tu contraseña",
 						equalTo: "Las contraseñas no coinciden"
-    				},
+					},
 					accept_terms: "Debes aceptar nuestros términos para continuar",
 					is_M18		: "Debes ser mayor de edad para continuar"
 				},
@@ -215,10 +215,20 @@ window.initializeEvents = function(){
 		} // END misQuinielas
 		
 		if($('#detailQuiniela').length){
+			var quoteId = $('#detailQuiniela').data('id');
 			setTimeout(function(){
 
-				return app.render_games();
-			}, 300);
+				$('#reg_into_game').on('click',function(){
+					$('#registerNow').fadeIn('fast');
+				});
+				$('#closeRegister').on('click',function(){
+					$('#registerNow').fadeOut('fast');
+				});
+				$('#sendRegister').on('click',function(){
+					$('#registerNow').fadeOut('fast');
+				});
+				return app.render_games(quoteId);
+			}, 220);
 		} // END detailQuiniela
 
 		/* Log Out from the API */
@@ -278,25 +288,25 @@ window.initializeEvents = function(){
 		var positiveMargin = false;
 		$('.misquinielas').on('click', function(){
 
-		    if (!positiveMargin) {
-		        var left = "0%";
-		        var padd = "1%";
-		        positiveMargin = true;
-		    }
-		    else {
-		        var left = "97%";
-		        var padd = "1%";
-		        positiveMargin = false;
-		    }
-		     $('.misquinielas').animate({
-		               marginLeft: left,
-		               paddingLeft: padd,
-		               }, {
-		               duration: 500,
-		               
-		               complete: function () {
-		               }
-		             });
+			if (!positiveMargin) {
+				var left = "0%";
+				var padd = "1%";
+				positiveMargin = true;
+			}
+			else {
+				var left = "97%";
+				var padd = "1%";
+				positiveMargin = false;
+			}
+			$('.misquinielas').animate({
+											marginLeft: left,
+											paddingLeft: padd,
+										}, 
+										{
+											duration: 500,
+											complete: function () {
+											}
+										});
 		 });
 	});
 

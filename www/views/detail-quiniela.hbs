@@ -1,10 +1,10 @@
 
 	<div class="container clearfix">
 		{{> header}}
-		<div id="detailQuiniela" class="content quiniela_single clearfix">
+		<div id="detailQuiniela" data-id="{{data.id}}" class="content quiniela_single clearfix">
 			<div class="registro_quiniela clearfix">
 				<a class="hook" data-resource="lobby" href="lobby.html"><img src="{{cordova_full_path}}images/cierre.png"></a>
-				<a href=""><img src="{{cordova_full_path}}images/registrarse.png"></a>
+				<a id="reg_into_game"><img src="{{cordova_full_path}}images/registrarse.png"></a>
 			</div><!-- opciones registro -->
 			<a class="link_wrapper" href="">
 				<div class="quiniela
@@ -113,7 +113,7 @@
 				</div><!-- dempates -->
 			{{/ if }}
 
-			<div class="quiniela_registro_overlay content clearfix" style="display: none;">
+			<div id="registerNow" class="quiniela_registro_overlay content clearfix" style="display: none;">
 				<div class="quiniela_registro clearfix">
 					<div class="quiniela_header clearfix">
 						<div class="quiniela_iconos clearfix">
@@ -172,8 +172,8 @@
 					</div><!-- balance -->
 
 					<div class="botones clarfix">
-						<a><img src="{{cordova_full_path}}images/regresar.png"></a>
-						<input type="submit">
+						<a id="closeRegister"><img src="{{cordova_full_path}}images/regresar.png"></a>
+						<input type="submit" id="sendRegister">
 					</div>
 				</div><!-- quiniela-registro -->
 

@@ -162,10 +162,12 @@ body {width: 100%; margin: 0 auto; font-weight: 300; font-family: 'Lato'!importa
 .menu ul li:last-child{border-right: 0px!important;}
 .menu ul li.menu_lobby {background-position-x: 25px}
 .menu ul li.menu_quinielas {background-position-x: -45px}
+.menu ul .menu_quinielas>a{ display: block; width: 100%; height: 100%;}
 .menu ul li.menu_privadas {background-position-x: -118px}
 .menu ul li.menu_perfil {background-position-x: -190px}
 .menu ul li.menu_abonar {background-position-x: -265px}
 .menu ul li.selected {background-position-y: -46px;}
+.menu ul li>a{display: block; width: 100%; height: 100%;}
 
 /*** LOBBY ***/
 
@@ -190,6 +192,10 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 .quiniela .quiniela_content span {display: block;}
 .quiniela .quiniela_content span.titulo {margin-bottom: 15px;}
 .quiniela .quiniela_content span.number {float: left; margin-left: 5px;}
+.quiniela .quiniela_content {}
+.quiniela .quiniela_content .quiniela_info{width: 48%;}
+.quiniela .quiniela_content .quiniela_entrada{width: 22%;}
+.quiniela .quiniela_content .quiniela_aganar{width: 22%;}
 
 /*quiniela open*/
 

@@ -484,3 +484,17 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 .quiniela_privada_crear form input[type="submit"] {width: 80px; height: 36px; background: url('images/crear.png') no-repeat; border: none!important; text-indent: -100000px; text-align: center;}
 
 
+.quiniela_privada_creada {width: 100%; padding-top: 100px; margin-bottom: 30%;}
+.quiniela_privada_creada .quiniela_privada_info {background: #000;}
+.quiniela_privada_creada .quiniela_privada_info h3 {font-size: 10px; text-align: center; padding: 10px 0px; border-top: 1px solid #77BC1F; border-bottom: 1px solid #8A8A8D; font-weight: normal;}
+.quiniela_privada_creada .quiniela_privada_info ul {list-style: none; margin: 20px auto; padding-top: 0px;}
+.quiniela_privada_creada .quiniela_privada_info ul li {display: block; float: left; margin-right: 5px;}
+.quiniela_privada_creada .quiniela_privada_info ul li:last-child {display: block; float: left; margin-right: 0px;}
+.quiniela_privada_creada .botones {width: 100%; margin-bottom: 20px;}
+.quiniela_privada_creada .botones a {display: block; width: 50%; float: left; border:1px solid #414042; text-align: center;  padding-top: 10px; padding-bottom: 10px; font-size: 12px; text-decoration: none; color: #fff; background: #000; border-radius: 3px;}
+.quiniela_privada_creada .botones a.selected {background: #598D16;}
+
+.quiniela_privada_creada .participantes {background: #000;}
+
+
+

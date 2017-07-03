@@ -25,7 +25,7 @@
 			</div><!-- quiniela_header -->
 			<div class="quiniela_content clearfix">
 				<div class="quiniela_info clearfix">
-					<span class="registros">REG: {{entry_count}}</span>
+					<span class="registros">REGISTROS: {{entry_count}}</span>
 					<span class="cierre">CIERRE: {{formatDate deadline_tz}}</span>
 					{{!-- <span class="aciertos">ACIERTOS: 3/15</span> --}}
 				</div><!-- quiniela_info -->
@@ -43,6 +43,9 @@
 					<span class="titulo">BOLSA</span>
 					{{# if guaranteed_prize}}
 						<img src="{{cordova_full_path}}images/garantizado.png">
+					{{/ if }}
+					{{^ if guaranteed_prize}}
+						<img src="{{cordova_full_path}}images/billete.png">
 					{{/ if }}
 					<span class="number">${{ formatCurrency available}}</span>
 				</div>

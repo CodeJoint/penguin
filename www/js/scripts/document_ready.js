@@ -217,8 +217,17 @@ window.initializeEvents = function(){
 		if($('#detailQuiniela').length){
 			setTimeout(function(){
 				console.log("Pre render games");
-				return app.render_games();
-			}, 300);
+				$('#reg_into_game').on('click',function(){
+					$('#registerNow').fadeIn('fast');
+				});
+				$('#closeRegister').on('click',function(){
+					$('#registerNow').fadeOut('fast');
+				});
+				$('#sendRegister').on('click',function(){
+					$('#registerNow').fadeOut('fast');
+				});
+				// return app.render_games();
+			}, 220);
 		} // END detailQuiniela
 
 		/* Log Out from the API */

@@ -8,23 +8,23 @@
 				<input type="radio" name="ganador_uno" id="local">
 				<img src="{{cordova_full_path}}images/camisaverde.png">
 				<div class="equipo">
-					<span class="iniciales">{{data.fixtures.home_team}}</span>
+					<span class="iniciales">{{home_team.abbreviation}}</span>
 				</div><!-- equipo -->
 				<div class="linea">
-					<span>(+4) 123</span>
+					<span>{{# score_away_line}}({{.}}){{/ score_away_line}} {{score_away}}</span>
 				</div><!-- linea -->
 			</div><!-- opcion_partido -->
 			<div class="opcion_partido cierre clearfix">
-				<span>CIERRE: 28.feb.17</span>
+				<span>CIERRE: {{formatDate deadline}}</span>
 			</div><!-- opcion_partido -->
 			<div class="opcion_partido visitante clearfix">
 				<input type="radio" name="ganador_uno" id="visitante">
 				<img src="{{cordova_full_path}}images/camisaazul.png">
 				<div class="equipo">
-					<span class="iniciales">ABC</span>
+					<span class="iniciales">{{away_team.abbreviation}}</span>
 				</div><!-- equipo -->
 				<div class="linea">
-					<span>(+4) 123</span>
+					<span>{{# score_home_line}}({{.}}){{/ score_home_line}} {{score_home}}</span>
 				</div><!-- linea -->
 			</div><!-- opcion_partido -->
 		</div><!-- partido -->

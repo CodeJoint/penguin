@@ -95,7 +95,7 @@
 		},
 		registerCompiledPartials: function() {
 			/* Add files to be loaded here */
-			var filenames = ['header', 'footer', 'loader', 'each-quiniela', 'each-my-quiniela', 'my-lobby', 'filters'];
+			var filenames = ['header', 'footer', 'loader', 'each-quiniela', 'each-my-quiniela', 'my-lobby', 'quiniela-games', 'filters'];
 			filenames.forEach(function (filename) {
 					Handlebars.registerPartial(filename, Handlebars.templates[filename]);
 			});
@@ -281,6 +281,14 @@
 			var data = this.gatherEnvironment(extra_data, "Detail");
 			console.log(data);
 			return this.switchView('detail-quiniela', data, '.view', url, 'quiniela-feed');
+		},
+		render_games : function(){
+
+			var extra_data = apiRH.getRequest('api/pools/fixtures/'+object_id+'.json', null);
+			extra_data = (extra_data.pool) ? extra_data.pool : [];
+			var data = this.gatherEnvironment(extra_data, null);
+			console.log(data);
+			return this.render_modal('quiniela-games', data, '#insertPartidos');
 		},
 		render_register : function( url ){
 			

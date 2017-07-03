@@ -213,6 +213,13 @@ window.initializeEvents = function(){
 				return app.render_myfeed();
 			}, 300);
 		} // END misQuinielas
+		
+		if($('#detailQuiniela').length){
+			setTimeout(function(){
+
+				return app.render_games();
+			}, 300);
+		} // END detailQuiniela
 
 		/* Log Out from the API */
 		$('#logout').on('click', function(e){

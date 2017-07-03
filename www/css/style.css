@@ -73,7 +73,7 @@ body {width: 100%; margin: 0 auto; font-weight: 300; font-family: 'Lato'!importa
 
 /*** SPLASH ***/
 
-.splash {background-image: url('images/background.png'); background-position: center top; background-size: cover;}
+.splash {background-image: url('../images/background.png'); background-position: center top; background-size: cover;}
 .splash .splash_logo {text-align: center; padding-top: 78%;}
 
 /*** LOGIN ***/
@@ -158,7 +158,7 @@ body {width: 100%; margin: 0 auto; font-weight: 300; font-family: 'Lato'!importa
 
 .menu {width: 100%; height: 50px; background: #BCBCBC; position: fixed; bottom: 0; border-top: 1px solid #8A8A8D; z-index: 100;}
 .menu ul {list-style: none; padding: 5px 0 0 0; margin: 0px;}
-.menu ul li {display: block; float: left; border-right: 1px solid #8A8A8D; width: 20%; height: 36px; background-image: url('images/menu_sprite.png'); background-repeat:  no-repeat; }
+.menu ul li {display: block; float: left; border-right: 1px solid #8A8A8D; width: 20%; height: 36px; background-image: url('../images/menu_sprite.png'); background-repeat:  no-repeat; }
 .menu ul li:last-child{border-right: 0px!important;}
 .menu ul li.menu_lobby {background-position-x: 25px}
 .menu ul li.menu_quinielas {background-position-x: -45px}
@@ -169,7 +169,7 @@ body {width: 100%; margin: 0 auto; font-weight: 300; font-family: 'Lato'!importa
 
 /*** LOBBY ***/
 
-.lobby {background-image: url('images/background.png'); background-position: center top; background-attachment: fixed; background-size: cover; }
+.lobby {background-image: url('../images/background.png'); background-position: center top; background-attachment: fixed; background-size: cover; }
 .quinielas {padding-top: 90px; padding-bottom: 70px;}
 
 /*** QUINIELAS ***/
@@ -201,26 +201,26 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 
 /*quiniela_live*/
 
-.quiniela.quiniela_live .quiniela_content .quiniela_info {width: 30%; float: left;}
-.quiniela.quiniela_live .quiniela_content .quiniela_picks_ok {width: 15%; float: left;}
-.quiniela.quiniela_live .quiniela_content .quiniela_aganar {width: 20%; float: left;}
-.quiniela.quiniela_live .quiniela_content .quiniela_entrada {width: 20%; float: left;}
-.quiniela.quiniela_live .quiniela_content .quiniela_bolsa {width: 15%; float: left;}
+.quiniela.quiniela_live .quiniela_content .quiniela_info {width: 48%; float: left;}
+.quiniela.quiniela_live .quiniela_content .quiniela_picks_ok {width: 24%; float: left;}
+.quiniela.quiniela_live .quiniela_content .quiniela_aganar {width: 24%; float: left;}
+.quiniela.quiniela_live .quiniela_content .quiniela_entrada {width: 24%; float: left;}
+.quiniela.quiniela_live .quiniela_content .quiniela_bolsa {width: 24%; float: left;}
 .quiniela.quiniela_live .quiniela_content .quiniela_bolsa span.number {float: left; margin-left: 5px; color: #77BC1F;}
 .quiniela.quiniela_live .quiniela_content .quiniela_bolsa img {margin-top: -2px;}
 
 
 /*** FILTROS ***/
 
-.filtros_wrapper {width: 100%; height: 100%; position: fixed; top: 87px; left: 0px; background: url('images/bg_trans_filtros.png') repeat; z-index: 80;}
+.filtros_wrapper {width: 100%; height: 100%; position: fixed; top: 87px; left: 0px; background: url('../images/bg_trans_filtros.png') repeat; z-index: 80;}
 .filtros {position: fixed; top: 87px; right: 0; background: #000; width: 85%; text-align: center; padding: 20px; height: 100%; z-index: 90;}
 .filtros div {margin-bottom: 20px;}
 .filtros ul {list-style: none; margin: 10px 0 0px 0; padding: 0px; width: 100%;}
-.filtros ul li {display: inline-block; float: left; background: url('images/bg_gradient_32.png') repeat-x; height: 32px; padding-top: 7px; border-radius: 0px 0px 5px 5px }
+.filtros ul li {display: inline-block; float: left; background: url('../images/bg_gradient_32.png') repeat-x; height: 32px; padding-top: 7px; border-radius: 0px 0px 5px 5px }
 .filtros ul li img {width: 22px; height: auto; }
 .filtros h3 {font-size: 12px; font-weight: 400; margin: 0px; }
 .filtros ul li h3 {padding-top: 3px;}
-.filtros ul li.selected {background: url('images/bg_verde_filtros.png') repeat; } 
+.filtros ul li.selected {background: url('../images/bg_verde_filtros.png') repeat; } 
 
 .filtros .filtros_moneda ul li {width: 33.3%}
 
@@ -240,7 +240,7 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 
 /*** MIS QUINIELAS OVERLAY ***/
 
-.misquinielas {position: fixed; top: 87px; width: 100%; margin-left: 97%; background: url('images/bg_trans_quinielas.png') repeat; height: 100%; padding-left: 1%;}
+.misquinielas {position: fixed; top: 87px; width: 100%; margin-left: 97%; background: url('../images/bg_trans_quinielas.png') repeat; height: 100%; padding-left: 1%;}
 .quiniela_open {border-left: 3px solid #77BC1F;}
 .quiniela_live {border-left: 3px solid #F6A623;}
 .quiniela_closed {border-left: 3px solid #FF576C;}
@@ -310,7 +310,7 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 .quiniela_single .desempates .desempate.desempate_tres .desempate_input input[type="radio"] {width: 30px; float: left; margin-right: 5px; margin-top: 10px; }
 
 
-.quiniela_single .quiniela_registro_overlay {position: fixed; top: 0px; padding-top: 200px; width: 95%; background: url('images/bg_trans_negro.png') repeat;  }
+.quiniela_single .quiniela_registro_overlay {position: fixed; top: 0px; padding-top: 200px; width: 95%; background: url('../images/bg_trans_negro.png') repeat;  }
 .quiniela_registro {width: 100%; margin: 0 auto; border: 1px solid #8A8A8D; padding: 20px 10px; border-radius: 3px; background: #000;}
 .quiniela_registro .no_registros {width: 100%; margin-top: 30px;}
 .quiniela_registro .no_registros span {display: block; float: left; color: #fff;}
@@ -343,7 +343,7 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 
 .quiniela_registro .botones {width: 100%; margin-top: 20px; }
 .quiniela_registro .botones a {float: left; margin-left: 20px; margin-right: 20px;}
-.quiniela_registro .botones input {float: left; background: url('images/confirmar_y_guardar.png') no-repeat!important; width: 192px; height: 36px; border: none; text-indent: -1000000px;}
+.quiniela_registro .botones input {float: left; background: url('../images/confirmar_y_guardar.png') no-repeat!important; width: 192px; height: 36px; border: none; text-indent: -1000000px;}
 
 
 /*** QUINIELA REGISTRADA ***/

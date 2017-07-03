@@ -279,13 +279,15 @@
 			var data = this.gatherEnvironment(extra_data, "Detail");
 			return this.switchView('detail-quiniela', data, '.view', url, 'quiniela-feed');
 		},
-		render_games : function(){
-			console.log("Render games");
+		render_games : function(object_id){
+
 			var extra_data = apiRH.getRequest('api/pools/fixtures/'+object_id+'.json', null);
-			extra_data = (extra_data.pool) ? extra_data.pool : [];
+			extra_data = (extra_data) ? extra_data : [];
 			var data = this.gatherEnvironment(extra_data, null);
 			console.log(data);
-			return this.render_modal('quiniela-games', data, '#insertPartidos');
+			setTimeout(function(){
+				return app.render_modal('quiniela-games', data, '#insertPartidos');
+			}, 100);
 		},
 		render_register : function( url ){
 			
@@ -348,16 +350,16 @@
 
 			app.showLoader();
 			app.check_or_renderContainer();
-			console.log("Rendering Modal: "+modalName);
 			var data = this.gatherEnvironment(data, "");
 			data.is_scrollable = false;
-			var modalTemplate = Handlebars.templates[newTemplate];
+			var modalTemplate = Handlebars.templates[modalName];
 			$(appendTarget).css("opacity", 0).append( modalTemplate(data) );
 
 			$(appendTarget).html( modalTemplate(data) ).css("display", "block")
 														 .animate(	{
 															opacity: 1
 														}, 360);
+			app.hideLoader();
 		},
 		render_dialog : function(title, message, options){
 			return app.showLoader();

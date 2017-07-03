@@ -13,11 +13,13 @@
 						 garantizado clearfix">
 			<div class="quiniela_header clearfix">
 				<div class="quiniela_iconos clearfix">
-					{{# if_eq point_format "line" }}
+					{{# if_eq format "line" }}
 						<img src="{{cordova_full_path}}images/linea.png">
 					{{/ if_eq }}
-					{{# if_eq point_format "natural" }}
-						<img src="{{cordova_full_path}}images/natural.png">
+					{{# if_eq format "mixed" }}
+						{{# if_eq point_format "natural" }}
+							<img src="{{cordova_full_path}}images/natural.png">
+						{{/ if_eq }}
 					{{/ if_eq }}
 					<img src="{{cordova_full_path}}images/{{sport.icon}}.png">
 				</div><!-- iconos -->
@@ -27,6 +29,9 @@
 				<div class="quiniela_info clearfix">
 					<span class="registros">REGISTROS: {{entry_count}}</span>
 					<span class="cierre">CIERRE: {{formatDate deadline_tz}}</span>
+					{{# limited_capacity}}
+						<span class="limite">Limitado a {{max_entries}} entradas</span>
+					{{/ limited_capacity}}
 					{{!-- <span class="aciertos">ACIERTOS: 3/15</span> --}}
 				</div><!-- quiniela_info -->
 				<div class="quiniela_entrada clearfix">

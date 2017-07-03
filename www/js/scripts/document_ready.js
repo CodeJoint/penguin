@@ -215,8 +215,9 @@ window.initializeEvents = function(){
 		} // END misQuinielas
 		
 		if($('#detailQuiniela').length){
+			var quoteId = $('#detailQuiniela').data('id');
 			setTimeout(function(){
-				console.log("Pre render games");
+
 				$('#reg_into_game').on('click',function(){
 					$('#registerNow').fadeIn('fast');
 				});
@@ -226,7 +227,7 @@ window.initializeEvents = function(){
 				$('#sendRegister').on('click',function(){
 					$('#registerNow').fadeOut('fast');
 				});
-				// return app.render_games();
+				return app.render_games(quoteId);
 			}, 220);
 		} // END detailQuiniela
 

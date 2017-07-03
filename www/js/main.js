@@ -16,7 +16,7 @@
 			/* Initialize API request handler */
 			window.apiRH = new requestHandlerAPI().construct(app);
 			window.firstTime = true;
-			app.initialized = true;
+			this.initialized = true;
 			var is_home 	= window.is_home;
 			var is_login 	= apiRH.has_token();
 
@@ -249,6 +249,7 @@
 			console.log("Rendering Lobby");
 			var extra_data = apiRH.getRequest('pools/available.json', null);
 			var data = this.gatherEnvironment(extra_data, "Lobby");
+			console.log(data);
 			return this.switchView('lobby', data, '.view', url, 'quiniela-feed');
 		},
 		render_myfeed : function(url){
@@ -277,6 +278,7 @@
 			var extra_data = apiRH.getRequest('api/pools/view/'+object_id+'.json', null);
 			extra_data = (extra_data.pool) ? extra_data.pool : [];
 			var data = this.gatherEnvironment(extra_data, "Detail");
+			console.log(data);
 			return this.switchView('detail-quiniela', data, '.view', url, 'quiniela-feed');
 		},
 		render_games : function(object_id){

@@ -14,14 +14,14 @@
 			<div class="quiniela_header clearfix">
 				<div class="quiniela_iconos clearfix">
 					{{# if_eq format "line" }}
-						<img src="{{cordova_full_path}}images/linea.png">
+						<img src="{{full_path}}images/linea.png">
 					{{/ if_eq }}
 					{{# if_eq format "mixed" }}
 						{{# if_eq point_format "natural" }}
-							<img src="{{cordova_full_path}}images/natural.png">
+							<img src="{{full_path}}images/natural.png">
 						{{/ if_eq }}
 					{{/ if_eq }}
-					<img src="{{cordova_full_path}}images/{{sport.icon}}.png">
+					<img src="{{full_path}}images/{{sport.icon}}.png">
 				</div><!-- iconos -->
 				<h2>{{name_replaced}}</h2>
 			</div><!-- quiniela_header -->
@@ -35,22 +35,22 @@
 					{{!-- <span class="aciertos">ACIERTOS: 3/15</span> --}}
 				</div><!-- quiniela_info -->
 				<div class="quiniela_entrada clearfix">
-					<span class="titulo">ENTRADA</span>
+					<span class="titulo">ENTRADA {{full_path}}</span>
 					{{# if_eq entry_currency 'real' }}
-						<img src="{{cordova_full_path}}images/billecoin.png">
+						<img src="{{full_path}}images/billecoin.png">
 					{{/ if_eq }}
 					{{# if_eq entry_currency 'pickcoin' }}
-						<img src="{{cordova_full_path}}images/pickcoin.png">
+						<img src="{{full_path}}images/pickcoin.png">
 					{{/ if_eq }}
 					<span class="number">${{ formatCurrency entry_fee}}</span>
 				</div>
 				<div class="quiniela_aganar clearfix">
 					<span class="titulo">BOLSA</span>
 					{{# if guaranteed_prize}}
-						<img src="{{cordova_full_path}}images/garantizado.png">
+						<img src="{{full_path}}images/garantizado.png">
 					{{/ if }}
 					{{^ if guaranteed_prize}}
-						<img src="{{cordova_full_path}}images/billete.png">
+						<img src="{{full_path}}images/billete.png">
 					{{/ if }}
 					<span class="number">${{ formatCurrency available}}</span>
 				</div>

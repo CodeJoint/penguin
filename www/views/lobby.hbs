@@ -2,9 +2,8 @@
 	<div class="container clearfix lobby">
 		{{> header}}
 		<div class="content quinielas">
-			
 			{{# data.pools}}
-				{{> each-quiniela}}
+				{{> each-quiniela full_path = cordova_full_path}}
 			{{/ data.pools}}
 
 		</div><!-- content -->

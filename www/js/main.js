@@ -306,8 +306,38 @@
 			// data.is_scrollable = false;
 			return this.switchView('register-success', data, '.view', url, 'registro exitoso');
 		},
-		render_settings : function(url){
-			
+		render_profile : function(url){
+			console.log("Rendering user profile");
+			if(!app.initialized) app.initialize();
+			setTimeout(function(){
+				app.showLoader();
+			}, 420);
+			app.check_or_renderContainer();
+			var data = this.gatherEnvironment(null, "Perfil de usuario");
+			// data.is_scrollable = false;
+			return this.switchView('register-success', data, '.view', url, 'registro exitoso');
+		},
+		render_add_funds : function(url){
+			console.log("Rendering add funds");
+			if(!app.initialized) app.initialize();
+			setTimeout(function(){
+				app.showLoader();
+			}, 420);
+			app.check_or_renderContainer();
+			var data = this.gatherEnvironment(null, "Agregar fondos a tu cuenta");
+			// data.is_scrollable = false;
+			return this.switchView('register-success', data, '.view', url, 'registro exitoso');
+		},
+		render_private_games : function(url){
+			console.log("Rendering private games");
+			if(!app.initialized) app.initialize();
+			setTimeout(function(){
+				app.showLoader();
+			}, 420);
+			app.check_or_renderContainer();
+			var data = this.gatherEnvironment(null, "Quinielas privadas");
+			// data.is_scrollable = false;
+			return this.switchView('register-success', data, '.view', url, 'registro exitoso');
 		},
 		render_modal : function(modalName, data, appendTarget){
 

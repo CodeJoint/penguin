@@ -1,0 +1,1 @@
+!function(){var e=Handlebars.template,a=Handlebars.templates=Handlebars.templates||{};a["profile"]=e({compiler:[7,">= 4.0.0"],main:function(e,a,r,t,l){return"<p>Perfil de usuario</p>"},useData:!0})}();

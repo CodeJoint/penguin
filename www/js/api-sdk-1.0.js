@@ -1,5 +1,4 @@
 /*!
->>>>>>> development
  * Prototype: requestHandlerAPI 
  * @params token (optional if not executing auth requests) Locally saved user token
  */

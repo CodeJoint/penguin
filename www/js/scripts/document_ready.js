@@ -20,12 +20,28 @@ window.initializeEvents = function(){
 				console.log("Hook click");
 				e.preventDefault();
 				app.showLoader();
+				/*** Register / Login ***/
 				if( $(this).data('resource') == "register" )
 					return app.render_register( $(this).attr('href') );
+				if( $(this).data('resource') == "login" )
+					return app.render_login( $(this).attr('href') );
+
 				if( $(this).data('resource') == "lobby" )
 					return app.render_lobby( $(this).attr('href') );
+				if( $(this).data('resource') == "privates" )
+					return app.render_private_games( $(this).attr('href') );
+				if( $(this).data('resource') == "my_lobby" ){
+					$('#misQuinielas').trigger('click');
+					return app.hideLoader();
+				}
 				if( $(this).data('resource') == "detail" )
 					return app.render_detail( $(this).attr('href'), $(this).data('object') );
+				
+				/*** User ***/
+				if( $(this).data('resource') == "profile" )
+					return app.render_profile( $(this).attr('href') );
+				if( $(this).data('resource') == "deposit" )
+					return app.render_add_funds( $(this).attr('href') );
 				
 				e.stopPropagation();
 			});

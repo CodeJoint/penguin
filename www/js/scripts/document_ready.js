@@ -128,7 +128,7 @@ window.initializeEvents = function(){
 					repeat_password :{
 						required: true,
 						equalTo : "#password"
-    				},
+					},
 					accept_terms: "required",
 					is_M18		: "required"
 				},
@@ -139,9 +139,9 @@ window.initializeEvents = function(){
 					email 		: "Es necesario que especifiques un correo elecrónico",
 					password 	: "Por favor ingresa tu contraseña",
 					repeat_password :{
-					 	required: "Por favor repite tu contraseña",
+						required: "Por favor repite tu contraseña",
 						equalTo: "Las contraseñas no coinciden"
-    				},
+					},
 					accept_terms: "Debes aceptar nuestros términos para continuar",
 					is_M18		: "Debes ser mayor de edad para continuar"
 				},
@@ -216,7 +216,7 @@ window.initializeEvents = function(){
 		
 		if($('#detailQuiniela').length){
 			setTimeout(function(){
-
+				console.log("Pre render games");
 				return app.render_games();
 			}, 300);
 		} // END detailQuiniela
@@ -278,25 +278,25 @@ window.initializeEvents = function(){
 		var positiveMargin = false;
 		$('.misquinielas').on('click', function(){
 
-		    if (!positiveMargin) {
-		        var left = "0%";
-		        var padd = "1%";
-		        positiveMargin = true;
-		    }
-		    else {
-		        var left = "97%";
-		        var padd = "1%";
-		        positiveMargin = false;
-		    }
-		     $('.misquinielas').animate({
-		               marginLeft: left,
-		               paddingLeft: padd,
-		               }, {
-		               duration: 500,
-		               
-		               complete: function () {
-		               }
-		             });
+			if (!positiveMargin) {
+				var left = "0%";
+				var padd = "1%";
+				positiveMargin = true;
+			}
+			else {
+				var left = "97%";
+				var padd = "1%";
+				positiveMargin = false;
+			}
+			$('.misquinielas').animate({
+											marginLeft: left,
+											paddingLeft: padd,
+										}, 
+										{
+											duration: 500,
+											complete: function () {
+											}
+										});
 		 });
 	});
 

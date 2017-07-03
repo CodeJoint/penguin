@@ -262,11 +262,9 @@
 				console.log("Template doesn't exist");
 				return false;
 			}
-		
 			$('#misQuinielas').html( template(data) ).css({ "opacity": 0, "display": "block"})
 													 .animate(	{ opacity: 1 }, 220);
 			return;
-			// return this.switchView('lobby', data, '#misQuinielas', null, 'my-feed', false, false);
 		},
 		render_detail : function(url, object_id){
 			
@@ -279,11 +277,10 @@
 			var extra_data = apiRH.getRequest('api/pools/view/'+object_id+'.json', null);
 			extra_data = (extra_data.pool) ? extra_data.pool : [];
 			var data = this.gatherEnvironment(extra_data, "Detail");
-			console.log(data);
 			return this.switchView('detail-quiniela', data, '.view', url, 'quiniela-feed');
 		},
 		render_games : function(){
-
+			console.log("Render games");
 			var extra_data = apiRH.getRequest('api/pools/fixtures/'+object_id+'.json', null);
 			extra_data = (extra_data.pool) ? extra_data.pool : [];
 			var data = this.gatherEnvironment(extra_data, null);
@@ -337,6 +334,7 @@
 			return this.switchView('register-success', data, '.view', url, 'registro exitoso');
 		},
 		render_private_games : function(url){
+
 			console.log("Rendering private games");
 			if(!app.initialized) app.initialize();
 			setTimeout(function(){
@@ -344,8 +342,7 @@
 			}, 420);
 			app.check_or_renderContainer();
 			var data = this.gatherEnvironment(null, "Quinielas privadas");
-			// data.is_scrollable = false;
-			return this.switchView('register-success', data, '.view', url, 'registro exitoso');
+			return this.switchView('private-games', data, '.view', url, 'quinielas_privadas');
 		},
 		render_modal : function(modalName, data, appendTarget){
 

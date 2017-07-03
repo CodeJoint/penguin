@@ -2,81 +2,30 @@
 	<div class="opciones_partido clearfix">
 		<span>LOCAL</span> <span>EMPATE</span> <span>VISITA</span>
 	</div><!-- opciones_partido -->
-
-	<div class="partido clearfix">
-		<div class="opcion_partido local clearfix">
-			<input type="radio" name="ganador_uno" id="local">
-			<img src="{{cordova_full_path}}images/camisaverde.png">
-			<div class="equipo">
-				<span class="iniciales">ABC</span>
-			</div><!-- equipo -->
-			<div class="linea">
-				<span>(+4) 123</span>
-			</div><!-- linea -->
-		</div><!-- opcion_partido -->
-		<div class="opcion_partido cierre clearfix">
-			<span>CIERRE: 28.feb.17</span>
-		</div><!-- opcion_partido -->
-		<div class="opcion_partido visitante clearfix">
-			<input type="radio" name="ganador_uno" id="visitante">
-			<img src="{{cordova_full_path}}images/camisaazul.png">
-			<div class="equipo">
-				<span class="iniciales">ABC</span>
-			</div><!-- equipo -->
-			<div class="linea">
-				<span>(+4) 123</span>
-			</div><!-- linea -->
-		</div><!-- opcion_partido -->
-	</div><!-- partido -->
-	<div class="partido clearfix">
-		<div class="opcion_partido local clearfix">
-			<input type="radio" name="ganador_dos" id="local">
-			<img src="{{cordova_full_path}}images/camisablanca.png">
-			<div class="equipo">
-				<span class="iniciales">ABC</span>
-			</div><!-- equipo -->
-			<div class="linea">
-				<span>(+4) 123</span>
-			</div><!-- linea -->
-		</div><!-- opcion_partido -->
-		<div class="opcion_partido empate cierre clearfix">
-			<input type="radio" name="ganador_dos" id="empate">
-			<span>CIERRE: 28.feb.17</span>
-		</div><!-- opcion_partido -->
-		<div class="opcion_partido visitante clearfix">
-			<input type="radio" name="ganador_dos" id="visitante">
-			<img src="{{cordova_full_path}}images/camisaazul.png">
-			<div class="equipo">
-				<span class="iniciales">ABC</span>
-			</div><!-- equipo -->
-			<div class="linea">
-				<span>(+4) 123</span>
-			</div><!-- linea -->
-		</div><!-- opcion_partido -->
-	</div><!-- partido -->
-	<div class="partido clearfix">
-		<div class="opcion_partido local clearfix">
-			<input type="radio" name="ganador_tres" id="local">
-			<img src="{{cordova_full_path}}images/camisaamarilla.png">
-			<div class="equipo">
-				<span class="iniciales">ABC</span>
-			</div><!-- equipo -->
-			<div class="linea">
-				<span>(+4) 123</span>
-			</div><!-- linea -->
-		</div><!-- opcion_partido -->
-		<div class="opcion_partido empate cierre clearfix">
-			<input type="radio" name="ganador_tres" id="empate">
-			<span>CIERRE: 28.feb.17</span>
-		</div><!-- opcion_partido -->
-		<div class="opcion_partido visitante clearfix">
-			<input type="radio" name="ganador_tres" id="visitante">
-			<img src="{{cordova_full_path}}images/camisaroja.png">
-			<div class="equipo">
-				<span class="iniciales">ABC</span>
-			</div><!-- equipo -->
-			<div class="linea">
-				<span>(+4) 123</span>
-			</div><!-- linea -->
-		</div><!-- opcion_partido -->
-	</div><!-- partido -->
+	{{# data.fixtures}}
+		<div class="partido clearfix">
+			<div class="opcion_partido local clearfix">
+				<input type="radio" name="ganador_uno" id="local">
+				<img src="{{cordova_full_path}}images/camisaverde.png">
+				<div class="equipo">
+					<span class="iniciales">{{data.fixtures.home_team}}</span>
+				</div><!-- equipo -->
+				<div class="linea">
+					<span>(+4) 123</span>
+				</div><!-- linea -->
+			</div><!-- opcion_partido -->
+			<div class="opcion_partido cierre clearfix">
+				<span>CIERRE: 28.feb.17</span>
+			</div><!-- opcion_partido -->
+			<div class="opcion_partido visitante clearfix">
+				<input type="radio" name="ganador_uno" id="visitante">
+				<img src="{{cordova_full_path}}images/camisaazul.png">
+				<div class="equipo">
+					<span class="iniciales">ABC</span>
+				</div><!-- equipo -->
+				<div class="linea">
+					<span>(+4) 123</span>
+				</div><!-- linea -->
+			</div><!-- opcion_partido -->
+		</div><!-- partido -->
+	{{/ data.fixtures}}

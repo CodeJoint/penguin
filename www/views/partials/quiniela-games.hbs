@@ -2,7 +2,7 @@
 	<div class="opciones_partido clearfix">
 		<span>LOCAL</span> <span>EMPATE</span> <span>VISITA</span>
 	</div><!-- opciones_partido -->
-	{{# data.fixtures}}
+	{{# data.data.fixtures}}
 		fizruer
 		<div data-id="{{id}}" class="partido clearfix">
 			<div class="opcion_partido local clearfix">
@@ -29,4 +29,4 @@
 				</div><!-- linea -->
 			</div><!-- opcion_partido -->
 		</div><!-- partido -->
-	{{/ data.fixtures}}
+	{{/ data.data.fixtures}}

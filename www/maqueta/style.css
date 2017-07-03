@@ -527,3 +527,32 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 .profile .agregartarjeta form input[type="submit"] {width: 92px; height: 36px; background: url('images/guardar.png') no-repeat; border: none!important; text-indent: -100000px; text-align: center;}
 .profile .agregartarjeta form .fecha_vencimiento select {width: 20%; float: left; margin-right: 10px; background: transparent; font-size: 12px; padding: 10px 5px; margin-bottom: 10px; color: #fff; border-radius: 3px;}
 .profile .agregartarjeta form .fecha_vencimiento input[type="text"] {width: 30%; border: 1px solid #8A8A8D; background: transparent; font-size: 12px; padding: 10px 5px; margin-bottom: 10px; color: #fff; border-radius: 3px;}
+
+/*** ABONAR ***/
+
+.abonar {width: 100%; padding-top: 100px; font-size: 10px;}
+.abonar h3 {font-weight: normal; text-align: center; margin-bottom: 20px;}
+.abonar .botones {width: 100%; margin-bottom: 10px; }
+.abonar .botones a {display: block; width: 50%; float: left; border:1px solid #414042; text-align: center;  padding-top: 10px; padding-bottom: 10px; font-size: 12px; text-decoration: none; color: #fff; background: #000; border-radius: 3px;}
+.abonar .botones a.selected {background: #598D16;}
+.abonar form {width: 100%; padding: 5px; background: #000; padding-bottom: 5%; margin-bottom: 10%;}
+.abonar form p {text-align: center; columns: #fff; font-size: 10px; margin-bottom: 20px; padding: 0 10%; line-height: 15px;}
+.abonar form input[type="text"] {width: 100%; border: 1px solid #8A8A8D; background: transparent; font-size: 12px; padding: 10px 5px; margin-bottom: 10px; color: #fff; border-radius: 3px;}
+.abonar form input::placeholder {color: #fff;}
+.abonar form .submit_holder {width: 80px; height: 36px; margin: 10px auto;}
+.abonar form input[type="submit"] {width: 92px; height: 36px; background: url('images/comprar.png') no-repeat; border: none!important; text-indent: -100000px; text-align: center;}
+.abonar form .fecha_vencimiento select {width: 20%; float: left; margin-right: 10px; background: transparent; font-size: 12px; padding: 10px 5px; margin-bottom: 10px; color: #fff; border-radius: 3px;}
+.abonar form .fecha_vencimiento input[type="text"] {width: 30%; border: 1px solid #8A8A8D; background: transparent; font-size: 12px; padding: 10px 5px; margin-bottom: 10px; color: #fff; border-radius: 3px;}
+
+.abonar .botones_abono {width: 100%; background: #000; padding: 10px 0; margin-bottom: 10px; break-before: 3px;}
+.abonar .botones_abono a {display: table-cell; width: 1%; color: #fff; text-decoration: none;  text-align: center; padding: 5px 0; border-right: 1px solid #8A8A8D; margin-right: 2px;}
+.abonar .botones_abono a.selected {background: #598D16;}
+.abonar .botones_abono a:last-child {border-right: 0px;}
+.abonar .botones_abono a img {width: 24px;  margin-right: 5px; vertical-align: middle; }
+
+.abonar ul.formas_pago {list-style: none; margin: 0 0 30px 0; padding: 0 0 0 15%;}
+.abonar ul.formas_pago li {float: left; margin-right: 10px;}
+.abonar p.legales {text-align: center; padding: 0 5%; color: #8A8A8D; }
+
+.abonar_tiendas .legales {margin-bottom: 20%;}
+.abonar_tiendas form input[type="submit"] {width: 108px; height: 36px; background: url('images/vercodigo.png') no-repeat; border: none!important; text-indent: -100000px; text-align: center;}

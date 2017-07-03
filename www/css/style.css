@@ -158,7 +158,7 @@ body {width: 100%; margin: 0 auto; font-weight: 300; font-family: 'Lato'!importa
 
 .menu {width: 100%; height: 50px; background: #BCBCBC; position: fixed; bottom: 0; border-top: 1px solid #8A8A8D; z-index: 100;}
 .menu ul {list-style: none; padding: 5px 0 0 0; margin: 0px;}
-.menu ul li {display: block; float: left; border-right: 1px solid #8A8A8D; width: 20%; height: 36px; background-image: url('../images/menu_sprite.svg'); background-repeat:  no-repeat; }
+.menu ul li {display: block; float: left; border-right: 1px solid #8A8A8D; width: 20%; height: 36px; background-image: url('../images/menu_sprite.svg'); background-repeat:  no-repeat; background-size: 320px; }
 .menu ul li:last-child{border-right: 0px!important;}
 .menu ul li>a{display: block; width: 100%; height: 100%;}
 .menu ul li.menu_lobby {background-position-x: 25px}

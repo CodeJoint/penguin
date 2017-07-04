@@ -22,6 +22,7 @@
     <access origin="https://*.gstatic.com" />
     <access origin="https://*/*" />
     <access origin="https://pickwin.net/*" />
+    <access origin="http://pickwin.astrata.mx/*" />
     <allow-navigation href="https://pickwin.net/*" />
     <allow-navigation href="*://*.googleapis.com/*" />
     <platform name="android">
@@ -75,5 +76,6 @@
     <plugin name="cordova-plugin-device" spec="^1.1.6" />
     <plugin name="cordova-plugin-file" spec="^4.3.3" />
     <plugin name="cordova-plugin-file-transfer" spec="^1.6.3" />
+    <plugin name="cordova-plugin-fullscreen" spec="^1.1.0" />
     <plugin name="cordova-plugin-whitelist" spec="1" />
 </widget>

@@ -11,15 +11,17 @@
             "cordova-plugin-device": {},
             "cordova-plugin-file": {},
             "cordova-plugin-console": {},
-            "cordova-plugin-file-transfer": {}
+            "cordova-plugin-file-transfer": {},
+            "cordova-plugin-fullscreen": {}
         }
     },
     "dependencies": {
         "cordova-android": "^6.2.3",
+        "cordova-plugin-console": "~1.0.5",
         "cordova-plugin-device": "^1.1.6",
         "cordova-plugin-file": "^4.3.3",
         "cordova-plugin-file-transfer": "^1.6.3",
-        "cordova-plugin-whitelist": "1",
-        "cordova-plugin-console": "~1.0.5"
+        "cordova-plugin-fullscreen": "^1.1.0",
+        "cordova-plugin-whitelist": "1"
     }
 }

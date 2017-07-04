@@ -127,6 +127,7 @@
 			window.cordova_full_path = (typeof(cordova) != 'undefined') 
 									 	? cordova.file.applicationDirectory+"www/"
 									 	: '';
+			// window.cordova_full_path = '';
 			console.log(window.cordova_full_path);
 			/*   ___    _         _   _     
 			*  / _ \  / \  _   _| |_| |__  
@@ -184,6 +185,7 @@
 				parsed['header_title'] = history_title;
 			if( typeof(cordova_full_path) != 'undefined' && cordova_full_path != '' )
 				parsed['cordova_full_path'] = cordova_full_path;
+			console.log(parsed);
 			return parsed;
 
 		},

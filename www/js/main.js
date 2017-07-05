@@ -248,6 +248,7 @@
 			app.check_or_renderContainer();
 			var extra_data = apiRH.getRequest('pools/available.json', null);
 			var data = this.gatherEnvironment(extra_data, "Lobby");
+			data.selected_lobby = true;
 			return this.switchView('lobby', data, '.view', url, 'quiniela-feed');
 		},
 		render_myfeed : function(url){
@@ -319,7 +320,7 @@
 			}, 420);
 			app.check_or_renderContainer();
 			var data = this.gatherEnvironment(null, "Perfil de usuario");
-			// data.is_scrollable = false;
+			data.selected_profile = true;
 			return this.switchView('profile', data, '.view', url, 'user-profile');
 		},
 		render_add_funds : function(url){
@@ -330,7 +331,7 @@
 			}, 420);
 			app.check_or_renderContainer();
 			var data = this.gatherEnvironment(null, "Agregar fondos a tu cuenta");
-			// data.is_scrollable = false;
+			data.selected_deposit = true;
 			return this.switchView('register-success', data, '.view', url, 'registro exitoso');
 		},
 		render_private_games : function(url){
@@ -342,6 +343,7 @@
 			}, 420);
 			app.check_or_renderContainer();
 			var data = this.gatherEnvironment(null, "Quinielas privadas");
+			data.selected_privates = true;
 			return this.switchView('private-games', data, '.view', url, 'quinielas_privadas');
 		},
 		render_modal : function(modalName, data, appendTarget){

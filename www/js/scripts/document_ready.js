@@ -287,15 +287,18 @@ window.initializeEvents = function(){
 		var positiveMargin = false;
 		$('.misquinielas').on('click', function(){
 
+			$('.menu li').removeClass('selected');
 			if (!positiveMargin) {
 				var left = "0%";
 				var padd = "1%";
 				positiveMargin = true;
+				$('.menu .menu_quinielas').addClass('selected');
 			}
 			else {
 				var left = "97%";
 				var padd = "1%";
 				positiveMargin = false;
+				$('.menu .menu_quinielas').removeClass('selected');
 			}
 			$('.misquinielas').animate({
 											marginLeft: left,

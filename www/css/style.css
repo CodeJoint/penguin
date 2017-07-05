@@ -621,4 +621,7 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 	.registro .form { margin-bottom: 2.8rem;}
 
 	.login .form p {font-size: 14px; color: #d8d8d8; margin-bottom: 1.5rem;}
-	.menu ul li.menu_perfil>a{}
+	.menu>ul>li>a{ display: block; width: 100%; height: 100%;}
+	.quiniela .quiniela_entrada{margin-right: 0.75rem;}
+	.quiniela .quiniela_aganar{margin-right: 0.75rem;}
+	.quiniela .quiniela_info{margin-right: 0.75rem;}

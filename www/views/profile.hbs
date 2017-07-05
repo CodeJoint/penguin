@@ -1,1 +1,80 @@
-<p>Perfil de usuario</p>
+
+	<div class="container clearfix">
+		{{> header}}
+
+		<div class="content profile">
+			
+			<div class="tabs_quiniela clearfix">
+				<ul>
+					<li class="selected"><a href="">Tarjetas</a></li>
+					<li><a href="">Documentos</a></li>
+					<li><a href="">Retirar fondos</a></li>
+					<li><a href="">Historial</a></li>
+					<li><a href="">Notificaciones</a></li>
+				</ul>
+			</div>
+			<div class="tab_profile tarjetas">
+				<ul>
+					<li class="clearfix">
+						<input type="radio">
+						<img src="{{cordova_full_path}}images/mastercard.png">
+						<span class="terminacion">1234</span>
+						<div class="edit_tarjeta">
+							<a href=""><img src="{{cordova_full_path}}images/editar.png"></a>
+							<a href=""><img src="{{cordova_full_path}}images/eliminar.png"></a>
+						</div>
+					</li>
+					<li class="clearfix">
+						<input type="radio">
+						<img src="{{cordova_full_path}}images/visa.png">
+						<span class="terminacion">1234</span>
+						<div class="edit_tarjeta">
+							<a href=""><img src="{{cordova_full_path}}images/editar.png"></a>
+							<a href=""><img src="{{cordova_full_path}}images/eliminar.png"></a>
+						</div>
+					</li>
+					<li class="clearfix">
+						<input type="radio">
+						<img src="{{cordova_full_path}}images/amex.png">
+						<span class="terminacion">1234</span>
+						<div class="edit_tarjeta">
+							<a href=""><img src="{{cordova_full_path}}images/editar.png"></a>
+							<a href=""><img src="{{cordova_full_path}}images/eliminar.png"></a>
+						</div>
+					</li>
+					<li class="clearfix">
+						<input type="radio">
+						<img src="{{cordova_full_path}}images/paypal.png">
+						<span class="terminacion">mail@mail.com</span>
+						<div class="edit_tarjeta">
+							<a href=""><img src="{{cordova_full_path}}images/editar.png"></a>
+							<a href=""><img src="{{cordova_full_path}}images/eliminar.png"></a>
+						</div>
+					</li>
+				</ul>
+				<a class="agregar_tarjeta" href=""><img src="{{cordova_full_path}}images/agregar_tarjeta.png"></a>
+			</div>
+			<div class="agregartarjeta clearfix">
+				<h3>AGREGAR TARJETA</h3>
+				<form>
+					<input type="text" placeholder="Nombre como aparece en la tarjeta">
+					<input type="text" placeholder="Número de tarjeta">
+					<div class="fecha_vencimiento clearfix">
+						<select>
+							<option>Mes</option>
+						</select>
+						<select>
+							<option>Año</option>
+						</select>
+						<input type="text" placeholder="CVV">
+					</div>
+					<div class="submit_holder">
+						<input type="submit" value="send">
+					</div>
+				</form>
+			</div>
+			
+		</div><!-- content -->
+		{{> footer}}
+	</div><!-- container -->
+	

@@ -153,7 +153,7 @@ window.initializeEvents = function(){
 
 					if(register_response){
 
-						apiRH.headers['Authorization'] = "Bearer "+register_response.jwtoken;
+						localStorage.setItem("Auth", "Bearer "+register_response.jwtoken);
 						apiRH.save_user_data_clientside(register_response);
 						if(register_response.user){
 							console.log(register_response.user);

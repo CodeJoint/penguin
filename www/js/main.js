@@ -318,7 +318,7 @@
 			return this.switchView('register-success', data, '.view', url, 'registro exitoso');
 		},
 		render_profile : function(url){
-			console.log("Rendering user profile");
+
 			if(!app.initialized) app.initialize();
 			setTimeout(function(){
 				app.showLoader();
@@ -326,7 +326,7 @@
 			app.check_or_renderContainer();
 			var data = this.gatherEnvironment(null, "Perfil de usuario");
 			// data.is_scrollable = false;
-			return this.switchView('register-success', data, '.view', url, 'registro exitoso');
+			return this.switchView('profile', data, '.view', url, 'user-profile');
 		},
 		render_add_funds : function(url){
 			console.log("Rendering add funds");

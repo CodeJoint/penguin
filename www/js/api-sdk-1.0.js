@@ -37,6 +37,7 @@ function requestHandlerAPI(){
 					console.log('Initialized Duff api-sdk1.0');
 
 					if(this.keeper.getItem('request_token')) this.token = this.keeper.getItem('request_token');
+					if(this.keeper.getItem('Auth')) this.headers['Authorization'] = "Bearer "+this.keeper.getItem('Auth');
 					sdk_app_context = app_context;
 					/* For chaining purposes ::) */
 					return this;
@@ -181,6 +182,7 @@ function requestHandlerAPI(){
 		 */
 		this.save_user_data_clientside = function(data_login){
 			if(data_login){
+				apiRH.headers['Authorization'] = "Bearer "+data_login.jwtoken;
 				data_login.user.balancePc = data_login.balancePc;
 				data_login.user.balancePcReal = data_login.balancePcReal;
 				data_login.user.balanceReal = data_login.balanceReal;

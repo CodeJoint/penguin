@@ -1,8 +1,9 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="app.pickwin.net" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>PickWin</name>
-    <preference name="Fullscreen" value="true" />
-    <preference name="Orienation" value="portrait" />
+    <preference name="FullScreen" value="true" />
+    <preference name="SetFullScreen" value="true" />
+    <preference name="Orientation" value="portrait" />
     <description>
         PickWin mobile app
     </description>
@@ -23,6 +24,7 @@
     <access origin="https://*/*" />
     <access origin="https://pickwin.net/*" />
     <access origin="http://pickwin.astrata.mx/*" />
+    <access origin="*://*.googleapis.com/*" />
     <allow-navigation href="https://pickwin.net/*" />
     <allow-navigation href="*://*.googleapis.com/*" />
     <platform name="android">

@@ -61,11 +61,10 @@ h1   { font-size: 24px; font-size: 2.4rem; } /* =24px */
 .hidden{display: none!important;}
 
 
-
 /*** GENERAL ***/
 
 body {width: 100%; margin: 0 auto; font-weight: 300; font-family: 'Lato'!important; }
-.container {width: 100%;  padding: 0; position: relative; font-weight: 300; font-family: 'Lato'!important;}
+.container {width: 100%;  padding: 0; position: relative; font-weight: 300; font-family: 'Lato'!important; background-image: url('../images/background.png'); background-position: center; }
 .content {width: 100%; padding: 0 3%; }
 
 .splash_logo {width: 100%;}
@@ -162,12 +161,10 @@ body {width: 100%; margin: 0 auto; font-weight: 300; font-family: 'Lato'!importa
 .menu ul li:last-child{border-right: 0px!important;}
 .menu ul li.menu_lobby {background-position-x: 25px}
 .menu ul li.menu_quinielas {background-position-x: -45px}
-.menu ul .menu_quinielas>a{ display: block; width: 100%; height: 100%;}
 .menu ul li.menu_privadas {background-position-x: -118px}
 .menu ul li.menu_perfil {background-position-x: -190px}
 .menu ul li.menu_abonar {background-position-x: -265px}
 .menu ul li.selected {background-position-y: -46px;}
-.menu ul li>a{display: block; width: 100%; height: 100%;}
 
 /*** LOBBY ***/
 
@@ -192,10 +189,6 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 .quiniela .quiniela_content span {display: block;}
 .quiniela .quiniela_content span.titulo {margin-bottom: 15px;}
 .quiniela .quiniela_content span.number {float: left; margin-left: 5px;}
-.quiniela .quiniela_content {}
-.quiniela .quiniela_content .quiniela_info{width: 48%;}
-.quiniela .quiniela_content .quiniela_entrada{width: 22%;}
-.quiniela .quiniela_content .quiniela_aganar{width: 22%;}
 
 /*quiniela open*/
 
@@ -207,11 +200,11 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 
 /*quiniela_live*/
 
-.quiniela.quiniela_live .quiniela_content .quiniela_info {width: 48%; float: left;}
-.quiniela.quiniela_live .quiniela_content .quiniela_picks_ok {width: 24%; float: left;}
-.quiniela.quiniela_live .quiniela_content .quiniela_aganar {width: 24%; float: left;}
-.quiniela.quiniela_live .quiniela_content .quiniela_entrada {width: 24%; float: left;}
-.quiniela.quiniela_live .quiniela_content .quiniela_bolsa {width: 24%; float: left;}
+.quiniela.quiniela_live .quiniela_content .quiniela_info {width: 30%; float: left;}
+.quiniela.quiniela_live .quiniela_content .quiniela_picks_ok {width: 15%; float: left;}
+.quiniela.quiniela_live .quiniela_content .quiniela_aganar {width: 20%; float: left;}
+.quiniela.quiniela_live .quiniela_content .quiniela_entrada {width: 20%; float: left;}
+.quiniela.quiniela_live .quiniela_content .quiniela_bolsa {width: 15%; float: left;}
 .quiniela.quiniela_live .quiniela_content .quiniela_bolsa span.number {float: left; margin-left: 5px; color: #77BC1F;}
 .quiniela.quiniela_live .quiniela_content .quiniela_bolsa img {margin-top: -2px;}
 
@@ -285,6 +278,20 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 .quiniela_single .partidos .partido .opcion_partido.visitante input {float: right; margin-left: 10px;}
 .quiniela_single .partidos .partido .opcion_partido.visitante img {float: right; margin-left: 10px;}
 
+.quiniela_single .partidos .partido_en_vivo .opcion_partido .linea span {width: 100%; margin-top: 20px; text-align: center; display: block; color: #77BC1F;}
+.quiniela_single .partidos .partido_en_vivo .opcion_partido.local .equipo {float: left; color: #77BC1F;}
+.quiniela_single .partidos .partido_en_vivo .opcion_partido.cierre {width: 33.33%; float: left; position: relative; height: 50px; color: #77BC1F;}
+.quiniela_single .partidos .partido_en_vivo .opcion_partido.cierre span {text-align: center; width: 100%; display: block; position: absolute; bottom: 0px; color: #77BC1F;} 
+.quiniela_single .partidos .partido_en_vivo .opcion_partido.visitante .equipo {float: right; margin-left: 10px; color: #77BC1F;}
+.quiniela_single .partidos .partido_en_vivo .opcion_partido.visitante .equipo span {display: block; color: #77BC1F;}
+
+.quiniela_single .partidos .partido_finalizado .opcion_partido .linea span {width: 100%; margin-top: 20px; text-align: center; display: block; color: #FF576C;}
+.quiniela_single .partidos .partido_finalizado .opcion_partido.local .equipo {float: left; color: #FF576C;}
+.quiniela_single .partidos .partido_finalizado .opcion_partido.cierre {width: 33.33%; float: left; position: relative; height: 50px; color: #FF576C;}
+.quiniela_single .partidos .partido_finalizado .opcion_partido.cierre span {text-align: center; width: 100%; display: block; position: absolute; bottom: 0px; color: #FF576C;} 
+.quiniela_single .partidos .partido_finalizado .opcion_partido.visitante .equipo {float: right; margin-left: 10px; color: #FF576C;}
+.quiniela_single .partidos .partido_finalizado .opcion_partido.visitante .equipo span {display: block; color: #FF576C;}
+
 .quiniela_single .props {width: 100%; border-top: 1px solid #77BC1F;}
 .quiniela_single .props h3 {font-weight: 300; margin-top: 10px; margin-bottom: 10px; text-align: center; font-size: 12px;}
 .quiniela_single .props .prop {width: 100%; margin-bottom: 10px; border-top: 1px solid #8A8A8D; padding-top: 10px; position: relative;}
@@ -354,12 +361,200 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 
 /*** QUINIELA REGISTRADA ***/
 
-.quiniela_registrada_single {padding-top: 100px; padding-bottom: 70px; font-size: 12px; position: relative; width: 99%;}
+.quiniela_registrada_single {padding-top: 100px; padding-bottom: 70px; font-size: 12px; position: relative; width: 99%; background: #000;}
 .quiniela_registrada_single .quiniela {width: 100%;}
 .quiniela_registrada_single .quiniela_live {border-left: 3px solid #F6A623;}
 .quiniela_registrada_single .registro_quiniela {width: 100%; text-align: center;}
 .quiniela_registrada_single .registro_quiniela a:first-child {margin-right: 10px;}
 .quiniela_registrada_single .quiniela_info {margin-right: 10px; }
+
+.tabs_quiniela {width: 100%; background: #000; margin-top: 20px;  border-radius: 3px; border: 1px solid #414042;}
+.tabs_quiniela ul {list-style: none; margin: 0; padding: 0px;}
+.tabs_quiniela ul li {display: block; width: 100px; display: table-cell; white-space: nowrap; text-align: center; border-right: 1px solid #414042; height: 22px; padding-top: 3px;}
+.tabs_quiniela ul li:last-child {border-right: 0px; border-top-right-radius: 3px; border-bottom-right-radius: 3px; }
+.tabs_quiniela ul li:first-child {border-top-left-radius: 3px; border-bottom-left-radius: 3px; }
+.tabs_quiniela ul li.selected {background: #598D16;}
+.tabs_quiniela ul li a {text-decoration: none; color: #fff;}
+
+.tab_posiciones {width: 100%;}
+.tab_posiciones table {width: 100%; border: none!important; font-size: 10px; text-align: center;}
+.tab_posiciones table .table_title {border-bottom: 1px solid #fff; line-height: 20px;}
+.tab_posiciones table tr th {font-size: 10px; font-weight: normal!important;}
+.tab_posiciones table th {border: none!important;}
+.tab_posiciones table td {border: none!important; padding: 5px 0;}
+.tab_posiciones table tr.player_info:nth-child(2n){background: #414042}
+.tab_posiciones .player img {width: 16px;  margin-right: 5px;}
+.tab_posiciones .ganar img {width: 16px; margin-right: 5px;}
+
+
+.tab_premios {width: 100%;}
+.tab_premios table {width: 100%; border: none!important; font-size: 10px; text-align: center;}
+.tab_premios table .table_title {border-bottom: 1px solid #fff; line-height: 20px;}
+.tab_premios table tr th {font-size: 10px; font-weight: normal!important;}
+.tab_premios table th {border: none!important;}
+.tab_premios table td {border: none!important; padding: 5px 0;}
+.tab_premios table tr.player_info:nth-child(2n){background: #414042}
+.tab_premios .ganar img {width: 16px; margin-right: 5px; }
+
+.tab_picks_grupo {width: 100%;  white-space: nowrap; margin-right: 10%; overflow-x: scroll }
+.tab_picks_grupo table { border: none!important; font-size: 10px; text-align: center; white-space:nowrap; margin-right: 10%;}
+.tab_picks_grupo table .table_title {border-bottom: 1px solid #fff; line-height: 20px;}
+.tab_picks_grupo table tr th {font-size: 10px; font-weight: normal!important; white-space:nowrap; background: }
+.tab_picks_grupo table th {border: none!important; white-space:nowrap;}
+.tab_picks_grupo table td {border: none!important; padding: 5px; white-space:nowrap;}
+.tab_picks_grupo table tr.player_info:nth-child(2n){background: #414042;}
+.tab_picks_grupo table tr.player_info img {width: 16px;}
+.tab_picks_grupo .player img {width: 16px; margin-right: 5px;}
+.tab_picks_grupo .ganar img {width: 16px; margin-right: 5px;}
+.tab_picks_grupo .this_player {background: #5A7849!important;}
+
+.tab_marcadores {width: 100%;}
+.tab_marcadores .marcador {width: 50%; float: left; border-right: 1px solid #fff; padding: 5px; border-bottom: 1px solid #fff;}
+.tab_marcadores .marcador:nth-child(2n) {border-right: none;}
+.tab_marcadores table {text-align: right; font-size: 10px;}
+
+/*** QUINIELAS PRIVADAS ***/
+
+.quiniela_privada_uno {}
+.quiniela_privada_uno .busqueda_quinielas {padding-top: 110px; width: 100%;}
+.quiniela_privada_uno .botones {width: 100%; margin-bottom: 20px;}
+.quiniela_privada_uno .botones a {display: block; width: 50%; float: left; border:1px solid #414042; text-align: center;  padding-top: 10px; padding-bottom: 10px; font-size: 12px; text-decoration: none; color: #fff; background: #000; border-radius: 3px;}
+.quiniela_privada_uno .botones a.selected {background: #598D16;}
+.quiniela_privada_uno form {width: 100%; padding: 5%; background: #000;}
+.quiniela_privada_uno form p {text-align: center; columns: #fff; font-size: 10px; margin-bottom: 20px; padding: 0 10%; line-height: 15px;}
+.quiniela_privada_uno form input[type="text"] {width: 100%; border: 1px solid #8A8A8D; background: transparent; font-size: 12px; padding: 10px 5px; margin-bottom: 10px; color: #fff; border-radius: 3px;}
+.quiniela_privada_uno form input::placeholder {color: #fff;}
+.quiniela_privada_uno form .submit_holder {width: 80px; height: 36px; margin: 10px auto;}
+.quiniela_privada_uno form input[type="submit"] {width: 80px; height: 36px; background: url('../images/buscar.png') no-repeat; border: none!important; text-indent: -100000px; text-align: center;}
+
+.quiniela_privada_crear .busqueda_quinielas {padding-top: 110px; width: 100%;}
+.quiniela_privada_crear .botones {width: 100%; }
+.quiniela_privada_crear .botones a {display: block; width: 50%; float: left; border:1px solid #414042; text-align: center;  padding-top: 10px; padding-bottom: 10px; font-size: 12px; text-decoration: none; color: #fff; background: #000; border-radius: 3px;}
+.quiniela_privada_crear .botones a.selected {background: #598D16;}
+
+.quiniela_privada_crear h3 {text-align: center; margin: 30px 0; text-align: center; border-top: 1px solid #77BC1F; padding-top: 10px; font-size: 10px; font-weight: normal;}
+.quiniela_privada_crear h3:first-child {margin-top: 0px;}
+
+.quiniela_privada_crear .deportes_select_crear {width: 100%;}
+.quiniela_privada_crear .deportes_select_crear ul {margin: 20px 0; list-style: none; padding: 0px;}
+.quiniela_privada_crear .deportes_select_crear ul li {margin: 0px; display: block; padding: 10px 0; width: 50%; float: left; text-align: center; font-size: 10px; border-radius: 3px;}
+.quiniela_privada_crear .deportes_select_crear ul li img {margin-right: 5px; width: 16px;}
+.quiniela_privada_crear .deportes_select_crear ul li.selected {background: #598D16;}
+.quiniela_privada_crear select {width: 100%; color: #fff; border: 1px solid #8A8A8D; border-radius: 3PX; margin-bottom: 10px; background: transparent; font-size: 10px; padding: 10px;}
+.quiniela_privada_crear .checkbox_crear {width: 50%; float: left; font-size: 10px; color: #fff;}
+.quiniela_privada_crear .checkbox_crear input {float: left; margin-right: 10px;}
+
+.quiniela_privada_crear .partidos_crea {width: 100%; margin-bottom: 20px;}
+.quiniela_privada_crear .partido {width: 50%; float: left; padding: 5%; border-bottom: 1px solid #8A8A8D; border-right: 1px solid #8A8A8D;}
+.quiniela_privada_crear .partido:nth-child(2n) {border-right: 0px;}
+.quiniela_privada_crear .partido .partido_header {width: 100%; margin-bottom: 10px; font-size: 10px;}
+.quiniela_privada_crear .partido .partido_header span {color: #77BC1F; margin-right: 10px;}
+.quiniela_privada_crear .partido .partido_header span.fecha {color: #fff;}
+.quiniela_privada_crear .partido p {font-size: 12px; float: left;}
+.quiniela_privada_crear .partido span {float: left; font-size: 10px;}
+
+.quiniela_privada_crear .participantes {width: 100%;}
+.quiniela_privada_crear .participantes .participantes_top {width: 100%;}
+.quiniela_privada_crear .participantes .participantes_top label {float: left; font-size: 10px; padding-top: 10px; margin-right: 10px;}
+.quiniela_privada_crear .participantes .participantes_top select {width: 10%; float: left; margin-right: 10px;}
+.quiniela_privada_crear .participantes .participantes_top input {width: 20%; border: 1px solid #8A8A8D; font-size: 10px; font-weight: normal;}
+.quiniela_privada_crear .participantes .participantes_bottom input {float: left; margin-right: 10px;}
+.quiniela_privada_crear .participantes .participantes_bottom label {float: left; font-size: 10px;}
+
+.quiniela_privada_crear .premios {width: 100%;}
+.quiniela_privada_crear .premios select {font-weight: normal; font-size: 10px;}
+.quiniela_privada_crear .premios .premios_bottom label {font-size: 10px; float: left; padding-top: 10px; margin-right: 10px;}
+.quiniela_privada_crear .premios .premios_bottom select {width: 10%; float: left; }
+
+.quiniela_privada_crear .premios {width: 100%;}
+.quiniela_privada_crear .premios table {width: 100%; border: none!important; font-size: 10px; text-align: center; margin-bottom: 30px;}
+.quiniela_privada_crear .premios table .table_title {border-bottom: 1px solid #fff; line-height: 20px;}
+.quiniela_privada_crear .premios table tr th {font-size: 10px; font-weight: normal!important;}
+.quiniela_privada_crear .premios table th {border: none!important;}
+.quiniela_privada_crear .premios table td {border: none!important; padding: 5px 0;}
+.quiniela_privada_crear .premios table tr.player_info:nth-child(2n){background: #414042}
+.quiniela_privada_crear .premios .ganar img {width: 16px; margin-right: 5px; }
+
+.quiniela_privada_crear form {width: 100%; padding: 5px; background: #000; padding-bottom: 20%;}
+.quiniela_privada_crear form p {text-align: center; columns: #fff; font-size: 10px; margin-bottom: 20px; padding: 0 10%; line-height: 15px;}
+.quiniela_privada_crear form input[type="text"] {width: 100%; border: 1px solid #8A8A8D; background: transparent; font-size: 12px; padding: 10px 5px; margin-bottom: 10px; color: #fff; border-radius: 3px;}
+.quiniela_privada_crear form input::placeholder {color: #fff;}
+.quiniela_privada_crear form .submit_holder {width: 80px; height: 36px; margin: 10px auto;}
+.quiniela_privada_crear form input[type="submit"] {width: 80px; height: 36px; background: url('../images/crear.png') no-repeat; border: none!important; text-indent: -100000px; text-align: center;}
+
+
+.quiniela_privada_creada {width: 100%; padding-top: 100px; margin-bottom: 30%;}
+.quiniela_privada_creada .quiniela_privada_info {background: #000;}
+.quiniela_privada_creada .quiniela_privada_info h3 {font-size: 10px; text-align: center; padding: 10px 0px; border-top: 1px solid #77BC1F; border-bottom: 1px solid #8A8A8D; font-weight: normal;}
+.quiniela_privada_creada .quiniela_privada_info ul {list-style: none; margin: 20px auto; padding-top: 0px;}
+.quiniela_privada_creada .quiniela_privada_info ul li {display: block; float: left; margin-right: 5px;}
+.quiniela_privada_creada .quiniela_privada_info ul li:last-child {display: block; float: left; margin-right: 0px;}
+.quiniela_privada_creada .botones {width: 100%; margin-bottom: 20px;}
+.quiniela_privada_creada .botones a {display: block; width: 50%; float: left; border:1px solid #414042; text-align: center;  padding-top: 10px; padding-bottom: 10px; font-size: 12px; text-decoration: none; color: #fff; background: #000; border-radius: 3px;}
+.quiniela_privada_creada .botones a.selected {background: #598D16;}
+
+.quiniela_privada_creada .participantes {background: #000;}
+
+/*** PROFILE ***/
+
+.profile {width: 100%; padding-top: 100px; font-size: 10px;}
+.tabs_quiniela {width: 100%; background: #000; margin-top: 20px; margin-bottom: 10px; border-radius: 3px; border: 1px solid #414042; }
+.tabs_quiniela ul {list-style: none; margin: 0; padding: 0px;}
+.tabs_quiniela ul li {display: block; width: 100px; display: table-cell; white-space: nowrap; text-align: center; border-right: 1px solid #414042; height: 22px; padding: 10px 0;}
+.tabs_quiniela ul li:last-child {border-right: 0px; border-top-right-radius: 3px; border-bottom-right-radius: 3px; }
+.tabs_quiniela ul li:first-child {border-top-left-radius: 3px; border-bottom-left-radius: 3px; }
+.tabs_quiniela ul li.selected {background: #598D16;}
+.tabs_quiniela ul li a {text-decoration: none; color: #fff;}
+
+.profile .tab_profile {width: 100%; background: #000; padding: 10px; text-align: center;}
+.profile .tab_profile ul {margin: 20px 0 20px 0; padding: 0px; list-style: none;}
+.profile .tab_profile ul li {display: block; margin-bottom: 10px; width: 100%;}
+.profile .tab_profile ul li input {float: left; margin-right: 10px;}
+.profile .tab_profile ul li img {float: left;}
+.profile .tab_profile ul li span.terminacion {font-size: 12px; display: block; padding: 10px; float: left; }
+.profile .tab_profile ul li .edit_tarjeta {float: right;}
+.profile .tab_profile ul li .edit_tarjeta img {float: left; margin-left: 10px;}
+.profile .tab_profile .agregar_tarjeta {text-align: center;}
+
+.profile .agregartarjeta {width: 100%; background: #000; margin-top: 10px;}
+.profile .agregartarjeta h3 {width: 100%; font-weight: normal; padding: 10px 0; text-align: center; border-top: 1px solid #77BC1F; margin-top: 0px;}
+.profile .agregartarjeta form {width: 100%; padding: 5px; background: #000; padding-bottom: 20%;}
+.profile .agregartarjeta form p {text-align: center; columns: #fff; font-size: 10px; margin-bottom: 20px; padding: 0 10%; line-height: 15px;}
+.profile .agregartarjeta form input[type="text"] {width: 100%; border: 1px solid #8A8A8D; background: transparent; font-size: 12px; padding: 10px 5px; margin-bottom: 10px; color: #fff; border-radius: 3px;}
+.profile .agregartarjeta form input::placeholder {color: #fff;}
+.profile .agregartarjeta form .submit_holder {width: 80px; height: 36px; margin: 10px auto;}
+.profile .agregartarjeta form input[type="submit"] {width: 92px; height: 36px; background: url('../images/guardar.png') no-repeat; border: none!important; text-indent: -100000px; text-align: center;}
+.profile .agregartarjeta form .fecha_vencimiento select {width: 20%; float: left; margin-right: 10px; background: transparent; font-size: 12px; padding: 10px 5px; margin-bottom: 10px; color: #fff; border-radius: 3px;}
+.profile .agregartarjeta form .fecha_vencimiento input[type="text"] {width: 30%; border: 1px solid #8A8A8D; background: transparent; font-size: 12px; padding: 10px 5px; margin-bottom: 10px; color: #fff; border-radius: 3px;}
+
+/*** ABONAR ***/
+
+.abonar {width: 100%; padding-top: 100px; font-size: 10px;}
+.abonar h3 {font-weight: normal; text-align: center; margin-bottom: 20px;}
+.abonar .botones {width: 100%; margin-bottom: 10px; }
+.abonar .botones a {display: block; width: 50%; float: left; border:1px solid #414042; text-align: center;  padding-top: 10px; padding-bottom: 10px; font-size: 12px; text-decoration: none; color: #fff; background: #000; border-radius: 3px;}
+.abonar .botones a.selected {background: #598D16;}
+.abonar form {width: 100%; padding: 5px; background: #000; padding-bottom: 5%; margin-bottom: 10%;}
+.abonar form p {text-align: center; columns: #fff; font-size: 10px; margin-bottom: 20px; padding: 0 10%; line-height: 15px;}
+.abonar form input[type="text"] {width: 100%; border: 1px solid #8A8A8D; background: transparent; font-size: 12px; padding: 10px 5px; margin-bottom: 10px; color: #fff; border-radius: 3px;}
+.abonar form input::placeholder {color: #fff;}
+.abonar form .submit_holder {width: 80px; height: 36px; margin: 10px auto;}
+.abonar form input[type="submit"] {width: 92px; height: 36px; background: url('../images/comprar.png') no-repeat; border: none!important; text-indent: -100000px; text-align: center;}
+.abonar form .fecha_vencimiento select {width: 20%; float: left; margin-right: 10px; background: transparent; font-size: 12px; padding: 10px 5px; margin-bottom: 10px; color: #fff; border-radius: 3px;}
+.abonar form .fecha_vencimiento input[type="text"] {width: 30%; border: 1px solid #8A8A8D; background: transparent; font-size: 12px; padding: 10px 5px; margin-bottom: 10px; color: #fff; border-radius: 3px;}
+
+.abonar .botones_abono {width: 100%; background: #000; padding: 10px 0; margin-bottom: 10px; break-before: 3px;}
+.abonar .botones_abono a {display: table-cell; width: 1%; color: #fff; text-decoration: none;  text-align: center; padding: 5px 0; border-right: 1px solid #8A8A8D; margin-right: 2px;}
+.abonar .botones_abono a.selected {background: #598D16;}
+.abonar .botones_abono a:last-child {border-right: 0px;}
+.abonar .botones_abono a img {width: 24px;  margin-right: 5px; vertical-align: middle; }
+
+.abonar ul.formas_pago {list-style: none; margin: 0 0 30px 0; padding: 0 0 0 15%;}
+.abonar ul.formas_pago li {float: left; margin-right: 10px;}
+.abonar p.legales {text-align: center; padding: 0 5%; color: #8A8A8D; }
+
+.abonar_tiendas .legales {margin-bottom: 20%;}
+.abonar_tiendas form input[type="submit"] {width: 108px; height: 36px; background: url('../images/vercodigo.png') no-repeat; border: none!important; text-indent: -100000px; text-align: center;}
 
 
 

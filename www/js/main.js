@@ -185,7 +185,7 @@
 				parsed['header_title'] = history_title;
 			if( typeof(cordova_full_path) != 'undefined' && cordova_full_path != '' )
 				parsed['cordova_full_path'] = cordova_full_path;
-			console.log(parsed);
+			// console.log(parsed);
 			return parsed;
 
 		},
@@ -251,7 +251,6 @@
 			console.log("Rendering Lobby");
 			var extra_data = apiRH.getRequest('pools/available.json', null);
 			var data = this.gatherEnvironment(extra_data, "Lobby");
-			console.log(data);
 			return this.switchView('lobby', data, '.view', url, 'quiniela-feed');
 		},
 		render_myfeed : function(url){

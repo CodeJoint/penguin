@@ -10,11 +10,11 @@ window.initializeEvents = function(){
 	
 	jQuery(document).ready(function($) {
 
-		console.log("Initializing DocReady v0.1");
+		console.log("Initializing DocReady v1.2");
 		$('body').removeClass("preventEvents");
 		
 		window.initHooks = function(){
-			console.log("Initializing hooks");
+
 			/* Hook soft links */
 			$('.hook').on('click', function(e){
 				console.log("Hook click");
@@ -58,7 +58,6 @@ window.initializeEvents = function(){
 		// Keyboard events for iOS
 		//
 		//-----------------------------
-		console.log("Initializing keyboard events");
 		var initialViewHeight = document.documentElement.clientHeight;
 		var calculate = null;
 

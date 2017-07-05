@@ -189,6 +189,7 @@ window.initializeEvents = function(){
 					if(login_response){
 
 						apiRH.headers['Authorization'] = "Bearer "+login_response.jwtoken;
+						console.log(apiRH.headers);
 						apiRH.save_user_data_clientside(login_response);
 						if(login_response.user){
 							console.log(login_response.user);
@@ -206,9 +207,8 @@ window.initializeEvents = function(){
 		} // END login_form
 
 		if($('#misQuinielas').length){
-			console.log("Document is ready now rendering stuff");
-			setTimeout(function(){
 
+			setTimeout(function(){
 				return app.render_myfeed();
 			}, 300);
 		} // END misQuinielas

@@ -258,7 +258,6 @@
 			console.log("Rendering My Quinielas");
 			var extra_data = apiRH.getRequest('api/users/pools.json', null);
 			var data = this.gatherEnvironment(extra_data, "My Lobby");
-			console.log(data);
 			var template = Handlebars.templates['my-lobby'];
 			if(!template){
 				console.log("Template doesn't exist");

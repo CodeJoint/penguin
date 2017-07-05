@@ -333,14 +333,13 @@ function requestHandlerAPI(){
 				  async: false
 				})
 				 .done(function(response){
-					// console.log('done');
-					console.log(response);
+					// console.log(response);
 					result = response;
 					sdk_app_context.hideLoader(response);
 				})
 				 .fail(function(e){
-					console.log('fail');
 					result = false;
+					console.log('Failed executing GET request');
 					console.log(JSON.stringify(e));
 					app.hideLoader();
 				});

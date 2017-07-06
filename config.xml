@@ -82,5 +82,6 @@
     <plugin name="cordova-plugin-ios-longpress-fix" spec="^1.1.0" />
     <plugin name="cordova-plugin-keyboard" spec="^1.1.5" />
     <plugin name="cordova-plugin-whitelist" spec="1" />
+    <plugin name="cordova-plugin-x-toast" spec="~2.6.0" />
     <plugin name="onesignal-cordova-plugin" spec="^2.1.2" />
 </widget>

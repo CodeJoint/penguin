@@ -625,3 +625,5 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 	.quiniela .quiniela_entrada{margin-right: 0.75rem;}
 	.quiniela .quiniela_aganar{margin-right: 0.75rem;}
 	.quiniela .quiniela_info{margin-right: 0.75rem;}
+
+	.exoskeleton{ display: block; min-height: 100vh; width: 100%; top: 0; }

@@ -219,12 +219,19 @@
 					if (hasOwnProperty.call(obj, key)) return false;
 				return true;
 		},
-		check_or_renderContainer : function(){
+		check_or_renderContainer : function(render_exoskeleton){
 			/*** First time loading home ***/
 			if(window.firstTime){
 				var container_template = Handlebars.templates['container'];
 				var html 	 = container_template();
 				$('.rootContainer').html( html );
+				return (render_exoskeleton) ? app.render_exoskeleton() : null;
+			}
+		},
+		render_exoskeleton : function(){
+			if(!window.has_exo){
+				var data = this.gatherEnvironment(null, null);
+				return this.switchView('exoskeleton', data, '.view', null, '', true, true);
 			}
 		},
 		render_login : function(url){
@@ -234,10 +241,10 @@
 			setTimeout(function(){
 				app.showLoader();
 			}, 420);
-			app.check_or_renderContainer();
+			app.check_or_renderContainer(false);
 			var data = this.gatherEnvironment();
 			data.is_scrollable = false;
-			return this.switchView('login', data, '.view', url, 'login');
+			return this.switchView('login', data, '.exoskeleton', url, 'login');
 		},
 		render_lobby : function(url){
 
@@ -249,7 +256,8 @@
 			var extra_data = apiRH.getRequest('pools/available.json', null);
 			var data = this.gatherEnvironment(extra_data, "Lobby");
 			data.selected_lobby = true;
-			return this.switchView('lobby', data, '.view', url, 'quiniela-feed');
+			console.log(data);
+			return this.switchView('lobby', data, '#exoskeleton', url, 'quiniela-feed');
 		},
 		render_myfeed : function(url){
 	
@@ -276,7 +284,7 @@
 			extra_data = (extra_data.pool) ? extra_data.pool : [];
 			var data = this.gatherEnvironment(extra_data, "Detail");
 			console.log(data);
-			return this.switchView('detail-quiniela', data, '.view', url, 'quiniela-feed');
+			return this.switchView('detail-quiniela', data, '#exoskeleton', url, 'quiniela-feed');
 		},
 		render_games : function(object_id){
 
@@ -299,7 +307,7 @@
 
 			var data = this.gatherEnvironment(null, "Registro");
 			console.log(data);
-			return this.switchView('register', data, '.view', url, 'registro');
+			return this.switchView('register', data, '#exoskeleton', url, 'registro');
 		},
 		render_register_success : function( url ){
 			
@@ -310,7 +318,7 @@
 			app.check_or_renderContainer();
 			var data = this.gatherEnvironment(null, "¡REGISTRO EXITOSO!");
 			// data.is_scrollable = false;
-			return this.switchView('register-success', data, '.view', url, 'registro exitoso');
+			return this.switchView('register-success', data, '#exoskeleton', url, 'registro exitoso');
 		},
 		render_profile : function(url){
 
@@ -321,7 +329,7 @@
 			app.check_or_renderContainer();
 			var data = this.gatherEnvironment(null, "Perfil de usuario");
 			data.selected_profile = true;
-			return this.switchView('profile', data, '.view', url, 'user-profile');
+			return this.switchView('profile', data, '#exoskeleton', url, 'user-profile');
 		},
 		render_add_funds : function(url){
 			console.log("Rendering add funds");
@@ -332,7 +340,7 @@
 			app.check_or_renderContainer();
 			var data = this.gatherEnvironment(null, "Agregar fondos a tu cuenta");
 			data.selected_deposit = true;
-			return this.switchView('register-success', data, '.view', url, 'registro exitoso');
+			return this.switchView('register-success', data, '#exoskeleton', url, 'registro exitoso');
 		},
 		render_private_games : function(url){
 
@@ -343,8 +351,8 @@
 			}, 420);
 			app.check_or_renderContainer();
 			var data = this.gatherEnvironment(null, "Quinielas privadas");
-			data.selected_privates = true;
-			return this.switchView('private-games', data, '.view', url, 'quinielas_privadas');
+			data.selected_pri = true;
+			return this.switchView('private-games', data, '#exoskeleton', url, 'quinielas_privadas');
 		},
 		render_modal : function(modalName, data, appendTarget){
 
@@ -392,7 +400,8 @@
 																opacity: 1
 															}, 640);
 				}else{
-
+					console.log("With transition");
+					console.log($(targetSelector));
 					$(targetSelector).html( template(data) ).css("opacity", 0.7)
 															 .css("display", "block")
 															 .css("margin-left", "48px")
@@ -412,7 +421,7 @@
 					initializeEvents();
 					$(window).resize();
 				}, 2000);
-				
+			console.log("Keep ma loader");
 			return setTimeout(function(){
 					if(window.firstTime)
 						window.firstTime = false;				

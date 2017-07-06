@@ -27,14 +27,16 @@
 						</div>
 						<div class="money_pickcoins clearfix">
 							<img src="{{cordova_full_path}}images/pickcoin.png">
-							<span class="money_ammount">${{ formatCurrency me.balanceReal}}</span>
+							<span class="money_ammount">{{ formatCurrency me.balanceReal}}</span>
 						</div>
 					</div>
 				</div><!-- header_user_info -->
-				<div class="header_filtros">
-					<h4>FILTROS</h4>
-					<img src="{{cordova_full_path}}images/filtros.png">
-				</div>
+				{{# selected_lobby}}
+					<div class="header_filtros">
+						<h4>FILTROS</h4>
+						<img src="{{cordova_full_path}}images/filtros.png">
+					</div>
+				{{/ selected_lobby}}
 			</div>
 		</div><!-- content -->
 	</div><!-- header -->

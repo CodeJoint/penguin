@@ -185,14 +185,14 @@ window.initializeEvents = function(){
 					event.preventDefault();
 					var data_login		= app.getFormData(form, 'object');
 					var login_response 	= apiRH.loginNative(data_login);
-
+					console.log(login_response);
 					if(login_response){
 						apiRH.headers['Authorization'] = "Bearer "+login_response.jwtoken;
 						console.log(apiRH.headers);
 						apiRH.save_user_data_clientside(login_response);
 						if(login_response.user){
 							console.log(login_response.user);
-							window._user = (login_response.user) ? login_response.user : null; 
+							window._user = (login_response.user) ? login_response.user : null;
 							return app.render_lobby('lobby.html');
 						}
 					}else{

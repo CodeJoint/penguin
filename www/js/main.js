@@ -17,9 +17,8 @@
 			window.apiRH = new requestHandlerAPI().construct(app);
 			window.firstTime = true;
 			this.initialized = true;
-			var is_home 	= window.is_home;
-			var is_login 	= apiRH.has_token();
 
+			var is_login 	= apiRH.has_token();
 			var forceLogin 	= localStorage.getItem('forceLogin');
 			var is_current 	= localStorage.getItem('valido');
 
@@ -225,18 +224,43 @@
 				var container_template = Handlebars.templates['container'];
 				var html 	 = container_template();
 				$('.rootContainer').html( html );
+				console.log(render_exoskeleton);
 				return (render_exoskeleton) ? app.render_exoskeleton() : null;
 			}
 		},
 		render_exoskeleton : function(){
 			if(!window.has_exo){
 				var data = this.gatherEnvironment(null, null);
+				window.has_exo;
 				return this.switchView('exoskeleton', data, '.view', null, '', true, true);
 			}
 		},
+		render_register : function( url ){
+			
+			if(!app.initialized) app.initialize();
+			setTimeout(function(){
+				app.showLoader();
+			}, 420);
+			app.check_or_renderContainer();
+			console.log("Rendering Register");
+
+			var data = this.gatherEnvironment(null, "Registro");
+			console.log(data);
+			return this.switchView('register', data, '.view', url, 'registro');
+		},
+		render_register_success : function( url ){
+			
+			if(!app.initialized) app.initialize();
+			setTimeout(function(){
+				app.showLoader();
+			}, 420);
+			app.check_or_renderContainer();
+			var data = this.gatherEnvironment(null, "¡REGISTRO EXITOSO!");
+			// data.is_scrollable = false;
+			return this.switchView('register-success', data, '.view', url, 'registro exitoso');
+		},
 		render_login : function(url){
 			
-			window.is_home = true;
 			if(!app.initialized) app.initialize();
 			setTimeout(function(){
 				app.showLoader();
@@ -244,7 +268,7 @@
 			app.check_or_renderContainer(false);
 			var data = this.gatherEnvironment();
 			data.is_scrollable = false;
-			return this.switchView('login', data, '.exoskeleton', url, 'login');
+			return this.switchView('login', data, '.view', url, 'login');
 		},
 		render_lobby : function(url){
 
@@ -295,30 +319,6 @@
 			setTimeout(function(){
 				return app.render_modal('quiniela-games', data, '#insertPartidos');
 			}, 100);
-		},
-		render_register : function( url ){
-			
-			if(!app.initialized) app.initialize();
-			setTimeout(function(){
-				app.showLoader();
-			}, 420);
-			app.check_or_renderContainer();
-			console.log("Rendering Register");
-
-			var data = this.gatherEnvironment(null, "Registro");
-			console.log(data);
-			return this.switchView('register', data, '#exoskeleton', url, 'registro');
-		},
-		render_register_success : function( url ){
-			
-			if(!app.initialized) app.initialize();
-			setTimeout(function(){
-				app.showLoader();
-			}, 420);
-			app.check_or_renderContainer();
-			var data = this.gatherEnvironment(null, "¡REGISTRO EXITOSO!");
-			// data.is_scrollable = false;
-			return this.switchView('register-success', data, '#exoskeleton', url, 'registro exitoso');
 		},
 		render_profile : function(url){
 
@@ -379,7 +379,8 @@
 			return;
 		},
 		switchView: function(newTemplate, data, targetSelector, recordUrl, targetClass, keepLoader, leNiceTransition){
-			
+			console.log(newTemplate);
+			console.log($(targetSelector));
 			/* Push to history if url is supplied */
 			if(recordUrl) window.history.pushState(newTemplate, newTemplate, '/'+recordUrl);
 			
@@ -398,13 +399,14 @@
 					$(targetSelector).html( template(data) ).css({ "opacity": 0, "display": "block"})
 															 .animate(	{
 																opacity: 1
-															}, 640);
+															}, 420);
 				}else{
+
 					console.log("With transition");
-					console.log($(targetSelector));
 					$(targetSelector).html( template(data) ).css("opacity", 0.7)
 															 .css("display", "block")
 															 .css("margin-left", "48px")
+															 .css("width", "100%")
 															 .animate(	{
 																			'margin-left': "0",
 																			opacity: 1

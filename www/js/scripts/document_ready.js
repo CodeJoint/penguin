@@ -78,7 +78,6 @@ window.initializeEvents = function(){
 
 		/*** Fix keyboard NO-SHRINK specifics ***/
 		if($('.view').hasClass("login")){
-			console.log("Init login keyboard events");
 			if(typeof Keyboard != 'undefined'){
 				Keyboard.disableScrollingInShrinkView(false);
 				Keyboard.shrinkView(true);
@@ -86,7 +85,6 @@ window.initializeEvents = function(){
 		}
 
 		var fixWithKeyboard = function(){
-			
 
 		}
 

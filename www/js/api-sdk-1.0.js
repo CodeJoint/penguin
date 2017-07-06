@@ -183,9 +183,11 @@ function requestHandlerAPI(){
 		this.save_user_data_clientside = function(data_login){
 			if(data_login){
 				apiRH.headers['Authorization'] = "Bearer "+data_login.jwtoken;
+				console.log(apiRH.headers);
 				data_login.user.balancePc = data_login.balancePc;
 				data_login.user.balancePcReal = data_login.balancePcReal;
 				data_login.user.balanceReal = data_login.balanceReal;
+				app.keeper.setItem('Auth', "Bearer "+data_login.jwtoken);
 				return app.keeper.setItem('user', JSON.stringify(data_login.user));
 			}
 		};

@@ -1,10 +1,10 @@
 	<div class="menu clearfix">
 		<ul>
-			<li class="menu_lobby selected"><a class="hook" data-resource="lobby" href="lobby.html"></a></li>
+			<li class="menu_lobby {{# selected_lobby}}selected{{/ selected_lobby}}"><a class="hook" data-resource="lobby" href="lobby.html"></a></li>
 			<li class="menu_quinielas"><a class="hook" data-resource="my_lobby" href=""></a></li>
-			<li class="menu_privadas"><a class="hook" data-resource="privates" href="private.html"></a></li>
-			<li class="menu_perfil"><a class="hook" data-resource="profile" href="profile.html"></a></li>
-			<li class="menu_abonar"><a class="hook" data-resource="deposit" href="deposit.html"></a></li>
+			<li class="menu_privadas {{# selected_privates}}selected{{/ selected_privates}}"><a class="hook" data-resource="privates" href="private.html"></a></li>
+			<li class="menu_perfil {{# selected_profile}}selected{{/ selected_profile}}"><a class="hook" data-resource="profile" href="profile.html"></a></li>
+			<li class="menu_abonar {{# selected_deposit}}selected{{/ selected_deposit}}"><a class="hook" data-resource="deposit" href="deposit.html"></a></li>
 		</ul>
 	</div>
 	<!-- menu -->

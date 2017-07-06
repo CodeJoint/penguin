@@ -187,15 +187,14 @@ window.initializeEvents = function(){
 					var login_response 	= apiRH.loginNative(data_login);
 
 					if(login_response){
-
 						apiRH.headers['Authorization'] = "Bearer "+login_response.jwtoken;
+						console.log(apiRH.headers);
 						apiRH.save_user_data_clientside(login_response);
 						if(login_response.user){
 							console.log(login_response.user);
 							window._user = (login_response.user) ? login_response.user : null; 
 							return app.render_lobby('lobby.html');
 						}
-
 					}else{
 						app.toast("Ocurrió un error, por favor revisa que tus datos sean correctos.")
 						return app.hideLoader();
@@ -203,15 +202,14 @@ window.initializeEvents = function(){
 				}
 			});
 
-		} // END login_form
+		} // END login_form scope
 
 		if($('#misQuinielas').length){
-			console.log("Document is ready now rendering stuff");
-			setTimeout(function(){
 
+			setTimeout(function(){
 				return app.render_myfeed();
 			}, 300);
-		} // END misQuinielas
+		} // END misQuinielas scope
 		
 		if($('#detailQuiniela').length){
 			var quoteId = $('#detailQuiniela').data('id');
@@ -228,7 +226,7 @@ window.initializeEvents = function(){
 				});
 				return app.render_games(quoteId);
 			}, 220);
-		} // END detailQuiniela
+		} // END detailQuiniela scope
 
 		/* Log Out from the API */
 		$('#logout').on('click', function(e){
@@ -287,15 +285,18 @@ window.initializeEvents = function(){
 		var positiveMargin = false;
 		$('.misquinielas').on('click', function(){
 
+			$('.menu li').removeClass('selected');
 			if (!positiveMargin) {
 				var left = "0%";
 				var padd = "1%";
 				positiveMargin = true;
+				$('.menu .menu_quinielas').addClass('selected');
 			}
 			else {
 				var left = "97%";
 				var padd = "1%";
 				positiveMargin = false;
+				$('.menu .menu_quinielas').removeClass('selected');
 			}
 			$('.misquinielas').animate({
 											marginLeft: left,

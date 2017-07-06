@@ -79,8 +79,8 @@
     <plugin name="cordova-plugin-file" spec="^4.3.3" />
     <plugin name="cordova-plugin-file-transfer" spec="^1.6.3" />
     <plugin name="cordova-plugin-fullscreen" spec="^1.1.0" />
-    <plugin name="cordova-plugin-whitelist" spec="1" />
     <plugin name="cordova-plugin-ios-longpress-fix" spec="^1.1.0" />
     <plugin name="cordova-plugin-keyboard" spec="^1.1.5" />
+    <plugin name="cordova-plugin-whitelist" spec="1" />
     <plugin name="onesignal-cordova-plugin" spec="^2.1.2" />
 </widget>

@@ -222,7 +222,6 @@
 		check_or_renderContainer : function(){
 			/*** First time loading home ***/
 			if(window.firstTime){
-				console.log("Rendering first time");
 				var container_template = Handlebars.templates['container'];
 				var html 	 = container_template();
 				$('.rootContainer').html( html );
@@ -236,7 +235,6 @@
 				app.showLoader();
 			}, 420);
 			app.check_or_renderContainer();
-			console.log("Rendering Login");
 			var data = this.gatherEnvironment();
 			data.is_scrollable = false;
 			return this.switchView('login', data, '.view', url, 'login');
@@ -248,14 +246,13 @@
 				app.showLoader();
 			}, 420);
 			app.check_or_renderContainer();
-			console.log("Rendering Lobby");
 			var extra_data = apiRH.getRequest('pools/available.json', null);
 			var data = this.gatherEnvironment(extra_data, "Lobby");
+			data.selected_lobby = true;
 			return this.switchView('lobby', data, '.view', url, 'quiniela-feed');
 		},
 		render_myfeed : function(url){
 	
-			console.log("Rendering My Quinielas");
 			var extra_data = apiRH.getRequest('api/users/pools.json', null);
 			var data = this.gatherEnvironment(extra_data, "My Lobby");
 			var template = Handlebars.templates['my-lobby'];
@@ -323,7 +320,7 @@
 			}, 420);
 			app.check_or_renderContainer();
 			var data = this.gatherEnvironment(null, "Perfil de usuario");
-			// data.is_scrollable = false;
+			data.selected_profile = true;
 			return this.switchView('profile', data, '.view', url, 'user-profile');
 		},
 		render_add_funds : function(url){
@@ -334,7 +331,7 @@
 			}, 420);
 			app.check_or_renderContainer();
 			var data = this.gatherEnvironment(null, "Agregar fondos a tu cuenta");
-			// data.is_scrollable = false;
+			data.selected_deposit = true;
 			return this.switchView('register-success', data, '.view', url, 'registro exitoso');
 		},
 		render_private_games : function(url){
@@ -346,6 +343,7 @@
 			}, 420);
 			app.check_or_renderContainer();
 			var data = this.gatherEnvironment(null, "Quinielas privadas");
+			data.selected_privates = true;
 			return this.switchView('private-games', data, '.view', url, 'quinielas_privadas');
 		},
 		render_modal : function(modalName, data, appendTarget){

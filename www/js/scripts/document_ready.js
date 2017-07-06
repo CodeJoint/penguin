@@ -261,7 +261,7 @@ window.initializeEvents = function(){
 		});
 
 		var ventana = $(window).height();
-		$('.container').css('min-height', ventana+'px');
+		//$('.container').css('min-height', ventana+'px');
 
 		/*** FILTROS ***/
 

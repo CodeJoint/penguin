@@ -224,7 +224,6 @@
 				var container_template = Handlebars.templates['container'];
 				var html 	 = container_template();
 				$('.rootContainer').html( html );
-				console.log(render_exoskeleton);
 				return (render_exoskeleton) ? app.render_exoskeleton() : null;
 			}
 		},
@@ -280,7 +279,6 @@
 			var extra_data = apiRH.getRequest('pools/available.json', null);
 			var data = this.gatherEnvironment(extra_data, "Lobby");
 			data.selected_lobby = true;
-			console.log(data);
 			return this.switchView('lobby', data, '#exoskeleton', url, 'quiniela-feed');
 		},
 		render_myfeed : function(url){
@@ -369,6 +367,27 @@
 														}, 360);
 			app.hideLoader();
 		},
+		filter_pool : function( filter, value ){
+
+			Pickwin.filter('rangeFilter', function(){
+			  return function(items, rangeInfo) {
+			    if( rangeInfo === undefined || rangeInfo == null || rangeInfo === '') {
+			      return items;
+			    }
+			    var filtered = [];
+			    var ranges = rangeInfo.split(';');
+			    var currency = ranges[0];
+			    var min      = parseInt(ranges[1]) * 100;
+			    var max      = parseInt(ranges[2]) * 100;
+			    angular.forEach(items, function(item) {
+			      if ( currency == item.entry_currency && item.entry_fee >= min && item.entry_fee <= max ) {
+			        filtered.push(item);
+			      }
+			    });
+			    return filtered;
+			  };
+			});
+		},
 		render_dialog : function(title, message, options){
 			return app.showLoader();
 		},
@@ -379,7 +398,8 @@
 			return;
 		},
 		switchView: function(newTemplate, data, targetSelector, recordUrl, targetClass, keepLoader, leNiceTransition){
-			console.log(newTemplate);
+			
+			console.log($('.view'));
 			console.log($(targetSelector));
 			/* Push to history if url is supplied */
 			if(recordUrl) window.history.pushState(newTemplate, newTemplate, '/'+recordUrl);

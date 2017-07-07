@@ -257,6 +257,12 @@ function requestHandlerAPI(){
 				var options = 	{
 									method 		: 'POST',
 									url			: window.api_base_url+endpoint,
+									statusCode	: {
+												    401 : function() {
+												      return app.toast( "Revisa tus credenciales e intenta de nuevo" );
+												    }
+									},
+									url			: window.api_base_url+endpoint,
 									data 		: data,
 									dataType 	: 'json',
 									async 		: false,
@@ -273,10 +279,11 @@ function requestHandlerAPI(){
 					}, 2000);
 				 })
 				 .done( function(response){
-				 	console.log(response);
+				 	// console.log(response);
 					result = response;
 				 })
 				 .fail( function(e){
+					result = false;
 					console.log(e);
 				});
 				return result;

@@ -35,6 +35,7 @@
 			});
 			this.registerHelpers();
 			this.registerCompiledPartials();
+			this.data_temp = null;
 
 			window.loggedIn 	= false;
 			window.init_scripts = [];
@@ -245,9 +246,9 @@
 			app.check_or_renderContainer(false);
 			console.log("Rendering Register");
 
-			var data = this.gatherEnvironment(null, "Registro");
-			console.log(data);
-			return this.switchView('register', data, '.view', url, 'registro');
+			app.data_temp = this.gatherEnvironment(null, "Registro");
+			console.log(app.data_temp);
+			return this.switchView('register', app.data_temp, '.view', url, 'registro');
 		},
 		render_register_success : function( url ){
 			
@@ -282,6 +283,7 @@
 			var data = this.gatherEnvironment( extra_data, "Lobby" );
 			data.selected_lobby = true;
 			setTimeout( function(data){
+				console.log(data);
 				return app.switchView( 'lobby', data, '#exoskeleton', url, 'quiniela-feed' );
 			}, 3000);
 		},

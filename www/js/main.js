@@ -398,7 +398,6 @@
 			return;
 		},
 		switchView: function(newTemplate, data, targetSelector, recordUrl, targetClass, keepLoader, leNiceTransition){
-			
 			console.log($('.view'));
 			console.log($(targetSelector));
 			/* Push to history if url is supplied */

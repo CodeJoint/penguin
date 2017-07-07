@@ -39,6 +39,11 @@ function requestHandlerAPI(){
 					if(this.keeper.getItem('request_token')) this.token = this.keeper.getItem('request_token');
 					if(this.keeper.getItem('Auth')) this.headers['Authorization'] = "Bearer "+this.keeper.getItem('Auth');
 					sdk_app_context = app_context;
+					$( document ).ajaxError(function( event, jqxhr, settings, exception ) {
+					    if ( jqxhr.status== 401 ) {
+					      alert( "Triggered ajaxError handler." );
+					    }
+					});
 					/* For chaining purposes ::) */
 					return this;
 				};
@@ -56,14 +61,15 @@ function requestHandlerAPI(){
 		this.loginNative =  function(data_login){
 
 			var response = this.makeRequest( 'api/users/login.json', data_login, true, false );
+			console.log(response);
+		
+			if(!response)
+				return false;
+
 			this.token = response.jwtoken;
 			apiRH.keeper.setItem( 'token'	, response.jwtoken);
 			apiRH.keeper.setItem( 'mail'	, response.user.email);
 			apiRH.keeper.setItem( 'userId'	, response.user.id);
-
-			if(!this.token)
-				return false;
-
 			return response;
 		};
 
@@ -284,7 +290,7 @@ function requestHandlerAPI(){
 				 })
 				 .fail( function(e){
 					result = false;
-					console.log(e);
+					// console.log(e);
 				});
 				return result;
 				

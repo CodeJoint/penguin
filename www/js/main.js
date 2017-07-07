@@ -228,7 +228,9 @@
 			}
 		},
 		render_exoskeleton : function(){
-			if(!window.has_exo){
+
+			if( typeof window.has_exo == 'undefined' ){
+				console.log("rendering exoskeleton");
 				var data = this.gatherEnvironment(null, null);
 				window.has_exo;
 				return this.switchView('exoskeleton', data, '.view', null, '', true, true);
@@ -240,7 +242,7 @@
 			setTimeout(function(){
 				app.showLoader();
 			}, 420);
-			app.check_or_renderContainer();
+			app.check_or_renderContainer(false);
 			console.log("Rendering Register");
 
 			var data = this.gatherEnvironment(null, "Registro");
@@ -253,7 +255,7 @@
 			setTimeout(function(){
 				app.showLoader();
 			}, 420);
-			app.check_or_renderContainer();
+			app.check_or_renderContainer(false);
 			var data = this.gatherEnvironment(null, "¡REGISTRO EXITOSO!");
 			// data.is_scrollable = false;
 			return this.switchView('register-success', data, '.view', url, 'registro exitoso');
@@ -275,11 +277,13 @@
 			setTimeout(function(){
 				app.showLoader();
 			}, 420);
-			app.check_or_renderContainer();
-			var extra_data = apiRH.getRequest('pools/available.json', null);
-			var data = this.gatherEnvironment(extra_data, "Lobby");
+			app.check_or_renderContainer(true);
+			var extra_data = apiRH.getRequest( 'pools/available.json', null );
+			var data = this.gatherEnvironment( extra_data, "Lobby" );
 			data.selected_lobby = true;
-			return this.switchView('lobby', data, '#exoskeleton', url, 'quiniela-feed');
+			setTimeout( function(data){
+				return app.switchView( 'lobby', data, '#exoskeleton', url, 'quiniela-feed' );
+			}, 3000);
 		},
 		render_myfeed : function(url){
 	
@@ -398,7 +402,7 @@
 			return;
 		},
 		switchView: function(newTemplate, data, targetSelector, recordUrl, targetClass, keepLoader, leNiceTransition){
-			console.log($('.view'));
+
 			console.log($(targetSelector));
 			/* Push to history if url is supplied */
 			if(recordUrl) window.history.pushState(newTemplate, newTemplate, '/'+recordUrl);
@@ -421,7 +425,6 @@
 															}, 420);
 				}else{
 
-					console.log("With transition");
 					$(targetSelector).html( template(data) ).css("opacity", 0.7)
 															 .css("display", "block")
 															 .css("margin-left", "48px")

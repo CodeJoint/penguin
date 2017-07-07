@@ -57,12 +57,9 @@ function requestHandlerAPI(){
 		 * @param data_login JSON {user_login, user_password}
 		 * @return status Bool true is successfully logged in; false if an error ocurred
 		 */
-		 
-		this.loginNative =  function(data_login){
+		 this.loginNative =  function(data_login){
 
 			var response = this.makeRequest( 'api/users/login.json', data_login, true, false );
-			console.log(response);
-		
 			if(!response)
 				return false;
 
@@ -167,29 +164,13 @@ function requestHandlerAPI(){
 
 
 		/* 
-		 * Creates an internal user to make calls to the API
-		 * @param username String
-		 * @param email String
-		 * @param attrs array()
-		 * TO DO: Within the attributes sent to this method we can send the profile image url
-		 * @param token String
-		 * @return status Bool true is successfully created a new user
-		 * @return userdata JSON Contains the user info to be stored client side
-		 * @see save_user_data_clientside()
-		 */
-		this.create_internal_user = function(data){
-			apiRH.keeper.setItem('user', data);										
-		};
-
-		/* 
 		 * Save /Update user data client side to execute auth requests to the API
 		 * @return null
-		 * @see this.create_internal_user
 		 */
 		this.save_user_data_clientside = function(data_login){
+			
 			if(data_login){
 				apiRH.headers['Authorization'] = "Bearer "+data_login.jwtoken;
-				console.log(apiRH.headers);
 				data_login.user.balancePc = data_login.balancePc;
 				data_login.user.balancePcReal = data_login.balancePcReal;
 				data_login.user.balanceReal = data_login.balanceReal;
@@ -197,6 +178,7 @@ function requestHandlerAPI(){
 				return app.keeper.setItem('user', JSON.stringify(data_login.user));
 			}
 		};
+		
 		/* 
 		 * Request new passive token from the API 
 		 * @return new generated token

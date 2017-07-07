@@ -280,11 +280,11 @@
 			}, 420);
 			app.check_or_renderContainer(true);
 			var extra_data = apiRH.getRequest( 'pools/available.json', null );
-			var data = this.gatherEnvironment( extra_data, "Lobby" );
-			data.selected_lobby = true;
+			app.data_temp = this.gatherEnvironment( extra_data, "Lobby" );
+			app.data_temp.selected_lobby = true;
 			setTimeout( function(data){
-				console.log(data);
-				return app.switchView( 'lobby', data, '#exoskeleton', url, 'quiniela-feed' );
+				console.log(app.data_temp);
+				return app.switchView( 'lobby', app.data_temp, '#exoskeleton', url, 'quiniela-feed' );
 			}, 3000);
 		},
 		render_myfeed : function(url){

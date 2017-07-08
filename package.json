@@ -1,35 +1,36 @@
 {
-    "name": "app.pickwin.net",
-    "version": "1.0.0",
-    "displayName": "PickWin",
-    "cordova": {
-        "platforms": [
-            "android"
-        ],
-        "plugins": {
-            "cordova-plugin-whitelist": {},
-            "cordova-plugin-device": {},
-            "cordova-plugin-file": {},
-            "cordova-plugin-console": {},
-            "cordova-plugin-file-transfer": {},
-            "cordova-plugin-fullscreen": {},
-            "cordova-plugin-ios-longpress-fix": {},
-            "cordova-plugin-keyboard": {},
-            "onesignal-cordova-plugin": {},
-            "cordova-plugin-x-toast": {}
-        }
-    },
-    "dependencies": {
-        "cordova-android": "^6.2.3",
-        "cordova-plugin-console": "~1.0.5",
-        "cordova-plugin-device": "^1.1.6",
-        "cordova-plugin-file": "^4.3.3",
-        "cordova-plugin-file-transfer": "^1.6.3",
-        "cordova-plugin-fullscreen": "^1.1.0",
-        "cordova-plugin-ios-longpress-fix": "^1.1.0",
-        "cordova-plugin-keyboard": "^1.1.5",
-        "cordova-plugin-whitelist": "1",
-        "onesignal-cordova-plugin": "^2.1.2",
-        "cordova-plugin-x-toast": "~2.6.0"
+  "name": "app.pickwin.net",
+  "version": "1.0.0",
+  "displayName": "PickWin",
+  "cordova": {
+    "platforms": [
+      "android"
+    ],
+    "plugins": {
+      "cordova-plugin-whitelist": {},
+      "cordova-plugin-device": {},
+      "cordova-plugin-file": {},
+      "cordova-plugin-console": {},
+      "cordova-plugin-file-transfer": {},
+      "cordova-plugin-fullscreen": {},
+      "cordova-plugin-ios-longpress-fix": {},
+      "cordova-plugin-keyboard": {},
+      "onesignal-cordova-plugin": {},
+      "cordova-plugin-x-toast": {}
     }
+  },
+  "dependencies": {
+    "cordova-android": "^6.2.3",
+    "cordova-ios": "^4.4.0",
+    "cordova-plugin-console": "~1.0.5",
+    "cordova-plugin-device": "^1.1.6",
+    "cordova-plugin-file": "^4.3.3",
+    "cordova-plugin-file-transfer": "^1.6.3",
+    "cordova-plugin-fullscreen": "^1.1.0",
+    "cordova-plugin-ios-longpress-fix": "^1.1.0",
+    "cordova-plugin-keyboard": "^1.1.5",
+    "cordova-plugin-whitelist": "1",
+    "cordova-plugin-x-toast": "~2.6.0",
+    "onesignal-cordova-plugin": "^2.1.2"
+  }
 }

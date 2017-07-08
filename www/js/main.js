@@ -234,7 +234,7 @@
 				console.log("rendering exoskeleton");
 				var data = this.gatherEnvironment(null, null);
 				window.has_exo;
-				return this.switchView('exoskeleton', data, '.view', null, '', true, true);
+				return app.switchView('exoskeleton', data, '.view', null, '', true, true);
 			}
 		},
 		render_register : function( url ){
@@ -248,7 +248,7 @@
 
 			app.data_temp = this.gatherEnvironment(null, "Registro");
 			console.log(app.data_temp);
-			return this.switchView('register', app.data_temp, '.view', url, 'registro');
+			return app.switchView('register', app.data_temp, '.view', url, 'registro');
 		},
 		render_register_success : function( url ){
 			
@@ -259,7 +259,7 @@
 			app.check_or_renderContainer(false);
 			var data = this.gatherEnvironment(null, "¡REGISTRO EXITOSO!");
 			// data.is_scrollable = false;
-			return this.switchView('register-success', data, '.view', url, 'registro exitoso');
+			return app.switchView('register-success', data, '.view', url, 'registro exitoso');
 		},
 		render_login : function(url){
 			
@@ -270,7 +270,7 @@
 			app.check_or_renderContainer(false);
 			var data = this.gatherEnvironment();
 			data.is_scrollable = false;
-			return this.switchView('login', data, '.view', url, 'login');
+			return app.switchView('login', data, '.view', url, 'login');
 		},
 		render_lobby : function(url){
 
@@ -283,9 +283,8 @@
 			app.data_temp = this.gatherEnvironment( extra_data, "Lobby" );
 			app.data_temp.selected_lobby = true;
 			setTimeout( function(data){
-				console.log(app.data_temp);
 				return app.switchView( 'lobby', app.data_temp, '#exoskeleton', url, 'quiniela-feed' );
-			}, 3000);
+			}, 220);
 		},
 		render_myfeed : function(url){
 	
@@ -310,18 +309,18 @@
 			console.log("Rendering Detail");
 			var extra_data = apiRH.getRequest('api/pools/view/'+object_id+'.json', null);
 			extra_data = (extra_data.pool) ? extra_data.pool : [];
-			var data = this.gatherEnvironment(extra_data, "Detail");
-			console.log(data);
-			return this.switchView('detail-quiniela', data, '#exoskeleton', url, 'quiniela-feed');
+			app.data_temp = this.gatherEnvironment(extra_data, "Detail");
+			setTimeout( function(data){
+				return app.switchView('detail-quiniela', app.data_temp, '#exoskeleton', url, 'quiniela-feed');
+			}, 220);
 		},
 		render_games : function(object_id){
 
 			var extra_data = apiRH.getRequest('api/pools/fixtures/'+object_id+'.json', null);
 			extra_data = (extra_data) ? extra_data : [];
-			var data = this.gatherEnvironment(extra_data, null);
-			console.log(data);
+			app.data_temp = this.gatherEnvironment(extra_data, null);
 			setTimeout(function(){
-				return app.render_modal('quiniela-games', data, '#insertPartidos');
+				return app.render_modal('quiniela-games', app.data_temp, '#insertPartidos');
 			}, 100);
 		},
 		render_profile : function(url){
@@ -331,20 +330,20 @@
 				app.showLoader();
 			}, 420);
 			app.check_or_renderContainer();
-			var data = this.gatherEnvironment(null, "Perfil de usuario");
-			data.selected_profile = true;
-			return this.switchView('profile', data, '#exoskeleton', url, 'user-profile');
+			app.data_temp = this.gatherEnvironment(null, "Perfil de usuario");
+			app.data_temp.selected_profile = true;
+			return app.switchView('profile', app.data_temp, '#exoskeleton', url, 'user-profile');
 		},
 		render_add_funds : function(url){
-			console.log("Rendering add funds");
+
 			if(!app.initialized) app.initialize();
 			setTimeout(function(){
 				app.showLoader();
 			}, 420);
 			app.check_or_renderContainer();
-			var data = this.gatherEnvironment(null, "Agregar fondos a tu cuenta");
-			data.selected_deposit = true;
-			return this.switchView('register-success', data, '#exoskeleton', url, 'registro exitoso');
+			app.data_temp = this.gatherEnvironment(null, "Agregar fondos a tu cuenta");
+			app.data_temp.selected_deposit = true;
+			return app.switchView('register-success', app.data_temp, '#exoskeleton', url, 'registro exitoso');
 		},
 		render_private_games : function(url){
 
@@ -354,9 +353,9 @@
 				app.showLoader();
 			}, 420);
 			app.check_or_renderContainer();
-			var data = this.gatherEnvironment(null, "Quinielas privadas");
-			data.selected_pri = true;
-			return this.switchView('private-games', data, '#exoskeleton', url, 'quinielas_privadas');
+			app.data_temp = this.gatherEnvironment(null, "Quinielas privadas");
+			app.data_temp.selected_pri = true;
+			return app.switchView('private-games', app.data_temp, '#exoskeleton', url, 'quinielas_privadas');
 		},
 		render_modal : function(modalName, data, appendTarget){
 

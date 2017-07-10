@@ -1,16 +1,16 @@
 
-	<div class="container clearfix">
+	<div id="profileTabs" class="container clearfix">
 		{{> header}}
 
 		<div class="content profile">
 			
 			<div class="tabs_quiniela clearfix">
 				<ul>
-					<li class="selected"><a href="">Tarjetas</a></li>
-					<li><a href="">Documentos</a></li>
-					<li><a href="">Retirar fondos</a></li>
-					<li><a href="">Historial</a></li>
-					<li><a href="">Notificaciones</a></li>
+					<li class="selected"><a class="hook" data-resource="profile-cards" href="profile.html">Tarjetas</a></li>
+					<li><a class="hook"  href="profile.html">Documentos</a></li>
+					<li><a class="hook" data-resource="profile-withraw" href="profile.html">Retirar fondos</a></li>
+					<li><a class="hook" data-resource="profile-history" href="profile.html">Historial</a></li>
+					<li><a class="hook" data-resource="profile-notifications" href="profile.html">Notificaciones</a></li>
 				</ul>
 			</div>
 			<div class="tab_profile tarjetas">
@@ -24,37 +24,10 @@
 							<a href=""><img src="{{cordova_full_path}}images/eliminar.png"></a>
 						</div>
 					</li>
-					<li class="clearfix">
-						<input type="radio">
-						<img src="{{cordova_full_path}}images/visa.png">
-						<span class="terminacion">1234</span>
-						<div class="edit_tarjeta">
-							<a href=""><img src="{{cordova_full_path}}images/editar.png"></a>
-							<a href=""><img src="{{cordova_full_path}}images/eliminar.png"></a>
-						</div>
-					</li>
-					<li class="clearfix">
-						<input type="radio">
-						<img src="{{cordova_full_path}}images/amex.png">
-						<span class="terminacion">1234</span>
-						<div class="edit_tarjeta">
-							<a href=""><img src="{{cordova_full_path}}images/editar.png"></a>
-							<a href=""><img src="{{cordova_full_path}}images/eliminar.png"></a>
-						</div>
-					</li>
-					<li class="clearfix">
-						<input type="radio">
-						<img src="{{cordova_full_path}}images/paypal.png">
-						<span class="terminacion">mail@mail.com</span>
-						<div class="edit_tarjeta">
-							<a href=""><img src="{{cordova_full_path}}images/editar.png"></a>
-							<a href=""><img src="{{cordova_full_path}}images/eliminar.png"></a>
-						</div>
-					</li>
 				</ul>
 				<a class="agregar_tarjeta" href=""><img src="{{cordova_full_path}}images/agregar_tarjeta.png"></a>
 			</div>
-			<div class="agregartarjeta clearfix">
+			<div class="agregartarjeta clearfix" style="display: none;">
 				<h3>AGREGAR TARJETA</h3>
 				<form>
 					<input type="text" placeholder="Nombre como aparece en la tarjeta">

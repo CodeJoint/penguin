@@ -230,15 +230,18 @@
 				console.log("rendering exoskeleton");
 				var data = this.gatherEnvironment(null, null);
 				window.has_exo;
-				return app.switchView('exoskeleton', data, '.view', null, '', true, true);
+				return app.switchView('exoskeleton', data, '.view', null, '', true, true, false);
 			}
 		},
 		render_header : function(filters){
 			console.log("Render header");
-			var extra_data = {};
+			var extra_data = this.gatherEnvironment(null, "Registro");
 			extra_data.selected_lobby = (filters) ? true : false;
-			$('#theHeader').fadeOut('fast').remove();
-			return app.render_modal('header', extra_data, '#loadHeader');
+			app.render_partial('header', extra_data, '#loadHeader');
+			$('#theHeader').fadeOut('fast', function(){
+				$(this).remove();
+			});
+			return;
 		},
 		render_register : function( url ){
 			
@@ -285,7 +288,6 @@
 			var extra_data = apiRH.getRequest( 'pools/available.json', null );
 			app.data_temp = this.gatherEnvironment( extra_data, "Lobby" );
 			app.data_temp.selected_lobby = true;
-			console.log(app.data_temp);
 			setTimeout( function(data){
 				return app.switchView( 'lobby', app.data_temp, '#exoskeleton', url, 'quiniela-feed', false, true, true );
 			}, 220);
@@ -324,7 +326,7 @@
 			extra_data = (extra_data) ? extra_data : [];
 			app.data_temp = this.gatherEnvironment(extra_data, null);
 			setTimeout(function(){
-				return app.render_modal('quiniela-games', app.data_temp, '#insertPartidos');
+				return app.render_partial('quiniela-games', app.data_temp, '#insertPartidos');
 			}, 100);
 		},
 		render_profile : function(url){
@@ -361,20 +363,18 @@
 			app.data_temp.selected_pri = true;
 			return app.switchView('private-games', app.data_temp, '#exoskeleton', url, 'quinielas_privadas');
 		},
-		render_modal : function( modalName, data, appendTarget ){
+		render_partial : function( modalName, additional_data, appendTarget ){
 
-			app.check_or_renderContainer();
-			var data = this.gatherEnvironment(data, "");
-			data.is_scrollable = false;
 			var modalTemplate = Handlebars.templates[modalName];
-			$(appendTarget).animate({
-										opacity: 0
-									}, 120).append( modalTemplate(data) );
+			if(!modalTemplate){
+				console.log("Template doesn't exist");
+				return false;
+			}
 
-			$(appendTarget).html( modalTemplate(data) ).css("display", "block")
-														 .animate(	{
-															opacity: 1
-														}, 360);
+			$(appendTarget).append( modalTemplate(additional_data) )
+							.animate(	{
+								opacity: 1
+							}, 120);
 			app.hideLoader();
 		},
 		filter_pool : function( filter, value ){

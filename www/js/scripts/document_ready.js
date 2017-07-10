@@ -203,22 +203,73 @@ window.initializeEvents = function(){
 
 			setTimeout(function(){
 				return app.render_myfeed();
+
+				var positiveMargin = false;
+				$('.misquinielas').on('click', function(){
+
+					$('.menu li').removeClass('selected');
+					if (!positiveMargin) {
+						var left = "0%";
+						var padd = "1%";
+						positiveMargin = true;
+						$('.menu .menu_quinielas').addClass('selected');
+					}
+					else {
+						var left = "97%";
+						var padd = "1%";
+						positiveMargin = false;
+						$('.menu .menu_quinielas').removeClass('selected');
+					}
+					$('.misquinielas').animate({
+													marginLeft: left,
+													paddingLeft: padd,
+												}, 
+												{
+													duration: 500,
+													complete: function () {
+													}
+												});
+				});
 			}, 300);
 		} // END misQuinielas scope
 		
 
 		if($('#lobbyContainer').length){
-		 	console.log("Lobby container");
+
 		 	setTimeout(function(){
 
 				/** Render header again to include filters component **/
-				// return app.render_header(true);
+				app.render_header(true);
+
+		 		$('.menu_lobby').addClass('selected');
+
+		 		/*** FILTROS ***/
+				$('.header_filtros').on('click', function(){
+					if($('.filtros_wrapper').hasClass('filtros_show')){
+						$('.filtros_wrapper').removeClass('filtros_show');
+						$('.filtros_wrapper').fadeOut('fast');
+						console.log('success');
+					} else {
+						$('.filtros_wrapper').addClass('filtros_show');
+						$('.filtros_wrapper').fadeIn('fast');
+					}
+				});
+
+				$('.filtros ul li').on('click', function(){
+					$('.filtros ul li').removeClass('selected');
+					var dataFilter = $(this).attr('data');
+					$(this).addClass('selected');
+					console.log(dataFilter);
+				});
+
+				
+				return; 
 			 }, 220);
 		} // END misQuinielas scope
 		
 		if($('#detailQuiniela').length){
 
-			var quoteId = $('#detailQuiniela').data('id');
+			var gameId = $('#detailQuiniela').data('id');
 			setTimeout(function(){
 
 				$('#reg_into_game').on('click',function(){
@@ -230,89 +281,28 @@ window.initializeEvents = function(){
 				$('#sendRegister').on('click',function(){
 					$('#registerNow').fadeOut('fast');
 				});
-				return app.render_games(quoteId);
+				return app.render_games(gameId);
 			}, 220);
 		} // END detailQuiniela scope
 
-		/* Log Out from the API */
-		$('#logout').on('click', function(e){
-			/* Requesting logout from server */
-			if(!$('.overscreen2').is(':visible') ){
-				$('.overscreen2').show();
-			setTimeout(function() { $('.overscreen2').addClass('active'); }, 200);
-			} else {
-				$('.overscreen2').removeClass('active');
-				setTimeout(function() { $('.overscreen2').hide(); }, 800);
-			}
-			$('#blur').toggleClass('blurred');
-			return;
-		});
+		if($('#profileTabs').length){
 
-		$('.logout').click(function(){
-			app.keeper.clear();
-			$('#blur').toggleClass('blurred');
-			return app.render_entermode('inicio.html');
-		});
+			setTimeout(function(){
 
-		$('.logout_cancel').click(function(){
-			$('.overscreen2').hide();
-			$('#blur').toggleClass('blurred');
-			return;
-		});
+				/* Log Out from the API */
+				$('#logoutComponent').on('click', function(e){
 
-		$('.back_with_logout').click(function(e){
-			return back_with_logout(e);
-		});
+					/* TODO: Requesting logout from server */
+					app.keeper.clear();
+					app.render_login();
+					return;
+				});
+			}, 220);
+		} // END detailQuiniela scope
 
 		var ventana = $(window).height();
 
-		/*** FILTROS ***/
-
-		$('.header_filtros').on('click', function(){
-			if($('.filtros_wrapper').hasClass('filtros_show')){
-				$('.filtros_wrapper').removeClass('filtros_show');
-				$('.filtros_wrapper').fadeOut('fast');
-				console.log('success');
-			} else {
-				$('.filtros_wrapper').addClass('filtros_show');
-				$('.filtros_wrapper').fadeIn('fast');
-			}
-		});
-
-		$('.filtros ul li').on('click', function(){
-			$('.filtros ul li').removeClass('selected');
-			var dataFilter = $(this).attr('data');
-			$(this).addClass('selected');
-			console.log(dataFilter);
-		});
-
-
-		var positiveMargin = false;
-		$('.misquinielas').on('click', function(){
-
-			$('.menu li').removeClass('selected');
-			if (!positiveMargin) {
-				var left = "0%";
-				var padd = "1%";
-				positiveMargin = true;
-				$('.menu .menu_quinielas').addClass('selected');
-			}
-			else {
-				var left = "97%";
-				var padd = "1%";
-				positiveMargin = false;
-				$('.menu .menu_quinielas').removeClass('selected');
-			}
-			$('.misquinielas').animate({
-											marginLeft: left,
-											paddingLeft: padd,
-										}, 
-										{
-											duration: 500,
-											complete: function () {
-											}
-										});
-		 });
+		
 	});
 
 }

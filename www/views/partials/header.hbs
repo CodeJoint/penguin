@@ -1,40 +1,42 @@
-	<div class="header clearfix">
-		<div class="header_left">
-			<a class="hook" data-resource="lobby" href="lobby.html">
-				<img src="{{cordova_full_path}}images/logo.png">
-			</a>
-		</div>
-		<div class="header_right clearfix">
-			<div class="header_user_info clearfix">
-				<div class="user_info clearfix">
-					{{^ me.avatar}}
-						<div class="avatar_container">
-							<img src="{{cordova_full_path}}images/profile_placeholder.png">
-						</div>
-					{{/ me.avatar}}
-					{{# me.avatar}}
-						<div class="avatar_container">
-							<img src="{{../me.avatar_dir}}{{../me.avatar}}">
-						</div>
-					{{/ me.avatar}}
-					<h2>{{me.nick}}</h2>
-				</div>
-				<div class="user_money clearfix">
-					<div class="money_pesos clearfix">
-						<img src="{{cordova_full_path}}images/billete.png">
-						<span class="money_ammount">${{ formatCurrency me.balanceReal}}</span>
+	<div id="loadHeader">
+		<div id="theHeader" class="header clearfix">
+			<div class="header_left">
+				<a class="hook" data-resource="lobby" href="lobby.html">
+					<img src="{{cordova_full_path}}images/logo.png">
+				</a>
+			</div>
+			<div class="header_right clearfix">
+				<div class="header_user_info clearfix">
+					<div class="user_info clearfix">
+						{{^ me.avatar}}
+							<div class="avatar_container">
+								<img src="{{cordova_full_path}}images/profile_placeholder.png">
+							</div>
+						{{/ me.avatar}}
+						{{# me.avatar}}
+							<div class="avatar_container">
+								<img src="{{../me.avatar_dir}}{{../me.avatar}}">
+							</div>
+						{{/ me.avatar}}
+						<h2>{{me.nick}}</h2>
 					</div>
-					<div class="money_pickcoins clearfix">
-						<img src="{{cordova_full_path}}images/pickcoin.png">
-						<span class="money_ammount">{{ formatCurrency me.balancePc}}</span>
+					<div class="user_money clearfix">
+						<div class="money_pesos clearfix">
+							<img src="{{cordova_full_path}}images/billete.png">
+							<span class="money_ammount">${{ formatCurrency me.balanceReal}}</span>
+						</div>
+						<div class="money_pickcoins clearfix">
+							<img src="{{cordova_full_path}}images/pickcoin.png">
+							<span class="money_ammount">{{ formatCurrency me.balancePc}}</span>
+						</div>
 					</div>
-				</div>
-			</div><!-- header_user_info -->
-			{{# selected_lobby}}
-				<div class="header_filtros">
-					<h4>FILTROS</h4>
-					<img src="{{cordova_full_path}}images/filtros.png">
-				</div>
-			{{/ selected_lobby}}
-		</div>
-	</div><!-- header -->
+				</div><!-- header_user_info -->
+				{{# selected_lobby}}
+					<div class="header_filtros" id="filterComponent">
+						<h4>FILTROS</h4>
+						<img src="{{cordova_full_path}}images/filtros.png">
+					</div>
+				{{/ selected_lobby}}
+			</div>
+		</div><!-- header -->
+	</div><!-- Loadheader -->

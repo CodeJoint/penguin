@@ -32,6 +32,9 @@
 					{{# limited_capacity}}
 						<span class="limite">Limitado a {{max_entries}} entradas</span>
 					{{/ limited_capacity}}
+					{{# if closed}}
+						<span class="limite">CERRADA</span>
+					{{/ if}}
 					{{!-- <span class="aciertos">ACIERTOS: 3/15</span> --}}
 				</div><!-- quiniela_info -->
 				<div class="quiniela_entrada clearfix">

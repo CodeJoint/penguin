@@ -207,7 +207,18 @@ window.initializeEvents = function(){
 			}, 300);
 		} // END misQuinielas scope
 		
+
+		// if($('#lobbyContainer').length){
+		// 	console.log("Lobby container");
+		// 	setTimeout(function(){
+
+				/** Render header again to include filters component **/
+				// return app.render_header(true);
+			// }, 220);
+		// } // END misQuinielas scope
+		
 		if($('#detailQuiniela').length){
+
 			var quoteId = $('#detailQuiniela').data('id');
 			setTimeout(function(){
 
@@ -255,7 +266,6 @@ window.initializeEvents = function(){
 		});
 
 		var ventana = $(window).height();
-		//$('.container').css('min-height', ventana+'px');
 
 		/*** FILTROS ***/
 

@@ -18,7 +18,7 @@
 			window.firstTime = true;
 			this.initialized = true;
 
-			var is_login 	= apiRH.has_token();
+			var is_logged_in= apiRH.has_token();
 			var forceLogin 	= localStorage.getItem('forceLogin');
 			var is_current 	= localStorage.getItem('valido');
 
@@ -43,7 +43,7 @@
 			app.keeper 			= window.localStorage;
 			
 			/*----------------------- Routing user accordingly ---------------------------*/
-			if( is_login ){
+			if( is_logged_in ){
 				console.log('You okay, now you can start making calls');
 				/* Take the user to it's timeline */
 				loggedIn 		= true;
@@ -237,6 +237,13 @@
 				return app.switchView('exoskeleton', data, '.view', null, '', true, true);
 			}
 		},
+		render_header : function(filters){
+			console.log("Render header");
+			var extra_data = this.gatherEnvironment(null, null);
+			extra_data.selected_lobby = (filters) ? true : false;
+			$('#theHeader').remove();
+			return app.render_modal('header', extra_data, '#loadHeader');
+		},
 		render_register : function( url ){
 			
 			if(!app.initialized) app.initialize();
@@ -357,14 +364,15 @@
 			app.data_temp.selected_pri = true;
 			return app.switchView('private-games', app.data_temp, '#exoskeleton', url, 'quinielas_privadas');
 		},
-		render_modal : function(modalName, data, appendTarget){
+		render_modal : function( modalName, data, appendTarget ){
 
-			app.showLoader();
 			app.check_or_renderContainer();
 			var data = this.gatherEnvironment(data, "");
 			data.is_scrollable = false;
 			var modalTemplate = Handlebars.templates[modalName];
-			$(appendTarget).css("opacity", 0).append( modalTemplate(data) );
+			$(appendTarget).animate({
+										opacity: 0
+									}, 200).append( modalTemplate(data) );
 
 			$(appendTarget).html( modalTemplate(data) ).css("display", "block")
 														 .animate(	{
@@ -402,9 +410,8 @@
 			window.location.assign(link);
 			return;
 		},
-		switchView: function(newTemplate, data, targetSelector, recordUrl, targetClass, keepLoader, leNiceTransition){
+		switchView: function(newTemplate, data, targetSelector, recordUrl, targetClass, keepLoader, leNiceTransition, initEvents){
 
-			console.log($(targetSelector));
 			/* Push to history if url is supplied */
 			if(recordUrl) window.history.pushState(newTemplate, newTemplate, '/'+recordUrl);
 			
@@ -443,14 +450,14 @@
 					if(window.firstTime)
 						window.firstTime = false;				
 					app.hideLoader();
-					initializeEvents();
+					if(initEvents) initializeEvents();
 					$(window).resize();
 				}, 2000);
-			console.log("Keep ma loader");
+
 			return setTimeout(function(){
 					if(window.firstTime)
 						window.firstTime = false;				
-					initializeEvents();
+					if(initEvents) initializeEvents();
 					$(window).resize();
 				}, 2000);
 		},

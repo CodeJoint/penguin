@@ -592,7 +592,7 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 		z-index: 99999999;
 		top: 0;
 		left: 0;
-		background-color: rgba(0, 0, 0, 0.6);
+		background-color: rgba(0, 0, 0, 0.25);
 	}
 
 	.loading {
@@ -610,6 +610,7 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 
 	/* John overrides */
 	
+	.hidden{ display: none!important; }
 	.header .header_right .header_user_info .user_info .avatar_container{ width: 24px; height: 24px; -webkit-border-radius: 50%; -moz-border-radius: 50%; border-radius: 50%; overflow: hidden; float: left; margin-right: 7px;}
 	.header .header_right .header_user_info .user_info img { width: 100%; height: auto; }
 
@@ -632,3 +633,4 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 	.quiniela .quiniela_info{margin-right: 0.75rem;}
 
 	.exoskeleton{ display: block; min-height: 100vh; width: 100%; top: 0; }
+	.quiniela_header .quiniela_iconos img{ margin-right: 2.5px;}

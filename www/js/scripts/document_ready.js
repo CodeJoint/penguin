@@ -30,6 +30,8 @@ window.initializeEvents = function(){
 					return app.render_lobby( $(this).attr('href') );
 				if( $(this).data('resource') == "privates" )
 					return app.render_private_games( $(this).attr('href') );
+				if( $(this).data('resource') == "privates-create" )
+					return app.render_create_private( $(this).attr('href') );
 				if( $(this).data('resource') == "my_lobby" ){
 					$('#misQuinielas').trigger('click');
 					return app.hideLoader();
@@ -297,7 +299,15 @@ window.initializeEvents = function(){
 					app.render_login();
 					return;
 				});
+				$('.footermenu ul li').removeClass('selected');
+				$('.menu_perfil').addClass('selected');
 			}, 220);
+		} // END profileTabs scope
+		
+		if($('.privates').length){
+
+			$('.menu li').removeClass('selected');
+			$('.menu_privadas').addClass('selected');
 		} // END detailQuiniela scope
 
 		var ventana = $(window).height();

@@ -316,8 +316,9 @@
 			var extra_data = apiRH.getRequest('api/pools/view/'+object_id+'.json', null);
 			extra_data = (extra_data.pool) ? extra_data.pool : [];
 			app.data_temp = this.gatherEnvironment(extra_data, "Detail");
+			console.log(app.data_temp);
 			setTimeout( function(data){
-				return app.switchView('detail-quiniela', app.data_temp, '#exoskeleton', url, 'quiniela-feed');
+				return app.switchView('detail-quiniela', app.data_temp, '#exoskeleton', url, 'quiniela-detail');
 			}, 220);
 		},
 		render_games : function(object_id){
@@ -327,7 +328,7 @@
 			app.data_temp = this.gatherEnvironment(extra_data, null);
 			setTimeout(function(){
 				return app.render_partial('quiniela-games', app.data_temp, '#insertPartidos');
-			}, 100);
+			}, 220);
 		},
 		render_profile : function(url){
 
@@ -361,7 +362,18 @@
 			app.check_or_renderContainer();
 			app.data_temp = this.gatherEnvironment(null, "Quinielas privadas");
 			app.data_temp.selected_pri = true;
-			return app.switchView('private-games', app.data_temp, '#exoskeleton', url, 'quinielas_privadas');
+			return app.switchView('private', app.data_temp, '#exoskeleton', url, 'privates');
+		},
+		render_create_private : function(url){
+
+			if(!app.initialized) app.initialize();
+			setTimeout(function(){
+				app.showLoader();
+			}, 420);
+			app.check_or_renderContainer();
+			app.data_temp = this.gatherEnvironment(null, "Crear quiniela privada");
+			app.data_temp.selected_pri = true;
+			return app.switchView('private-create', app.data_temp, '#exoskeleton', url, 'privates create');
 		},
 		render_partial : function( modalName, additional_data, appendTarget ){
 
@@ -450,7 +462,7 @@
 					if(initEvents || typeof initEvents == 'undefined') 
 						initializeEvents();
 					$(window).resize();
-				}, 2000);
+				}, 420);
 
 			return setTimeout(function(){
 					if(window.firstTime)

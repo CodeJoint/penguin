@@ -2,7 +2,7 @@
 	<div class="opciones_partido clearfix">
 		<span>LOCAL</span> <span>EMPATE</span> <span>VISITA</span>
 	</div><!-- opciones_partido -->
-	{{# data.data.fixtures}}
+	{{# data.fixtures}}
 		fizruer
 		<div data-id="{{id}}" class="partido clearfix">
 			<div class="opcion_partido local clearfix">
@@ -15,7 +15,8 @@
 					<span>{{# score_away_line}}({{.}}){{/ score_away_line}} {{score_away}}</span>
 				</div><!-- linea -->
 			</div><!-- opcion_partido -->
-			<div class="opcion_partido cierre clearfix">
+			<div class="opcion_partido {{# if allow_ties}} empate {{/ if}} cierre clearfix">
+				{{# if allow_ties}}<input type="radio" name="ganador_dos" id="empate">{{/ if}}
 				<span>CIERRE: {{formatDate deadline}}</span>
 			</div><!-- opcion_partido -->
 			<div class="opcion_partido visitante clearfix">
@@ -29,4 +30,4 @@
 				</div><!-- linea -->
 			</div><!-- opcion_partido -->
 		</div><!-- partido -->
-	{{/ data.data.fixtures}}
+	{{/ data.fixtures}}

@@ -183,7 +183,6 @@ window.initializeEvents = function(){
 					event.preventDefault();
 					var data_login		= app.getFormData(form, 'object');
 					var login_response 	= apiRH.loginNative(data_login);
-
 					if(login_response){
 						apiRH.headers['Authorization'] = "Bearer "+login_response.jwtoken;
 						apiRH.save_user_data_clientside(login_response);
@@ -208,14 +207,14 @@ window.initializeEvents = function(){
 		} // END misQuinielas scope
 		
 
-		// if($('#lobbyContainer').length){
-		// 	console.log("Lobby container");
-		// 	setTimeout(function(){
+		if($('#lobbyContainer').length){
+		 	console.log("Lobby container");
+		 	setTimeout(function(){
 
 				/** Render header again to include filters component **/
 				// return app.render_header(true);
-			// }, 220);
-		// } // END misQuinielas scope
+			 }, 220);
+		} // END misQuinielas scope
 		
 		if($('#detailQuiniela').length){
 

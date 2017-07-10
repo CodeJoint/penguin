@@ -7,7 +7,7 @@
 			</div>
 			<div class="header_right clearfix">
 				<div class="header_user_info clearfix">
-					<div class="user_info clearfix">
+					<div class="user_info clearfix hook" data-resource="profile" href="profile.html">
 						{{^ me.avatar}}
 							<div class="avatar_container">
 								<img src="{{cordova_full_path}}images/profile_placeholder.png">
@@ -37,6 +37,12 @@
 						<img src="{{cordova_full_path}}images/filtros.png">
 					</div>
 				{{/ selected_lobby}}
+				{{# selected_profile}}
+					<div class="header_logout" id="logoutComponent">
+						<h4>Salir</h4>
+						<img src="{{cordova_full_path}}images/logout.png">
+					</div>
+				{{/ selected_profile}}
 			</div>
 		</div><!-- header -->
 	</div><!-- Loadheader -->

@@ -122,8 +122,6 @@
 		// deviceready Event Handler
 		onDeviceReady: function() {
 			app.receivedEvent('deviceready');
-			console.log("Device ready");
-			console.log(JSON.stringify(cordova.file));
 			window.cordova_full_path = (typeof(cordova) != 'undefined') 
 									 	? cordova.file.applicationDirectory+"www/"
 									 	: '';
@@ -156,12 +154,10 @@
 				backButtonElement.addEventListener("click", app.onBackButton, false);
 			return;
 
-			console.log(navigator.camera);
 		},
 		// deviceready Event Handler
 		onMobileInit: function() {
 			app.receivedEvent('mobileinit');
-			console.log("mobileinit");
 		},
 		// Update DOM on a Received Event
 		receivedEvent: function(id) {
@@ -225,8 +221,8 @@
 				var container_template = Handlebars.templates['container'];
 				var html 	 = container_template();
 				$('.rootContainer').html( html );
-				return (render_exoskeleton) ? app.render_exoskeleton() : null;
 			}
+			return (render_exoskeleton) ? app.render_exoskeleton() : null;
 		},
 		render_exoskeleton : function(){
 
@@ -239,9 +235,9 @@
 		},
 		render_header : function(filters){
 			console.log("Render header");
-			var extra_data = this.gatherEnvironment(null, null);
+			var extra_data = {};
 			extra_data.selected_lobby = (filters) ? true : false;
-			$('#theHeader').remove();
+			$('#theHeader').fadeOut('fast').remove();
 			return app.render_modal('header', extra_data, '#loadHeader');
 		},
 		render_register : function( url ){
@@ -280,7 +276,7 @@
 			return app.switchView('login', data, '.view', url, 'login');
 		},
 		render_lobby : function(url){
-
+			console.log("Rendering lobby");
 			if(!app.initialized) app.initialize();
 			setTimeout(function(){
 				app.showLoader();
@@ -289,8 +285,9 @@
 			var extra_data = apiRH.getRequest( 'pools/available.json', null );
 			app.data_temp = this.gatherEnvironment( extra_data, "Lobby" );
 			app.data_temp.selected_lobby = true;
+			console.log(app.data_temp);
 			setTimeout( function(data){
-				return app.switchView( 'lobby', app.data_temp, '#exoskeleton', url, 'quiniela-feed' );
+				return app.switchView( 'lobby', app.data_temp, '#exoskeleton', url, 'quiniela-feed', false, true, true );
 			}, 220);
 		},
 		render_myfeed : function(url){
@@ -372,7 +369,7 @@
 			var modalTemplate = Handlebars.templates[modalName];
 			$(appendTarget).animate({
 										opacity: 0
-									}, 200).append( modalTemplate(data) );
+									}, 120).append( modalTemplate(data) );
 
 			$(appendTarget).html( modalTemplate(data) ).css("display", "block")
 														 .animate(	{
@@ -450,16 +447,32 @@
 					if(window.firstTime)
 						window.firstTime = false;				
 					app.hideLoader();
-					if(initEvents) initializeEvents();
+					if(initEvents || typeof initEvents == 'undefined') 
+						initializeEvents();
 					$(window).resize();
 				}, 2000);
 
 			return setTimeout(function(){
 					if(window.firstTime)
 						window.firstTime = false;				
-					if(initEvents) initializeEvents();
+					if(initEvents || typeof initEvents == 'undefined') 
+						initializeEvents();
 					$(window).resize();
-				}, 2000);
+				}, 220);
+		},
+		appendView: function( newTemplate, data, targetSelector ){
+
+			var template = Handlebars.templates[newTemplate];
+			if(!template){
+				console.log("Template doesn't exist");
+				return false;
+			}
+			$(targetSelector).html( '<div style\'margin-top="2rem;"\'>'+template(data)+'</div>' )
+													 .css("display", "block")
+													 .animate(	{
+																	'margin-top': 0
+																}, 420, 'swing');
+			return setTimeout(function(){ }, 220);
 		},
 		showLoader: function(){
 			$('#spinner').show();

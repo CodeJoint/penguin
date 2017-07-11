@@ -1,57 +1,34 @@
-
+	
 	<div id="profileTabs" class="container clearfix">
-		{{> header}}
-
+		
 		<div class="content profile">
 			
 			<div class="tabs_quiniela clearfix">
 				<ul>
-					<li class="selected"><a class="hook" data-resource="profile-cards" href="profile.html">Tarjetas</a></li>
-					<li><a class="hook"  href="profile.html">Documentos</a></li>
-					<li><a class="hook" data-resource="profile-withraw" href="profile.html">Retirar fondos</a></li>
-					<li><a class="hook" data-resource="profile-history" href="profile.html">Historial</a></li>
-					<li><a class="hook" data-resource="profile-notifications" href="profile.html">Notificaciones</a></li>
+					<li><a class="hook" data-resource="profile-methods" href="profile.html?method=methods">Tarjetas</a></li>
+					<li><a class="hook" data-resource="profile-documents" href="profile.html?method=documents">Documentos</a></li>
+					<li class="selected"><a>Retirar fondos</a></li>
+					<li><a class="hook" data-resource="profile-history" href="profile.html?method=history">Historial</a></li>
+					<li><a class="hook" data-resource="profile-notifications" href="profile.html?method=notifications">Notificaciones</a></li>
 				</ul>
 			</div>
-			<div class="tab_profile radio_group tarjetas">
-				<ul>
-					<li class="clearfix">
-						<input type="radio" id="mastercard" name="tarjeta">
-						<label for="mastercard" ><img src="{{cordova_full_path}}images/mastercard.png"><span class="terminacion">1234</span></label>
-						
-						<div class="check"></div>
-						<div class="edit_tarjeta">
-							<a href=""><img src="{{cordova_full_path}}images/editar.png"></a>
-							<a href=""><img src="{{cordova_full_path}}images/eliminar.png"></a>
-						</div>							
-					</li>
-				</ul>
-				<a class="agregar_tarjeta" href=""><img src="{{cordova_full_path}}images/agregar_tarjeta.png"></a>
+			<div class="tab_profile profile withraw">
+
+				<p>Hola Pickwinero, para poder retirar fondos por favor danos la siguiente información.</p>
+
+				<p>Te recordamos que para poder retirar tus fondos tendrás que haber jugado al menos el 100% de lo que hayas depositado la última vez. Y los retiros sólo podrán hacerce cada 48 hrs.</p>
+
+				<p>Después de solicitar tu retiro, el equipo de Pickwin analizará tu petición y te informarán por correo electrónico el resultado de tu petición.</p>
+
+				<p>El monto mínimo para retirar saldo es de <strong>$100.00 MXN</strong></p>
+				<p>Tu balance <strong>${{ formatCurrency me.balanceReal}} MXN</strong></p>
+
 			</div>
-			<div class="agregartarjeta clearfix" style="display: none;">
-				<h3>AGREGAR TARJETA</h3>
-				<form>
-					<input type="text" placeholder="Nombre como aparece en la tarjeta">
-					<input type="text" placeholder="Número de tarjeta">
-					<div class="fecha_vencimiento clearfix">
-						<select>
-							<option>Mes</option>
-						</select>
-						<select>
-							<option>Año</option>
-						</select>
-						<input type="text" placeholder="CVV">
-					</div>
-					<div class="submit_holder">
-						<input type="submit" value="send">
-					</div>
-				</form>
-			</div>
+			
 			<div class="legales clearfix">
 				<a class="link_legal" onclick="window.open('https://www.pickwin.net/terminos-y-condiciones', '_blank', 'location=yes')" >Términos y condiciones | </a>
 				<a class="link_legal" onclick="window.open('https://www.pickwin.net/aviso-de-privacidad', '_blank', 'location=yes')" >Política de privacidad</a>
 			</div>
+
 		</div><!-- content -->
-		{{> footer}}
 	</div><!-- container -->
-	

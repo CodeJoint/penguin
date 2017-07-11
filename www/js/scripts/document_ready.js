@@ -10,7 +10,8 @@ window.initializeEvents = function(){
 	
 	jQuery(document).ready(function($) {
 
-		console.log("Initializing DocReady v1.2");
+		$('*').unbind();
+		console.log("DocReady scripts");
 		$('body').removeClass("preventEvents");
 		
 		window.initHooks = function(){
@@ -23,6 +24,8 @@ window.initializeEvents = function(){
 				/*** Register / Login ***/
 				if( $(this).data('resource') == "register" )
 					return app.render_register( $(this).attr('href') );
+				if( $(this).data('resource') == "forgot-password" )
+					return app.render_forgot_password( $(this).attr('href') );
 				if( $(this).data('resource') == "login" )
 					return app.render_login( $(this).attr('href') );
 
@@ -211,6 +214,39 @@ window.initializeEvents = function(){
 
 		} // END login_form scope
 
+		if($('#forgot_form').length){
+
+			window.init_scripts.push("login_validate");
+			$('#forgot_form').validate({
+				rules:{
+					email : { 
+								required: true,
+								email: true
+							}
+				},
+				messages:{
+					email : { 
+								required: "Es necesario que ingreses tu Email",
+								email: "Por favor ingresa un email válido"
+							}
+				},
+				submitHandler:function( form, event ){
+					event.preventDefault();
+					var data_user		= app.getFormData(form, 'object');
+					var pwd_response 	= apiRH.askNewPassword(data_user);
+					if(pwd_response){
+						console.log(pwd_response);
+						app.keeper.setItem("russian_bullet", pwd_response.token);
+						return app.render_password_sent('password-sent.html');
+					}else{
+						app.toast("Ocurrió un error, por favor revisa que tus datos sean correctos.")
+						return app.hideLoader();
+					}
+				}
+			});
+
+		} // END forgot_form scope
+
 		if($('#misQuinielas').length){
 
 			setTimeout(function(){
@@ -253,6 +289,7 @@ window.initializeEvents = function(){
 				/** Render header again to include filters component **/
 				app.render_header(true);
 
+				$('.footermenu ul li').removeClass('selected');
 		 		$('.menu_lobby').addClass('selected');
 
 		 		/*** FILTROS ***/
@@ -260,7 +297,6 @@ window.initializeEvents = function(){
 					if($('.filtros_wrapper').hasClass('filtros_show')){
 						$('.filtros_wrapper').removeClass('filtros_show');
 						$('.filtros_wrapper').fadeOut('fast');
-						console.log('success');
 					} else {
 						$('.filtros_wrapper').addClass('filtros_show');
 						$('.filtros_wrapper').fadeIn('fast');
@@ -273,10 +309,10 @@ window.initializeEvents = function(){
 					$(this).addClass('selected');
 					console.log(dataFilter);
 				});
-
 				
 				return; 
 			 }, 220);
+
 		} // END misQuinielas scope
 		
 		if($('#detailQuiniela').length){

@@ -31,6 +31,7 @@ function requestHandlerAPI(){
 
 	/*  Production API URL  */
 	window.api_base_url = "http://pickwin.astrata.mx/";
+	// window.api_base_url = "https://pickwin.net/";
 
 	/* Constructor */
 	this.construct = function(app_context){
@@ -67,6 +68,19 @@ function requestHandlerAPI(){
 			apiRH.keeper.setItem( 'token'	, response.jwtoken);
 			apiRH.keeper.setItem( 'mail'	, response.user.email);
 			apiRH.keeper.setItem( 'userId'	, response.user.id);
+			return response;
+		};
+
+		/**
+		 * Ask for a password regeneration
+		 * @param data_user JSON {email}
+		 * @return
+		 */
+		 this.askNewPassword =  function(data_user){
+
+			var response = this.makeRequest( 'api/users/recover.json', data_user, true, false );
+			if(!response)
+				return false;
 			return response;
 		};
 

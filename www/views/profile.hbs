@@ -1,7 +1,6 @@
-
+	
 	<div id="profileTabs" class="container clearfix">
-		{{> header}}
-
+	
 		<div class="content profile">
 			
 			<div class="tabs_quiniela clearfix">
@@ -15,20 +14,28 @@
 			</div>
 			<div class="tab_profile radio_group tarjetas">
 				<ul>
-					<li class="clearfix">
-						<input type="radio" id="mastercard" name="tarjeta">
-						<label for="mastercard" ><img src="{{cordova_full_path}}images/mastercard.png"><span class="terminacion">1234</span></label>
-						
-						<div class="check"></div>
-						<div class="edit_tarjeta">
-							<a href=""><img src="{{cordova_full_path}}images/editar.png"></a>
-							<a href=""><img src="{{cordova_full_path}}images/eliminar.png"></a>
-						</div>							
-					</li>
+					{{# data.cards}}
+						<li class="clearfix">
+							<input type="radio" id="mastercard" name="tarjeta" value="{{id}}">
+							<label for="mastercard" ><img src="{{cordova_full_path}}images/{{brand}}.png"><span class="terminacion">{{bank_name}} {{card_number}}</span></label>
+							
+							<div class="check"></div>
+							<div class="edit_tarjeta">
+								<a href=""><img src="{{cordova_full_path}}images/editar.png"></a>
+								<a href=""><img src="{{cordova_full_path}}images/eliminar.png"></a>
+							</div>							
+						</li>
+					{{/ data.cards}}
+
+					{{^ data.cards}}
+						<li class="clearfix">
+							<p>No se encontró ningún método de pago.</p>					
+						</li>
+					{{/ data.cards}}
 				</ul>
-				<a class="agregar_tarjeta" href=""><img src="{{cordova_full_path}}images/agregar_tarjeta.png"></a>
+				<a class="agregar_tarjeta" onclick="$('#addNewCard').fadeIn();"><img src="{{cordova_full_path}}images/agregar_tarjeta.png"></a>
 			</div>
-			<div class="agregartarjeta clearfix" style="display: none;">
+			<div id="addNewCard" class="agregartarjeta clearfix backed_modal" style="display: none;">
 				<h3>AGREGAR TARJETA</h3>
 				<form>
 					<input type="text" placeholder="Nombre como aparece en la tarjeta">
@@ -52,6 +59,4 @@
 				<a class="link_legal" onclick="window.open('https://www.pickwin.net/aviso-de-privacidad', '_blank', 'location=yes')" >Política de privacidad</a>
 			</div>
 		</div><!-- content -->
-		{{> footer}}
 	</div><!-- container -->
-	

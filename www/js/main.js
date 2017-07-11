@@ -243,6 +243,21 @@
 			});
 			return;
 		},
+		render_forgot_password : function( url ){
+			
+			if(!app.initialized) app.initialize();
+			setTimeout(function(){
+				app.showLoader();
+			}, 420);
+			app.check_or_renderContainer(false);
+			return app.switchView('forgot-password', null, '.view', url, 'registro');
+		},
+		render_password_sent : function( url ){
+			
+			if(!app.initialized) app.initialize();
+			app.check_or_renderContainer(false);
+			return app.switchView('password-link-sent', null, '.view', url, 'registro');
+		},
 		render_register : function( url ){
 			
 			if(!app.initialized) app.initialize();
@@ -353,12 +368,15 @@
 			}else if(tab == 'history'){
 				template = 'profile-history'
 				profile_title = 'Historial de transacciones';
+				extra_data = apiRH.getRequest('api/transactions/history.json?type=purchase', null);
 			}else if(tab == 'notifications'){
 				template = 'profile-notifications'
 				profile_title = 'Centro de notificaciones';
+				// extra_data = apiRH.getRequest('api/openpay_cards/index.json', null);
 			}else{
 				template = 'profile'
 				profile_title = 'Métodos de pago';
+				extra_data = apiRH.getRequest('api/openpay_cards/index.json', null);
 			}
 			app.data_temp = this.gatherEnvironment(extra_data, profile_title);
 			return app.switchView( template, app.data_temp, '#exoskeleton', url, 'user-profile '+tab );

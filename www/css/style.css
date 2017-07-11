@@ -664,3 +664,12 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 	.filtros .filtros_deporte ul li{width: 25%;}
 	
 	p.empty{}
+	.profile .legales,
+	.login .legales{ width: 100%; margin-top: 5%; text-align: center; position: absolute; bottom: 32px;}
+	.profile.withraw{}
+	.profile.withraw p>strong{ color: #90bd7e; font-weight: 300;}
+
+	.backed_modal{ display: block; }
+	.backed_modal::before{ content: ""; }
+
+	/* https://www.pickwin.net/users/reset_password/05763732b4adbc6cf2644124d0e91ed991fb741a1cd3f966b447bd1378f8a8a3 */

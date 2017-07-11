@@ -74,7 +74,7 @@
     "cordova-plugin-fullscreen": {
         "source": {
             "type": "registry",
-            "id": "cordova-plugin-fullscreen"
+            "id": "cordova-plugin-fullscreen@^1.1.0"
         },
         "is_top_level": true,
         "variables": {}
@@ -82,7 +82,7 @@
     "cordova-plugin-ios-longpress-fix": {
         "source": {
             "type": "registry",
-            "id": "cordova-plugin-ios-longpress-fix"
+            "id": "cordova-plugin-ios-longpress-fix@^1.1.0"
         },
         "is_top_level": true,
         "variables": {}
@@ -90,7 +90,7 @@
     "cordova-plugin-keyboard": {
         "source": {
             "type": "registry",
-            "id": "cordova-plugin-keyboard"
+            "id": "cordova-plugin-keyboard@^1.1.5"
         },
         "is_top_level": true,
         "variables": {}
@@ -98,7 +98,7 @@
     "onesignal-cordova-plugin": {
         "source": {
             "type": "registry",
-            "id": "onesignal-cordova-plugin"
+            "id": "onesignal-cordova-plugin@^2.1.2"
         },
         "is_top_level": true,
         "variables": {}

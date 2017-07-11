@@ -1,0 +1,38 @@
+
+	<div id="profileTabs" class="container clearfix">
+		{{> header}}
+
+		<div class="content profile">
+			
+			<div class="tabs_quiniela clearfix">
+				<ul>
+					<li><a class="hook" data-resource="profile-methods" href="profile.html">Tarjetas</a></li>
+					<li class="selected"><a>Documentos</a></li>
+					<li><a class="hook" data-resource="profile-withraw" href="profile.html?method=history">Retirar fondos</a></li>
+					<li><a class="hook" data-resource="profile-history" href="profile.html?method=history">Historial</a></li>
+					<li><a class="hook" data-resource="profile-notifications" href="profile.html?method=notifications">Notificaciones</a></li>
+				</ul>
+			</div>
+			<div class="tab_profile documents list">
+				<ul>
+					{{# data.documents}}
+						<li class="clearfix">
+							{{type}}: <a onclick="window.open('{{public_url}}', '_blank', 'location=yes')" href="{{public_url}}">{{type}}</a>					
+						</li>
+					{{/ data.documents}}
+					{{^ data.documents}}
+						<li class="clearfix">
+							<p class="empty">No tienes documentos guardados</p>				
+						</li>
+					{{/ data.documents}}
+				</ul>
+			</div>
+			
+			<div class="legales clearfix">
+				<a class="link_legal" onclick="window.open('https://www.pickwin.net/terminos-y-condiciones', '_blank', 'location=yes')" >Términos y condiciones | </a>
+				<a class="link_legal" onclick="window.open('https://www.pickwin.net/aviso-de-privacidad', '_blank', 'location=yes')" >Política de privacidad</a>
+			</div>
+		</div><!-- content -->
+		{{> footer}}
+	</div><!-- container -->
+	

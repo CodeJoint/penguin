@@ -27,7 +27,7 @@ window.initializeEvents = function(){
 					return app.render_login( $(this).attr('href') );
 
 				if( $(this).data('resource') == "lobby" )
-					return app.render_lobby( $(this).attr('href') );
+					return app.render_lobby( $(this).attr('href'), false );
 				if( $(this).data('resource') == "privates" )
 					return app.render_private_games( $(this).attr('href') );
 				if( $(this).data('resource') == "privates-create" )
@@ -40,10 +40,20 @@ window.initializeEvents = function(){
 					return app.render_detail( $(this).attr('href'), $(this).data('object') );
 				
 				/*** User ***/
-				if( $(this).data('resource') == "profile" )
+				if( $(this).data('resource') == "profile-methods" )
 					return app.render_profile( $(this).attr('href') );
+				if( $(this).data('resource') == "profile-documents" )
+					return app.render_profile( $(this).attr('href'), 'documents' );
+				if( $(this).data('resource') == "profile-withraw" )
+					return app.render_profile( $(this).attr('href'), 'withraw' );
+				if( $(this).data('resource') == "profile-history" )
+					return app.render_profile( $(this).attr('href'), 'history' );
+				if( $(this).data('resource') == "profile-notifications" )
+					return app.render_profile( $(this).attr('href'), 'notifications' );
 				if( $(this).data('resource') == "deposit" )
 					return app.render_add_funds( $(this).attr('href') );
+				if( $(this).data('resource') == "deposit-stores" )
+					return app.render_add_funds_store( $(this).attr('href') );
 				
 				e.stopPropagation();
 			});
@@ -309,6 +319,19 @@ window.initializeEvents = function(){
 			$('.menu li').removeClass('selected');
 			$('.menu_privadas').addClass('selected');
 		} // END detailQuiniela scope
+	
+
+		if($('#depositStores').length){
+
+			$('.menu li').removeClass('selected');
+			$('.menu_abonar').addClass('selected');
+		} // END depositStores scope
+		
+		if($('#depositCard').length){
+
+			$('.menu li').removeClass('selected');
+			$('.menu_abonar').addClass('selected');
+		} // END depositCard scope
 
 		var ventana = $(window).height();
 

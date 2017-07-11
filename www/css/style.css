@@ -506,6 +506,23 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 .tabs_quiniela ul li.selected {background: #598D16;}
 .tabs_quiniela ul li a {text-decoration: none; color: #fff;}
 
+.radio_group {width: 100%; background: #000; padding: 10px; text-align: center;}
+.radio_group ul {margin: 20px 0 20px 0; padding: 0px; list-style: none;}
+.radio_group ul li {display: block; margin-bottom: 10px; width: 100%; position: relative;}
+.radio_group ul li input {float: left; margin-right: 10px;}
+.radio_group ul li img {float: left; margin-left: 35px; z-index: -100;}
+.radio_group ul li span.terminacion {font-size: 12px; display: block; padding: 10px; float: left; }
+.radio_group ul li .edit_tarjeta {float: right;}
+.radio_group ul li .edit_tarjeta img {float: left; margin-left: 10px;}
+.radio_group .agregar_tarjeta {text-align: center;}
+.radio_group ul li .check {display: block; position: absolute; border: 5px solid #AAAAAA; border-radius: 100%; height: 25px; width: 25px; top: 0px; left: 0px; z-index: 8; transition: border .25s linear; -webkit-transition: border .25s linear;}
+.radio_group ul li .check::before { display: block; position: absolute; content: ''; border-radius: 100%; height: 10.5px; width: 10.5px; top: 2px; left: 2px; margin: auto; transition: background 0.25s linear; -webkit-transition: background 0.25s linear; }
+.radio_group ul li input[type=radio] {position: absolute;visibility: hidden;}
+.radio_group ul li input[type=radio]:checked ~ .check { border: 5px solid #0DFF92;}
+.radio_group ul li input[type=radio]:checked ~ .check::before{ background: #0DFF92;}
+.radio_group ul li label{display: inline-block; width: 84%; height: 2rem; position: relative; font-weight: 300; font-size: 1.35em; padding: 2px 2px 2px 8px; margin: 0 auto 0 -2rem; z-index: 9; cursor: pointer; -webkit-transition: all 0.25s linear;}
+
+
 .profile .tab_profile {width: 100%; background: #000; padding: 10px; text-align: center;}
 .profile .tab_profile ul {margin: 20px 0 20px 0; padding: 0px; list-style: none;}
 .profile .tab_profile ul li {display: block; margin-bottom: 10px; width: 100%;}
@@ -635,9 +652,15 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 	.exoskeleton{ display: block; min-height: 100vh; width: 100%; top: 0; }
 	.quiniela_header .quiniela_iconos img{ margin-right: 2.5px;}
 	.quiniela_single{}
+	.profile .tab_profile ul li label{display: inline-block; width: 84%; height: 2rem;}
 	
 	/* LOg out button */
 	.header .header_logout {width: 20%; float: right; text-align: center;}
 	.header .header_logout h4 {font-weight: 700; font-size: 12px; color: #8A8A8D; margin-bottom: 30%; margin-top: 5%;}
 	.header .header_logout img {width: 40%}
 	.header .header_right .header_user_info .user_info h2>a{color: #FFF!important; text-decoration: none!important;}
+
+	/*Filters */
+	.filtros .filtros_deporte ul li{width: 25%;}
+	
+	p.empty{}

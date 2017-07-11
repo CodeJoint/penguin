@@ -74,12 +74,12 @@
 			});
 			Handlebars.registerHelper('formatCurrency', function(value) {
 				value = (value/100).toFixed(2);
-			    return value.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+				return value.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
 			});
 			Handlebars.registerHelper('formatDate', function(value) {
 				var date = Date.parse(value);
 				moment.locale('es');
-			    return moment(value).format('lll');
+				return moment(value).format('lll');
 			});
 		},
 		registerTemplate : function(name) {
@@ -106,25 +106,25 @@
 		},
 		onBackButton: function(){
 			var userAgent = navigator.userAgent || navigator.vendor || window.opera;
-		    if (userAgent.match(/iPad/i) || userAgent.match(/iPhone/i) || userAgent.match(/iPod/i)) {
-		        // IOS DEVICE
-		        history.go(-1);
-		    } else if (userAgent.match(/Android/i)) {
-		        // ANDROID DEVICE
-		        navigator.app.backHistory();
-		    } else {
-		        // EVERY OTHER DEVICE
-		        history.go(-1);
-		    }
-		    console.log("Back");
+			if (userAgent.match(/iPad/i) || userAgent.match(/iPhone/i) || userAgent.match(/iPod/i)) {
+				// IOS DEVICE
+				history.go(-1);
+			} else if (userAgent.match(/Android/i)) {
+				// ANDROID DEVICE
+				navigator.app.backHistory();
+			} else {
+				// EVERY OTHER DEVICE
+				history.go(-1);
+			}
+			console.log("Back");
 		},
 
 		// deviceready Event Handler
 		onDeviceReady: function() {
 			app.receivedEvent('deviceready');
 			window.cordova_full_path = (typeof(cordova) != 'undefined') 
-									 	? cordova.file.applicationDirectory+"www/"
-									 	: '';
+										? cordova.file.applicationDirectory+"www/"
+										: '';
 			// window.cordova_full_path = '';
 			console.log(window.cordova_full_path);
 			/*   ___    _         _   _     
@@ -278,13 +278,14 @@
 			data.is_scrollable = false;
 			return app.switchView('login', data, '.view', url, 'login');
 		},
-		render_lobby : function(url){
+		render_lobby : function(url, reloadExoskeleton){
 			console.log("Rendering lobby");
 			if(!app.initialized) app.initialize();
 			setTimeout(function(){
 				app.showLoader();
 			}, 420);
-			app.check_or_renderContainer(true);
+			var reload = (reloadExoskeleton || typeof reloadExoskeleton == 'undefined') ? true : false;
+			app.check_or_renderContainer(reload);
 			var extra_data = apiRH.getRequest( 'pools/available.json', null );
 			app.data_temp = this.gatherEnvironment( extra_data, "Lobby" );
 			app.data_temp.selected_lobby = true;
@@ -330,16 +331,37 @@
 				return app.render_partial('quiniela-games', app.data_temp, '#insertPartidos');
 			}, 220);
 		},
-		render_profile : function(url){
+		render_profile : function(url, tab){
 
 			if(!app.initialized) app.initialize();
 			setTimeout(function(){
 				app.showLoader();
 			}, 420);
 			app.check_or_renderContainer();
+			var extra_data = null;
+			var profile_title = '';
 			app.data_temp = this.gatherEnvironment(null, "Perfil de usuario");
 			app.data_temp.selected_profile = true;
-			return app.switchView('profile', app.data_temp, '#exoskeleton', url, 'user-profile');
+			var template = '';
+			if(tab == 'documents'){
+				template = 'profile-documents';
+				profile_title = 'Mis documentos';
+				extra_data = apiRH.getRequest('api/documents/index.json', null);
+			}else if(tab == 'withraw'){
+				template = 'profile-withraw'
+				profile_title = 'Retirar fondos';
+			}else if(tab == 'history'){
+				template = 'profile-history'
+				profile_title = 'Historial de transacciones';
+			}else if(tab == 'notifications'){
+				template = 'profile-notifications'
+				profile_title = 'Centro de notificaciones';
+			}else{
+				template = 'profile'
+				profile_title = 'Métodos de pago';
+			}
+			app.data_temp = this.gatherEnvironment(extra_data, profile_title);
+			return app.switchView( template, app.data_temp, '#exoskeleton', url, 'user-profile '+tab );
 		},
 		render_add_funds : function(url){
 
@@ -350,7 +372,18 @@
 			app.check_or_renderContainer();
 			app.data_temp = this.gatherEnvironment(null, "Agregar fondos a tu cuenta");
 			app.data_temp.selected_deposit = true;
-			return app.switchView('register-success', app.data_temp, '#exoskeleton', url, 'registro exitoso');
+			return app.switchView('deposit', app.data_temp, '#exoskeleton', url, 'deposit');
+		},
+		render_add_funds_store : function(url){
+
+			if(!app.initialized) app.initialize();
+			setTimeout(function(){
+				app.showLoader();
+			}, 420);
+			app.check_or_renderContainer();
+			app.data_temp = this.gatherEnvironment(null, "Agregar fondos a tu cuenta");
+			app.data_temp.selected_deposit = true;
+			return app.switchView('deposit-stores', app.data_temp, '#exoskeleton', url, 'deposit stores');
 		},
 		render_private_games : function(url){
 
@@ -393,20 +426,20 @@
 
 			Pickwin.filter('rangeFilter', function(){
 			  return function(items, rangeInfo) {
-			    if( rangeInfo === undefined || rangeInfo == null || rangeInfo === '') {
-			      return items;
-			    }
-			    var filtered = [];
-			    var ranges = rangeInfo.split(';');
-			    var currency = ranges[0];
-			    var min      = parseInt(ranges[1]) * 100;
-			    var max      = parseInt(ranges[2]) * 100;
-			    angular.forEach(items, function(item) {
-			      if ( currency == item.entry_currency && item.entry_fee >= min && item.entry_fee <= max ) {
-			        filtered.push(item);
-			      }
-			    });
-			    return filtered;
+				if( rangeInfo === undefined || rangeInfo == null || rangeInfo === '') {
+				  return items;
+				}
+				var filtered = [];
+				var ranges = rangeInfo.split(';');
+				var currency = ranges[0];
+				var min      = parseInt(ranges[1]) * 100;
+				var max      = parseInt(ranges[2]) * 100;
+				angular.forEach(items, function(item) {
+				  if ( currency == item.entry_currency && item.entry_fee >= min && item.entry_fee <= max ) {
+					filtered.push(item);
+				  }
+				});
+				return filtered;
 			  };
 			});
 		},

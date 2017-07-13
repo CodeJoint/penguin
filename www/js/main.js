@@ -308,6 +308,19 @@
 				return app.switchView( 'lobby', app.data_temp, '#exoskeleton', url, 'quiniela-feed', false, true, true );
 			}, 220);
 		},
+		render_myfeed_sidebar : function(url){
+	
+			var extra_data = apiRH.getRequest('api/users/pools.json', null);
+			var data = this.gatherEnvironment(extra_data, "My Lobby");
+			var template = Handlebars.templates['my-lobby'];
+			if(!template){
+				console.log("Template doesn't exist");
+				return false;
+			}
+			$('#misQuinielas').html( template(data) ).css({ "opacity": 0, "display": "block"})
+													 .animate(	{ opacity: 1 }, 220);
+			return;
+		},
 		render_myfeed : function(url){
 	
 			var extra_data = apiRH.getRequest('api/users/pools.json', null);

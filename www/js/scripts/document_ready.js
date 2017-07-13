@@ -18,7 +18,7 @@ window.initializeEvents = function(){
 
 			/* Hook soft links */
 			$('.hook').on('click', function(e){
-				console.log("Hook click");
+
 				e.preventDefault();
 				app.showLoader();
 				/*** Register / Login ***/
@@ -36,6 +36,7 @@ window.initializeEvents = function(){
 				if( $(this).data('resource') == "privates-create" )
 					return app.render_create_private( $(this).attr('href') );
 				if( $(this).data('resource') == "my_lobby" ){
+					/** check if sidebar is present or reroute otherwise **/
 					$('#misQuinielas').trigger('click');
 					return app.hideLoader();
 				}
@@ -150,9 +151,9 @@ window.initializeEvents = function(){
 					nickname 	: "Por favor elige un nombre de usuario",
 					email 		: "Es necesario que especifiques un correo elecrónico",
 					password 	: "Por favor ingresa tu contraseña",
-					repeat_password :{
-						required: "Por favor repite tu contraseña",
-						equalTo: "Las contraseñas no coinciden"
+					repeat_password : {
+								required : "Por favor repite tu contraseña",
+								equalTo  : "Las contraseñas no coinciden"
 					},
 					accept_terms: "Debes aceptar nuestros términos para continuar",
 					is_M18		: "Debes ser mayor de edad para continuar"
@@ -221,13 +222,13 @@ window.initializeEvents = function(){
 				rules:{
 					email : { 
 								required: true,
-								email: true
+								email 	: true
 							}
 				},
 				messages:{
 					email : { 
 								required: "Es necesario que ingreses tu Email",
-								email: "Por favor ingresa un email válido"
+								email 	: "Por favor ingresa un email válido"
 							}
 				},
 				submitHandler:function( form, event ){
@@ -236,6 +237,7 @@ window.initializeEvents = function(){
 					var pwd_response 	= apiRH.askNewPassword(data_user);
 					if(pwd_response){
 						console.log(pwd_response);
+						/** Keeping russian bullet token, do not keep in production **/
 						app.keeper.setItem("russian_bullet", pwd_response.token);
 						return app.render_password_sent('password-sent.html');
 					}else{
@@ -250,7 +252,7 @@ window.initializeEvents = function(){
 		if($('#misQuinielas').length){
 
 			setTimeout(function(){
-				return app.render_myfeed();
+				return app.render_myfeed_sidebar();
 
 				var positiveMargin = false;
 				$('.misquinielas').on('click', function(){

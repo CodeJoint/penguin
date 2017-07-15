@@ -57,6 +57,14 @@
 		initPushNotifications: function() {
 			//
 		},
+		initPaymentAPI: function() {
+			/** Sandbox values **/
+			OpenPay.setId('mqfki2pbqpbve54kabor');
+			​OpenPay.setApiKey('pk_f548ab805b93403b91009278e32e3fd4');
+			/** Production values **/
+			// OpenPay.setId('myabfqccohuj4kszwr7y');
+			// ​OpenPay.setApiKey('pk_e78ceae59eaf42f68c2dba4cbd147265');
+		},
 		registerHelpers : function() {
 			Handlebars.registerHelper('if_eq', function(a, b, opts) {
 				if (a == b) {
@@ -127,19 +135,14 @@
 										: '';
 			// window.cordova_full_path = '';
 			console.log(window.cordova_full_path);
-			/*   ___    _         _   _     
-			*  / _ \  / \  _   _| |_| |__  
-			* | | | |/ _ \| | | | __| '_ \ 
-			* | |_| / ___ \ |_| | |_| | | |
-			*  \___/_/   \_\__,_|\__|_| |_|
-			*/
+			
 			try{
-				// OAuth.initialize('7-ipR3QS-__wrorRTpdedM8-_v8');
-				console.log("Initialized Oauth");
+				app.initPaymentAPI();
+				console.log("Initialized Payment gateway");
 			}
 			catch(err){
-				app.toast("Oauth error ocurred");
-				console.log('OAuth initialize error: ' + err);
+				app.toast("OpenPay error ocurred");
+				console.log('OpenPay initialize error: ' + err);
 			}
 
 			try{

@@ -6,27 +6,21 @@
 			<div class="tabs_quiniela clearfix">
 				<ul>
 					<li><a class="hook" data-resource="profile-cards" href="profile.html">Tarjetas</a></li>
-					<li><a class="hook" data-resource="profile-documents"  href="profile.html">Documentos</a></li>
-					<li><a class="hook" data-resource="profile-withraw" href="profile.html">Retirar fondos</a></li>
+					<li><a class="hook" data-resource="profile-documents"  href="profile.html?method=documents">Documentos</a></li>
+					<li><a class="hook" data-resource="profile-withraw" href="profile.html?method=withraw">Retirar fondos</a></li>
 					<li class="selected"><a>Historial</a></li>
-					<li><a class="hook" data-resource="profile-notifications" href="profile.html">Notificaciones</a></li>
+					<li><a class="hook" data-resource="profile-notifications" href="profile.html?method=notifications">Notificaciones</a></li>
 				</ul>
 			</div>
 			<div class="tab_profile transactions">
 				<h3>{{header_title}}</h3>
 				<ul>
-					{{# transactions}}
+					{{# data.transactions}}
 						<li class="clearfix">
-							<input type="radio" id="mastercard" name="tarjeta">
-							<label for="mastercard" ><img src="{{cordova_full_path}}images/mastercard.png"><span class="terminacion">1234</span></label>
-							
-							<div class="check"></div>
-							<div class="edit_tarjeta">
-								<a href=""><img src="{{cordova_full_path}}images/editar.png"></a>
-								<a href=""><img src="{{cordova_full_path}}images/eliminar.png"></a>
-							</div>							
+							<label for="" ></label>
+												
 						</li>
-					{{/ transactions}}
+					{{/ data.transactions}}
 				</ul>
 				<a class="agregar_tarjeta" href=""><img src="{{cordova_full_path}}images/agregar_tarjeta.png"></a>
 			</div>

@@ -32,7 +32,7 @@ window.initializeEvents = function(){
 				if( $(this).data('resource') == "lobby" )
 					return app.render_lobby( $(this).attr('href'), false );
 				if( $(this).data('resource') == "privates" )
-					return app.render_private_games( $(this).attr('href') );
+					return app.render_private_search( $(this).attr('href') );
 				if( $(this).data('resource') == "privates-create" )
 					return app.render_create_private( $(this).attr('href') );
 				if( $(this).data('resource') == "my_lobby" ){
@@ -183,6 +183,10 @@ window.initializeEvents = function(){
 
 		} // END register_form
 
+		if($('#registerSuccess').length){
+			console.log("Register success");
+		} // END registerSuccess
+
 		if($('#login_form').length){
 
 			window.init_scripts.push("login_validate");
@@ -215,8 +219,7 @@ window.initializeEvents = function(){
 
 			$('#fb_login').on('click', function(e) {
 		    	e.preventDefault();
-		    	console.log('login pushed');
-		    	apiRH.FBOauth();
+		    	return apiRH.FBOauth();
 		    });
 
 		} // END login_form scope

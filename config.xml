@@ -13,6 +13,7 @@
     <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
+    <allow-intent href="*localhost:8001*" />
     <allow-intent href="https://*/*" />
     <allow-intent href="tel:*" />
     <allow-intent href="sms:*" />
@@ -22,6 +23,7 @@
     <access origin="https://*.googleapis.com" />
     <access origin="https://*.gstatic.com" />
     <access origin="https://*/*" />
+    <access origin="*localhost:8080*" />
     <access origin="https://pickwin.net/*" />
     <access origin="http://pickwin.astrata.mx/*" />
     <access origin="*://*.googleapis.com/*" />
@@ -78,6 +80,10 @@
     <engine name="ios" spec="^4.4.0" />
     <plugin name="cordova-plugin-console" spec="~1.0.5" />
     <plugin name="cordova-plugin-device" spec="^1.1.6" />
+    <plugin name="cordova-plugin-facebook4" spec="^1.9.1">
+        <variable name="APP_ID" value="973176056074364" />
+        <variable name="APP_NAME" value="Pickwin" />
+    </plugin>
     <plugin name="cordova-plugin-file" spec="^4.3.3" />
     <plugin name="cordova-plugin-file-transfer" spec="^1.6.3" />
     <plugin name="cordova-plugin-fullscreen" spec="^1.1.0" />

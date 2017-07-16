@@ -55,12 +55,12 @@
 			/*-------------------- Code below this line won't run ------------------------*/
 		},
 		initPushNotifications: function() {
-		
+			console.log("Initializing OneSignal");
 			var notificationOpenedCallback = function(jsonData) {
 				console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
 			};
-
-			window.plugins.OneSignal
+			OneSignal.setLogLevel(OneSignal.LOG_LEVEL.DEBUG, OneSignal.LOG_LEVEL.DEBUG);
+			OneSignal
 				.startInit("4606a8d5-be35-4d82-9043-7cdbb86875cf")
 				.handleNotificationOpened(notificationOpenedCallback)
 				.endInit();
@@ -286,8 +286,7 @@
 				app.showLoader();
 			}, 420);
 			app.check_or_renderContainer(false);
-			var data = this.gatherEnvironment(null, "¡REGISTRO EXITOSO!");
-			// data.is_scrollable = false;
+			var data = this.gatherEnvironment(null, "¡REGISTRO COMPLETO!");
 			return app.switchView('register-success', data, '.view', url, 'registro exitoso');
 		},
 		render_login : function(url){
@@ -298,12 +297,11 @@
 			}, 420);
 			app.check_or_renderContainer(false);
 			var data = this.gatherEnvironment();
-			data.is_scrollable = false;
 			return app.switchView('login', data, '.view', url, 'login');
 		},
 		render_lobby : function(url, reloadExoskeleton){
 
-			if(!app.initialized) app.initialize();
+			if(!app.initialized || !_user) app.initialize();
 			setTimeout(function(){
 				app.showLoader();
 			}, 420);
@@ -424,7 +422,7 @@
 			app.data_temp.selected_deposit = true;
 			return app.switchView('deposit-stores', app.data_temp, '#exoskeleton', url, 'deposit stores');
 		},
-		render_private_games : function(url){
+		render_private_search : function(url){
 
 			if(!app.initialized) app.initialize();
 			setTimeout(function(){

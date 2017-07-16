@@ -99,7 +99,7 @@ function requestHandlerAPI(){
 			var email 		= data_user.email;
 			var pass 		= data_user.password;
 			var cPass		= data_user.repeat_password;
-
+			console.log(data_user);
 			var data =  {
 							'fingerprint' 	: window.fingerprint ? window.fingerprint.hash : '',
 							'name' 			: data_user.name,
@@ -115,13 +115,18 @@ function requestHandlerAPI(){
 
 			var response = this.makeRequest('api/users/register.json', data, true, false);
 			console.log(response);
+			if(!response.success){
+				if(response.errors.nick)
+					return app.toast(response.errors.nick.unique);
+				return app.toast("Error :: ");
+			}
+			
 			this.token = response.jwtoken;
 			this.keeper.setItem('request_token', this.token);
 			this.keeper.setItem('token'	, response.jwtoken);
 			this.keeper.setItem('mail'	, response.user.email);
 			this.keeper.setItem('userId', response.user.id);
-
-			return (this.token) ? response : false;
+			return response;
 		};
 
 		/**
@@ -137,7 +142,11 @@ function requestHandlerAPI(){
 				data_login.user.balancePcReal = data_login.balancePcReal;
 				data_login.user.balanceReal = data_login.balanceReal;
 				app.keeper.setItem('Auth', "Bearer "+data_login.jwtoken);
-				window.plugins.OneSignal.syncHashedEmail(data_login.user.email);
+				try{
+					OneSignal.syncHashedEmail(data_login.user.email);
+				}catch(e){
+					console.log(e);
+				}
 				return app.keeper.setItem('user', JSON.stringify(data_login.user));
 			}
 		};
@@ -369,7 +378,7 @@ function requestHandlerAPI(){
 		 * Perform OAuth authentication 
 		 * @see facebookConnectPlugin
 		 */
-		this.doFBLogin = function() {
+		this.FBOauth = function() {
 	    	window.facebookConnectPlugin.login(['email', 'public_profile'], apiRH.handleFBLoginSuccess, apiRH.handleFBError);
 	    },
 

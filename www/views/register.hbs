@@ -1,6 +1,5 @@
 <div class="container registro">
 	<div class="content">
-		<h1>{{header_title}}</h1>
 		<div class="splash_logo">
 			<img src="{{cordova_full_path}}images/tuprimeravez.svg">
 			<p>Regístrate y te regalamos la entrada  a las quinielas 'Tu Primera Vez',  además te regalamos 100 Pickcoins  para que comiences a jugar.</p>
@@ -10,7 +9,6 @@
 		</a> -->
 		<div class="form">
 			<form id="register_form" method="POST" action="">
-				<h3>o</h3>
 				<input type="text" name="name" placeholder="Nombre *" value="">
 				<input type="text" name="last_name" placeholder="Apellido *" value="">
 				<input type="text" name="nickname" placeholder="Apodo *" value="">
@@ -31,7 +29,11 @@
 				</div>
 				<input class="submit_green" type="submit" value="Crear cuenta">
 			</form>
-			<p class="legales">Pickwin es una plataforma de entretenimiento de juegos de habilidad, <br/>no es un sitio de apuestas.</p>
+			<div class="legales clearfix">
+				<a class="link_legal" onclick="window.open('https://www.pickwin.net/terminos-y-condiciones', '_blank', 'location=yes')" >Términos y condiciones | </a>
+				<a class="link_legal" onclick="window.open('https://www.pickwin.net/aviso-de-privacidad', '_blank', 'location=yes')" >Política de privacidad</a>
+				<p>Pickwin es una plataforma de entretenimiento de juegos de habilidad, <br/>no es un sitio de apuestas.</p>
+			</div>
 		</div>
 	</div>
 </div>

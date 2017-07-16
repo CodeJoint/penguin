@@ -55,15 +55,26 @@
 			/*-------------------- Code below this line won't run ------------------------*/
 		},
 		initPushNotifications: function() {
-			//
+		
+			var notificationOpenedCallback = function(jsonData) {
+				console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
+			};
+
+			window.plugins.OneSignal
+				.startInit("4606a8d5-be35-4d82-9043-7cdbb86875cf")
+				.handleNotificationOpened(notificationOpenedCallback)
+				.endInit();
 		},
 		initPaymentAPI: function() {
 			/** Sandbox values **/
 			OpenPay.setId('mqfki2pbqpbve54kabor');
-			​OpenPay.setApiKey('pk_f548ab805b93403b91009278e32e3fd4');
+			OpenPay.setApiKey('pk_f548ab805b93403b91009278e32e3fd4');
 			/** Production values **/
 			// OpenPay.setId('myabfqccohuj4kszwr7y');
-			// ​OpenPay.setApiKey('pk_e78ceae59eaf42f68c2dba4cbd147265');
+			// OpenPay.setApiKey('pk_e78ceae59eaf42f68c2dba4cbd147265');
+			if(typeof OpenPay.deviceData !== 'undefined' && apiRH )
+				apiRH.deviceSessionId = OpenPay.deviceData.setup();
+			OpenPay.setSandboxMode(true);
 		},
 		registerHelpers : function() {
 			Handlebars.registerHelper('if_eq', function(a, b, opts) {
@@ -131,7 +142,7 @@
 		onDeviceReady: function() {
 			app.receivedEvent('deviceready');
 			window.cordova_full_path = (typeof(cordova) != 'undefined') 
-										? cordova.file.applicationDirectory+"www/"
+										? cordova.file.applicationDirectory
 										: '';
 			// window.cordova_full_path = '';
 			console.log(window.cordova_full_path);
@@ -151,7 +162,9 @@
 			catch(err){
 				app.toast("Push notifications error: "+JSON.stringify(err));
 			}
-
+			
+			apiRH.checkFBStatus();
+			
 			var backButtonElement = document.getElementById("backBtn");
 			if(backButtonElement)
 				backButtonElement.addEventListener("click", app.onBackButton, false);
@@ -230,14 +243,12 @@
 		render_exoskeleton : function(){
 
 			if( typeof window.has_exo == 'undefined' ){
-				console.log("rendering exoskeleton");
 				var data = this.gatherEnvironment(null, null);
 				window.has_exo;
 				return app.switchView('exoskeleton', data, '.view', null, '', true, true, false);
 			}
 		},
 		render_header : function(filters){
-			console.log("Render header");
 			var extra_data = this.gatherEnvironment(null, "Registro");
 			extra_data.selected_lobby = (filters) ? true : false;
 			app.render_partial('header', extra_data, '#loadHeader');
@@ -264,14 +275,8 @@
 		render_register : function( url ){
 			
 			if(!app.initialized) app.initialize();
-			setTimeout(function(){
-				app.showLoader();
-			}, 420);
 			app.check_or_renderContainer(false);
-			console.log("Rendering Register");
-
 			app.data_temp = this.gatherEnvironment(null, "Registro");
-			console.log(app.data_temp);
 			return app.switchView('register', app.data_temp, '.view', url, 'registro');
 		},
 		render_register_success : function( url ){
@@ -297,7 +302,7 @@
 			return app.switchView('login', data, '.view', url, 'login');
 		},
 		render_lobby : function(url, reloadExoskeleton){
-			console.log("Rendering lobby");
+
 			if(!app.initialized) app.initialize();
 			setTimeout(function(){
 				app.showLoader();
@@ -421,7 +426,6 @@
 		},
 		render_private_games : function(url){
 
-			console.log("Rendering private games");
 			if(!app.initialized) app.initialize();
 			setTimeout(function(){
 				app.showLoader();

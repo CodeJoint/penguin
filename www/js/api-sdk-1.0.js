@@ -9,6 +9,7 @@ function requestHandlerAPI(){
 	this.version = "1.3";
 	this.app_build = "1.3.2";
 	this.device_model = (typeof device != 'undefined') ? device.model : 'not set';
+	this.deviceSessionId = null;
 	this.device_platform = (typeof device != 'undefined') ? device.platform : 'not set';
 	this.device_platform_version = (typeof device != 'undefined') ? device.version : 'not set';
 	this.device_info = {
@@ -113,7 +114,7 @@ function requestHandlerAPI(){
 						};
 
 			var response = this.makeRequest('api/users/register.json', data, true, false);
-			
+			console.log(response);
 			this.token = response.jwtoken;
 			this.keeper.setItem('request_token', this.token);
 			this.keeper.setItem('token'	, response.jwtoken);
@@ -123,63 +124,10 @@ function requestHandlerAPI(){
 			return (this.token) ? response : false;
 		};
 
-
 		/**
-		 * Update user profile
-		 * @param Object data
-		 * @return Object / Boolean
-		 */
-		this.updatePerfil = function(data){
-			var req = {
-				data : data
-			};
-			var response = this.patchRequest( 'tables/cliente/' + app.keeper.getItem('userId'), req);
-			return (response) ? response : false;
-		};
-		
-
-		//Conekta
-		this.makePayment = function(token){
-
-			var data = {
-					'cliente' : apiRH.keeper.getItem('userId'),
-					'card_token' : token
-				};
-			var response = this.makeRequest('api/history', data);
-
-			return (response.code == "active_subscription") ? true : false;
-
-		};
-		
-		/**
-		 * Fetch user information from api
-		 * @return JSON encoded object or false if api responds badly
-		 */
-		this.getInfoUser = function(){
-			var thing = apiRH.keeper.getItem('userId');
-			var user = this.getRequest('tables/cliente?_id=' + thing, null);
-			this.save_user_data_clientside(user);
-			return ( user && typeof(user) != 'undefined') ? user : false;
-		};
-
-		/**
-		 * Update user settings
-		 * @return Boolean response
-		 */
-		this.updateUserSetting = function(data){
-			var _data = {};
-
-			var response = this.makeRequest('tables/cliente/' + data._id, _data);
-
-			console.log(response);  //llega aqui con la respuesta del servidor
-
-			return (response) ? response : false;
-		};
-
-
-		/* 
 		 * Save /Update user data client side to execute auth requests to the API
 		 * @return null
+		 * @see OneSignal.syncHashedEmail
 		 */
 		this.save_user_data_clientside = function(data_login){
 			
@@ -189,6 +137,7 @@ function requestHandlerAPI(){
 				data_login.user.balancePcReal = data_login.balancePcReal;
 				data_login.user.balanceReal = data_login.balanceReal;
 				app.keeper.setItem('Auth', "Bearer "+data_login.jwtoken);
+				window.plugins.OneSignal.syncHashedEmail(data_login.user.email);
 				return app.keeper.setItem('user', JSON.stringify(data_login.user));
 			}
 		};
@@ -388,105 +337,92 @@ function requestHandlerAPI(){
 								 return result;
 							};
 
+		/**
+		 * Check FB plugin connection status
+		 */
+		this.checkFBStatus = function() {
+			if(!window.facebookConnectPlugin) return false;
+	    	window.facebookConnectPlugin.getLoginStatus(function(response){
+	    		console.log("response", response);
+	    	}, function(error){
+	    		console.log("error", error);
+	    	});
+	    };
+
 		
-		
+		this.faceLogin = function(userData) {
+		    console.log(userData);
+		    return $.ajax({
+		    				"url": api_base_url+'api/users/facebook_login.json',
+		    				"method": 'POST',
+		    				"data": {
+		    				"uid": userData.userID
+		      				}
+		    		});
+		};
+
+		this.fbRegister = function(data) {
+		    return apiRH.makeRequest('api/users/facebook_register.json', data);
+		};
+
 		/* 
 		 * Perform OAuth authentication 
-		 * @param provider String Values: 'facebook', 'twitter', 'google_plus'
-		 * @param callback function The callback function depending on the provider
-		 * @return null
-		 * @see loginCallbackFB
+		 * @see facebookConnectPlugin
 		 */
-		this.loginOauth   =  function(provider){
+		this.doFBLogin = function() {
+	    	window.facebookConnectPlugin.login(['email', 'public_profile'], apiRH.handleFBLoginSuccess, apiRH.handleFBError);
+	    },
 
-			app.showLoader();
-			OAuth.popup(provider)
-				.done(function(result){
-					apiRH.loginCallbackFB(result);
-				})
-				.fail(function(error){
-					console.log(error);
-					app.toast("Error al recibir información de Facebook");
-					app.hideLoader();
-				});
 
-		};
+	    this.getFBUserDetails = function( successCallback, errorCallback ) {
+    		window.facebookConnectPlugin.api('/me?fields=id,name,first_name,last_name,gender,installed,verified,email,picture.type(large)', ['public_profile'],
+        		function(response) {
+          			successCallback(response);
+        		},
+        		function( error ) {
+        			errorCallback(error);
+        		});
+    	};
+
+		this.handleFBError = function(error) {
+    		console.log(error);
+   		};
 
 		/* 
 		 * Log in callback for Facebook provider
-		 * @return Bool TRUE if authentication was successful
-		 * @see loginOauth
-		 * @see API Documentation
+		 * @param Object response
 		 */
 		this.loginCallbackFB = function(response){
-			var data_login = {};
-			response.me()
-			 .done(function(response){
+			if ( response.status !== 'connected' ) {
+	        alert('No se conecto');
+	        return;
+	      }
 
-				data_login = 	{
-									user 		: response.firstname,
-									last_name 	: response.lastname,
-									mail 		: response.email,
-									pass 		: response.id,
-									cPass 		: response.id
-								};
+	      var user = response.authResponse;
+	      apiRH.faceLogin(user)
+	      .done(function(response) {
+	      	console.log(response);
+	        if ( !response.user && !response.jwtoken ) {
+	          apiRH.getFBUserDetails( function(userData){
+	          	console.log(userData);
+	            // var $form = $('#complete-profile-form');
+	            // $('#form-container').fadeIn(500);
+	            // $form.find('#user-profile-picture').val(userData.picture.data.url);
+	            // $form.find('#user-provider-uid').val(userData.id);
+	            // $form.find('#user-name').val(userData.first_name);
+	            // $form.find('#user-email').val(userData.email);
+	            // $form.find('#user-last-name').val(userData.last_name);
+	            // $form.find('#user-nick').val(
+	            //   userData.name.replace(' ', '').substr(0, 8) + '' +
+	            //   (Math.floor(Math.random() * (9999 - 1000)) + 1000 )
+	            // );
 
-				console.log("Inside loginCallback FB");
-				var register_response 	= apiRH.registerNative(data_login);
-				if( register_response ){
-					
-					// apiRH.headers['X-ZUMO-AUTH'] = register_response;
-					var userInfo = apiRH.getInfoUser();
-					if(userInfo){
-
-						window._user = (userInfo) ? userInfo : null;
-						console.log(_user);
-						app.keeper.setItem( 'user', JSON.stringify(_user) );
-						app.keeper.setItem( 'email_verification', true );
-						
-						if( typeof _user.customerId !== undefined && _user.customerId !== 'not_set' ){
-							return app.render_myPlan('dieta.html');
-						}else{
-							return app.render_initial_record('record.html');
-						} 	
-					}
-					
-				}else{
-
-					/** Login if user already exists ***/
-					var login_response 	= apiRH.loginNative(data_login);
-					if( login_response ){
-
-						// apiRH.headers['X-ZUMO-AUTH'] = login_response;
-						var userInfo = apiRH.getInfoUser();
-						console.log(userInfo);
-						if(userInfo){
-
-							window._user = (userInfo) ? userInfo : null;
-							app.keeper.setItem( 'user', JSON.stringify(_user) );
-							app.keeper.setItem( 'email_verification', true );
-
-							if( typeof _user.customerId !== 'undefined' && _user.customerId !== 'not_set' ){
-								return app.render_myPlan('dieta.html');
-							}else{
-								return app.render_initial_record('record.html');
-							} 	
-						}
-
-					}else{
-						app.toast("Ocurrió un error, por favor revisa que tus datos sean correctos.")
-					}
-					app.toast("El email asociado con tu cuenta ya ha sido registrado. Iniciando sesión");
-
-				}
-				
-			})
-			 .fail(function(error){
-				return app.toast("Error de conexión con Facebook.");
-			});
-
+	          }, function(error) {
+	            console.log(error);
+	          });
+	        }
+	      });
 		};
-
 		
 		/**
 		 * @param String destination Upload destination Options: "profile", "chat"

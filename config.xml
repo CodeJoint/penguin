@@ -74,6 +74,7 @@
         <splash height="1242" src="res/screens/ios/screen-iphone-landscape-736h.png" width="2208" />
     </platform>
     <engine name="android" spec="^6.2.3" />
+    <engine name="browser" spec="^4.1.0" />
     <engine name="ios" spec="^4.4.0" />
     <plugin name="cordova-plugin-console" spec="~1.0.5" />
     <plugin name="cordova-plugin-device" spec="^1.1.6" />

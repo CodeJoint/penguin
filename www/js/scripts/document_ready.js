@@ -213,6 +213,12 @@ window.initializeEvents = function(){
 				}
 			});
 
+			$('#fb_login').on('click', function(e) {
+		    	e.preventDefault();
+		    	console.log('login pushed');
+		    	apiRH.FBOauth();
+		    });
+
 		} // END login_form scope
 
 		if($('#forgot_form').length){

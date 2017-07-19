@@ -315,9 +315,13 @@ window.initializeEvents = function(){
 				});
 
 				$('.filtros ul li').on('click', function(){
-					$('.filtros ul li').removeClass('selected');
+					$(this).closest('li').each( function(index, element){
+						console.log($(element));
+						$(element).removeClass('selected');
+					});
 					var dataFilter = $(this).attr('data');
 					$(this).addClass('selected');
+					/** FIlter lobby results here **/
 					console.log(dataFilter);
 				});
 				
@@ -381,7 +385,6 @@ window.initializeEvents = function(){
 		} // END depositCard scope
 
 		var ventana = $(window).height();
-
 		
 	});
 

@@ -307,12 +307,29 @@
 			}, 420);
 			var reload = (reloadExoskeleton || typeof reloadExoskeleton == 'undefined') ? true : false;
 			app.check_or_renderContainer(reload);
-			var extra_data = apiRH.getRequest( 'pools/available.json', null );
-			app.data_temp = this.gatherEnvironment( extra_data, "Lobby" );
+			app.data_temp 	= this.gatherEnvironment( null, "Lobby container" );
 			app.data_temp.selected_lobby = true;
 			setTimeout( function(data){
-				return app.switchView( 'lobby', app.data_temp, '#exoskeleton', url, 'quiniela-feed', false, true, true );
-			}, 220);
+				return app.switchView('lobby', app.data_temp, '#exoskeleton', url, 'quiniela-feed', true, true, true );
+			}, 200);
+		},
+		render_lobby_feed : function(filter){
+			console.log("render_lobby_feed");
+			var extra_data 	= apiRH.getRequest( 'pools/available.json', null );
+			var template 	= Handlebars.templates['lobby-feed'];
+			app.data_temp	= this.gatherEnvironment( extra_data, "Lobby feed" );
+			app.filter_pool();
+			app.data_temp.selected_lobby = true;
+			console.log(app.data_temp);
+			if(!template){
+				console.log("Template doesn't exist");
+				return false;
+			}
+			$('#insertFeed').html( template(app.data_temp) )
+							.css({ "opacity": 0, "display": "block"})
+							.animate({ opacity: 1 }, 220);
+			app.hideLoader();
+			return;
 		},
 		render_myfeed_sidebar : function(url){
 	
@@ -352,6 +369,7 @@
 			extra_data = (extra_data.pool) ? extra_data.pool : [];
 			app.data_temp = this.gatherEnvironment(extra_data, "Detail");
 			console.log(app.data_temp);
+			// var template_name = (extra_data.) ? : ;
 			setTimeout( function(data){
 				return app.switchView('detail-quiniela', app.data_temp, '#exoskeleton', url, 'quiniela-detail');
 			}, 220);
@@ -458,26 +476,29 @@
 							}, 120);
 			app.hideLoader();
 		},
-		filter_pool : function( filter, value ){
+		filter_pool : function( filter ){
 
-			Pickwin.filter('rangeFilter', function(){
-			  return function(items, rangeInfo) {
-				if( rangeInfo === undefined || rangeInfo == null || rangeInfo === '') {
-				  return items;
-				}
-				var filtered = [];
-				var ranges = rangeInfo.split(';');
-				var currency = ranges[0];
-				var min      = parseInt(ranges[1]) * 100;
-				var max      = parseInt(ranges[2]) * 100;
-				angular.forEach(items, function(item) {
-				  if ( currency == item.entry_currency && item.entry_fee >= min && item.entry_fee <= max ) {
-					filtered.push(item);
-				  }
-				});
-				return filtered;
-			  };
-			});
+			if(!app.data_temp.data.pools)
+				return flase;
+
+			var pool = app.data_temp.data.pools;
+			if(filter == 'chronological' || typeof filter == 'undefined'){
+				pool.sort(
+					firstBy( function (v) { return v.closed; } )
+						.thenBy('deadline_tz')
+				);
+				console.log(pool);
+			}
+			if(filter == 'finished'){
+
+			}
+			if(filter == 'real_money'){
+
+			}
+			if(filter == 'fake_money'){
+
+			}
+			return pool;
 		},
 		render_dialog : function(title, message, options){
 			return app.showLoader();

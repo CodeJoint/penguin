@@ -1,0 +1,718 @@
+
+			<div class="content quiniela_single quiniela_registrada_single">
+				
+				<a class="link_wrapper" href="" >
+					<div class="quiniela 
+								{{# if data.upcoming}}quiniela_open{{/ if}} 
+								{{# if data.live}}quiniela_live{{/ if}} 
+								{{# if_eq data.status 'live'}}quiniela_live{{/ if_eq}} 
+								{{# if data.closed}}quiniela_closed{{/ if}} {{data.sport.name}}
+								{{# if_eq data.point_format "natural" }} natural {{/ if_eq }}  clearfix">
+						<div class="quiniela_header clearfix">
+							<div class="quiniela_iconos clearfix">
+								{{# if_eq data.point_format "line" }}
+									<img src="{{cordova_full_path}}images/linea.png">
+								{{/ if_eq }}
+								{{# if_eq data.point_format "natural" }}
+									<img src="{{cordova_full_path}}images/natural.png">
+								{{/ if_eq }}
+								<img src="{{cordova_full_path}}images/{{data.sport.icon}}.png">
+							</div><!-- iconos -->
+							<h2>{{data.name_replace}}</h2>
+						</div><!-- quiniela_header -->
+						<div class="quiniela_content clearfix">
+							<div class="quiniela_info clearfix">
+								<span class="registros">REG: {{data.entry_count}}</span>
+								<span class="cierre">{{^ if data.closed}}CIERRE{{/ if}}{{# if data.closed}}CERRÓ{{/ if}}: {{formatDate data.deadline_tz}}</span>
+								{{# data.limited_capacity}}
+									<span class="limite">Limitado a {{data.max_entries}} entradas</span>
+								{{/ data.limited_capacity}}
+								{{# data.closed}}
+									<span class="limite">FINALIZÓ</span>
+								{{/ data.closed}}
+							</div><!-- quiniela_info -->
+							
+							<div class="quiniela_entrada clearfix">
+								<span class="titulo">ENTRADA</span>
+								{{# if_eq data.entry_currency 'real' }}
+									<img src="{{cordova_full_path}}images/billecoin.png">
+								{{/ if_eq }}
+								{{# if_eq data.entry_currency 'pickcoin' }}
+									<img src="{{cordova_full_path}}images/pickcoin.png">
+								{{/ if_eq }}
+								<span class="number">${{ formatCurrency data.entry_fee}}</span>
+							</div>
+							<div class="quiniela_bolsa clearfix">
+								<span class="titulo">BOLSA</span>
+								{{# if data.guaranteed_prize}}
+									<img src="{{cordova_full_path}}images/garantizado.png">
+								{{/ if }}
+								<span class="number">${{ formatCurrency data.available}}</span>
+							</div>
+						</div><!-- quiniela_content -->
+					</div><!-- quiniela -->
+				</a><!-- link_wrapper -->
+				<div class="tabs_quiniela clearfix">
+					<ul>
+						<li class="selected"><a href="">Picks</a></li>
+						<li><a href="">Posiciones</a></li>
+						<li><a href="">Chat</a></li>
+						<li><a href="">Premios</a></li>
+						<li><a href="">Picks de grupo</a></li>
+						<li class=""><a href="">Marcadores</a></li>
+					</ul>
+				</div>
+				<div class="quinielas_dropdowns clearfix">
+					
+						<a href="">Copiar picks</a>
+
+					
+						<a href="">Registros</a>
+				
+				</div><!-- dropdowns -->
+				<div class="tab tab_picks partidos clearfix">
+					<h3>PARTIDOS</h3>
+					<div class="opciones_partido clearfix">
+						<span>LOCAL</span>
+						<span>EMPATE</span>
+						<span>VISITA</span>
+					</div><!-- opciones_partido -->
+					<div class="partido partido_en_vivo clearfix">
+						<div class="opcion_partido local clearfix">
+							<input type="radio" name="ganador_uno" id="local">
+							<img src="{{cordova_full_path}}images/camisaverde.png">
+							<div class="equipo">
+								<span class="iniciales">ABC</span>
+							</div><!-- equipo -->
+							<div class="linea">
+								<span>(+4) 123</span>
+							</div><!-- linea -->
+						</div><!-- opcion_partido -->
+						<div class="opcion_partido cierre clearfix">
+							<span>EN VIVO</span>
+						</div><!-- opcion_partido -->
+						<div class="opcion_partido visitante clearfix">
+							<input type="radio" name="ganador_uno" id="visitante">
+							<img src="{{cordova_full_path}}images/camisaazul.png">
+							<div class="equipo">
+								<span class="iniciales">ABC</span>
+							</div><!-- equipo -->
+							<div class="linea">
+								<span>(+4) 123</span>
+							</div><!-- linea -->
+						</div><!-- opcion_partido -->
+					</div><!-- partido -->
+					<div class="partido partido_finalizado clearfix">
+						<div class="opcion_partido local clearfix">
+							<input type="radio" name="ganador_dos" id="local">
+							<img src="{{cordova_full_path}}images/camisablanca.png">
+							<div class="equipo">
+								<span class="iniciales">ABC</span>
+							</div><!-- equipo -->
+							<div class="linea">
+								<span>(+4) 123</span>
+							</div><!-- linea -->
+						</div><!-- opcion_partido -->
+						<div class="opcion_partido empate cierre clearfix">
+							<input type="radio" name="ganador_dos" id="empate">
+							<span>FINALIZADO</span>
+						</div><!-- opcion_partido -->
+						<div class="opcion_partido visitante clearfix">
+							<input type="radio" name="ganador_dos" id="visitante">
+							<img src="{{cordova_full_path}}images/camisaazul.png">
+							<div class="equipo">
+								<span class="iniciales">ABC</span>
+							</div><!-- equipo -->
+							<div class="linea">
+								<span>(+4) 123</span>
+							</div><!-- linea -->
+						</div><!-- opcion_partido -->
+					</div><!-- partido -->
+					<div class="partido clearfix">
+						<div class="opcion_partido local clearfix">
+							<input type="radio" name="ganador_tres" id="local">
+							<img src="{{cordova_full_path}}images/camisaamarilla.png">
+							<div class="equipo">
+								<span class="iniciales">ABC</span>
+							</div><!-- equipo -->
+							<div class="linea">
+								<span>(+4) 123</span>
+							</div><!-- linea -->
+						</div><!-- opcion_partido -->
+						<div class="opcion_partido empate cierre clearfix">
+							<input type="radio" name="ganador_tres" id="empate">
+							<span>CIERRE: 28.feb.17</span>
+						</div><!-- opcion_partido -->
+						<div class="opcion_partido visitante clearfix">
+							<input type="radio" name="ganador_tres" id="visitante">
+							<img src="{{cordova_full_path}}images/camisaroja.png">
+							<div class="equipo">
+								<span class="iniciales">ABC</span>
+							</div><!-- equipo -->
+							<div class="linea">
+								<span>(+4) 123</span>
+							</div><!-- linea -->
+						</div><!-- opcion_partido -->
+					</div><!-- partido -->
+				</div><!-- partidos -->
+				<div class="props clearfix">
+					<h3>PROPS</h3>
+					<div class="prop">
+						<h3>¿Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer aliqua?</h3>
+						<div class="opciones_prop dos_opciones clearfix">
+							<div class="opcion_prop clearfix">
+								<input type="radio" name="prop_uno" vlaue="si">
+								<span>SI</span>
+							</div><!-- opcion_prop clearfix -->
+							<div class="opcion_prop clearfix">
+								<input type="radio" name="prop_uno" value="no">
+								<span>NO</span>
+							</div><!-- opcion_prop clearfix -->
+						</div><!-- opciones_prop dos_opciones -->
+					</div><!-- prop -->
+					<div class="prop clearfix">
+						<h3>¿Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer aliqua?</h3>
+						<div class="opciones_prop tres_opciones clearfix">
+							<div class="opcion_prop clearfix">
+								<input type="radio" name="prop_dos" vlaue="ame">
+								<img src="{{cordova_full_path}}images/camisaamarilla.png">
+								<span>AME</span>
+							</div><!-- opcion_prop clearfix -->
+							<div class="opcion_prop clearfix">
+								<input type="radio" name="prop_dos" vlaue="caz">
+								<img src="{{cordova_full_path}}images/camisaroja.png">
+								<span>CAZ</span>
+							</div><!-- opcion_prop clearfix -->
+							<div class="opcion_prop clearfix">
+								<input type="radio" name="prop_dos" vlaue="gua">
+								<img src="{{cordova_full_path}}images/camisaverde.png">
+								<span>GUA</span>
+							</div><!-- opcion_prop clearfix -->
+						</div><!-- opciones_prop tres_opciones -->
+					</div><!-- prop -->
+					<div class="prop clearfix">
+						<h3>¿Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer aliqua?</h3>
+						<div class="opciones_prop cuatro_opciones clearfix">
+							<div class="opcion_prop clearfix">
+								<input type="radio" name="prop_tres" vlaue="ame">
+								<img src="{{cordova_full_path}}images/camisaamarilla.png">
+								<span>AME</span>
+							</div><!-- opcion_prop clearfix -->
+							<div class="opcion_prop clearfix">
+								<input type="radio" name="prop_tres" vlaue="caz">
+								<img src="{{cordova_full_path}}images/camisaroja.png">
+								<span>CAZ</span>
+							</div><!-- opcion_prop clearfix -->
+							<div class="opcion_prop clearfix">
+								<input type="radio" name="prop_tres" vlaue="gua">
+								<img src="{{cordova_full_path}}images/camisaverde.png">
+								<span>GUA</span>
+							</div><!-- opcion_prop clearfix -->
+							<div class="opcion_prop clearfix">
+								<input type="radio" name="prop_tres" vlaue="nec">
+								<img src="{{cordova_full_path}}images/camisaazul.png">
+								<span>NEC</span>
+							</div><!-- opcion_prop clearfix -->
+						</div><!-- opciones_prop cuatro_opciones -->
+					</div><!-- prop -->
+				</div><!-- props -->
+				<div class="desempates clearfix">
+					<h3>DESEMPATE</h3>
+						<div class="desempate desempate_uno clearfix">
+							<div class="desempate_left">
+								<span>Marcador del último partido</span>
+							</div>
+							<div class="desempate_input">
+								<span>LOC</span>
+								<input type="text" name="desempate_uno_local">
+								<span>-</span>
+								<input type="text" name="desempate_uno_visitante">
+								<span>VIS</span>
+							</div><!-- desempate_input -->
+						</div><!-- desempate_uno -->
+						<div class="desempate desempate_dos clearfix">
+							<div class="desempate_left">
+								<span>Minuto del primer gol</span>
+							</div>
+							<div class="desempate_input">
+								<input type="text" name="desempate_dos_minuto">
+							</div><!-- desempate_input -->
+						</div><!-- desempate_dos -->
+						<div class="desempate desempate_tres clearfix">
+							<div class="desempate_left">
+								<span>¿Lorem ipsum dolor sit amet, conse ctetur adipiscing elit?</span>
+							</div>
+							<div class="desempate_input">
+								<span>SI</span>
+								<input type="radio" name="desempate_tres" value="si">
+								<span>NO</span>
+								<input type="radio" name="desempate_tres" value="no">
+							</div><!-- desempate_input -->
+						</div><!-- desempate_tres -->
+				</div><!-- dempates -->
+				<div class="tab tab_posiciones clearfix">
+					<table>
+						<tr class="table_title">
+							<th>POS</th>
+							<th>JUGADOR</th>
+							<th>ACIERTOS</th>
+							<th>A GANAR</th>
+						</tr>
+						<tr class="player_info">
+							<td>1</td>
+							<td class="player"><img src="{{cordova_full_path}}images/profile_placeholder.png"> Lorem Ipsum 123</td>
+							<td>12</td>
+							<td class="ganar"><img src="{{cordova_full_path}}images/billete.png">$1,234</td>
+						</tr>
+						<tr class="player_info">
+							<td>1</td>
+							<td class="player"><img src="{{cordova_full_path}}images/profile_placeholder.png"> Lorem Ipsum 123</td>
+							<td>12</td>
+							<td class="ganar"><img src="{{cordova_full_path}}images/billete.png">$1,234</td>
+						</tr>
+						<tr class="player_info">
+							<td>1</td>
+							<td class="player"><img src="{{cordova_full_path}}images/profile_placeholder.png"> Lorem Ipsum 123</td>
+							<td>12</td>
+							<td class="ganar"><img src="{{cordova_full_path}}images/billete.png">$1,234</td>
+						</tr>
+						<tr class="player_info">
+							<td>1</td>
+							<td class="player"><img src="{{cordova_full_path}}images/profile_placeholder.png"> Lorem Ipsum 123</td>
+							<td>12</td>
+							<td class="ganar"><img src="{{cordova_full_path}}images/billete.png">$1,234</td>
+						</tr>
+						<tr class="player_info">
+							<td>1</td>
+							<td class="player"><img src="{{cordova_full_path}}images/profile_placeholder.png"> Lorem Ipsum 123</td>
+							<td>12</td>
+							<td class="ganar"><img src="{{cordova_full_path}}images/billete.png">$1,234</td>
+						</tr>
+						<tr class="player_info">
+							<td>1</td>
+							<td class="player"><img src="{{cordova_full_path}}images/profile_placeholder.png"> Lorem Ipsum 123</td>
+							<td>12</td>
+							<td class="ganar"><img src="{{cordova_full_path}}images/billete.png">$1,234</td>
+						</tr>
+						<tr class="player_info">
+							<td>1</td>
+							<td class="player"><img src="{{cordova_full_path}}images/profile_placeholder.png"> Lorem Ipsum 123</td>
+							<td>12</td>
+							<td class="ganar"><img src="{{cordova_full_path}}images/billete.png">$1,234</td>
+						</tr>
+						<tr class="player_info">
+							<td>1</td>
+							<td class="player"><img src="{{cordova_full_path}}images/profile_placeholder.png"> Lorem Ipsum 123</td>
+							<td>12</td>
+							<td class="ganar"><img src="{{cordova_full_path}}images/billete.png">$1,234</td>
+						</tr>
+					</table>
+				</div><!-- posiciones -->
+				<div class="tab tab_premios clearfix">
+					<table>
+						<tr class="table_title">
+							<th>LUGAR</th>
+							<th>PORCENTAJE</th>
+							<th>MONTO</th>
+						</tr>
+						<tr class="player_info">
+							<td>1 LUGAR</td>
+							<td>12.3%</td>
+							<td class="ganar"><img src="{{cordova_full_path}}images/billete.png">$1,234 MXN</td>
+						</tr>
+						<tr class="player_info">
+							<td>1 LUGAR</td>
+							<td>12.3%</td>
+							<td class="ganar"><img src="{{cordova_full_path}}images/billete.png">$1,234 MXN</td>
+						</tr>
+						<tr class="player_info">
+							<td>1 LUGAR</td>
+							<td>12.3%</td>
+							<td class="ganar"><img src="{{cordova_full_path}}images/billete.png">$1,234 MXN</td>
+						</tr>
+						<tr class="player_info">
+							<td>1 LUGAR</td>
+							<td>12.3%</td>
+							<td class="ganar"><img src="{{cordova_full_path}}images/billete.png">$1,234 MXN</td>
+						</tr>
+						<tr class="player_info">
+							<td>1 LUGAR</td>
+							<td>12.3%</td>
+							<td class="ganar"><img src="{{cordova_full_path}}images/billete.png">$1,234 MXN</td>
+						</tr>
+						<tr class="player_info">
+							<td>1 LUGAR</td>
+							<td>12.3%</td>
+							<td class="ganar"><img src="{{cordova_full_path}}images/billete.png">$1,234 MXN</td>
+						</tr>
+						<tr class="player_info">
+							<td>1 LUGAR</td>
+							<td>12.3%</td>
+							<td class="ganar"><img src="{{cordova_full_path}}images/billete.png">$1,234 MXN</td>
+						</tr>
+						<tr class="player_info">
+							<td>1 LUGAR</td>
+							<td>12.3%</td>
+							<td class="ganar"><img src="{{cordova_full_path}}images/billete.png">$1,234 MXN</td>
+						</tr>
+					</table>
+				</div><!-- premios -->
+				<div class="tab tab_picks_grupo clearfix">
+					<table>
+						<tr class="table_title">
+							<th></th>
+							<th>VIS @ LOC</th>
+							<th>VIS @ LOC</th>
+							<th>VIS @ LOC</th>
+							<th>VIS @ LOC</th>
+							<th>VIS @ LOC</th>
+							<th>VIS @ LOC</th>
+							<th>VIS @ LOC</th>
+							<th>VIS @ LOC</th>
+							<th>VIS @ LOC</th>
+							<th>MARCADOR EXACTO</th>
+							<th>MINUTO PRIMER GOL</th>
+							<th>MINUTO ÚLTIMO GOL</th>
+							<th>TOTAL S12</th>
+							<th></th>
+						</tr>
+						<tr>
+							<td>RESULTADO</td>
+							<td>LOC</td>
+							<td>VIS</td>
+							<td>EMP</td>
+							<td>PD</td>
+							<td>LOC</td>
+							<td>VIS</td>
+							<td>EMP</td>
+							<td>EMP</td>
+							<td>EMP</td>
+							<td>PD</td>
+							<td>PD</td>
+							<td>PD</td>
+							<td>PD</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>MI PICK</td>
+							<td>LOC</td>
+							<td>VIS</td>
+							<td>EMP</td>
+							<td>PD</td>
+							<td>LOC</td>
+							<td>VIS</td>
+							<td>EMP</td>
+							<td>EMP</td>
+							<td>EMP</td>
+							<td>PD</td>
+							<td>PD</td>
+							<td>PD</td>
+							<td>PD</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>GANADOR</td>
+							<td>LOC</td>
+							<td>VIS</td>
+							<td>EMP</td>
+							<td>PD</td>
+							<td>LOC</td>
+							<td>VIS</td>
+							<td>EMP</td>
+							<td>EMP</td>
+							<td>EMP</td>
+							<td>PD</td>
+							<td>PD</td>
+							<td>PD</td>
+							<td>PD</td>
+							<td></td>
+						</tr>
+						<tr class="table_title">
+							<th></th>
+							<th>VIS @ LOC</th>
+							<th>VIS @ LOC</th>
+							<th>VIS @ LOC</th>
+							<th>VIS @ LOC</th>
+							<th>VIS @ LOC</th>
+							<th>VIS @ LOC</th>
+							<th>VIS @ LOC</th>
+							<th>VIS @ LOC</th>
+							<th>VIS @ LOC</th>
+							<th>MARCADOR EXACTO</th>
+							<th>MINUTO PRIMER GOL</th>
+							<th>MINUTO ÚLTIMO GOL</th>
+							<th>TOTAL S12</th>
+							<th></th>
+						</tr>
+						<tr class="player_info">
+							<td class="player"><img src="{{cordova_full_path}}images/profile_placeholder.png"> Lorem Ipsum 123</td>
+							<td><img src="{{cordova_full_path}}images/acierto.png"></td>
+							<td><img src="{{cordova_full_path}}images/error.png"></td>
+							<td><img src="{{cordova_full_path}}images/acierto.png"></td>
+							<td><img src="{{cordova_full_path}}images/error.png"></td>
+							<td><img src="{{cordova_full_path}}images/acierto.png"></td>
+							<td><img src="{{cordova_full_path}}images/error.png"></td>
+							<td><img src="{{cordova_full_path}}images/acierto.png"></td>
+							<td><img src="{{cordova_full_path}}images/error.png"></td>
+							<td><img src="{{cordova_full_path}}images/acierto.png"></td>
+							<td><img src="{{cordova_full_path}}images/error.png"></td>
+							<td><img src="{{cordova_full_path}}images/error.png"></td>
+							<td><img src="{{cordova_full_path}}images/error.png"></td>
+							<td><img src="{{cordova_full_path}}images/error.png"></td>
+							<td></td>
+						</tr>
+						<tr class="player_info">
+							<td class="player"><img src="{{cordova_full_path}}images/profile_placeholder.png"> Lorem Ipsum 123</td>
+							<td><img src="{{cordova_full_path}}images/acierto.png"></td>
+							<td><img src="{{cordova_full_path}}images/error.png"></td>
+							<td><img src="{{cordova_full_path}}images/acierto.png"></td>
+							<td><img src="{{cordova_full_path}}images/error.png"></td>
+							<td><img src="{{cordova_full_path}}images/acierto.png"></td>
+							<td><img src="{{cordova_full_path}}images/error.png"></td>
+							<td><img src="{{cordova_full_path}}images/acierto.png"></td>
+							<td><img src="{{cordova_full_path}}images/error.png"></td>
+							<td><img src="{{cordova_full_path}}images/acierto.png"></td>
+							<td><img src="{{cordova_full_path}}images/error.png"></td>
+							<td><img src="{{cordova_full_path}}images/error.png"></td>
+							<td><img src="{{cordova_full_path}}images/error.png"></td>
+							<td><img src="{{cordova_full_path}}images/error.png"></td>
+							<td></td>
+						</tr>
+						<tr class="player_info">
+							<td class="player"><img src="{{cordova_full_path}}images/profile_placeholder.png"> Lorem Ipsum 123</td>
+							<td><img src="{{cordova_full_path}}images/acierto.png"></td>
+							<td><img src="{{cordova_full_path}}images/error.png"></td>
+							<td><img src="{{cordova_full_path}}images/acierto.png"></td>
+							<td><img src="{{cordova_full_path}}images/error.png"></td>
+							<td><img src="{{cordova_full_path}}images/acierto.png"></td>
+							<td><img src="{{cordova_full_path}}images/error.png"></td>
+							<td><img src="{{cordova_full_path}}images/acierto.png"></td>
+							<td><img src="{{cordova_full_path}}images/error.png"></td>
+							<td><img src="{{cordova_full_path}}images/acierto.png"></td>
+							<td><img src="{{cordova_full_path}}images/error.png"></td>
+							<td><img src="{{cordova_full_path}}images/error.png"></td>
+							<td><img src="{{cordova_full_path}}images/error.png"></td>
+							<td><img src="{{cordova_full_path}}images/error.png"></td>
+							<td></td>
+						</tr>
+						<tr class="player_info">
+							<td class="player"><img src="{{cordova_full_path}}images/profile_placeholder.png"> Lorem Ipsum 123</td>
+							<td><img src="{{cordova_full_path}}images/acierto.png"></td>
+							<td><img src="{{cordova_full_path}}images/error.png"></td>
+							<td><img src="{{cordova_full_path}}images/acierto.png"></td>
+							<td><img src="{{cordova_full_path}}images/error.png"></td>
+							<td><img src="{{cordova_full_path}}images/acierto.png"></td>
+							<td><img src="{{cordova_full_path}}images/error.png"></td>
+							<td><img src="{{cordova_full_path}}images/acierto.png"></td>
+							<td><img src="{{cordova_full_path}}images/error.png"></td>
+							<td><img src="{{cordova_full_path}}images/acierto.png"></td>
+							<td><img src="{{cordova_full_path}}images/error.png"></td>
+							<td><img src="{{cordova_full_path}}images/error.png"></td>
+							<td><img src="{{cordova_full_path}}images/error.png"></td>
+							<td><img src="{{cordova_full_path}}images/error.png"></td>
+							<td></td>
+						</tr>
+						<tr class="player_info this_player">
+							<td class="player"><img src="{{cordova_full_path}}images/profile_placeholder.png"> Lorem Ipsum 123</td>
+							<td><img src="{{cordova_full_path}}images/acierto.png"></td>
+							<td><img src="{{cordova_full_path}}images/error.png"></td>
+							<td><img src="{{cordova_full_path}}images/acierto.png"></td>
+							<td><img src="{{cordova_full_path}}images/error.png"></td>
+							<td><img src="{{cordova_full_path}}images/acierto.png"></td>
+							<td><img src="{{cordova_full_path}}images/error.png"></td>
+							<td><img src="{{cordova_full_path}}images/acierto.png"></td>
+							<td><img src="{{cordova_full_path}}images/error.png"></td>
+							<td><img src="{{cordova_full_path}}images/acierto.png"></td>
+							<td><img src="{{cordova_full_path}}images/error.png"></td>
+							<td><img src="{{cordova_full_path}}images/error.png"></td>
+							<td><img src="{{cordova_full_path}}images/error.png"></td>
+							<td><img src="{{cordova_full_path}}images/error.png"></td>
+							<td></td>
+						</tr>
+					</table>
+				</div><!-- picks_grupo -->
+				<div class="tab tab_marcadores clearfix">
+					<div class="marcador clearfix">
+						<table>
+							<tr>
+								<th>Finalizado</th>
+								<th>1</th>
+								<th>2</th>
+								<th>3</th>
+								<th>4</th>
+								<th>T</th>
+							</tr>
+							<tr>
+								<td>OAK</td>
+								<td>7</td>
+								<td>14</td>
+								<td>7</td>
+								<td>10</td>
+								<td>38</td>
+							</tr>
+							<tr>
+								<td>OAK</td>
+								<td>7</td>
+								<td>14</td>
+								<td>7</td>
+								<td>10</td>
+								<td>38</td>
+							</tr>
+						</table>
+					</div><!-- marcador -->
+					<div class="marcador clearfix">
+						<table>
+							<tr>
+								<th>Finalizado</th>
+								<th>R</th>
+								<th>H</th>
+								<th>E</th>
+								<th></th>
+								<th>T</th>
+							</tr>
+							<tr>
+								<td>LAD</td>
+								<td>14</td>
+								<td>21</td>
+								<td>0</td>
+								<td></td>
+								<td>28</td>
+							</tr>
+							<tr>
+								<td>NYY</td>
+								<td>7</td>
+								<td>14</td>
+								<td>1</td>
+								<td></td>
+								<td>7</td>
+							</tr>
+						</table>
+					</div><!-- marcador -->
+					<div class="marcador clearfix">
+						<table>
+							<tr>
+								<th>Finalizado</th>
+								<th></th>
+								<th>1</th>
+								<th>2</th>
+								<th></th>
+								<th>T</th>
+							</tr>
+							<tr>
+								<td>AME</td>
+								<td></td>
+								<td>1</td>
+								<td>0</td>
+								<td></td>
+								<td>1</td>
+							</tr>
+							<tr>
+								<td>MTY</td>
+								<td></td>
+								<td>1</td>
+								<td>1</td>
+								<td></td>
+								<td>2</td>
+							</tr>
+						</table>
+					</div><!-- marcador -->
+					<div class="marcador clearfix">
+						<table>
+							<tr>
+								<th>Finalizado</th>
+								<th>1</th>
+								<th>2</th>
+								<th>3</th>
+								<th>4</th>
+								<th>T</th>
+							</tr>
+							<tr>
+								<td>OAK</td>
+								<td>7</td>
+								<td>14</td>
+								<td>7</td>
+								<td>10</td>
+								<td>38</td>
+							</tr>
+							<tr>
+								<td>OAK</td>
+								<td>7</td>
+								<td>14</td>
+								<td>7</td>
+								<td>10</td>
+								<td>38</td>
+							</tr>
+						</table>
+					</div><!-- marcador -->
+				</div>
+			</div><!-- content -->
+			<div class="menu clearfix">
+				<ul>
+					<li class="menu_lobby selected"><a href=""></a></li>
+					<li class="menu_quinielas"><a href=""></a></li>
+					<li class="menu_privadas"><a href=""></a></li>
+					<li class="menu_perfil"><a href=""></a></li>
+					<li class="menu_abonar"><a href=""></a></li>
+				</ul>
+			</div><!-- menu -->
+		</div><!-- container -->
+			<div class="filtros_wrapper">
+				<div class="filtros overlay clearfix">
+					<div class="filtros_moneda clearfix">
+						<h3>MONEDA</h3>
+						<ul class="clearfix">
+							<li data="todos_moneda"><h3>TODOS</h3></li>
+							<li data="money_moneda"><img src="{{cordova_full_path}}images/billete.png"></li>
+							<li data="pickcoin_moneda"><img src="{{cordova_full_path}}images/pickcoin.png"></li>
+						</ul>
+						<ul class="clearfix" id="money_moneda">
+							<li data="money_moneda"><img src="{{cordova_full_path}}images/billete.png"></li>
+							<li data="money_moneda"><img src="{{cordova_full_path}}images/bill2.png"></li>
+							<li data="money_moneda"><img src="{{cordova_full_path}}images/bill3.png"></li>
+						</ul>
+						<ul class="clearfix" id="pickcoin_moneda">
+							<li data="money_moneda"><img src="{{cordova_full_path}}images/pickcoin.png"></li>
+							<li data="money_moneda"><img src="{{cordova_full_path}}images/pic2.png"></li>
+							<li data="money_moneda"><img src="{{cordova_full_path}}images/pic3.png"></li>
+						</ul>
+					</div><!-- filtros_moneda -->
+					<div class="filtros_deporte clearfix">
+						<h3>DEPORTE</h3>
+						<ul class="clearfix">
+							<li data="todos_deporte"><h3>TODOS</h3></li>
+							<li data="deporte_soccer"><img src="{{cordova_full_path}}images/soccer.png"></li>
+							<li data="deporte_basket"><img src="{{cordova_full_path}}images/basket.png"></li>
+							<li data="deporte_baseball"><img src="{{cordova_full_path}}images/baseball.png"></li>
+							<li data="deporte_nfl"><img src="{{cordova_full_path}}images/nfl.png"></li>
+							<li data="deporte_golf"><img src="{{cordova_full_path}}images/golf.png"></li>
+							<li data="deporte_tennis"><img src="{{cordova_full_path}}images/tennis.png"></li>
+							<li data="deporte_f1"><img src="{{cordova_full_path}}images/f1.png"></li>
+						</ul>
+						<ul class="clearfix" id="deporte_soccer">
+							<li data="soccer_todas"><span>Todas</span></li>
+							<li data="soccer_ligamx"><span>Liga MX</span></li>
+							<li data="soccer_copamx"><span>Copa MX</span></li>
+							<li data="soccer_laliga"><span>La Liga</span></li>
+							<li data="soccer_premier"><span>Premier</span></li>
+							<li class="selected" data="soccer_champions"><span>Champions</span></li>
+						</ul>
+					</div><!-- filtros_deporte -->
+					<div class="filtros_tipo clearfix">
+						<h3>TIPO</h3>
+						<ul class="clearfix">
+							<li data="tipo_abiertas"><h3>Abiertas</h3></li>
+							<li data="tipo_limitadas"><h3>Cupo limitado</h3></li>
+						</ul>
+					</div><!-- filtros_deporte -->
+					<div class="filtros_estado clearfix">
+						<h3>ESTADO</h3>
+						<ul class="clearfix">
+							<li data="estado_procimas"><h3>Próximas</h3></li>
+							<li data="estado_live"><h3>En curso</h3></li>
+							<li data="estado_finalizadas"><h3>Finalizadas</h3></li>
+						</ul>
+					</div><!-- filtros_deporte -->
+				</div><!-- filtros overlay -->
+			</div>
+			
+			<div id="misQuinielas" class="misquinielas overlay"></div><!-- misquinielas overlay -->

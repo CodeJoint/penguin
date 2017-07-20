@@ -35,6 +35,9 @@
 					{{# if closed}}
 						<span class="limite">FINALIZÓ</span>
 					{{/ if}}
+					{{# if_eq status "live"}}
+						<span class="live">EN VIVO</span>
+					{{/ if_eq}}
 					{{!-- <span class="aciertos">ACIERTOS: 3/15</span> --}}
 				</div><!-- quiniela_info -->
 				<div class="quiniela_entrada clearfix">

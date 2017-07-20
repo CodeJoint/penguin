@@ -292,43 +292,42 @@ window.initializeEvents = function(){
 			}, 300);
 		} // END misQuinielas scope
 		
+		setTimeout(function(){
+			if($('#lobbyContainer').length){
+					console.log("Container");
 
-		if($('#lobbyContainer').length){
+					/** Render header again to include filters component **/
+					app.render_header(true);
+					app.render_lobby_feed('chronological');
 
-		 	setTimeout(function(){
+					$('.footermenu ul li').removeClass('selected');
+			 		$('.menu_lobby').addClass('selected');
 
-				/** Render header again to include filters component **/
-				app.render_header(true);
-
-				$('.footermenu ul li').removeClass('selected');
-		 		$('.menu_lobby').addClass('selected');
-
-		 		/*** FILTROS ***/
-				$('.header_filtros').on('click', function(){
-					if($('.filtros_wrapper').hasClass('filtros_show')){
-						$('.filtros_wrapper').removeClass('filtros_show');
-						$('.filtros_wrapper').fadeOut('fast');
-					} else {
-						$('.filtros_wrapper').addClass('filtros_show');
-						$('.filtros_wrapper').fadeIn('fast');
-					}
-				});
-
-				$('.filtros ul li').on('click', function(){
-					$(this).closest('li').each( function(index, element){
-						console.log($(element));
-						$(element).removeClass('selected');
+			 		/*** FILTROS ***/
+					$('.header_filtros').on('click', function(){
+						if($('.filtros_wrapper').hasClass('filtros_show')){
+							$('.filtros_wrapper').removeClass('filtros_show');
+							$('.filtros_wrapper').fadeOut('fast');
+						} else {
+							$('.filtros_wrapper').addClass('filtros_show');
+							$('.filtros_wrapper').fadeIn('fast');
+						}
 					});
-					var dataFilter = $(this).attr('data');
-					$(this).addClass('selected');
-					/** FIlter lobby results here **/
-					console.log(dataFilter);
-				});
-				
-				return; 
-			 }, 220);
 
-		} // END misQuinielas scope
+					$('.filtros ul li').on('click', function(){
+						$(this).closest('li').each( function(index, element){
+							console.log($(element));
+							$(element).removeClass('selected');
+						});
+						var dataFilter 	= $(this).attr('data-filter');
+						var dataValue 	= $(this).attr('data-value');
+						$(this).addClass('selected');
+						/** Filter lobby results here **/
+						console.log(dataFilter);
+					});
+					return; 
+			} // END misQuinielas scope
+		}, 200);
 		
 		if($('#detailQuiniela').length){
 

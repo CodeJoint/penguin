@@ -7,15 +7,15 @@
 					<li onclick="$('#realMoneyFilters').show(); $('#pickcoinFilters').hide(); "  data="money_moneda"><img src="{{cordova_full_path}}images/billete.png"></li>
 					<li onclick="$('#realMoneyFilters').hide(); $('#pickcoinFilters').show(); " data="pickcoin_moneda"><img src="{{cordova_full_path}}images/pickcoin.png"></li>
 				</ul>
-				<ul id="realMoneyFilters" class="clearfix" id="money_moneda" style="display: none;">
-					<li data="money_moneda"><img src="{{cordova_full_path}}images/billete.png"></li>
-					<li data="money_moneda"><img src="{{cordova_full_path}}images/bill2.png"></li>
-					<li data="money_moneda"><img src="{{cordova_full_path}}images/bill3.png"></li>
+				<ul id="realMoneyFilters" class="clearfix" style="display: none;">
+					<li data-filter="real_money" data-value="min"><img src="{{cordova_full_path}}images/billete.png"></li>
+					<li data-filter="real_money" data-value="med"><img src="{{cordova_full_path}}images/bill2.png"></li>
+					<li data-filter="real_money" data-value="max"><img src="{{cordova_full_path}}images/bill3.png"></li>
 				</ul>
-				<ul id="pickcoinFilters" class="clearfix" id="pickcoin_moneda" style="display: none;">
-					<li data="money_moneda"><img src="{{cordova_full_path}}images/pickcoin.png"></li>
-					<li data="money_moneda"><img src="{{cordova_full_path}}images/pic2.png"></li>
-					<li data="money_moneda"><img src="{{cordova_full_path}}images/pic3.png"></li>
+				<ul id="pickcoinFilters" class="clearfix" style="display: none;">
+					<li data-filter="fake_money" data-value="min"><img src="{{cordova_full_path}}images/pickcoin.png"></li>
+					<li data-filter="fake_money" data-value="med"><img src="{{cordova_full_path}}images/pic2.png"></li>
+					<li data-filter="fake_money" data-value="max"><img src="{{cordova_full_path}}images/pic3.png"></li>
 				</ul>
 			</div><!-- filtros_moneda -->
 			<div class="filtros_deporte clearfix">

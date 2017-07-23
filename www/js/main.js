@@ -314,13 +314,12 @@
 			}, 200);
 		},
 		render_lobby_feed : function(filter){
-			console.log("render_lobby_feed");
+
 			var extra_data 	= apiRH.getRequest( 'pools/available.json', null );
 			var template 	= Handlebars.templates['lobby-feed'];
 			app.data_temp	= this.gatherEnvironment( extra_data, "Lobby feed" );
 			app.filter_pool();
 			app.data_temp.selected_lobby = true;
-			console.log(app.data_temp);
 			if(!template){
 				console.log("Template doesn't exist");
 				return false;
@@ -357,7 +356,7 @@
 													 .animate(	{ opacity: 1 }, 220);
 			return;
 		},
-		render_detail : function(url, object_id){
+		render_detail : function(url, object_id, view){
 			
 			if(!app.initialized) app.initialize();
 			setTimeout(function(){
@@ -369,7 +368,7 @@
 			extra_data = (extra_data.pool) ? extra_data.pool : [];
 			app.data_temp = this.gatherEnvironment(extra_data, "Detail");
 			console.log(app.data_temp);
-			// var template_name = (extra_data.) ? : ;
+			var template_name = (view == 'registered') ? 'detail-quiniela-registered': 'detail-quiniela';
 			setTimeout( function(data){
 				return app.switchView('detail-quiniela', app.data_temp, '#exoskeleton', url, 'quiniela-detail');
 			}, 220);

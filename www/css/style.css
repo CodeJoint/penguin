@@ -179,7 +179,7 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 .quiniela_header .quiniela_iconos {float: left; margin-right: 10px;}
 .quiniela_header .quiniela_iconos img {float: left; width: 16px; margin-right: 1px;}
 .quiniela_header h2 {font-weight: 400; font-size: 12px; float: left; margin: 0px;}
-.quiniela_content {width: 100%; font-size: 10px;}
+.quiniela_content {width: 100%; font-size: 10px; text-align: left;}
 .quiniela_content img {width: 16px; height: auto; float: left;}
 
 .quiniela_content .quiniela_info span {display: block; margin-bottom: 2px;}
@@ -667,7 +667,7 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 	
 	p.empty{}
 	.profile .legales,
-	.login .legales{ width: 100%; margin-top: 5%; text-align: center; position: absolute; bottom: 32px;}
+	.login .legales{ width: 100%; margin-top: 5% auto; text-align: center; bottom: 32px;}
 	.profile.withraw{}
 	.profile.withraw p>strong{ color: #90bd7e; font-weight: 300;}
 

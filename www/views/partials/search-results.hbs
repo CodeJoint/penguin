@@ -1,0 +1,10 @@
+{{# if success}}
+	<small>Resultados:</small>
+	{{# pool}}
+		{{> each-quiniela }}
+	{{/ pool}}
+{{/ if}}
+
+{{^ success}}
+	<p class="empty">No se encontraron quinielas con los datos proporcionados.</p>
+{{/ success}}

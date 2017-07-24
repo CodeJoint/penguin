@@ -100,6 +100,12 @@
 				moment.locale('es');
 				return moment(value).format('lll');
 			});
+			Handlebars.registerHelper('coinToPeso', function(value) {
+				return (value*0.00005).toFixed(2);
+			});
+			Handlebars.registerHelper('lastFour', function(value) {
+				return value.substring(-4);
+			});
 		},
 		registerTemplate : function(name) {
 			$.ajax({
@@ -404,7 +410,7 @@
 			}else if(tab == 'history'){
 				template = 'profile-history'
 				profile_title = 'Historial de transacciones';
-				extra_data = apiRH.getRequest('api/transactions/history.json?type=purchase', null);
+				extra_data = apiRH.getRequest('api/transactions/history.json', null);
 			}else if(tab == 'notifications'){
 				template = 'profile-notifications'
 				profile_title = 'Centro de notificaciones';
@@ -450,6 +456,11 @@
 			app.data_temp.selected_pri = true;
 			return app.switchView('private', app.data_temp, '#exoskeleton', url, 'privates');
 		},
+		render_search_results : function(response_object){
+
+			app.appendView('search-results', response_object, '#insertResults');
+			return app.hideLoader();
+		},
 		render_create_private : function(url){
 
 			if(!app.initialized) app.initialize();
@@ -486,7 +497,6 @@
 					firstBy( function (v) { return v.closed; } )
 						.thenBy('deadline_tz')
 				);
-				console.log(pool);
 			}
 			if(filter == 'finished'){
 

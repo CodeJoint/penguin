@@ -16,7 +16,7 @@
 				<ul>
 					{{# data.documents}}
 						<li class="clearfix">
-							{{type}}: <a onclick="window.open('{{public_url}}', '_blank', 'location=yes')" href="{{public_url}}">{{type}}</a>					
+							<span>{{type}}</span> <span>#####{{ lastFour number }}</span> <span>exp. --</span> <span>{{# valid}}Aprobado{{/ valid}}{{^ valid}}Sin aprobar{{/ valid}}</span>					
 						</li>
 					{{/ data.documents}}
 					{{^ data.documents}}

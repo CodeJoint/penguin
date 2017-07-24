@@ -5,12 +5,15 @@
 				<a class="selected" >Buscar</a>
 				<a href="private.html" class="hook" data-resource="privates-create">Crear quiniela privada</a>
 			</div>
-			<form id="busqueda_quinielas">
-				<input type="text" placeholder="Nombre de la quiniela">
-				<input type="text" placeholder="Código de la quiniela">
+			<form id="busquedaQuinielas" method="POST" action="">
+				<input id="name" name="name" type="text" placeholder="Nombre de la quiniela">
+				<input id="password" name="password" type="text" placeholder="Código de la quiniela">
 				<div class="submit_holder">
 					<input type="submit" value="send">
 				</div>
 			</form>
+			<section id="insertResults">
+				
+			</section>
 		</div>
 	</div><!-- content -->

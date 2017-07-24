@@ -141,7 +141,7 @@ function requestHandlerAPI(){
 				data_login.user.balancePc = data_login.balancePc;
 				data_login.user.balancePcReal = data_login.balancePcReal;
 				data_login.user.balanceReal = data_login.balanceReal;
-				app.keeper.setItem('Auth', "Bearer "+data_login.jwtoken);
+				app.keeper.setItem('Auth', data_login.jwtoken);
 				try{
 					OneSignal.syncHashedEmail(data_login.user.email);
 				}catch(e){
@@ -181,6 +181,33 @@ function requestHandlerAPI(){
 		 */
 		this.get_request_token = function(){
 									return this.token;
+								};
+		/*! 
+		 * Search private games
+		 * @return response JSON encoded object
+		 */
+		this.searchPrivates = 	function(data){
+									var response = this.makeRequest('api/pools/search_private.json', data, null, false);
+									return response;
+								};
+		
+		/*! 
+		 * Add new payment method (card)
+		 * @return Boolean
+		 * @see OpenPay
+		 */
+		this.addPaymentMethod = 	function(card_data, type){
+									/* tokenize card data */
+									OpenPay.token.create(card_data, 
+														function(response){
+															console.log(response);
+														}, function(response){
+															console.log(response);
+															app.toast("Error al agregar tu forma de pago");
+														});
+									// var response = this.makeRequest('api/pools/search_private.json', data, null, false);
+									// return response;
+									return;
 								};
 
 		/*! 

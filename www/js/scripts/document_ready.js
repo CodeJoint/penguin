@@ -13,7 +13,8 @@ window.initializeEvents = function(){
 		$('*').unbind();
 		console.log("DocReady scripts");
 		$('body').removeClass("preventEvents");
-		
+		var ventana = $(window).height();
+
 		window.initHooks = function(){
 
 			/* Hook soft links */
@@ -62,7 +63,6 @@ window.initializeEvents = function(){
 				e.stopPropagation();
 			});
 		};
-		initHooks();
 
 		if(!window.fingerprint)
 			new Fingerprint2().get(function(result, components){
@@ -100,9 +100,7 @@ window.initializeEvents = function(){
 			}
 		}
 
-		var fixWithKeyboard = function(){
-
-		}
+		var fixWithKeyboard = function(){ }
 
 		window.openKeyboard = false;
 
@@ -122,177 +120,176 @@ window.initializeEvents = function(){
 			$('.escribir').css('bottom', 0);
 		});
 
-	
-		$('.facebook').click(function () {			
-			apiRH.loginOauth('facebook');
-		});
-
-
-		if($('#register_form').length){
-
-			window.init_scripts.push("register_validate");
-			$('#register_form').validate({
-				rules:{
-					name 		: "required",
-					last_name 	: "required",
-					nickname 	: "required",
-					email 		: "required",
-					password 	: "required",
-					repeat_password :{
-						required: true,
-						equalTo : "#password"
-					},
-					accept_terms: "required",
-					is_M18		: "required"
-				},
-				messages:{
-					name 		: "Debes proporcionar un nombre",
-					last_name 	: "Debes proporcionar un apellido",
-					nickname 	: "Por favor elige un nombre de usuario",
-					email 		: "Es necesario que especifiques un correo elecrónico",
-					password 	: "Por favor ingresa tu contraseña",
-					repeat_password : {
-								required : "Por favor repite tu contraseña",
-								equalTo  : "Las contraseñas no coinciden"
-					},
-					accept_terms: "Debes aceptar nuestros términos para continuar",
-					is_M18		: "Debes ser mayor de edad para continuar"
-				},
-				submitHandler:function( form, event ){
-					event.preventDefault();
-					app.showLoader();
-					var data_user	= app.getFormData(form, 'object');
-					var register_response 	= apiRH.registerNative(data_user);
-
-					if(register_response){
-
-						localStorage.setItem("Auth", "Bearer "+register_response.jwtoken);
-						apiRH.save_user_data_clientside(register_response);
-						if(register_response.user){
-							console.log(register_response.user);
-							window._user = (register_response.user) ? register_response.user : null; 
-							return app.render_register_success('register-success.html');
-						}
-
-					}else{
-						app.toast("Ocurrió un error, por favor revisa que tus datos sean correctos.")
-						return app.hideLoader();
-					}
-				}
-			});
-
-		} // END register_form
-
-		if($('#registerSuccess').length){
-			console.log("Register success");
-		} // END registerSuccess
-
-		if($('#login_form').length){
-
-			window.init_scripts.push("login_validate");
-			$('#login_form').validate({
-				rules:{
-					username : "required",
-					password : "required"
-				},
-				messages:{
-					username : "Tu cuenta de correo electrónico",
-					password : "Tu contraseña es necesaria para entrar."
-				},
-				submitHandler:function( form, event ){
-					event.preventDefault();
-					var data_login		= app.getFormData(form, 'object');
-					var login_response 	= apiRH.loginNative(data_login);
-					if(login_response){
-						apiRH.headers['Authorization'] = "Bearer "+login_response.jwtoken;
-						apiRH.save_user_data_clientside(login_response);
-						if(login_response.user){
-							window._user = (login_response.user) ? login_response.user : null;
-							return app.render_lobby('lobby.html');
-						}
-					}else{
-						app.toast("Ocurrió un error, por favor revisa que tus datos sean correctos.")
-						return app.hideLoader();
-					}
-				}
-			});
-
-			$('#fb_login').on('click', function(e) {
-		    	e.preventDefault();
-		    	return apiRH.FBOauth();
-		    });
-
-		} // END login_form scope
-
-		if($('#forgot_form').length){
-
-			window.init_scripts.push("login_validate");
-			$('#forgot_form').validate({
-				rules:{
-					email : { 
-								required: true,
-								email 	: true
-							}
-				},
-				messages:{
-					email : { 
-								required: "Es necesario que ingreses tu Email",
-								email 	: "Por favor ingresa un email válido"
-							}
-				},
-				submitHandler:function( form, event ){
-					event.preventDefault();
-					var data_user		= app.getFormData(form, 'object');
-					var pwd_response 	= apiRH.askNewPassword(data_user);
-					if(pwd_response){
-						console.log(pwd_response);
-						/** Keeping russian bullet token, do not keep in production **/
-						app.keeper.setItem("russian_bullet", pwd_response.token);
-						return app.render_password_sent('password-sent.html');
-					}else{
-						app.toast("Ocurrió un error, por favor revisa que tus datos sean correctos.")
-						return app.hideLoader();
-					}
-				}
-			});
-
-		} // END forgot_form scope
-
-		if($('#misQuinielas').length){
-
-			setTimeout(function(){
-				return app.render_myfeed_sidebar();
-
-				var positiveMargin = false;
-				$('.misquinielas').on('click', function(){
-
-					$('.menu li').removeClass('selected');
-					if (!positiveMargin) {
-						var left = "0%";
-						var padd = "1%";
-						positiveMargin = true;
-						$('.menu .menu_quinielas').addClass('selected');
-					}
-					else {
-						var left = "97%";
-						var padd = "1%";
-						positiveMargin = false;
-						$('.menu .menu_quinielas').removeClass('selected');
-					}
-					$('.misquinielas').animate({
-													marginLeft: left,
-													paddingLeft: padd,
-												}, 
-												{
-													duration: 500,
-													complete: function () {
-													}
-												});
-				});
-			}, 300);
-		} // END misQuinielas scope
-		
+		/********** Init General timeout **********/
 		setTimeout(function(){
+			
+			initHooks();
+
+			$('.facebook').click(function () {			
+				apiRH.loginOauth('facebook');
+			});
+
+			if($('#register_form').length){
+
+				window.init_scripts.push("register_validate");
+				$('#register_form').validate({
+					rules:{
+						name 		: "required",
+						last_name 	: "required",
+						nickname 	: "required",
+						email 		: "required",
+						password 	: "required",
+						repeat_password :{
+							required: true,
+							equalTo : "#password"
+						},
+						accept_terms: "required",
+						is_M18		: "required"
+					},
+					messages:{
+						name 		: "Debes proporcionar un nombre",
+						last_name 	: "Debes proporcionar un apellido",
+						nickname 	: "Por favor elige un nombre de usuario",
+						email 		: "Es necesario que especifiques un correo elecrónico",
+						password 	: "Por favor ingresa tu contraseña",
+						repeat_password : {
+									required : "Por favor repite tu contraseña",
+									equalTo  : "Las contraseñas no coinciden"
+						},
+						accept_terms: "Debes aceptar nuestros términos para continuar",
+						is_M18		: "Debes ser mayor de edad para continuar"
+					},
+					submitHandler:function( form, event ){
+						event.preventDefault();
+						app.showLoader();
+						var data_user	= app.getFormData(form, 'object');
+						var register_response 	= apiRH.registerNative(data_user);
+
+						if(register_response){
+
+							localStorage.setItem("Auth", register_response.jwtoken);
+							apiRH.save_user_data_clientside(register_response);
+							if(register_response.user){
+								console.log(register_response.user);
+								window._user = (register_response.user) ? register_response.user : null; 
+								return app.render_register_success('register-success.html');
+							}
+
+						}else{
+							app.toast("Ocurrió un error, por favor revisa que tus datos sean correctos.")
+							return app.hideLoader();
+						}
+					}
+				});
+
+			} // END register_form
+
+			if($('#registerSuccess').length){
+				console.log("Register success");
+			} // END registerSuccess
+
+			if($('#login_form').length){
+
+				window.init_scripts.push("login_validate");
+				$('#login_form').validate({
+					rules:{
+						username : "required",
+						password : "required"
+					},
+					messages:{
+						username : "Tu cuenta de correo electrónico",
+						password : "Tu contraseña es necesaria para entrar."
+					},
+					submitHandler:function( form, event ){
+						event.preventDefault();
+						var data_login		= app.getFormData(form, 'object');
+						var login_response 	= apiRH.loginNative(data_login);
+						if(login_response){
+							apiRH.headers['Authorization'] = "Bearer "+login_response.jwtoken;
+							apiRH.save_user_data_clientside(login_response);
+							if(login_response.user){
+								window._user = (login_response.user) ? login_response.user : null;
+								return app.render_lobby('lobby.html');
+							}
+						}else{
+							app.toast("Ocurrió un error, por favor revisa que tus datos sean correctos.")
+							return app.hideLoader();
+						}
+					}
+				});
+
+				$('#fb_login').on('click', function(e) {
+			    	e.preventDefault();
+			    	return apiRH.FBOauth();
+			    });
+
+			} // END login_form scope
+
+			if($('#forgot_form').length){
+
+				window.init_scripts.push("login_validate");
+				$('#forgot_form').validate({
+					rules:{
+						email : { 
+									required: true,
+									email 	: true
+								}
+					},
+					messages:{
+						email : { 
+									required: "Es necesario que ingreses tu Email",
+									email 	: "Por favor ingresa un email válido"
+								}
+					},
+					submitHandler:function( form, event ){
+						event.preventDefault();
+						var data_user		= app.getFormData(form, 'object');
+						var pwd_response 	= apiRH.askNewPassword(data_user);
+						if(pwd_response){
+							console.log(pwd_response);
+							/** Keeping russian bullet token, do not keep in production **/
+							app.keeper.setItem("russian_bullet", pwd_response.token);
+							return app.render_password_sent('password-sent.html');
+						}else{
+							app.toast("Ocurrió un error, por favor revisa que tus datos sean correctos.")
+							return app.hideLoader();
+						}
+					}
+				});
+
+			} // END forgot_form scope
+
+			if($('#misQuinielas').length){
+
+					return app.render_myfeed_sidebar();
+
+					var positiveMargin = false;
+					$('.misquinielas').on('click', function(){
+
+						$('.menu li').removeClass('selected');
+						if (!positiveMargin) {
+							var left = "0%";
+							var padd = "1%";
+							positiveMargin = true;
+							$('.menu .menu_quinielas').addClass('selected');
+						}
+						else {
+							var left = "97%";
+							var padd = "1%";
+							positiveMargin = false;
+							$('.menu .menu_quinielas').removeClass('selected');
+						}
+						$('.misquinielas').animate( {
+														marginLeft: left,
+														paddingLeft: padd,
+													}, 
+													{
+														duration: 500,
+														complete: function() { }
+													});
+					});
+			} // END misQuinielas scope
+			
 			if($('#lobbyContainer').length){
 					console.log("Container");
 
@@ -325,66 +322,120 @@ window.initializeEvents = function(){
 						/** Filter lobby results here **/
 						console.log(dataFilter);
 					});
+
 					return; 
 			} // END misQuinielas scope
-		}, 200);
 		
-		if($('#detailQuiniela').length){
+			if($('#detailQuiniela').length){
 
-			var gameId = $('#detailQuiniela').data('id');
-			setTimeout(function(){
+				var gameId = $('#detailQuiniela').data('id');
 
-				$('#reg_into_game').on('click',function(){
-					$('#registerNow').fadeIn('fast');
+					$('#reg_into_game').on('click',function(){
+						$('#registerNow').fadeIn('fast');
+					});
+					$('#closeRegister').on('click',function(){
+						$('#registerNow').fadeOut('fast');
+					});
+					$('#sendRegister').on('click',function(){
+						$('#registerNow').fadeOut('fast');
+					});
+					return app.render_games(gameId);
+			} // END detailQuiniela scope
+			
+			
+			if($('#busquedaQuinielas').length){
+				console.log("Init validate");
+				$('#busquedaQuinielas').validate({
+					rules:{
+						gameName	: "required",
+						gameCode 	: "required"
+					},
+					messages:{
+						gameName	: "Debes ingresar el nombre de la quiniela",
+						gameCode 	: "Necesitas el código para encontrar la quiniela"
+					},
+					submitHandler:function( form, event ){
+						event.preventDefault();
+						app.showLoader();
+						var data_search	= app.getFormData(form, 'object');
+						console.log(data_search);
+						var response 	= apiRH.searchPrivates(data_search);
+						console.log(response);
+						return app.render_search_results(response);
+					}
 				});
-				$('#closeRegister').on('click',function(){
-					$('#registerNow').fadeOut('fast');
-				});
-				$('#sendRegister').on('click',function(){
-					$('#registerNow').fadeOut('fast');
-				});
-				return app.render_games(gameId);
-			}, 220);
-		} // END detailQuiniela scope
-
-		if($('#profileTabs').length){
-
-			setTimeout(function(){
-
-				/* Log Out from the API */
-				$('#logoutComponent').on('click', function(e){
-
-					/* TODO: Requesting logout from server */
-					app.keeper.clear();
-					app.render_login();
-					return;
-				});
-				$('.footermenu ul li').removeClass('selected');
-				$('.menu_perfil').addClass('selected');
-			}, 220);
-		} // END profileTabs scope
-		
-		if($('.privates').length){
-
-			$('.menu li').removeClass('selected');
-			$('.menu_privadas').addClass('selected');
-		} // END detailQuiniela scope
 	
-
-		if($('#depositStores').length){
-
-			$('.menu li').removeClass('selected');
-			$('.menu_abonar').addClass('selected');
-		} // END depositStores scope
+			} // END busquedaQuinielas scope
 		
-		if($('#depositCard').length){
+			if($('#profileTabs').length){
 
-			$('.menu li').removeClass('selected');
-			$('.menu_abonar').addClass('selected');
-		} // END depositCard scope
 
-		var ventana = $(window).height();
+					/* Log Out from the API */
+					$('#logoutComponent').on('click', function(e){
+
+						/* TODO: Requesting logout from server */
+						app.keeper.clear();
+						app.render_login();
+						return;
+					});
+					$('.footermenu ul li').removeClass('selected');
+					$('.menu_perfil').addClass('selected');
+
+				if($('#profileTabs').hasClass('methods')){
+					
+					console.log("addCardForm validate");
+					/* Payment methods tab */
+					$('#addCardForm').validate({
+						rules:{
+							holder_name		 : "required",
+							card_number 	 : "required",
+							expiration_month : "required",
+							expiration_year  : "required",
+							cvv2 			 : "required"
+						},
+						messages:{
+							holder_name		 : "Ingresa el nombre del tarjetahabiente",
+							card_number 	 : "Ingresa el número de tu tarjeta",
+							expiration_month : "Campo obligatorio",
+							expiration_year  : "Campo obligatorio",
+							cvv2 			 : "Ingresa tu código de seguridad"
+						},
+						submitHandler:function( form, event ){
+							event.preventDefault();
+							app.showLoader();
+							var card_data = app.getFormData(form, 'object');
+							console.log(card_data);
+							var response = apiRH.addPaymentMethod(card_data);
+							console.log(response);
+							// return app.render_search_results(response);
+						}
+					});
+
+				} // END profileTabs (methods)
+
+			} // END profileTabs scope
 		
+			if($('.privates').length){
+
+				$('.menu li').removeClass('selected');
+				$('.menu_privadas').addClass('selected');
+			} // END detailQuiniela scope
+		
+
+			if($('#depositStores').length){
+
+				$('.menu li').removeClass('selected');
+				$('.menu_abonar').addClass('selected');
+			} // END depositStores scope
+			
+			if($('#depositCard').length){
+
+				$('.menu li').removeClass('selected');
+				$('.menu_abonar').addClass('selected');
+			} // END depositCard scope
+		
+		}, 280); // END General Timeout
+
 	});
 
 }

@@ -259,72 +259,71 @@ window.initializeEvents = function(){
 
 			} // END forgot_form scope
 
-			if($('#misQuinielas').length){
-
-					return app.render_myfeed_sidebar();
-
-					var positiveMargin = false;
-					$('.misquinielas').on('click', function(){
-
-						$('.menu li').removeClass('selected');
-						if (!positiveMargin) {
-							var left = "0%";
-							var padd = "1%";
-							positiveMargin = true;
-							$('.menu .menu_quinielas').addClass('selected');
-						}
-						else {
-							var left = "97%";
-							var padd = "1%";
-							positiveMargin = false;
-							$('.menu .menu_quinielas').removeClass('selected');
-						}
-						$('.misquinielas').animate( {
-														marginLeft: left,
-														paddingLeft: padd,
-													}, 
-													{
-														duration: 500,
-														complete: function() { }
-													});
-					});
-			} // END misQuinielas scope
-			
 			if($('#lobbyContainer').length){
-					console.log("Container");
+				console.log("Container");
 
-					/** Render header again to include filters component **/
-					app.render_header(true);
-					app.render_lobby_feed('chronological');
+				/** Render header again to include filters component **/
+				app.render_header(true);
+				app.render_lobby_feed('chronological');
 
-					$('.footermenu ul li').removeClass('selected');
-			 		$('.menu_lobby').addClass('selected');
+				$('.footermenu ul li').removeClass('selected');
+		 		$('.menu_lobby').addClass('selected');
 
-			 		/*** FILTROS ***/
-					$('.header_filtros').on('click', function(){
-						if($('.filtros_wrapper').hasClass('filtros_show')){
-							$('.filtros_wrapper').removeClass('filtros_show');
-							$('.filtros_wrapper').fadeOut('fast');
-						} else {
-							$('.filtros_wrapper').addClass('filtros_show');
-							$('.filtros_wrapper').fadeIn('fast');
-						}
+		 		/*** FILTROS ***/
+				$('.header_filtros').on('click', function(){
+					if($('.filtros_wrapper').hasClass('filtros_show')){
+						$('.filtros_wrapper').removeClass('filtros_show');
+						$('.filtros_wrapper').fadeOut('fast');
+					} else {
+						$('.filtros_wrapper').addClass('filtros_show');
+						$('.filtros_wrapper').fadeIn('fast');
+					}
+				});
+
+				$('.filtros ul li').on('click', function(){
+					$(this).closest('li').each( function(index, element){
+						console.log($(element));
+						$(element).removeClass('selected');
 					});
+					var dataFilter 	= $(this).attr('data-filter');
+					var dataValue 	= $(this).attr('data-value');
+					$(this).addClass('selected');
+					/** Filter lobby results here **/
+					console.log(dataFilter);
+				});
 
-					$('.filtros ul li').on('click', function(){
-						$(this).closest('li').each( function(index, element){
-							console.log($(element));
-							$(element).removeClass('selected');
+				if($('#misQuinielas').length){
+
+						app.render_myfeed_sidebar();
+
+						var positiveMargin = false;
+						$('.misquinielas').on('click', function(){
+
+							$('.menu li').removeClass('selected');
+							if (!positiveMargin) {
+								var left = "0%";
+								var padd = "1%";
+								positiveMargin = true;
+								$('.menu .menu_quinielas').addClass('selected');
+							}
+							else {
+								var left = "97%";
+								var padd = "1%";
+								positiveMargin = false;
+								$('.menu .menu_quinielas').removeClass('selected');
+							}
+							$('.misquinielas').animate( {
+															marginLeft: left,
+															paddingLeft: padd,
+														}, 
+														{
+															duration: 500,
+															complete: function() { }
+														});
 						});
-						var dataFilter 	= $(this).attr('data-filter');
-						var dataValue 	= $(this).attr('data-value');
-						$(this).addClass('selected');
-						/** Filter lobby results here **/
-						console.log(dataFilter);
-					});
+				} // END misQuinielas scope
 
-					return; 
-			} // END misQuinielas scope
+			} // END lobbyContainer scope
 		
 			if($('#detailQuiniela').length){
 

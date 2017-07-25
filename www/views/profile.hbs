@@ -39,7 +39,7 @@
 				<h3>AGREGAR TARJETA</h3>
 				<form id="addCardForm" method="POST" action="">
 					<input name="holder_name" data-openpay-card="holder_name" id="holder_name" type="text" placeholder="Nombre como aparece en la tarjeta">
-					<input name="card_number" data-openpay-card="card_number" id="card_number" type="text" placeholder="Número de tarjeta">
+					<input name="card_number" maxlength="16" data-openpay-card="card_number" id="card_number" type="text" placeholder="Número de tarjeta">
 					<div class="fecha_vencimiento clearfix">
 						<select name="expiration_month" id="expiration_month" data-openpay-card="expiration_month">
 							<option>Mes</option>

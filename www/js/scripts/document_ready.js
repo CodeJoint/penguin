@@ -16,7 +16,7 @@ window.initializeEvents = function(){
 		var ventana = $(window).height();
 
 		window.initHooks = function(){
-
+			console.log("Hooked!");
 			/* Hook soft links */
 			$('.hook').on('click', function(e){
 
@@ -32,6 +32,8 @@ window.initializeEvents = function(){
 
 				if( $(this).data('resource') == "lobby" )
 					return app.render_lobby( $(this).attr('href'), false );
+				if( $(this).data('resource') == "first-lobby" )
+					return app.render_lobby( $(this).attr('href') );
 				if( $(this).data('resource') == "privates" )
 					return app.render_private_search( $(this).attr('href') );
 				if( $(this).data('resource') == "privates-create" )
@@ -185,7 +187,8 @@ window.initializeEvents = function(){
 			} // END register_form
 
 			if($('#registerSuccess').length){
-				console.log("Register success");
+				
+
 			} // END registerSuccess
 
 			if($('#login_form').length){
@@ -258,7 +261,11 @@ window.initializeEvents = function(){
 				});
 
 			} // END forgot_form scope
+			
+			if($('#theHeader').length){
 
+			} // END theHeader
+			
 			if($('#lobbyContainer').length){
 				console.log("Container");
 
@@ -311,6 +318,7 @@ window.initializeEvents = function(){
 								var padd = "1%";
 								positiveMargin = false;
 								$('.menu .menu_quinielas').removeClass('selected');
+								$('.menu .menu_lobby').addClass('selected');
 							}
 							$('.misquinielas').animate( {
 															marginLeft: left,
@@ -403,10 +411,16 @@ window.initializeEvents = function(){
 							event.preventDefault();
 							app.showLoader();
 							var card_data = app.getFormData(form, 'object');
-							console.log(card_data);
 							var response = apiRH.addPaymentMethod(card_data);
-							console.log(response);
-							// return app.render_search_results(response);
+							if(!response.success && response.data == 2004)
+								return app.toast("El código de verificación no es válido.");
+							if(!response.success && response.data == 1001)
+								return app.toast("El código de verificación debe ser de 3 dígitos.");
+							if(!response.success && response.data == 1001)
+								return app.toast("El código de verificación debe ser de 3 dígitos.");
+							if(response.success && typeof response.data != 'undefined' )
+								return app.toast("Se ha agregado tu método de pago.");
+							return apiRH.render_profile('profile.html', 'methods');
 						}
 					});
 

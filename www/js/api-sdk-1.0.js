@@ -198,11 +198,16 @@ function requestHandlerAPI(){
 		 */
 		this.addPaymentMethod = 	function(card_data, type){
 									/* tokenize card data */
+									var final_response = {};
 									OpenPay.token.create(card_data, 
 														function(response){
 															console.log(response);
+															final_response.success 	= true;
+															final_response.data 	= response.id;
 														}, function(response){
 															console.log(response);
+															final_response.success 	= false;
+															final_response.data		= response.error_code;
 															app.toast("Error al agregar tu forma de pago");
 														});
 									// var response = this.makeRequest('api/pools/search_private.json', data, null, false);

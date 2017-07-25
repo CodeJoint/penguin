@@ -1,11 +1,11 @@
 	{{# data.entries}}
-		{{> each-my-quiniela}}
+		{{> each-quiniela}}
 	{{/ data.entries}}
 
 	{{# if data.mypools}}
-		<h3>Creadas por mi</h3>
+		{{# data.mypools}}
+			{{> each-quiniela}}
+		{{/ data.mypools}}
 	{{/ if}}
-	{{# data.mypools}}
-		{{> each-my-quiniela}}
-	{{/ data.mypools}}
+	
 

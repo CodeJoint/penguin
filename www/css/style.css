@@ -633,7 +633,7 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 	.header .header_right .header_user_info .user_info .avatar_container{ width: 24px; height: 24px; -webkit-border-radius: 50%; -moz-border-radius: 50%; border-radius: 50%; overflow: hidden; float: left; margin-right: 7px;}
 	.header .header_right .header_user_info .user_info img { width: 100%; height: auto; }
 
-	.misquinielas{ top: 94px; }
+	.misquinielas{ top: 91px; }
 	.rootContainer{min-height: 100vh!important;}
 	.form input.submit_green{ background-color: #678946; border-color: #aaca7d; border-style: groove; text-transform: uppercase; letter-spacing: 1.5px; font-size: 1.25rem; width: 240px; -webkit-border-radius: 2px; -moz-border-radius: 2px; border-radius: 2px;}
 	.green_button{ background-color: #678946; border-color: #aaca7d; border-style: groove; text-transform: uppercase; letter-spacing: 1.5px; font-size: 1.25rem; width: 240px; -webkit-border-radius: 2px; -moz-border-radius: 2px; border-radius: 2px; color: #FFF; padding: 0.5rem 1rem; text-decoration: none; margin: 2.5rem auto 0 auto; display: block;}
@@ -670,6 +670,7 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 	.login .legales{ width: 100%; margin-top: 5% auto; text-align: center; bottom: 32px;}
 	.profile.withraw{}
 	.profile.withraw p>strong{ color: #90bd7e; font-weight: 300;}
+	.profile .tab_profile{ min-height: 62vh; }
 
 	.backed_modal{ display: block; }
 	.backed_modal::before{ content: ""; }
@@ -677,4 +678,7 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 	.header .header_right .header_user_info{width: 84%;}
 	.header .header_right .header_filtros{ width: 68px; float: right; text-align: center; position: absolute; top: 1rem; right: 0;}
 	.header .header_right .header_filtros h4{margin-bottom: 0.5rem;}
+	
+	.small_text{ font-size: 1.2rem; }
+
 	/* https://www.pickwin.net/users/reset_password/05763732b4adbc6cf2644124d0e91ed991fb741a1cd3f966b447bd1378f8a8a3 */

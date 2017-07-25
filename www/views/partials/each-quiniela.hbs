@@ -21,7 +21,7 @@
 							<img src="{{full_path}}images/natural.png">
 						{{/ if_eq }}
 					{{/ if_eq }}
-					<img src="{{full_path}}images/{{sport.icon}}.png">
+					<img src="{{full_path}}images/{{# sport.icon}}{{.}}{{/ sport.icon}}{{# sport_icon_class}}{{.}}{{/ sport_icon_class}}.png">
 				</div><!-- iconos -->
 				<h2>{{name_replaced}}</h2>
 			</div><!-- quiniela_header -->

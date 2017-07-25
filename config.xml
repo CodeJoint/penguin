@@ -14,6 +14,7 @@
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="*localhost:8001*" />
+    <allow-intent href="https://facebook.com/connect/*" />
     <allow-intent href="https://*/*" />
     <allow-intent href="tel:*" />
     <allow-intent href="sms:*" />

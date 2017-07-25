@@ -150,9 +150,7 @@
 			window.cordova_full_path = (typeof(cordova) != 'undefined') 
 										? cordova.file.applicationDirectory
 										: '';
-			// window.cordova_full_path = '';
-			console.log(window.cordova_full_path);
-			
+
 			try{
 				app.initPaymentAPI();
 				console.log("Initialized Payment gateway");

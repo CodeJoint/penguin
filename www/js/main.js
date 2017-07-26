@@ -112,7 +112,7 @@
 				var date = Date.parse(value);
 				console.log(date);
 				moment.locale('es');
-				return moment().to(value).format("LTS");
+				return moment(value).countdown().toString();
 			});
 			Handlebars.registerHelper('coinToPeso', function(value) {
 				return (value*0.00005).toFixed(2);

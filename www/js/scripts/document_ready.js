@@ -14,6 +14,7 @@ window.initializeEvents = function(){
 		console.log("DocReady scripts");
 		$('body').removeClass("preventEvents");
 		var ventana = $(window).height();
+		window.alert = navigator.notification.alert;
 
 		window.initHooks = function(){
 			console.log("Hooked!");
@@ -222,9 +223,9 @@ window.initializeEvents = function(){
 				});
 
 				$('#fb_login').on('click', function(e) {
-			    	e.preventDefault();
-			    	return apiRH.FBOauth();
-			    });
+					e.preventDefault();
+					return apiRH.FBOauth();
+				});
 
 			} // END login_form scope
 
@@ -274,9 +275,9 @@ window.initializeEvents = function(){
 				app.render_lobby_feed('chronological');
 
 				$('.footermenu ul li').removeClass('selected');
-		 		$('.menu_lobby').addClass('selected');
+				$('.menu_lobby').addClass('selected');
 
-		 		/*** FILTROS ***/
+				/*** FILTROS ***/
 				$('.header_filtros').on('click', function(){
 					if($('.filtros_wrapper').hasClass('filtros_show')){
 						$('.filtros_wrapper').removeClass('filtros_show');
@@ -388,10 +389,15 @@ window.initializeEvents = function(){
 					$('.footermenu ul li').removeClass('selected');
 					$('.menu_perfil').addClass('selected');
 
+				/* Payment methods tab */
 				if($('#profileTabs').hasClass('methods')){
+					var card_id = null;
+
+					function onDeletionConfirm(buttonIndex) {
+						var response = apiRH.deleteRequest('api/openpay_cards/delete/'+card_id+'.json', {});
+						return (response) ? app.render_profile('profile.html') : app.toast("Ocurrió un error, intenta nuevamente.");
+					}
 					
-					console.log("addCardForm validate");
-					/* Payment methods tab */
 					$('#addCardForm').validate({
 						rules:{
 							holder_name		 : "required",
@@ -411,11 +417,24 @@ window.initializeEvents = function(){
 							event.preventDefault();
 							app.showLoader();
 							var card_data = app.getFormData(form, 'object');
-							var response = apiRH.addPaymentMethod(card_data);
-							console.log(response);
-							return app.render_profile('profile.html', 'methods');
+							return apiRH.addPaymentMethod(card_data);
 						}
 					});
+
+					$('.delete_card').on('click', function(){
+						card_id = $(this).data('id');
+						var digits 	= $(this).data('digits');
+						navigator.notification.confirm(
+							'¿Eliminar la tarjeta ***'+digits+'?',
+							 onDeletionConfirm,
+							'Métodos de pago',
+							['Si','No']     // buttonLabels
+						);
+					});
+
+
+
+					
 
 				} // END profileTabs (methods)
 

@@ -203,32 +203,29 @@ function requestHandlerAPI(){
 														function(response){
 															final_response.success 	= true;
 															final_response.token 	= response.data.id;
+															if(final_response.success && final_response.token ){
+																final_response.device_session_id = apiRH.deviceSessionId;
+																console.log(final_response);
+																var response = apiRH.makeRequest('api/openpay_cards/add.json', final_response, null, false);
+																console.log(response);
+																app.hideLoader();
+																alert("Se ha agregado tu método de pago.");
+																return app.render_profile('profile.html', 'methods');
+															}
 														}, function(response){
 															console.log(response);
 															final_response.success 	= false;
 															final_response.error	= response.data.error_code;
+															console.log(final_response);
+															var message = 'Ocurrió un error, revisa tus datos e intenta nuevamente.';
+																message = (final_response.error == 2004) 	? 'El código de verificación no es válido.'			
+																											: message;
+																message = (final_response.error == 1001) 	? 'El código de verificación debe ser de 3 dígitos.'	
+																											: message;
+															app.hideLoader();
+															app.toast(message);
+															return false;
 														});
-									console.log(final_response);
-									if(!final_response.success && final_response.error == 2004){
-										return app.toast("El código de verificación no es válido.");
-									}
-									if(!final_response.success && final_response.error == 1001){
-										return app.toast("El código de verificación debe ser de 3 dígitos.");
-									}
-									if(!final_response.success && final_response.error == 1001){
-										return app.toast("El código de verificación debe ser de 3 dígitos.");
-									}
-									if(!final_response && typeof final_response.success == 'undefined'){
-										return app.toast("Ocurrió un error, revisa tus datos e intenta nuevamente.");
-									}
-									if(final_response.success && final_response.token ){
-										final_response.device_session_id = apiRH.deviceSessionId;
-										console.log(final_response);
-										var response = this.makeRequest('api/openpay_cards/add.json', final_response, null, false);
-										console.log(response);
-										return app.toast("Se ha agregado tu método de pago.");
-									}
-									return;
 								};
 
 		/*! 
@@ -270,7 +267,6 @@ function requestHandlerAPI(){
 												      return app.toast( "Revisa tus credenciales e intenta de nuevo" );
 												    }
 									},
-									url			: window.api_base_url+endpoint,
 									data 		: data,
 									dataType 	: 'json',
 									async 		: false,
@@ -392,6 +388,47 @@ function requestHandlerAPI(){
 									console.log(e);
 								 });
 								 return result;
+							};
+
+			/*! 
+			 * Executes a DELETE call
+			 * @param endpoint API endpoint to make the call to
+			 * @param data JSON encoded data 
+			 * *****(SEND data = NULL for closed endpoints)*****
+			 * @return JSON success
+			 * @see API documentation
+			 */
+			this.deleteRequest = function(endpoint){
+								app.showLoader();
+								
+								var result = {};
+								var options = 	{
+													method 		: 'DELETE',
+													url			: window.api_base_url+endpoint,
+													statusCode	: {
+																    401 : function() {
+																      return app.toast( "Revisa tus credenciales e intenta de nuevo" );
+																    }
+													},
+													dataType 	: 'json',
+													headers 	: apiRH.headers,
+													async 		: false,
+													crossDomain	: true
+												};
+								
+								$.ajax(options)
+								 .always( function(response){
+									setTimeout(function(){
+										app.hideLoader();
+									}, 2000);
+								 })
+								 .done( function(response){
+									result = response;
+								 })
+								 .fail( function(e){
+									result = false;
+								});
+								return result;
 							};
 
 		/**

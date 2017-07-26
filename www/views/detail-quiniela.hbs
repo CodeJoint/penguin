@@ -159,29 +159,33 @@
 							<div class="no_registros clearfix">
 								<span class="pregunta">¿Cuántos registros quieres para esta quiniela?</span>
 								<select name="no_registros">
-									<option>1</option>
-									<option>2</option>
-									<option>3</option>
-									<option>4</option>
-									<option>5</option>
-									<option>6</option>
+									<option value="1" >1</option>
+									<option value="2" >2</option>
+									<option value="3" >3</option>
+									<option value="4" >4</option>
+									<option value="5" >5</option>
+									<option value="6" >6</option>
 								</select>
 							</div><!-- no_registros -->
 							<div class="copiar_picks clearfix">
 								<span class="pregunta">Utilizar los picks elegidos para todos los registros</span>
-								<input type="checkbox" name="same_picks" checked>
+								<input type="checkbox" name="same_picks" value="1">
 							</div><!-- no_registros -->
 							<div class="balance clearfix">
 								<div class="disponible clearfix">
 									<p>Balance disponible:</p>
-									<div class="disponible_dinero clearfix">
-										<img src="{{cordova_full_path}}images/billete.png">
-										<p>${{ formatCurrency me.balanceReal}} MXN</p>
-									</div><!-- disponible dinero -->
-									<div class="disponible_coins">
-										<img src="{{cordova_full_path}}images/pickcoin.png">
-										<p>{{ formatCurrency me.balancePc}}</p>
-									</div><!-- disponible coins -->
+									{{# if_eq data.entry_currency 'real' }}
+										<div class="disponible_dinero clearfix">
+											<img src="{{cordova_full_path}}images/billete.png">
+											<p>${{ formatCurrency me.balanceReal}} MXN</p>
+										</div><!-- disponible dinero -->
+									{{/ if_eq }}
+									{{# if_eq data.entry_currency 'pickcoin' }}
+										<div class="disponible_coins">
+											<img src="{{cordova_full_path}}images/pickcoin.png">
+											<p>{{ formatCurrency me.balancePc}}</p>
+										</div><!-- disponible coins -->
+									{{/ if_eq }}
 								</div><!-- disponible -->
 								<div class="descontaran clearfix">
 									<p>Se descontarán:</p>
@@ -200,14 +204,18 @@
 								</div><!-- descontaran -->
 								<div class="total clearfix">
 									<p>Entrada:</p>
-									<div class="total_dinero">
-										<img src="{{cordova_full_path}}images/billete.png">
-										<p>${{ formatCurrency data.real_entry_fee}} MXN + ${{ formatCurrency data.commission_fee}} comisión</p>
-									</div><!-- total dinero -->
-									<div class="total_coins">
-										<img src="{{cordova_full_path}}images/pickcoin.png">
-										<p>{{ formatCurrency data.real_entry_fee}} + {{ formatCurrency data.commission_fee}} comisión</p>
-									</div><!-- total coins -->
+									{{# if_eq data.entry_currency 'real' }}
+										<div class="total_dinero">
+											<img src="{{cordova_full_path}}images/billete.png">
+											<p>${{ formatCurrency data.real_entry_fee}} MXN + ${{ formatCurrency data.commission_fee}} comisión</p>
+										</div><!-- total dinero -->
+									{{/ if_eq }}
+									{{# if_eq data.entry_currency 'pickcoin' }}
+										<div class="total_coins">
+											<img src="{{cordova_full_path}}images/pickcoin.png">
+											<p>{{ formatCurrency data.real_entry_fee}} + {{ formatCurrency data.commission_fee}} comisión</p>
+										</div><!-- total coins -->
+									{{/ if_eq }}
 								</div><!-- total -->
 							</div><!-- balance -->
 

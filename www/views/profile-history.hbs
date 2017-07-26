@@ -16,7 +16,12 @@
 				<ul>
 					{{# data.transactions}}
 						<li class="clearfix">
-							<label for="" ></label>			
+							<span>{{id}}</span> <span>{{concept}}</span> <span>{{formatCurrency amount}}</span> <span>{{ formatDate created}} </span>					
+						</li>
+					{{/ data.transactions}}
+					{{^ data.transactions}}
+						<li class="clearfix">
+							<p class="empty">No tienes documentos guardados.</p>				
 						</li>
 					{{/ data.transactions}}
 				</ul>

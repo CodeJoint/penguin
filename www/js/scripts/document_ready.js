@@ -14,7 +14,7 @@ window.initializeEvents = function(){
 		console.log("DocReady scripts");
 		$('body').removeClass("preventEvents");
 		var ventana = $(window).height();
-		window.alert = navigator.notification.alert;
+		window.alert = (typeof navigator.notification !== 'undefined') ? navigator.notification.alert : window.alert;
 
 		window.initHooks = function(){
 			console.log("Hooked!");
@@ -363,8 +363,9 @@ window.initializeEvents = function(){
 						submitHandler:function( form, event ){
 							event.preventDefault();
 							app.showLoader();
-							// var data_search	= app.getFormData(form, 'object');
-							// console.log(data_search);
+							var register_data	= app.getFormData(form, 'object');
+							console.log(register_data);
+							
 							// var response 	= apiRH.searchPrivates(data_search);
 							// console.log(response);
 							// return app.render_search_results(response);

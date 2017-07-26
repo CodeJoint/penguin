@@ -108,9 +108,7 @@
 				return moment(value).format('lll');
 			});
 			Handlebars.registerHelper('timer', function(value) {
-				console.log(value);
 				var date = Date.parse(value);
-				console.log(date);
 				moment.locale('es');
 				return moment(value).countdown().toString();
 			});

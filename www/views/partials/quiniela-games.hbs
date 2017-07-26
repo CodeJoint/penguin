@@ -6,7 +6,7 @@
 		fizruer
 		<div data-id="{{id}}" class="partido clearfix">
 			<div class="opcion_partido local clearfix">
-				<input type="radio" name="ganador_uno" id="local">
+				<input type="radio" name="winner_{{id}}" id="local">
 				<img src="{{cordova_full_path}}images/camisaverde.png">
 				<div class="equipo">
 					<span class="iniciales">{{home_team.abbreviation}}</span>
@@ -16,11 +16,11 @@
 				</div><!-- linea -->
 			</div><!-- opcion_partido -->
 			<div class="opcion_partido {{# if allow_ties}} empate {{/ if}} cierre clearfix">
-				{{# if allow_ties}}<input type="radio" name="ganador_dos" id="empate">{{/ if}}
+				{{# if allow_ties}}<input type="radio" name="ganador_{{id}}" id="empate">{{/ if}}
 				<span>CIERRE: {{formatDate deadline}}</span>
 			</div><!-- opcion_partido -->
 			<div class="opcion_partido visitante clearfix">
-				<input type="radio" name="ganador_uno" id="visitante">
+				<input type="radio" name="winner_{{id}}" id="visitante">
 				<img src="{{cordova_full_path}}images/camisaazul.png">
 				<div class="equipo">
 					<span class="iniciales">{{away_team.abbreviation}}</span>

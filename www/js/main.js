@@ -84,6 +84,13 @@
 					return opts.inverse(this);
 				}
 			});
+			Handlebars.registerHelper('if_less', function(a, b, opts) {
+				if (a < b && a > 0) {
+					return opts.fn(this);
+				} else {
+					return opts.inverse(this);
+				}
+			});
 			Handlebars.registerHelper('if_module', function(a, b, opts) {
 				if (a%b == 0) {
 					return opts.fn(this);
@@ -99,6 +106,13 @@
 				var date = Date.parse(value);
 				moment.locale('es');
 				return moment(value).format('lll');
+			});
+			Handlebars.registerHelper('timer', function(value) {
+				console.log(value);
+				var date = Date.parse(value);
+				console.log(date);
+				moment.locale('es');
+				return moment().to(value).format("LTS");
 			});
 			Handlebars.registerHelper('coinToPeso', function(value) {
 				return (value*0.00005).toFixed(2);
@@ -489,11 +503,12 @@
 
 			if(!app.data_temp.data.pools)
 				return flase;
-
+			console.log(app.data_temp.data.pools);
 			var pool = app.data_temp.data.pools;
 			if(filter == 'chronological' || typeof filter == 'undefined'){
 				pool.sort(
 					firstBy( function (v) { return v.closed; } )
+						.thenBy( function (v) { return !v.featured; } )
 						.thenBy('deadline_tz')
 				);
 			}

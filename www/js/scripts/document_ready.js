@@ -346,7 +346,31 @@ window.initializeEvents = function(){
 					$('#sendRegister').on('click',function(){
 						$('#registerNow').fadeOut('fast');
 					});
-					return app.render_games(gameId);
+					
+					/** Render quiniela games and picks selectors **/
+					app.render_games(gameId);
+
+					$('#registerToQuinielaForm').validate({
+						rules:{
+							gameName	: "required",
+							gameCode 	: "required"
+						},
+						messages:{
+							gameName	: "Debes ingresar el nombre de la quiniela",
+							gameCode 	: "Necesitas el código para encontrar la quiniela"
+						},
+						submitHandler:function( form, event ){
+							event.preventDefault();
+							app.showLoader();
+							// var data_search	= app.getFormData(form, 'object');
+							// console.log(data_search);
+							// var response 	= apiRH.searchPrivates(data_search);
+							// console.log(response);
+							// return app.render_search_results(response);
+							return false;
+						}
+					});
+
 			} // END detailQuiniela scope
 			
 			

@@ -629,6 +629,7 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 
 	/* John overrides */
 	
+	.container{ font-weight: 500; }
 	.hidden{ display: none!important; }
 	.header .header_right .header_user_info .user_info .avatar_container{ width: 24px; height: 24px; -webkit-border-radius: 50%; -moz-border-radius: 50%; border-radius: 50%; overflow: hidden; float: left; margin-right: 7px;}
 	.header .header_right .header_user_info .user_info img { width: 100%; height: auto; }
@@ -650,6 +651,7 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 	.quiniela .quiniela_entrada{margin-right: 0.75rem;}
 	.quiniela .quiniela_aganar{margin-right: 0.75rem;}
 	.quiniela .quiniela_info{margin-right: 0.75rem;}
+	.featured .quiniela_header h2{color: #FF8D00;}
 
 	.exoskeleton{ display: block; min-height: 100vh; width: 100%; top: 0; }
 	.quiniela_header .quiniela_iconos img{ margin-right: 2.5px;}
@@ -679,6 +681,4 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 	.header .header_right .header_filtros{ width: 68px; float: right; text-align: center; position: absolute; top: 1rem; right: 0;}
 	.header .header_right .header_filtros h4{margin-bottom: 0.5rem;}
 	
-	.small_text{ font-size: 1.2rem; }
-
-	/* https://www.pickwin.net/users/reset_password/05763732b4adbc6cf2644124d0e91ed991fb741a1cd3f966b447bd1378f8a8a3 */
+	.small_text{ font-size: 1rem; letter-spacing: 1px; }

@@ -113,5 +113,13 @@
             "APP_ID": "973176056074364",
             "APP_NAME": "Pickwin"
         }
+    },
+    "cordova-plugin-dialogs": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-dialogs"
+        },
+        "is_top_level": true,
+        "variables": {}
     }
 }

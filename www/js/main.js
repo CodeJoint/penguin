@@ -104,7 +104,8 @@
 				return (value*0.00005).toFixed(2);
 			});
 			Handlebars.registerHelper('lastFour', function(value) {
-				return value.substring(-4);
+				console.log(value.substring(value.length - 4));
+				return value.substring(value.length - 4);
 			});
 		},
 		registerTemplate : function(name) {

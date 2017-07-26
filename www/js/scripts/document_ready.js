@@ -412,15 +412,8 @@ window.initializeEvents = function(){
 							app.showLoader();
 							var card_data = app.getFormData(form, 'object');
 							var response = apiRH.addPaymentMethod(card_data);
-							if(!response.success && response.data == 2004)
-								return app.toast("El código de verificación no es válido.");
-							if(!response.success && response.data == 1001)
-								return app.toast("El código de verificación debe ser de 3 dígitos.");
-							if(!response.success && response.data == 1001)
-								return app.toast("El código de verificación debe ser de 3 dígitos.");
-							if(response.success && typeof response.data != 'undefined' )
-								return app.toast("Se ha agregado tu método de pago.");
-							return apiRH.render_profile('profile.html', 'methods');
+							console.log(response);
+							return app.render_profile('profile.html', 'methods');
 						}
 					});
 

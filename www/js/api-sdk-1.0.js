@@ -198,20 +198,36 @@ function requestHandlerAPI(){
 		 */
 		this.addPaymentMethod = 	function(card_data, type){
 									/* tokenize card data */
-									var final_response = {};
+									var final_response = {success: false, token: null, device_session_id: null};
 									OpenPay.token.create(card_data, 
 														function(response){
-															console.log(response);
 															final_response.success 	= true;
-															final_response.data 	= response.id;
+															final_response.token 	= response.data.id;
 														}, function(response){
 															console.log(response);
 															final_response.success 	= false;
-															final_response.data		= response.error_code;
-															app.toast("Error al agregar tu forma de pago");
+															final_response.error	= response.data.error_code;
 														});
-									// var response = this.makeRequest('api/pools/search_private.json', data, null, false);
-									// return response;
+									console.log(final_response);
+									if(!final_response.success && final_response.error == 2004){
+										return app.toast("El código de verificación no es válido.");
+									}
+									if(!final_response.success && final_response.error == 1001){
+										return app.toast("El código de verificación debe ser de 3 dígitos.");
+									}
+									if(!final_response.success && final_response.error == 1001){
+										return app.toast("El código de verificación debe ser de 3 dígitos.");
+									}
+									if(!final_response && typeof final_response.success == 'undefined'){
+										return app.toast("Ocurrió un error, revisa tus datos e intenta nuevamente.");
+									}
+									if(final_response.success && final_response.token ){
+										final_response.device_session_id = apiRH.deviceSessionId;
+										console.log(final_response);
+										var response = this.makeRequest('api/openpay_cards/add.json', final_response, null, false);
+										console.log(response);
+										return app.toast("Se ha agregado tu método de pago.");
+									}
 									return;
 								};
 

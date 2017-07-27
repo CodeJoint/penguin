@@ -2,7 +2,7 @@
 	{{!-- nothing --}}
 {{ else}}
 
-	<a class="link_wrapper hook" data-resource="detail" data-object="{{id}}" href="detail-quiniela.html?id={{id}}">
+	<a class="link_wrapper hook" data-resource="detail" data-object="{{id}}" href="detail-quiniela.html?id={{id}} {{# each entries}}entries{{@first}}{{/ each}}">
 		<div class="quiniela 
 						{{# if upcoming}}quiniela_open{{/ if}} 
 						{{# if featured}}featured{{/ if}} 
@@ -29,7 +29,7 @@
 			<div class="quiniela_content clearfix">
 				<div class="quiniela_info clearfix">
 					<span class="registros">REGISTROS: {{entry_count}}</span>
-					<span class="cierre">CIERRE: {{# if_less time_left 86400}}{{timer deadline_tz}}{{/ if_less }}{{^ if_less time_left 86400}}{{formatDate deadline_tz}}{{/ if_less }}</span>
+					<span data-countdown="{{deadline_tz}}" class="cierre">CIERRE: {{^ if_less time_left 86400}}{{formatDate deadline_tz}}{{/ if_less }}</span>
 					{{# limited_capacity}}
 						<span class="limite">Limitado a {{max_entries}} entradas</span>
 					{{/ limited_capacity}}

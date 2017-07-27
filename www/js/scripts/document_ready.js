@@ -332,6 +332,13 @@ window.initializeEvents = function(){
 						});
 				} // END misQuinielas scope
 
+				$('[data-countdown]').each(function() {
+					var $this = $(this), finalDate = $(this).data('countdown');
+					var date = moment(finalDate);
+					$this.countdown(finalDate, function(event) {
+						$this.html(event.strftime('%H:%M:%S'));
+					});
+				});
 			} // END lobbyContainer scope
 		
 			if($('#detailQuiniela').length){
@@ -365,7 +372,7 @@ window.initializeEvents = function(){
 							app.showLoader();
 							var register_data	= app.getFormData(form, 'object');
 							console.log(register_data);
-							
+
 							// var response 	= apiRH.searchPrivates(data_search);
 							// console.log(response);
 							// return app.render_search_results(response);
@@ -456,11 +463,7 @@ window.initializeEvents = function(){
 							['Si','No']     // buttonLabels
 						);
 					});
-
-
-
 					
-
 				} // END profileTabs (methods)
 
 			} // END profileTabs scope

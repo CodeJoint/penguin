@@ -107,11 +107,6 @@
 				moment.locale('es');
 				return moment(value).format('lll');
 			});
-			Handlebars.registerHelper('timer', function(value) {
-				var date = Date.parse(value);
-				moment.locale('es');
-				return moment(value).countdown().toString();
-			});
 			Handlebars.registerHelper('coinToPeso', function(value) {
 				return (value*0.00005).toFixed(2);
 			});

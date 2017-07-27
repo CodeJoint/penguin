@@ -81,6 +81,7 @@
     <engine name="ios" spec="^4.4.0" />
     <plugin name="cordova-plugin-console" spec="~1.0.5" />
     <plugin name="cordova-plugin-device" spec="^1.1.6" />
+    <plugin name="cordova-plugin-dialogs" spec="^1.3.3" />
     <plugin name="cordova-plugin-facebook4" spec="^1.9.1">
         <variable name="APP_ID" value="973176056074364" />
         <variable name="APP_NAME" value="Pickwin" />
@@ -93,5 +94,4 @@
     <plugin name="cordova-plugin-whitelist" spec="1" />
     <plugin name="cordova-plugin-x-toast" spec="~2.6.0" />
     <plugin name="onesignal-cordova-plugin" spec="^2.1.2" />
-    <plugin name="cordova-plugin-dialogs" spec="^1.3.3" />
 </widget>

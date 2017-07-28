@@ -335,13 +335,12 @@ window.initializeEvents = function(){
 				$('[data-countdown]').each(function(index, element) {
 					var $this = $(element), finalDate = $(element).data('countdown');
 					var date = moment(finalDate).format('YYYY-MM-DD HH:mm:ss');
-					console.log(date);
 					if(date !== 'Invalid date')
 						$this.countdown(date, function(event) {
-							console.log(event);
 							$this.html('<strong class="timer_active">CIERRE: '+event.strftime('%H:%M:%S')+'</strong>');
 						});
 				});
+				
 			} // END lobbyContainer scope
 		
 			if($('#detailQuiniela').length){

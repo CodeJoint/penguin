@@ -496,7 +496,7 @@
 
 			if(!app.data_temp.data.pools)
 				return flase;
-			console.log(app.data_temp.data.pools);
+
 			var pool = app.data_temp.data.pools;
 			if(filter == 'chronological' || typeof filter == 'undefined'){
 				pool.sort(

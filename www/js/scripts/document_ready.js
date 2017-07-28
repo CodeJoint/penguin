@@ -17,6 +17,7 @@ window.initializeEvents = function(){
 		window.alert = (typeof navigator.notification !== 'undefined') ? navigator.notification.alert : window.alert;
 
 		window.initHooks = function(){
+			$('.hook').unbind();
 			console.log("Hooked!");
 			/* Hook soft links */
 			$('.hook').on('click', function(e){
@@ -272,7 +273,6 @@ window.initializeEvents = function(){
 
 				/** Render header again to include filters component **/
 				app.render_header(true);
-				app.render_lobby_feed('chronological');
 
 				$('.footermenu ul li').removeClass('selected');
 				$('.menu_lobby').addClass('selected');
@@ -332,6 +332,9 @@ window.initializeEvents = function(){
 						});
 				} // END misQuinielas scope
 
+				/** Render lobby **/
+				app.render_lobby_feed('chronological');
+
 				$('[data-countdown]').each(function(index, element) {
 					var $this = $(element), finalDate = $(element).data('countdown');
 					var date = moment(finalDate).format('YYYY-MM-DD HH:mm:ss');
@@ -340,7 +343,8 @@ window.initializeEvents = function(){
 							$this.html('<strong class="timer_active">CIERRE: '+event.strftime('%H:%M:%S')+'</strong>');
 						});
 				});
-				
+				setTimeout( function(){ initHooks(); }, 300);
+
 			} // END lobbyContainer scope
 		
 			if($('#detailQuiniela').length){

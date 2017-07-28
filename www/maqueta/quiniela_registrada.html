@@ -258,25 +258,33 @@
 					<div class="prop clearfix">
 						<h3>¿Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer aliqua?</h3>
 						<div class="opciones_prop cuatro_opciones clearfix">
-							<div class="opcion_prop clearfix">
-								<input type="radio" name="prop_tres" vlaue="ame">
-								<img src="images/camisaamarilla.png">
-								<span>AME</span>
-							</div><!-- opcion_prop clearfix -->
-							<div class="opcion_prop clearfix">
-								<input type="radio" name="prop_tres" vlaue="caz">
-								<img src="images/camisaroja.png">
-								<span>CAZ</span>
-							</div><!-- opcion_prop clearfix -->
-							<div class="opcion_prop clearfix">
-								<input type="radio" name="prop_tres" vlaue="gua">
-								<img src="images/camisaverde.png">
-								<span>GUA</span>
-							</div><!-- opcion_prop clearfix -->
-							<div class="opcion_prop clearfix">
-								<input type="radio" name="prop_tres" vlaue="nec">
-								<img src="images/camisaazul.png">
-								<span>NEC</span>
+							<div class="opcion_prop radio_group clearfix">
+								<input type="radio" name="prop_tres" id="prop_cuatro_respuesta_uno" vlaue="ame">
+								<div class="check"></div>
+								<label for="prop_cuatro_respuesta_uno">
+									<span>AME</span>
+								</label>
+							</div><!-- opcion_prop radio_group clearfix -->
+							<div class="opcion_prop radio_group clearfix">
+								<input type="radio" id="prop_cuatro_respuesta_dos" name="prop_tres" vlaue="caz">
+								<div class="check"></div>
+								<label for="prop_cuatro_respuesta_dos">
+									<span>CAZ</span>
+								</label>
+							</div><!-- opcion_prop radio_group clearfix -->
+							<div class="opcion_prop radio_group clearfix">
+								<input type="radio" id="prop_cuatro_respuesta_tres" name="prop_tres" vlaue="gua">
+								<div class="check"></div>
+								<label for="prop_cuatro_respuesta_tres">
+									<span>GUA</span>
+								</label>
+							</div><!-- opcion_prop radio_group clearfix -->
+							<div class="opcion_prop radio_group clearfix">
+								<div class="check"></div><input type="radio" id="prop_cuatro_respuesta_cuatro" name="prop_tres" vlaue="nec
+								">
+								<label for="prop_cuatro_respuesta_cuatro">
+									<span>NEC</span>
+								</label>
 							</div><!-- opcion_prop clearfix -->
 						</div><!-- opciones_prop cuatro_opciones -->
 					</div><!-- prop -->
@@ -307,11 +315,21 @@
 							<div class="desempate_left">
 								<span>¿Lorem ipsum dolor sit amet, conse ctetur adipiscing elit?</span>
 							</div>
-							<div class="desempate_input">
-								<span>SI</span>
-								<input type="radio" name="desempate_tres" value="si">
-								<span>NO</span>
-								<input type="radio" name="desempate_tres" value="no">
+							<div class="desempate_input clearfix radio_group">
+								<div class="desempate_tres_left">
+									<label for="desempate_tres_over">
+										<span>SI</span>
+									</label>
+									<input type="radio" id="desempate_tres_over" name="desempate_tres" value="si">
+									<div class="check"></div>
+								</div>
+								<div class="desempate_tres_right">
+									<label for="desempate_tres_under">
+										<span>NO</span>
+									</label>
+									<input type="radio" id="desempate_tres_under" name="desempate_tres" value="no">
+									<div class="check"></div>
+								</div>
 							</div><!-- desempate_input -->
 						</div><!-- desempate_tres -->
 				</div><!-- dempates -->

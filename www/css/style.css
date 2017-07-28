@@ -679,7 +679,9 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 	.quiniela_header .quiniela_iconos img{ margin-right: 2.5px;}
 	.quiniela_single{}
 	.profile .tab_profile ul li label{display: inline-block; width: 84%; height: 2rem;}
-	
+	.tab_profile.transactions {background: url('../images/bg_trans_negro.png') repeat; text-align: center;}
+	.tab_profile.withraw {background: url('../images/bg_trans_negro.png') repeat; text-align: center;}
+
 	/* LOg out button */
 	.header .header_logout {width: 20%; float: right; text-align: center;}
 	.header .header_logout h4 {font-weight: 700; font-size: 12px; color: #8A8A8D; margin-bottom: 30%; margin-top: 5%;}

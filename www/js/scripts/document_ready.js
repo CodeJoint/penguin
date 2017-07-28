@@ -404,10 +404,11 @@ window.initializeEvents = function(){
 						event.preventDefault();
 						app.showLoader();
 						var data_search	= app.getFormData(form, 'object');
-						console.log(data_search);
 						var response 	= apiRH.searchPrivates(data_search);
-						console.log(response);
-						return app.render_search_results(response);
+						app.render_search_results(response);
+						setTimeout(function(){
+							return initHooks();
+						},300);
 					}
 				});
 	

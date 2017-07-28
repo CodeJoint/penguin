@@ -158,7 +158,7 @@ body {width: 100%; margin: 0 auto; font-weight: 300; font-family: 'Lato'!importa
 
 .menu {width: 100%; height: 50px; background: #BCBCBC; position: fixed; bottom: 0; border-top: 1px solid #8A8A8D; z-index: 200;}
 .menu ul {list-style: none; padding: 5px 0 0 0; margin: 0px;}
-.menu ul li {display: block; float: left; border-right: 1px solid #8A8A8D; width: 20%; height: 36px; background-image: url('images/menu_sprite.png'); background-repeat:  no-repeat; }
+.menu ul li {display: block; float: left; border-right: 1px solid #8A8A8D; width: 20%; height: 36px; background-image: url('../images/menu_sprite.png'); background-repeat:  no-repeat; }
 .menu ul li:last-child{border-right: 0px!important;}
 .menu ul li.menu_lobby {background-position-x: 25px}
 .menu ul li.menu_quinielas {background-position-x: -45px}
@@ -389,7 +389,7 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 
 .quiniela_registro .botones {width: 100%; margin-top: 20px; }
 .quiniela_registro .botones a {float: left; margin-left: 20px; margin-right: 20px;}
-.quiniela_registro .botones input {float: left; background: url('images/confirmar_y_guardar.png') no-repeat!important; width: 192px; height: 36px; border: none; text-indent: -1000000px;}
+.quiniela_registro .botones input {float: left; background: url('../images/confirmar_y_guardar.png') no-repeat!important; width: 192px; height: 36px; border: none; text-indent: -1000000px;}
 
 
 /*** QUINIELA REGISTRADA ***/
@@ -513,7 +513,7 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 .quiniela_privada_crear form input[type="text"] {width: 100%; border: 1px solid #8A8A8D; background: transparent; font-size: 12px; padding: 10px 5px; margin-bottom: 10px; color: #fff; border-radius: 3px;}
 .quiniela_privada_crear form input::placeholder {color: #fff;}
 .quiniela_privada_crear form .submit_holder {width: 80px; height: 36px; margin: 10px auto;}
-.quiniela_privada_crear form input[type="submit"] {width: 80px; height: 36px; background: url('images/crear.png') no-repeat; border: none!important; text-indent: -100000px; text-align: center;}
+.quiniela_privada_crear form input[type="submit"] {width: 80px; height: 36px; background: url('../images/crear.png') no-repeat; border: none!important; text-indent: -100000px; text-align: center;}
 
 
 .quiniela_privada_creada {width: 100%; padding-top: 100px; margin-bottom: 30%;}
@@ -563,7 +563,7 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 .profile .agregartarjeta form input[type="text"] {width: 100%; border: 1px solid #8A8A8D; background: transparent; font-size: 12px; padding: 10px 5px; margin-bottom: 10px; color: #fff; border-radius: 3px;}
 .profile .agregartarjeta form input::placeholder {color: #fff;}
 .profile .agregartarjeta form .submit_holder {width: 80px; height: 36px; margin: 10px auto;}
-.profile .agregartarjeta form input[type="submit"] {width: 92px; height: 36px; background: url('images/guardar.png') no-repeat; border: none!important; text-indent: -100000px; text-align: center;}
+.profile .agregartarjeta form input[type="submit"] {width: 92px; height: 36px; background: url('../images/guardar.png') no-repeat; border: none!important; text-indent: -100000px; text-align: center;}
 .profile .agregartarjeta form .fecha_vencimiento select {width: 20%; float: left; margin-right: 10px; background: transparent; font-size: 12px; padding: 10px 5px; margin-bottom: 10px; color: #fff; border-radius: 3px;}
 .profile .agregartarjeta form .fecha_vencimiento input[type="text"] {width: 30%; border: 1px solid #8A8A8D; background: transparent; font-size: 12px; padding: 10px 5px; margin-bottom: 10px; color: #fff; border-radius: 3px;}
 
@@ -583,7 +583,7 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 .abonar form input[type="text"] {width: 100%; border: 1px solid #8A8A8D; background: transparent; font-size: 12px; padding: 10px 5px; margin-bottom: 10px; color: #fff; border-radius: 3px;}
 .abonar form input::placeholder {color: #fff;}
 .abonar form .submit_holder {width: 80px; height: 36px; margin: 10px auto;}
-.abonar form input[type="submit"] {width: 92px; height: 36px; background: url('images/comprar.png') no-repeat; border: none!important; text-indent: -100000px; text-align: center;}
+.abonar form input[type="submit"] {width: 92px; height: 36px; background: url('../images/comprar.png') no-repeat; border: none!important; text-indent: -100000px; text-align: center;}
 .abonar form .fecha_vencimiento select {width: 20%; float: left; margin-right: 10px; background: transparent; font-size: 12px; padding: 10px 5px; margin-bottom: 10px; color: #fff; border-radius: 3px;}
 .abonar form .fecha_vencimiento input[type="text"] {width: 30%; border: 1px solid #8A8A8D; background: transparent; font-size: 12px; padding: 10px 5px; margin-bottom: 10px; color: #fff; border-radius: 3px;}
 
@@ -598,7 +598,7 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 .abonar p.legales {text-align: center; padding: 0 5%; color: #8A8A8D; }
 
 .abonar_tiendas .legales {margin-bottom: 20%;}
-.abonar_tiendas form input[type="submit"] {width: 108px; height: 36px; background: url('images/vercodigo.png') no-repeat; border: none!important; text-indent: -100000px; text-align: center;}
+.abonar_tiendas form input[type="submit"] {width: 108px; height: 36px; background: url('../images/vercodigo.png') no-repeat; border: none!important; text-indent: -100000px; text-align: center;}
 	
 
 	/* John overrides */

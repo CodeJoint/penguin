@@ -29,13 +29,13 @@
 			<div class="quiniela_content clearfix">
 				<div class="quiniela_info clearfix">
 					<span class="registros">REGISTROS: {{entry_count}}</span>
-					<span data-countdown="{{deadline_tz}}" class="cierre">CIERRE: {{^ if_less time_left 86400}}{{formatDate deadline_tz}}{{/ if_less }}</span>
+					<span {{# if_less time_left 86400}}data-countdown="{{deadline_tz}}"{{/ if_less }} class="cierre">CIERRE:{{^ if_less time_left 86400}}{{formatDate deadline_tz}}{{/ if_less }}</span>
 					{{# limited_capacity}}
 						<span class="limite">Limitado a {{max_entries}} entradas</span>
 					{{/ limited_capacity}}
-					{{# if closed}}
+					{{# if_less time_left 1}}
 						<span class="limite">FINALIZÓ</span>
-					{{/ if}}
+					{{/ if_less }}
 					{{# if_eq status "live"}}
 						<span class="live">JUGANDO</span>
 					{{/ if_eq}}

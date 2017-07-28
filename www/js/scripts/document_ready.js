@@ -332,12 +332,15 @@ window.initializeEvents = function(){
 						});
 				} // END misQuinielas scope
 
-				$('[data-countdown]').each(function() {
-					var $this = $(this), finalDate = $(this).data('countdown');
-					var date = moment(finalDate);
-					$this.countdown(finalDate, function(event) {
-						$this.html(event.strftime('%H:%M:%S'));
-					});
+				$('[data-countdown]').each(function(index, element) {
+					var $this = $(element), finalDate = $(element).data('countdown');
+					var date = moment(finalDate).format('YYYY-MM-DD HH:mm:ss');
+					console.log(date);
+					if(date !== 'Invalid date')
+						$this.countdown(date, function(event) {
+							console.log(event);
+							$this.html('<strong class="timer_active">CIERRE: '+event.strftime('%H:%M:%S')+'</strong>');
+						});
 				});
 			} // END lobbyContainer scope
 		
@@ -463,7 +466,7 @@ window.initializeEvents = function(){
 							['Si','No']     // buttonLabels
 						);
 					});
-					
+
 				} // END profileTabs (methods)
 
 			} // END profileTabs scope

@@ -296,11 +296,10 @@ window.initializeEvents = function(){
 						}
 					});
 
-				$('.filtros ul li').on('click', function(){
-					$(this).closest('li').each( function(index, element){
-						console.log($(element));
-						$(element).removeClass('selected');
-					});
+				$('.filtros li').on('click', function(){
+					console.log($(this));
+					console.log($(this).closest('ul'));
+					$(this).closest('ul').find('li').removeClass('selected');
 					var dataFilter 	= $(this).attr('data-filter');
 					var dataValue 	= $(this).attr('data-value');
 					$(this).addClass('selected');

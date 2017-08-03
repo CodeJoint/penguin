@@ -276,16 +276,25 @@ window.initializeEvents = function(){
 				$('.footermenu ul li').removeClass('selected');
 				$('.menu_lobby').addClass('selected');
 
-				/*** FILTROS ***/
-				$('.header_filtros').on('click', function(){
-					if($('.filtros_wrapper').hasClass('filtros_show')){
-						$('.filtros_wrapper').removeClass('filtros_show');
-						$('.filtros_wrapper').fadeOut('fast');
-					}else {
-						$('.filtros_wrapper').addClass('filtros_show');
-						$('.filtros_wrapper').fadeIn('fast');
-					}
-				});
+				/*** FILTERS ***/
+					$('.header_filtros').on('click', function(){
+						if($('.filtros_wrapper').hasClass('filtros_show')){
+							$('.filtros_wrapper').removeClass('filtros_show');
+							$('.filtros_wrapper').fadeOut('fast');
+						}else {
+							$('.filtros_wrapper').addClass('filtros_show');
+							$('.filtros_wrapper').fadeIn('fast');
+						}
+					});
+
+					$('.filtros_wrapper').on('click', function(event){
+						if(!$(event.target).closest('.filtros.overlay').length){
+							if($('.filtros_wrapper').hasClass('filtros_show')){
+								$('.filtros_wrapper').removeClass('filtros_show');
+								$('.filtros_wrapper').fadeOut('fast');
+							}
+						}
+					});
 
 				$('.filtros ul li').on('click', function(){
 					$(this).closest('li').each( function(index, element){

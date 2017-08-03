@@ -16,7 +16,11 @@
 				<ul>
 					{{# data.cards}}
 						<li class="clearfix">
-							<label for="{{brand}}{{id}}" ><img src="{{cordova_full_path}}images/{{brand}}.png"><span class="terminacion">{{bank_name}} ************ {{card_number}}</span></label>
+							<label for="{{brand}}{{id}}" >
+								<img src="{{cordova_full_path}}images/{{brand}}.png">
+								<span class="terminacion">{{bank_name}} ************ {{card_number}}</span>
+								<span class="expires">{{expiration_month}}/{{expiration_year}}</span>
+							</label>
 							<div class="edit_tarjeta">
 								<a data-id="{{id}}"  data-digits="{{card_number}}" class="delete_card"><img src="{{cordova_full_path}}images/eliminar.png"></a>
 							</div>							

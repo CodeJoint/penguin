@@ -102,10 +102,11 @@
 				value = (value/100).toFixed(2);
 				return value.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
 			});
-			Handlebars.registerHelper('formatDate', function(value) {
-				var date = Date.parse(value);
+			Handlebars.registerHelper('formatDate', function(value, format) {
+				var date 	  = Date.parse(value);
+				var my_format = (typeof format === 'undefined' || !format || format == '') ? 'lll' : format;
 				moment.locale('es');
-				return moment(value).format('lll');
+				return moment(date).format(my_format);
 			});
 			Handlebars.registerHelper('coinToPeso', function(value) {
 				return (value*0.00005).toFixed(2);
@@ -210,12 +211,12 @@
 			if(optional_data){
 				parsed['data'] = optional_data;
 			}
-			console.log(window.cordova_full_path);
+			// console.log(window.cordova_full_path);
 			if(history_title)
 				parsed['header_title'] = history_title;
 			if( typeof(cordova_full_path) != 'undefined' && cordova_full_path != '' )
 				parsed['cordova_full_path'] = cordova_full_path;
-			console.log(JSON.stringify(parsed));
+			// console.log(JSON.stringify(parsed));
 			return parsed;
 		},
 		getUrlVars: function() {

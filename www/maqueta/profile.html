@@ -63,7 +63,8 @@
 						</li>
 						<li class="clearfix">
 							<input type="radio" id="visa" name="tarjeta">
-							<label for="visa" ><img src="images/visa.png"><span class="terminacion">1234</span></label>
+							<label for="visa" ><img src="images/visa.png">
+							<span class="terminacion">1234</span></label>
 						
 							<div class="check"></div>
 							<div class="edit_tarjeta">
@@ -72,20 +73,21 @@
 							</div>							
 						</li>
 						<li class="clearfix">
-							<input type="radio" id="amex" name="tarjeta">
-							<label for="amex" ><img src="images/amex.png"></label>
+							<input type="radio" id="visa" name="tarjeta">
+							<label for="visa" ><img src="images/amex.png">
+							<span class="terminacion">1234</span></label>
+						
 							<div class="check"></div>
-							<span class="terminacion">1234</span>
 							<div class="edit_tarjeta">
 								<a href=""><img src="images/editar.png"></a>
 								<a href=""><img src="images/eliminar.png"></a>
 							</div>							
 						</li>
 						<li class="clearfix">
-							<input type="radio" id="paypal" name="tarjeta">
-							<label for="paypal" ><img src="images/paypal.png"></label>
+							<input type="radio" id="visa" name="tarjeta">
+							<label for="visa" ><img src="images/paypal.png">
+							<span class="terminacion">mail@mail.com</span></label>
 							<div class="check"></div>
-							<span class="terminacion">mail@mail.com</span>
 							<div class="edit_tarjeta">
 								<a href=""><img src="images/editar.png"></a>
 								<a href=""><img src="images/eliminar.png"></a>
@@ -94,25 +96,27 @@
 					</ul>
 					<a class="agregar_tarjeta" href=""><img src="images/agregar_tarjeta.png"></a>
 				</div>
-				<div class="agregartarjeta clearfix">
-					<h3>AGREGAR TARJETA</h3>
-					<form>
-						<input type="text" placeholder="Nombre como aparece en la tarjeta">
-						<input type="text" placeholder="Número de tarjeta">
-						<div class="fecha_vencimiento clearfix">
-							<select>
-								<option>Mes</option>
-							</select>
-							<select>
-								<option>Año</option>
-							</select>
-							<input type="text" placeholder="CVV">
-						</div>
-						<div class="submit_holder">
-							<input type="submit" value="send">
-						</div>
-					</form>
-				</div>
+				<div class="modal_tarjetas clearfix">
+					<div class="agregartarjeta clearfix">
+						<h3>AGREGAR TARJETA</h3>
+						<form>
+							<input type="text" placeholder="Nombre como aparece en la tarjeta">
+							<input type="text" placeholder="Número de tarjeta">
+							<div class="fecha_vencimiento clearfix">
+								<select>
+									<option>Mes</option>
+								</select>
+								<select>
+									<option>Año</option>
+								</select>
+								<input type="text" placeholder="CVV">
+							</div>
+							<div class="submit_holder">
+								<input type="submit" value="send">
+							</div>
+						</form>
+					</div>
+				</div><!-- modal tarjetas -->
 				<div class="legales clearfix">
 					<a class="link_legal" onclick="window.open('https://www.pickwin.net/terminos-y-condiciones', '_blank', 'location=yes')" >Términos y condiciones | </a>
 					<a class="link_legal" onclick="window.open('https://www.pickwin.net/aviso-de-privacidad', '_blank', 'location=yes')" >Política de privacidad</a>

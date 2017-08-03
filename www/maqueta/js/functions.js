@@ -6,6 +6,7 @@ $(document).ready(function(){
 
 	$('.container').css('min-height', ventana+'px');
 	$('.quiniela_registro_overlay').css('min-height', ventana+'px');
+	$('.modal_tarjetas').css('min-height', ventana+'px');
 
 	/*** FILTROS ***/
 

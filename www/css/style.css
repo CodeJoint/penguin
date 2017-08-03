@@ -59,7 +59,7 @@ h1   { font-size: 24px; font-size: 2.4rem; } /* =24px */
 .right{ float: right;}
 
 .hidden{display: none!important;}
-
+.noscroll{ pointer-events: none!important; overflow: hidden; max-height: 100vh;}
 
 
 /*** GENERAL ***/
@@ -139,9 +139,9 @@ body {width: 100%; margin: 0 auto; font-weight: 300; font-family: 'Lato'!importa
 .header {width: 100%; height; background: #000; padding: 3% 0; position: fixed; border-bottom: 1px solid #8A8A8D; z-index: 100;}
 .header .header_left {float: left; width: 28%; text-align: center; margin-right: 2%;}
 .header .header_left img {width: 90%; vertical-align: middle; padding-top: 15%}
-.header .header_right {float: right; width: 70%; border-left: 1px solid #414042; padding: 1% 0 1% 0;}
+.header .header_right {float: right; width: 70%; border-left: 1px solid #414042; padding: 0 0 1% 0;}
 .header .header_right .header_user_info {width: 75%; float: left; padding-left: 5%;}
-.header .header_right .header_user_info .user_info {width: 100%; margin-bottom: 7.5%}
+.header .header_right .header_user_info .user_info {width: 100%; margin-bottom: 0.25rem;}
 .header .header_right .header_user_info .user_info img {width: 24px; height: auto; float: left; margin-right: 7px;}
 .header .header_right .header_user_info .user_info h2 {font-weight: 300; font-family: 'Lato'; font-size: 14px; float: left; margin: 0px; padding-top: 2%;}
 .header .header_right .header_user_info .user_money {width: 100%;}
@@ -175,7 +175,7 @@ body {width: 100%; margin: 0 auto; font-weight: 300; font-family: 'Lato'!importa
 /*** QUINIELAS ***/
 
 a.link_wrapper {color: inherit; text-decoration: none;}
-.quiniela {width: 99%; background: #000; border: 1px solid #414042; padding: 2.5%; border-radius: 3px; margin-top: 10px;}
+.quiniela {width: 99%; background: #000; border: 1px solid #414042; padding: 2.5%; border-radius: 3px; margin-top: 10px; text-align: left;}
 .quiniela_header {width: 100%; margin-bottom: 10px;}
 .quiniela_header .quiniela_iconos {float: left; margin-right: 10px;}
 .quiniela_header .quiniela_iconos img {float: left; width: 16px; margin-right: 1px;}
@@ -240,7 +240,9 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 
 /*** MIS QUINIELAS OVERLAY ***/
 
-.misquinielas {position: fixed; top: 87px; width: 100%; margin-left: 97%; background: url('../images/bg_trans_quinielas.png') repeat; height: 100%; padding-left: 1%; z-index: 100;}
+.misquinielas {position: fixed; top: 97px; width: 100%; margin-left: 97%; background: url('../images/bg_trans_quinielas.png') repeat; height: 100%; padding-left: 1%; z-index: 100;}
+.misquinielas .link_wrapper{pointer-events: none; display: block;}
+.misquinielas.open .link_wrapper{pointer-events: initial;}
 .quiniela_open {border-left: 3px solid #77BC1F;}
 .quiniela_live {border-left: 3px solid #F6A623;}
 .quiniela_closed {border-left: 3px solid #FF576C;}
@@ -543,7 +545,7 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 .radio_group ul {margin: 20px 0 20px 0; padding: 0px; list-style: none;}
 .radio_group ul li {display: block; margin-bottom: 10px; width: 100%; position: relative;}
 .radio_group ul li input {float: left; margin-right: 10px;}
-.radio_group ul li img {float: left; margin-left: 35px; z-index: -100;}
+.radio_group ul li img { float: left; z-index: -100; }
 .radio_group ul li span.terminacion {font-size: 12px; display: block; padding: 10px; float: left; }
 .radio_group ul li .edit_tarjeta {float: right;}
 .radio_group ul li .edit_tarjeta img {float: left; margin-left: 10px;}
@@ -556,7 +558,6 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 .radio_group ul li label{display: inline-block; width: 84%; height: 2rem; position: relative; font-weight: 300; font-size: 1.35em; padding: 2px 2px 2px 8px; margin: 0 auto 0 -2rem; z-index: 9; cursor: pointer; -webkit-transition: all 0.25s linear;}
 
 
-.profile .agregartarjeta {width: 100%; background: #000; margin-top: 10px; }
 .profile .agregartarjeta h3 {width: 100%; font-weight: normal; padding: 10px 0; text-align: center; border-top: 1px solid #77BC1F; margin-top: 0px;}
 .profile .agregartarjeta form {width: 100%; padding: 5px; background: #000; }
 .profile .agregartarjeta form p {text-align: center; columns: #fff; font-size: 10px; margin-bottom: 20px; padding: 0 10%; line-height: 15px;}
@@ -569,7 +570,6 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 
 .profile .legales {width: 100%; margin-top: 5%; text-align: center;}
 .profile .legales a.link_legal {font-size: 14px; color: #8A8A8D; display: inline-block; margin-bottom: 10%; text-decoration: none;}
-
 
 /*** ABONAR ***/
 
@@ -655,7 +655,6 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 	.header .header_right .header_user_info .user_info .avatar_container{ width: 24px; height: 24px; -webkit-border-radius: 50%; -moz-border-radius: 50%; border-radius: 50%; overflow: hidden; float: left; margin-right: 7px;}
 	.header .header_right .header_user_info .user_info img { width: 100%; height: auto; }
 
-	.misquinielas{ top: 91px; }
 	.rootContainer{ min-height: 100vh!important;}
 	.form input.submit_green{ background-color: #678946; border-color: #aaca7d; border-style: groove; text-transform: uppercase; letter-spacing: 1.5px; font-size: 1.25rem; width: 240px; -webkit-border-radius: 2px; -moz-border-radius: 2px; border-radius: 2px;}
 	.green_button{ background-color: #678946; border-color: #aaca7d; border-style: groove; text-transform: uppercase; letter-spacing: 1.5px; font-size: 1.25rem; width: 240px; -webkit-border-radius: 2px; -moz-border-radius: 2px; border-radius: 2px; color: #FFF; padding: 0.5rem 1rem; text-decoration: none; margin: 2.5rem auto 0 auto; display: block;}
@@ -692,14 +691,9 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 	.filtros .filtros_deporte ul li{width: 25%;}
 	
 	p.empty{font-size: 1rem; letter-spacing: 1px; text-align: center;}
-	.profile .legales,
-	.login .legales{ width: 100%; margin-top: 5% auto; text-align: center; bottom: 32px;}
-	.profile.withraw{}
-	.profile.withraw p>strong{ color: #90bd7e; font-weight: 300;}
-	.profile .tab_profile{ min-height: 62vh; }
-
-	.backed_modal{ display: block; }
-	.backed_modal::before{ content: ""; }
+	
+	.backed_modal{ position: absolute; background-color: #000; left: 5%; top: 22vh; width: 90%; z-index: 100;}
+	.backed_modal::before { content: ""; pointer-events: none; display: block; position: fixed; top: 0; left: 0; z-index: -1; width: 100%; height: 100vh; background: url(../images/bg_trans_negro.png) repeat; opacity: 0.35;}
 	
 	.header .header_right .header_user_info{width: 84%;}
 	.header .header_right .header_filtros{ width: 68px; float: right; text-align: center; position: absolute; top: 1rem; right: 0;}
@@ -710,3 +704,14 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 	/*Profile*/
 	.profile .tab_profile ul li .edit_tarjeta{ padding-top: 0.5rem; }
 	.profile.documents .tab_profile ul li{}
+
+	.profile .legales,
+	.login .legales{ width: 100%; margin-top: 5% auto; text-align: center; bottom: 32px;}
+	.profile.withraw{}
+	.profile.withraw p>strong{ color: #90bd7e; font-weight: 300;}
+	.profile .tab_profile{ min-height: 62vh; width: 100%; background: #000; padding: 5px; }
+	
+	/* User documents */
+	.tab_profile.documents>ul{list-style: none; padding: 0; margin: 0;}
+	.tab_profile.documents>ul>li{padding: 0.5rem; font-weight: 300;}
+

@@ -437,7 +437,8 @@ function requestHandlerAPI(){
 		this.checkFBStatus = function() {
 			if(!window.facebookConnectPlugin) return false;
 	    	window.facebookConnectPlugin.getLoginStatus(function(response){
-	    		console.log("response", response);
+	    		console.log("response");
+	    		console.log(JSON.stringify(response));
 	    	}, function(error){
 	    		console.log("error", error);
 	    	});

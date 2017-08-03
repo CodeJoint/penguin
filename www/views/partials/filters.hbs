@@ -3,7 +3,7 @@
 			<div class="filtros_moneda clearfix">
 				<h3>MONEDA</h3>
 				<ul class="clearfix">
-					<li data="todos_moneda" onclick="$('#realMoneyFilters').hide(); $('#pickcoinFilters').hide(); " class="selected"><h3>TODOS</h3></li>
+					<li data="todos_moneda" onclick="$('#realMoneyFilters, #pickcoinFilters').hide(); " class="selected"><h3>TODOS</h3></li>
 					<li onclick="$('#realMoneyFilters').show(); $('#pickcoinFilters').hide(); "  data="money_moneda"><img src="{{cordova_full_path}}images/billete.png"></li>
 					<li onclick="$('#realMoneyFilters').hide(); $('#pickcoinFilters').show(); " data="pickcoin_moneda"><img src="{{cordova_full_path}}images/pickcoin.png"></li>
 				</ul>

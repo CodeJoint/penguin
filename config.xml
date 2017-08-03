@@ -4,6 +4,9 @@
     <preference name="FullScreen" value="true" />
     <preference name="SetFullScreen" value="true" />
     <preference name="Orientation" value="portrait" />
+    <preference name="AndroidLaunchMode" value="singleInstance" />
+    <preference name="DisallowOverscroll" value="true" />
+    <preference name="KeepRunning" value="true" />
     <description>
         PickWin mobile app
     </description>

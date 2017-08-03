@@ -156,7 +156,7 @@
 		onDeviceReady: function() {
 			app.receivedEvent('deviceready');
 			window.cordova_full_path = ( typeof(cordova) !== 'undefined' ) 
-									 ? cordova.file.applicationDirectory
+									 ? cordova.file.applicationDirectory+'www/'
 									 : '';
 			console.log("On device ready");
 			console.log(cordova_full_path);
@@ -175,12 +175,17 @@
 			catch(err){
 				app.toast("Push notifications error: "+JSON.stringify(err));
 			}
-			
+			if (AndroidFullScreen) {
+			    
+			    AndroidFullScreen.immersiveMode();
+			}
+
 			apiRH.checkFBStatus();
 			
 			var backButtonElement = document.getElementById("backBtn");
 			if(backButtonElement)
 				backButtonElement.addEventListener("click", app.onBackButton, false);
+			document.addEventListener("backbutton", app.onBackButton, false);
 			return;
 
 		},
@@ -202,18 +207,16 @@
 			/* Gather environment information */
 			var meInfo 	= window._user;
 			var parsed 	= {me: meInfo};
-			
 			if(optional_data){
 				parsed['data'] = optional_data;
 			}
+			console.log(window.cordova_full_path);
 			if(history_title)
 				parsed['header_title'] = history_title;
 			if( typeof(cordova_full_path) != 'undefined' && cordova_full_path != '' )
 				parsed['cordova_full_path'] = cordova_full_path;
-			console.log("gatherEnvironment");
 			console.log(JSON.stringify(parsed));
 			return parsed;
-
 		},
 		getUrlVars: function() {
 			var vars = {};

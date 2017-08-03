@@ -269,7 +269,6 @@ window.initializeEvents = function(){
 			} // END theHeader
 			
 			if($('#lobbyContainer').length){
-				console.log("Container");
 
 				/** Render header again to include filters component **/
 				app.render_header(true);
@@ -282,7 +281,7 @@ window.initializeEvents = function(){
 					if($('.filtros_wrapper').hasClass('filtros_show')){
 						$('.filtros_wrapper').removeClass('filtros_show');
 						$('.filtros_wrapper').fadeOut('fast');
-					} else {
+					}else {
 						$('.filtros_wrapper').addClass('filtros_show');
 						$('.filtros_wrapper').fadeIn('fast');
 					}
@@ -313,13 +312,18 @@ window.initializeEvents = function(){
 								var padd = "1%";
 								positiveMargin = true;
 								$('.menu .menu_quinielas').addClass('selected');
-							}
-							else {
+								setTimeout(function(){
+									$('.misquinielas').addClass('open');
+								}, 200);
+								$('#insertFeed').addClass('noscroll');
+							} else {
 								var left = "97%";
 								var padd = "1%";
 								positiveMargin = false;
 								$('.menu .menu_quinielas').removeClass('selected');
 								$('.menu .menu_lobby').addClass('selected');
+								$('.misquinielas').removeClass('open');
+								$('#insertFeed').removeClass('noscroll');
 							}
 							$('.misquinielas').animate( {
 															marginLeft: left,
@@ -416,10 +420,8 @@ window.initializeEvents = function(){
 		
 			if($('#profileTabs').length){
 
-
 					/* Log Out from the API */
 					$('#logoutComponent').on('click', function(e){
-
 						/* TODO: Requesting logout from server */
 						app.keeper.clear();
 						app.render_login();
@@ -436,7 +438,17 @@ window.initializeEvents = function(){
 						var response = apiRH.deleteRequest('api/openpay_cards/delete/'+card_id+'.json', {});
 						return (response) ? app.render_profile('profile.html') : app.toast("Ocurrió un error, intenta nuevamente.");
 					}
-					
+
+					$('body').on('click', function(event){
+						if(!$(event.target).closest('.backed_modal').length)
+					        if($('.backed_modal').is(":visible")) {
+					            $('.backed_modal').hide();
+					        }
+					});
+					$('.agregar_tarjeta').click(function(event){
+					    event.stopPropagation();
+					});
+
 					$('#addCardForm').validate({
 						rules:{
 							holder_name		 : "required",

@@ -155,10 +155,11 @@
 		// deviceready Event Handler
 		onDeviceReady: function() {
 			app.receivedEvent('deviceready');
-			window.cordova_full_path = (typeof(cordova) != 'undefined') 
-										? cordova.file.applicationDirectory
-										: '';
-
+			window.cordova_full_path = ( typeof(cordova) !== 'undefined' ) 
+									 ? cordova.file.applicationDirectory
+									 : '';
+			console.log("On device ready");
+			console.log(cordova_full_path);
 			try{
 				app.initPaymentAPI();
 				console.log("Initialized Payment gateway");
@@ -209,7 +210,8 @@
 				parsed['header_title'] = history_title;
 			if( typeof(cordova_full_path) != 'undefined' && cordova_full_path != '' )
 				parsed['cordova_full_path'] = cordova_full_path;
-			// console.log(parsed);
+			console.log("gatherEnvironment");
+			console.log(JSON.stringify(parsed));
 			return parsed;
 
 		},

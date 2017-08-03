@@ -3,15 +3,7 @@
 {{ else}}
 
 	<a class="link_wrapper hook" data-resource="detail" data-object="{{id}}" href="detail-quiniela.html?id={{id}} {{# each entries}}entries{{@first}}{{/ each}}">
-		<div class="quiniela 
-						{{# if upcoming}}quiniela_open{{/ if}} 
-						{{# if featured}}featured{{/ if}} 
-						{{# if live}}quiniela_live{{/ if}} 
-						{{# if_eq status 'live'}}quiniela_live{{/ if_eq}} 
-						{{# if closed}}quiniela_closed{{/ if}} 
-						{{sport.name}} 
-						{{point_format}}
-						 garantizado clearfix">
+		<div class="quiniela {{# if upcoming}}quiniela_open {{/ if}} {{# if featured}}featured {{/ if}} {{# if live}}quiniela_live {{/ if}} {{# if_eq status 'live'}}quiniela_live {{/ if_eq}} {{# if closed}}quiniela_closed {{/ if}} {{sport.name}} {{point_format}} garantizado clearfix">
 			<div class="quiniela_header clearfix">
 				<div class="quiniela_iconos clearfix">
 					{{# if_eq format "line" }}

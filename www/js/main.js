@@ -334,7 +334,7 @@
 		},
 		render_lobby_feed : function(filter){
 
-			var extra_data 	= apiRH.getRequest( 'pools/available.json', null );
+			var extra_data 	= apiRH.getRequest( 'api/pools/available.json', null );
 			var template 	= Handlebars.templates['lobby-feed'];
 			app.data_temp	= this.gatherEnvironment( extra_data, "Lobby feed" );
 			app.sort_pool();
@@ -518,8 +518,6 @@
 				return flase;
 
 			var pool = app.data_temp.data.pools;
-			console.log(filter);
-			console.log(value);
 			if(filter == 'real_money'){
 				filter_array['real_money'] = value;
 				pool.sort(
@@ -538,8 +536,15 @@
 			}
 			if(filter == 'status' && typeof value != 'undefined'){
 				filter_array['status'] = value;
+				callback = null;
+				if(value == 'live')
+					callback = function (v) { return !v.closed; };
+				if(value == 'live')
+					callback = function (v) { return !v.closed; };
+				if(value == 'live')
+					callback = function (v) { return !v.closed; };
 				pool.sort(
-					firstBy( function (v) { return !v.closed; } )
+					firstBy( callback )
 					 .thenBy('deadline_tz')
 				);
 			}
@@ -551,7 +556,6 @@
 					 .thenBy('deadline_tz')
 				);
 			}
-			console.log(filter_array);
 			return pool;
 		},
 		/*** Clears specific filter or all filters if parameter is not set ***/

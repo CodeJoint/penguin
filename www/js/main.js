@@ -26,6 +26,7 @@
 
 			/*** TODO: Get this shit into a catalogue ***/
 			window.catalogues 						= [];
+			window.filter_array 					= [];
 			window.catalogues.months 				= [ 'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre' ];
 			
 			/* IMPORTANT to set requests to be syncronous */
@@ -336,7 +337,7 @@
 			var extra_data 	= apiRH.getRequest( 'pools/available.json', null );
 			var template 	= Handlebars.templates['lobby-feed'];
 			app.data_temp	= this.gatherEnvironment( extra_data, "Lobby feed" );
-			app.filter_pool();
+			app.sort_pool();
 			app.data_temp.selected_lobby = true;
 			if(!template){
 				console.log("Template doesn't exist");
@@ -498,29 +499,66 @@
 							}, 120);
 			app.hideLoader();
 		},
-		filter_pool : function( filter ){
+		sort_pool : function( filter, value ){
 
+			if(!app.data_temp.data.pools)
+				return flase;
+			var pool = app.data_temp.data.pools;
+			if(filter == 'chronological' || typeof filter == 'undefined')
+				pool.sort(
+					firstBy( function (v) { return v.closed; } )
+						.thenBy( function (v) { return !v.featured; } )
+						.thenBy('deadline_tz')
+				);
+			return pool;
+		},
+		filter_pool : function( filter, value ){
+			/** Filters are stored in a global variable **/
 			if(!app.data_temp.data.pools)
 				return flase;
 
 			var pool = app.data_temp.data.pools;
-			if(filter == 'chronological' || typeof filter == 'undefined'){
+			console.log(filter);
+			console.log(value);
+			if(filter == 'real_money'){
+				filter_array['real_money'] = value;
 				pool.sort(
 					firstBy( function (v) { return v.closed; } )
 						.thenBy( function (v) { return !v.featured; } )
 						.thenBy('deadline_tz')
 				);
 			}
-			if(filter == 'finished'){
-
-			}
-			if(filter == 'real_money'){
-
-			}
 			if(filter == 'fake_money'){
-
+				filter_array['fake_money'] = value;
+				pool.sort(
+					firstBy( function (v) { return v.closed; } )
+						.thenBy( function (v) { return !v.featured; } )
+						.thenBy('deadline_tz')
+				);
 			}
+			if(filter == 'status' && typeof value != 'undefined'){
+				filter_array['status'] = value;
+				pool.sort(
+					firstBy( function (v) { return !v.closed; } )
+					 .thenBy('deadline_tz')
+				);
+			}
+			if(filter == 'type' && typeof value != 'undefined'){
+				filter_array['type'] = value;
+				pool.sort(
+					firstBy( function (v) { return v.closed; } )
+					 .thenBy( function (v) { return !v.featured; } )
+					 .thenBy('deadline_tz')
+				);
+			}
+			console.log(filter_array);
 			return pool;
+		},
+		/*** Clears specific filter or all filters if parameter is not set ***/
+		clear_filters : function( filter ){
+			if(filter == 'all' || typeof filter == 'undefined')
+				return filter_array = [];
+			return delete filter_array[filter];
 		},
 		render_dialog : function(title, message, options){
 			return app.showLoader();

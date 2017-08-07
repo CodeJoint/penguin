@@ -18,8 +18,8 @@
 						<li class="clearfix">
 							<span style="width: 12%; display: inline-block;" class="highlight">{{id}}</span> 
 							<span style="width: 51%; display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{concept}}</span> 
-							<span style="width: 15%; display: inline-block;" class="highlight">{{formatCurrency amount}}</span> 
-							<span style="width: 20%; display: inline-block;">{{ formatDate created 'L'}} </span>					
+							<span style="width: 16%; display: inline-block;" class="highlight">${{formatCurrency amount}}</span> 
+							<span style="width: 19%; display: inline-block;">{{ formatDate created 'L'}} </span>					
 						</li>
 					{{/ data.transactions}}
 					{{^ data.transactions}}

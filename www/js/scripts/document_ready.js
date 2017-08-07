@@ -11,14 +11,12 @@ window.initializeEvents = function(){
 	jQuery(document).ready(function($) {
 
 		$('*').unbind();
-		console.log("DocReady scripts");
 		$('body').removeClass("preventEvents");
 		var ventana = $(window).height();
 		window.alert = (typeof navigator.notification !== 'undefined') ? navigator.notification.alert : window.alert;
 
 		window.initHooks = function(){
 			$('.hook').unbind();
-			console.log("Hooked!");
 			/* Hook soft links */
 			$('.hook').on('click', function(e){
 
@@ -83,7 +81,6 @@ window.initializeEvents = function(){
 
 		/*** Fix keyboard defaults ***/
 		if(typeof Keyboard != 'undefined'){
-			console.log("Keyboard not undefined");
 			Keyboard.disableScrollingInShrinkView(false);
 			Keyboard.shrinkView(false);
 		}
@@ -174,7 +171,6 @@ window.initializeEvents = function(){
 							localStorage.setItem("Auth", register_response.jwtoken);
 							apiRH.save_user_data_clientside(register_response);
 							if(register_response.user){
-								console.log(register_response.user);
 								window._user = (register_response.user) ? register_response.user : null; 
 								return app.render_register_success('register-success.html');
 							}
@@ -246,12 +242,11 @@ window.initializeEvents = function(){
 									email 	: "Por favor ingresa un email válido"
 								}
 					},
-					submitHandler:function( form, event ){
+					submitHandler: function( form, event ){
 						event.preventDefault();
 						var data_user		= app.getFormData(form, 'object');
 						var pwd_response 	= apiRH.askNewPassword(data_user);
 						if(pwd_response){
-							console.log(pwd_response);
 							/** Keeping russian bullet token, do not keep in production **/
 							app.keeper.setItem("russian_bullet", pwd_response.token);
 							return app.render_password_sent('password-sent.html');
@@ -297,14 +292,8 @@ window.initializeEvents = function(){
 					});
 
 				$('.filtros li').on('click', function(){
-					console.log($(this));
-					console.log($(this).closest('ul'));
 					$(this).closest('ul').find('li').removeClass('selected');
-					var dataFilter 	= $(this).attr('data-filter');
-					var dataValue 	= $(this).attr('data-value');
 					$(this).addClass('selected');
-					/** Filter lobby results here **/
-					console.log(dataFilter);
 				});
 
 				if($('#misQuinielas').length){
@@ -389,10 +378,8 @@ window.initializeEvents = function(){
 							event.preventDefault();
 							app.showLoader();
 							var register_data	= app.getFormData(form, 'object');
-							console.log(register_data);
 
 							// var response 	= apiRH.searchPrivates(data_search);
-							// console.log(response);
 							// return app.render_search_results(response);
 							return false;
 						}
@@ -402,7 +389,6 @@ window.initializeEvents = function(){
 			
 			
 			if($('#busquedaQuinielas').length){
-				console.log("Init validate");
 				$('#busquedaQuinielas').validate({
 					rules:{
 						gameName	: "required",

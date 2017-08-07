@@ -158,7 +158,7 @@ body {width: 100%; margin: 0 auto; font-weight: 300; font-family: 'Lato'!importa
 
 .menu {width: 100%; height: 50px; background: #BCBCBC; position: fixed; bottom: 0; border-top: 1px solid #8A8A8D; z-index: 200;}
 .menu ul {list-style: none; padding: 5px 0 0 0; margin: 0px;}
-.menu ul li {display: block; float: left; border-right: 1px solid #8A8A8D; width: 20%; height: 36px; background-image: url('../images/menu_sprite.png'); background-repeat:  no-repeat; }
+.menu ul li {display: block; float: left; border-right: 1px solid #8A8A8D; width: 20%; height: 36px; background-image: url('../images/menu_sprite.png'); background-repeat: no-repeat; background-size: 320px; }
 .menu ul li:last-child{border-right: 0px!important;}
 .menu ul li.menu_lobby {background-position-x: 25px}
 .menu ul li.menu_quinielas {background-position-x: -45px}
@@ -214,7 +214,7 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 
 /*** FILTROS ***/
 
-.filtros_wrapper {width: 100%; height: 100%; position: fixed; top: 87px; left: 0px; background: url('../images/bg_trans_filtros.png') repeat; z-index: 80;}
+.filtros_wrapper {width: 100%; height: 100%; position: fixed; top: 87px; left: 0px; background: url('../images/bg_trans_filtros.png') repeat; z-index: 999;}
 .filtros {position: fixed; top: 87px; right: 0; background: #000; width: 85%; text-align: center; padding: 20px; height: 100%; z-index: 90;}
 .filtros div {margin-bottom: 20px;}
 .filtros ul {list-style: none; margin: 10px 0 0px 0; padding: 0px; width: 100%;}
@@ -714,7 +714,7 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 	.profile .tab_profile{ min-height: 62vh; width: 100%; background: #000; padding: 1.5rem 0.5rem; }
 	
 	/* User documents and transactions */
-	
+
 	.tab_profile.documents>ul,
 	.tab_profile.transactions>ul{list-style: none; padding: 0; margin: 0;}
 	.tab_profile.documents>ul>li,

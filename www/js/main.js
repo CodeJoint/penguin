@@ -332,12 +332,14 @@
 				return app.switchView('lobby', app.data_temp, '#exoskeleton', url, 'quiniela-feed', true, true, true );
 			}, 200);
 		},
-		render_lobby_feed : function(filter){
+		render_lobby_feed : function( ask_again ){
 
-			var extra_data 	= apiRH.getRequest( 'api/pools/available.json', null );
+			var extra_data 	= (typeof ask_again === 'undefined' || ask_again === true || !app.data_temp.data ) 
+							? apiRH.getRequest( 'api/pools/available.json', null )
+							: app.data_temp.data.pools;
 			var template 	= Handlebars.templates['lobby-feed'];
 			app.data_temp	= this.gatherEnvironment( extra_data, "Lobby feed" );
-			app.sort_pool();
+			app.data_temp.data.pools_unfiltered = app.sort_pool();
 			app.data_temp.selected_lobby = true;
 			if(!template){
 				console.log("Template doesn't exist");
@@ -502,7 +504,7 @@
 		sort_pool : function( filter, value ){
 
 			if(!app.data_temp.data.pools)
-				return flase;
+				return false;
 			var pool = app.data_temp.data.pools;
 			if(filter == 'chronological' || typeof filter == 'undefined')
 				pool.sort(
@@ -512,57 +514,62 @@
 				);
 			return pool;
 		},
-		filter_pool : function( filter, value ){
+		stack_filter : function( filter, value ){
 			/** Filters are stored in a global variable **/
 			if(!app.data_temp.data.pools)
-				return flase;
-
+				return false;
 			var pool = app.data_temp.data.pools;
-			if(filter == 'real_money'){
-				filter_array['real_money'] = value;
-				pool.sort(
-					firstBy( function (v) { return v.closed; } )
-						.thenBy( function (v) { return !v.featured; } )
-						.thenBy('deadline_tz')
-				);
-			}
-			if(filter == 'fake_money'){
-				filter_array['fake_money'] = value;
-				pool.sort(
-					firstBy( function (v) { return v.closed; } )
-						.thenBy( function (v) { return !v.featured; } )
-						.thenBy('deadline_tz')
-				);
-			}
-			if(filter == 'status' && typeof value != 'undefined'){
-				filter_array['status'] = value;
-				callback = null;
-				if(value == 'live')
-					callback = function (v) { return !v.closed; };
-				if(value == 'live')
-					callback = function (v) { return !v.closed; };
-				if(value == 'live')
-					callback = function (v) { return !v.closed; };
-				pool.sort(
-					firstBy( callback )
-					 .thenBy('deadline_tz')
-				);
-			}
-			if(filter == 'type' && typeof value != 'undefined'){
-				filter_array['type'] = value;
-				pool.sort(
-					firstBy( function (v) { return v.closed; } )
-					 .thenBy( function (v) { return !v.featured; } )
-					 .thenBy('deadline_tz')
-				);
-			}
-			return pool;
+			filter_array[filter] = value;
 		},
 		/*** Clears specific filter or all filters if parameter is not set ***/
 		clear_filters : function( filter ){
 			if(filter == 'all' || typeof filter == 'undefined')
 				return filter_array = [];
 			return delete filter_array[filter];
+		},
+		apply_filters : function(){
+
+			/*** TODO Start with unfiltered feed from temporary memory, then apply filters ***/
+			var myFilters = window.filter_array;
+			/*** TODO Check temp data before assigning value ***/
+			var myPool 	  = app.data_temp.data.unfiltered_pools;
+			
+			// if(filter == 'real_money'){
+			// 	filter_array['real_money'] = value;
+			// 	pool.sort(
+			// 		firstBy( function (v) { return v.closed; } )
+			// 			.thenBy( function (v) { return !v.featured; } )
+			// 			.thenBy('deadline_tz')
+			// 	);
+			// }
+			// if(filter == 'fake_money'){
+			// 	filter_array['fake_money'] = value;
+			// 	pool.sort(
+			// 		firstBy( function (v) { return v.closed; } )
+			// 			.thenBy( function (v) { return !v.featured; } )
+			// 			.thenBy('deadline_tz')
+			// 	);
+			// }
+			// if(filter == 'status' && typeof value != 'undefined'){
+			// 	filter_array['status'] = value;
+			// 	pool.forEach( function(element, index){
+			// 		if( element.status !== value )
+			// 			delete pool[index];
+			// 	});
+			// }
+			myFilters.forEach(function(element, index){
+				if(filter == 'type' && typeof value != 'undefined'){
+					filter_array['type'] = value;
+					pool.sort(
+						firstBy( function (v) { return v.closed; } )
+						 .thenBy( function (v) { return !v.featured; } )
+						 .thenBy('deadline_tz')
+					);
+				}
+			});
+			app.data_temp.data.pools = pool.filter(function(){return true;});
+			return app.render_lobby_feed(false);
+			return;
 		},
 		render_dialog : function(title, message, options){
 			return app.showLoader();

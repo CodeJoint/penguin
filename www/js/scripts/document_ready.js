@@ -572,7 +572,7 @@ window.initializeEvents = function(){
 						if(!response.success || !response.payment_method){
 							return app.toast("No se ha podido procesar tu pedido, por favor intenta nuevamente.")
 						}
-						app.toast("¡Se han abonado $"+response.amount+" a tu cuenta!")
+						return alert("¡Se han abonado $"+response.amount+" a tu cuenta!");
 					}
 				});
 				

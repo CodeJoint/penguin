@@ -251,7 +251,7 @@ function requestHandlerAPI(){
 										return false;
 									}
 									deposit_info.device_session_id = apiRH.deviceSessionId;
-									var response = apiRH.makeRequest('api/users/dopurchase.json', deposit_info);
+									var response = apiRH.makeRequest('api/users/dopurchase.json', deposit_info, null, null, 'json');
 									return response;
 								};
 
@@ -261,7 +261,6 @@ function requestHandlerAPI(){
 		 * @param type Request type (POST, GET, PUT, DELETE)
 		 * @param endpoint String The API endpoint (See Documentation)
 		 * @param data JSON Data to pass to the endpoint in a JSON format
-		 * @param String contentType ['json', 'form-data']
 		 * @return stored token, false if no token is stored
 		 * TO DO: Manage put, delete methods
 		 */
@@ -276,7 +275,8 @@ function requestHandlerAPI(){
 			 * Executes a POST call
 			 * @param endpoint API endpoint to make the call to
 			 * @param data url encoded data
-			 * @param noHeaders Boolean defaults to false
+			 * @param Boolean noHeaders defaults to false
+			 * @param String contentType ['json', 'form-data']
 			 * @return JSON encoded response
 			 */
 			this.makeRequest = function( endpoint, data, noHeaders, stringify, contentType ){
@@ -302,7 +302,7 @@ function requestHandlerAPI(){
 									crossDomain	: true
 								};
 				var myHeaders = (!noHeaders || typeof noHeaders === 'undefined') ? apiRH.headers : {};
-					myHeaders.headers['Content-Type'] = (typeof contentType === 'undefined' || contentType === 'json' ) ? 'application/json' : 'multipart-form-data';
+					myHeaders['Content-Type'] = (typeof contentType === 'undefined' || contentType === 'json' ) ? 'application/x-www-form-urlencoded' : apiRH.headers['Content-Type'];
 				if(myHeaders)
 					options.headers = myHeaders;
 				console.log(options);

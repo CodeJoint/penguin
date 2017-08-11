@@ -7,11 +7,11 @@
 		</div>
 		<form id="depositCardForm" method="POST" action="">
 			<ul class="botones_abono clearfix">
-				<li data-amount="1"><img src="images/billete.png">$25</a>
-				<li data-amount="2"><img src="images/billete.png">$50</a>
-				<li class="selected" data-amount="3"><img src="images/billete.png">$100</a>
-				<li data-amount="4"><img src="images/billete.png">$200</a>
-				<li data-amount="0">Otra cantidad</a>
+				<li data-amount="1"><img src="images/billete.png">$25</li>
+				<li data-amount="2"><img src="images/billete.png">$50</li>
+				<li class="selected" data-amount="3"><img src="images/billete.png">$100</li>
+				<li data-amount="4"><img src="images/billete.png">$200</li>
+				<li data-amount="other" style="position: relative;" >Otra cantidad <input id="other_amount" type="text" placeholder="$" name="other_amount" style="display: none;"></li>
 			</ul>
 			<div class="abonar_form clearfix">
 					<input id="populate_value" type="hidden" name="amount" value="3">
@@ -22,28 +22,27 @@
 						<li><img src="images/visa.png"></li>
 						<li><img src="images/amex.png"></li>
 					</ul>
-					<ul>
-						{{# data.cards}}	
-							<li class="clearfix">
-								<input type="radio" id="{{brand}}{{id}}" name="tarjeta">
-								<div class="check"></div>	
-								<label for="{{brand}}{{id}}" >
-									<img src="{{cordova_full_path}}images/{{brand}}.png">
-									<span class="terminacion">{{bank_name}} ************ {{card_number}}</span>
-									<span class="expires">{{expiration_month}}/{{expiration_year}}</span>
-								</label>
-								<div class="edit_tarjeta">
-									<a data-id="{{id}}"  data-digits="{{card_number}}" class="delete_card"><img src="{{cordova_full_path}}images/eliminar.png"></a>
-								</div>							
-							</li>
-						{{/ data.cards}}
+					<div class="tab_profile radio_group tarjetas selection" >
+						<ul>
+							{{# data.cards}}	
+								<li class="clearfix">
+									<input type="radio" id="{{brand}}_{{id}}" name="card_id" value="{{id}}">
+									<div class="check"></div>	
+									<label for="{{brand}}_{{id}}" >
+										<img src="{{cordova_full_path}}images/{{brand}}.png">
+										<span class="terminacion">{{bank_name}} ************ {{card_number}}</span>
+										<span class="expires">{{expiration_month}}/{{expiration_year}}</span>
+									</label>						
+								</li>
+							{{/ data.cards}}
 
-						{{^ data.cards}}
-							<li class="clearfix">
-								<p>No tienes ningún método de pago registrado.</p>					
-							</li>
-						{{/ data.cards}}
-					</ul>
+							{{^ data.cards}}
+								<li class="clearfix">
+									<p>No tienes ningún método de pago registrado.</p>					
+								</li>
+							{{/ data.cards}}
+						</ul>
+					</div>
 					<div class="submit_holder">
 						<input type="submit" value="send">
 					</div>

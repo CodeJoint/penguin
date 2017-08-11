@@ -528,11 +528,12 @@ window.initializeEvents = function(){
 						event.preventDefault();
 						app.showLoader();
 						var deposit_data = app.getFormData(form, 'object');
-						var response = apiRH.depositStores(deposit_data);
-						if(!response.success || !response.payment_method){
+						var myResponse = apiRH.depositStores(deposit_data);
+						console.log(myResponse);
+						if(!myResponse.success || !myResponse.payment_method){
 							app.toast("No se ha podido procesar tu pedido, por favor intenta nuevamente.")
 						}
-						var ref = cordova.InAppBrowser.open(apiRH.openpay_base_url+response.payment_method.reference);
+						var ref = cordova.InAppBrowser.open(apiRH.openpay_base_url+myResponse.response.payment_method.reference, '_system', 'location=yes');
 					}
 				});
 				
@@ -552,6 +553,39 @@ window.initializeEvents = function(){
 
 				$('.menu li').removeClass('selected');
 				$('.menu_abonar').addClass('selected');
+
+				$('#depositCardForm').validate({
+					rules:{
+						amount : "required",
+						card_id : "required"
+					},
+					messages:{
+						amount : "Es necesario que especifiques una cantidad",
+						card_id : "Por favor selecciona una tarjeta"
+					},
+					submitHandler:function( form, event ){
+						event.preventDefault();
+						app.showLoader();
+						var deposit_data = app.getFormData(form, 'object');
+						console.log(deposit_data);
+						var response = apiRH.depositCard(deposit_data);
+						if(!response.success || !response.payment_method){
+							return app.toast("No se ha podido procesar tu pedido, por favor intenta nuevamente.")
+						}
+						app.toast("¡Se han abonado $"+response.amount+" a tu cuenta!")
+					}
+				});
+				
+				/** Select amount and set hidden input value **/
+				$('.botones_abono li').on('click', function(){
+					var $mySelection = $(this);
+					$('.botones_abono li').removeClass('selected');
+					$mySelection.addClass('selected');
+					$('input[name=amount]').val($mySelection.data('amount'));
+					if($mySelection.data('amount') === 'other'){
+						$('#other_amount').show().focus();
+					}
+				});
 			} // END depositCard scope
 		
 		}, 280); // END General Timeout

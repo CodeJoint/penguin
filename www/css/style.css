@@ -335,6 +335,7 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 .radio_group input[type=radio]:checked ~ .check { border: 5px solid #598D16!important;}
 .radio_group input[type=radio]:checked ~ .check::before{ background: #598D16!important;}
 .radio_group label{display: inline-block; width: 84%; height: 2rem; position: relative; font-weight: 300; font-size: 12px; padding: 2px 2px 2px 8px; margin: 0 auto 0 -2rem; z-index: 9; cursor: pointer; -webkit-transition: all 0.25s linear;}
+.radio_group.selection label{padding: 2px 2px 2px 30px; }
 
 .local.radio_group .check {display: block; position: absolute; border: 5px solid #AAAAAA; border-radius: 100%; height: 25px; width: 25px; left: -5px; z-index: 8; transition: border .25s linear; -webkit-transition: border .25s linear;}
 .local.radio_group .check::before { display: block; position: absolute; content: ''; border-radius: 100%; height: 10.5px; width: 10.5px; top: 2px; left: 2px; margin: auto; transition: background 0.25s linear; -webkit-transition: background 0.25s linear; }
@@ -553,7 +554,7 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 .radio_group ul li .edit_tarjeta img {float: left; margin-left: 10px;}
 .radio_group .agregar_tarjeta {text-align: center;}
 .radio_group ul li .check {display: block; position: absolute; border: 5px solid #AAAAAA; border-radius: 100%; height: 25px; width: 25px; top: 0px; left: 0px; z-index: 8; transition: border .25s linear; -webkit-transition: border .25s linear;}
-.radio_group ul li .check::before { display: block; position: absolute; content: ''; border-radius: 100%; height: 10.5px; width: 10.5px; top: 2px; left: 2px; margin: auto; transition: background 0.25s linear; -webkit-transition: background 0.25s linear; }
+.radio_group ul li .check::before { display: block; position: absolute; content: ''; border-radius: 100%; height: 10.5px; width: 10.5px; top: 2.5px; left: 2px; margin: auto; transition: background 0.25s linear; -webkit-transition: background 0.25s linear; }
 .radio_group ul li input[type=radio] {position: absolute;visibility: hidden;}
 .radio_group ul li input[type=radio]:checked ~ .check { border: 5px solid #598D16;}
 .radio_group ul li input[type=radio]:checked ~ .check::before{ background: #598D16;}
@@ -589,7 +590,7 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 .abonar form .fecha_vencimiento select {width: 20%; float: left; margin-right: 10px; background: transparent; font-size: 12px; padding: 10px 5px; margin-bottom: 10px; color: #fff; border-radius: 3px;}
 .abonar form .fecha_vencimiento input[type="text"] {width: 30%; border: 1px solid #8A8A8D; background: transparent; font-size: 12px; padding: 10px 5px; margin-bottom: 10px; color: #fff; border-radius: 3px;}
 
-.abonar .botones_abono {width: 100%; background: #000; padding: 10px 0; margin-bottom: 10px; break-before: 3px;}
+.abonar .botones_abono { width: 100%; background: #000; padding: 10px 0; margin: 0 auto 10px auto}
 .abonar .botones_abono li {display: table-cell; width: 1%; color: #fff; text-decoration: none;  text-align: center; padding: 5px 0; border-right: 1px solid #8A8A8D; margin-right: 2px;}
 .abonar .botones_abono li.selected {background: #598D16;}
 .abonar .botones_abono li:last-child {border-right: 0px;}
@@ -599,10 +600,11 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 .abonar ul.formas_pago li {float: left; margin-right: 10px;}
 .abonar p.legales {text-align: center; padding: 0 5%; color: #8A8A8D; }
 
-.abonar_tiendas .legales {margin-bottom: 20%;}
-.abonar_tiendas form input[type="submit"] {width: 108px; height: 36px; background: url('../images/vercodigo.png') no-repeat; border: none!important; text-indent: -100000px; text-align: center;}
-	
+.abonar_tiendas .legales { margin-bottom: 20%;}
+.abonar_tiendas form input[type="submit"] { width: 108px; height: 36px; background: url('../images/vercodigo.png') no-repeat; border: none!important; text-indent: -100000px; text-align: center;}
 
+#other_amount{ position: absolute; top: 0; left: 0; width: 100%; height: 100%; margin: 0; padding: 0.25rem; background-color: #598d16; color: #FFF; letter-spacing: 1px; font-weight: 300;}
+#other_amount::before{content: "$";}
 	/* John overrides */
 	
 	/*Loader*/

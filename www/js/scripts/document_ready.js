@@ -39,11 +39,27 @@ window.initializeEvents = function(){
 				if( $(this).data('resource') == "privates-create" )
 					return app.render_create_private( $(this).attr('href') );
 				if( $(this).data('resource') == "my_lobby" ){
+					if($('#misQuinielas').length){
+						$('#misQuinielas').trigger('click');
+						return app.hideLoader();
+					}
 					/** check if sidebar is present or reroute otherwise **/
-					$('#misQuinielas').trigger('click');
-					return app.hideLoader();
+					app.render_lobby( $(this).attr('href'), false );
+					setTimeout(function(){
+						$('#misQuinielas').trigger('click');
+					}, 1200);
 				}
 				if( $(this).data('resource') == "detail" )
+					return app.render_detail( $(this).attr('href'), $(this).data('object') );
+				if( $(this).data('resource') == "detail-postures" )
+					return app.render_detail( $(this).attr('href'), $(this).data('object') );
+				if( $(this).data('resource') == "detail-places" )
+					return app.render_detail( $(this).attr('href'), $(this).data('object') );
+				if( $(this).data('resource') == "detail-chat" )
+					return app.render_detail( $(this).attr('href'), $(this).data('object') );
+				if( $(this).data('resource') == "detail-prizes" )
+					return app.render_detail( $(this).attr('href'), $(this).data('object') );
+				if( $(this).data('resource') == "detail-group-picks" )
 					return app.render_detail( $(this).attr('href'), $(this).data('object') );
 				
 				/*** User ***/
@@ -335,6 +351,14 @@ window.initializeEvents = function(){
 
 				/** Render lobby **/
 				app.render_lobby_feed('chronological');
+			
+				if($('#deporte_soccer').length){
+
+					app.render_filter_tournaments();
+					setTimeout(function(){
+						$('#deporte_soccer').hide();
+					}, 320);
+				} // END deporte_soccer
 
 				$('[data-countdown]').each(function(index, element) {
 					var $this = $(element), finalDate = $(element).data('countdown');
@@ -492,6 +516,36 @@ window.initializeEvents = function(){
 
 				$('.menu li').removeClass('selected');
 				$('.menu_abonar').addClass('selected');
+				
+				$('#depositStoresForm').validate({
+					rules:{
+						amount : "required"
+					},
+					messages:{
+						amount : "Es necesario que especifiques una cantidad"
+					},
+					submitHandler:function( form, event ){
+						event.preventDefault();
+						app.showLoader();
+						var deposit_data = app.getFormData(form, 'object');
+						var response = apiRH.depositStores(deposit_data);
+						if(!response.success || !response.payment_method){
+							app.toast("No se ha podido procesar tu pedido, por favor intenta nuevamente.")
+						}
+						var ref = cordova.InAppBrowser.open(apiRH.openpay_base_url+response.payment_method.reference);
+					}
+				});
+				
+				/** Select amount and set hidden input value **/
+				$('.botones_abono li').on('click', function(){
+					var $mySelection = $(this);
+					console.log($mySelection);
+					$('.botones_abono li').removeClass('selected');
+					$mySelection.addClass('selected');
+					console.log($mySelection.data('amount'));
+					$('input[name=amount]').val($mySelection.data('amount'));
+				});
+
 			} // END depositStores scope
 			
 			if($('#depositCard').length){

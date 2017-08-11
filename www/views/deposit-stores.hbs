@@ -5,41 +5,43 @@
 			<a class="hook" data-resource="deposit" href="deposit.html">Tarjeta de crédito</a>
 			<a class="selected" >Tienda de conveniencia</a>
 		</div>
-		<div class="botones_abono clearfix">
-			<a class="" href=""><img src="images/billete.png">$25</a>
-			<a class="" href=""><img src="images/billete.png">$50</a>
-			<a class="selected" href=""><img src="images/billete.png">$100</a>
-			<a class="" href=""><img src="images/billete.png">$200</a>
-			<a class="" href="">Otra cantidad</a>
-		</div>
-		<div class="abonar_form clearfix">
-			
-			<form>
+		<ul class="botones_abono clearfix">
+			<li data-amount="1"><img src="images/billete.png">$25</li>
+			<li data-amount="2"><img src="images/billete.png">$50</li>
+			<li class="selected" data-amount="3"><img src="images/billete.png">$100</li>
+			<li data-amount="4"><img src="images/billete.png">$200</li>
+		</ul>
+		
+		<div class="abonar_form clearfix">	
+			<form id="depositStoresForm" method="POST" action="" >
+				
+				<input id="populate_value" type="hidden" name="amount" value="3">
 				<ul class="formas_pago clearfix">
 					<li><img src="images/openpay.png"></li>
 					<li><img src="images/securetrans.png"></li>
 					<li><img src="images/tienditas.png"></li>
 				</ul>
 				<p>¡IMPORTANTE!<br/>
-			Te enviaremos de forma gratuita por SMS tu código<br/>
-			con el cual podrás pagar en tu tienda más cercana. <br/><br/>
+					Te enviaremos de forma gratuita por email y SMS tu código,<br/>
+					con el cual podrás pagar en tu tienda más cercana. <br/><br/>
 
-			1. Preséntale el CÓDIGO al cajero.<br/>
-			2. Realiza el PAGO la tienda.<br/>
-			3. A JUGAR.<br/><br/>
+					1. Preséntale el CÓDIGO al cajero.<br/>
+					2. Realiza el PAGO en la tienda de tu elección.<br/>
+					3. ¡A JUGAR!<br/><br/>
 
-			NOTA: Las tiendas cobran una comisión<br/>
-			de $8.00 al cliente que acude a pagar.</p>
-				<input type="text" placeholder="Número de celular a 10 dígitos">
+					NOTA: Las tiendas cobran una comisión<br/>
+					de $8.00 al cliente que acude a pagar.
+				</p>
+				{{!-- <input type="text" placeholder="Número de celular a 10 dígitos"> --}}
 				<div class="submit_holder">
 					<input type="submit" value="send">
 				</div>
 			</form>
 		</div>
-		<p class="legales">Consulta aquí tu tienda mas cercana
-		<br/><br/>
-		Farmacias Benavides, Farmacias del Ahorro, Super One, El Asturiano,
-		El Vigilante, Farmacias La Original, Grupo Águila, A La Mano, Maxilana, Prendamex, Extra, Tiendas Mambo, El Gallo de la Laguna, Caja Solidaria Tamaulipas, Súper Prestamos Premier, Grupo Blyska, Peso Fácil,
-		GWV Inversiones, DNU, Financiera Forjadores, Venayuda, Grupo Pawn, Caja Cerro de la Silla, Paso Seguro, Servicio Prendarios del Sureste,
-		Indigo, Mexamed, Torcam, Akala, Especias Moy, Servimoney y Petrofe.</p>
+		<p class="legales">Consulta aquí tu tienda mas cercana <br/><br/>
+			Farmacias Benavides, Farmacias del Ahorro, Super One, El Asturiano,
+			El Vigilante, Farmacias La Original, Grupo Águila, A La Mano, Maxilana, Prendamex, Extra, Tiendas Mambo, El Gallo de la Laguna, Caja Solidaria Tamaulipas, Súper Prestamos Premier, Grupo Blyska, Peso Fácil,
+			GWV Inversiones, DNU, Financiera Forjadores, Venayuda, Grupo Pawn, Caja Cerro de la Silla, Paso Seguro, Servicio Prendarios del Sureste,
+			Indigo, Mexamed, Torcam, Akala, Especias Moy, Servimoney y Petrofe.
+		</p>
 	</div><!-- content -->

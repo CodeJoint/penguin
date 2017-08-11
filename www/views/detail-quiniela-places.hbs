@@ -1,0 +1,478 @@
+
+	<div class="container clearfix">
+		
+		{{> header}}
+
+		<div id="detailQuinielaRegistered" data-id="{{data.id}}" class="content quiniela_single quiniela_registrada_single">
+			
+			<a class="link_wrapper">
+				<div class="quiniela {{# if data.upcoming}}quiniela_open{{/ if}} 
+				{{# if data.live}}quiniela_live{{/ if}} 
+				{{# if_eq data.status 'live'}}quiniela_live{{/ if_eq}} 
+				{{# if data.closed}}quiniela_closed{{/ if}} {{data.sport.name}}
+				{{# if_eq data.point_format "natural" }} natural {{/ if_eq }}  clearfix">
+					<div class="quiniela_header clearfix">
+						<div class="quiniela_iconos clearfix">
+							{{# if_eq data.point_format "line" }}
+								<img src="{{cordova_full_path}}images/linea.png">
+							{{/ if_eq }}
+							{{# if_eq data.point_format "natural" }}
+								<img src="{{cordova_full_path}}images/natural.png">
+							{{/ if_eq }}
+							<img src="{{cordova_full_path}}images/{{data.sport.icon}}.png">
+						</div><!-- iconos -->
+						<h2>{{data.name_replaced}}</h2>
+					</div><!-- quiniela_header -->
+					<div class="quiniela_content clearfix">
+						<div class="quiniela_info clearfix">
+							<span class="registros">REG: {{data.entry_count}}</span>
+							<span class="cierre">{{^ if data.closed}}CIERRE{{/ if}}{{# if data.closed}}CERRÓ{{/ if}}: {{formatDate data.deadline_tz}}</span>
+							{{# data.limited_capacity}}
+								<span class="limite">Limitado a {{data.max_entries}} entradas</span>
+							{{/ data.limited_capacity}}
+							{{# data.closed}}
+								<span class="limite">FINALIZÓ</span>
+							{{/ data.closed}}
+						</div><!-- quiniela_info -->
+						
+						<div class="quiniela_entrada clearfix">
+							<span class="titulo">ENTRADA</span>
+							{{# if_eq data.entry_currency 'real' }}
+								<img src="{{cordova_full_path}}images/billecoin.png">
+							{{/ if_eq }}
+							{{# if_eq data.entry_currency 'pickcoin' }}
+								<img src="{{cordova_full_path}}images/pickcoin.png">
+							{{/ if_eq }}
+							<span class="number">${{ formatCurrency data.entry_fee}}</span>
+						</div>
+						<div class="quiniela_bolsa clearfix">
+							<span class="titulo">BOLSA</span>
+							{{# if data.guaranteed_prize}}
+								<img src="{{cordova_full_path}}images/garantizado.png">
+							{{/ if }}
+							<span class="number">${{ formatCurrency data.available}}</span>
+						</div>
+					</div><!-- quiniela_content -->
+				</div><!-- quiniela -->
+			</a><!-- link_wrapper -->
+			<div class="tabs_quiniela clearfix">
+				<ul>
+					<li class="selected"><a href="">Picks</a></li>
+					<li><a class="hook" data-resource="detail-places" href="detail.html?registered=true&tab=places">Posiciones</a></li>
+					<li><a class="hook" data-resource="detail-chat" href="detail.html?registered=true&tab=chat">Chat</a></li>
+					<li><a class="hook" data-resource="detail-prizes" href="detail.html?registered=true&tab=prizes">Premios</a></li>
+					<li><a class="hook" data-resource="detail-group-picks" href="detail.html?registered=true&tab=group-picks">Picks de grupo</a></li>
+					<li><a class="hook" data-resource="detail-scores" href="detail.html?registered=true&tab=scores">Marcadores</a></li>
+				</ul>
+			</div>
+			<div class="quinielas_dropdowns clearfix">
+				
+					<select>
+						<option>No se pueden copiar picks</option>
+					</select>
+
+				
+					<select>
+						<option>Registros</option>
+					</select>
+
+			
+			</div><!-- dropdowns -->
+			<div class="tab tab_posiciones clearfix">
+				<table>
+					<tr class="table_title">
+						<th>POS</th>
+						<th>JUGADOR</th>
+						<th>ACIERTOS</th>
+						<th>A GANAR</th>
+					</tr>
+					<tr class="player_info">
+						<td>1</td>
+						<td class="player"><img src="{{cordova_full_path}}images/profile_placeholder.png"> Lorem Ipsum 123</td>
+						<td>12</td>
+						<td class="ganar"><img src="{{cordova_full_path}}images/billete.png">$1,234</td>
+					</tr>
+					<tr class="player_info">
+						<td>1</td>
+						<td class="player"><img src="{{cordova_full_path}}images/profile_placeholder.png"> Lorem Ipsum 123</td>
+						<td>12</td>
+						<td class="ganar"><img src="{{cordova_full_path}}images/billete.png">$1,234</td>
+					</tr>
+					<tr class="player_info">
+						<td>1</td>
+						<td class="player"><img src="{{cordova_full_path}}images/profile_placeholder.png"> Lorem Ipsum 123</td>
+						<td>12</td>
+						<td class="ganar"><img src="{{cordova_full_path}}images/billete.png">$1,234</td>
+					</tr>
+					<tr class="player_info">
+						<td>1</td>
+						<td class="player"><img src="{{cordova_full_path}}images/profile_placeholder.png"> Lorem Ipsum 123</td>
+						<td>12</td>
+						<td class="ganar"><img src="{{cordova_full_path}}images/billete.png">$1,234</td>
+					</tr>
+					<tr class="player_info">
+						<td>1</td>
+						<td class="player"><img src="{{cordova_full_path}}images/profile_placeholder.png"> Lorem Ipsum 123</td>
+						<td>12</td>
+						<td class="ganar"><img src="{{cordova_full_path}}images/billete.png">$1,234</td>
+					</tr>
+					<tr class="player_info">
+						<td>1</td>
+						<td class="player"><img src="{{cordova_full_path}}images/profile_placeholder.png"> Lorem Ipsum 123</td>
+						<td>12</td>
+						<td class="ganar"><img src="{{cordova_full_path}}images/billete.png">$1,234</td>
+					</tr>
+					<tr class="player_info">
+						<td>1</td>
+						<td class="player"><img src="{{cordova_full_path}}images/profile_placeholder.png"> Lorem Ipsum 123</td>
+						<td>12</td>
+						<td class="ganar"><img src="{{cordova_full_path}}images/billete.png">$1,234</td>
+					</tr>
+					<tr class="player_info">
+						<td>1</td>
+						<td class="player"><img src="{{cordova_full_path}}images/profile_placeholder.png"> Lorem Ipsum 123</td>
+						<td>12</td>
+						<td class="ganar"><img src="{{cordova_full_path}}images/billete.png">$1,234</td>
+					</tr>
+				</table>
+			</div><!-- posiciones -->
+			<div class="tab tab_premios clearfix">
+				<table>
+					<tr class="table_title">
+						<th>LUGAR</th>
+						<th>PORCENTAJE</th>
+						<th>MONTO</th>
+					</tr>
+					<tr class="player_info">
+						<td>1 LUGAR</td>
+						<td>12.3%</td>
+						<td class="ganar"><img src="{{cordova_full_path}}images/billete.png">$1,234 MXN</td>
+					</tr>
+					<tr class="player_info">
+						<td>1 LUGAR</td>
+						<td>12.3%</td>
+						<td class="ganar"><img src="{{cordova_full_path}}images/billete.png">$1,234 MXN</td>
+					</tr>
+					<tr class="player_info">
+						<td>1 LUGAR</td>
+						<td>12.3%</td>
+						<td class="ganar"><img src="{{cordova_full_path}}images/billete.png">$1,234 MXN</td>
+					</tr>
+					<tr class="player_info">
+						<td>1 LUGAR</td>
+						<td>12.3%</td>
+						<td class="ganar"><img src="{{cordova_full_path}}images/billete.png">$1,234 MXN</td>
+					</tr>
+					<tr class="player_info">
+						<td>1 LUGAR</td>
+						<td>12.3%</td>
+						<td class="ganar"><img src="{{cordova_full_path}}images/billete.png">$1,234 MXN</td>
+					</tr>
+					<tr class="player_info">
+						<td>1 LUGAR</td>
+						<td>12.3%</td>
+						<td class="ganar"><img src="{{cordova_full_path}}images/billete.png">$1,234 MXN</td>
+					</tr>
+					<tr class="player_info">
+						<td>1 LUGAR</td>
+						<td>12.3%</td>
+						<td class="ganar"><img src="{{cordova_full_path}}images/billete.png">$1,234 MXN</td>
+					</tr>
+					<tr class="player_info">
+						<td>1 LUGAR</td>
+						<td>12.3%</td>
+						<td class="ganar"><img src="{{cordova_full_path}}images/billete.png">$1,234 MXN</td>
+					</tr>
+				</table>
+			</div><!-- premios -->
+			<div class="tab tab_picks_grupo clearfix">
+				<table>
+					<tr class="table_title">
+						<th></th>
+						<th>VIS @ LOC</th>
+						<th>VIS @ LOC</th>
+						<th>VIS @ LOC</th>
+						<th>VIS @ LOC</th>
+						<th>VIS @ LOC</th>
+						<th>VIS @ LOC</th>
+						<th>VIS @ LOC</th>
+						<th>VIS @ LOC</th>
+						<th>VIS @ LOC</th>
+						<th>MARCADOR EXACTO</th>
+						<th>MINUTO PRIMER GOL</th>
+						<th>MINUTO ÚLTIMO GOL</th>
+						<th>TOTAL S12</th>
+						<th></th>
+					</tr>
+					<tr>
+						<td>RESULTADO</td>
+						<td>LOC</td>
+						<td>VIS</td>
+						<td>EMP</td>
+						<td>PD</td>
+						<td>LOC</td>
+						<td>VIS</td>
+						<td>EMP</td>
+						<td>EMP</td>
+						<td>EMP</td>
+						<td>PD</td>
+						<td>PD</td>
+						<td>PD</td>
+						<td>PD</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>MI PICK</td>
+						<td>LOC</td>
+						<td>VIS</td>
+						<td>EMP</td>
+						<td>PD</td>
+						<td>LOC</td>
+						<td>VIS</td>
+						<td>EMP</td>
+						<td>EMP</td>
+						<td>EMP</td>
+						<td>PD</td>
+						<td>PD</td>
+						<td>PD</td>
+						<td>PD</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>GANADOR</td>
+						<td>LOC</td>
+						<td>VIS</td>
+						<td>EMP</td>
+						<td>PD</td>
+						<td>LOC</td>
+						<td>VIS</td>
+						<td>EMP</td>
+						<td>EMP</td>
+						<td>EMP</td>
+						<td>PD</td>
+						<td>PD</td>
+						<td>PD</td>
+						<td>PD</td>
+						<td></td>
+					</tr>
+					<tr class="table_title">
+						<th></th>
+						<th>VIS @ LOC</th>
+						<th>VIS @ LOC</th>
+						<th>VIS @ LOC</th>
+						<th>VIS @ LOC</th>
+						<th>VIS @ LOC</th>
+						<th>VIS @ LOC</th>
+						<th>VIS @ LOC</th>
+						<th>VIS @ LOC</th>
+						<th>VIS @ LOC</th>
+						<th>MARCADOR EXACTO</th>
+						<th>MINUTO PRIMER GOL</th>
+						<th>MINUTO ÚLTIMO GOL</th>
+						<th>TOTAL S12</th>
+						<th></th>
+					</tr>
+					<tr class="player_info">
+						<td class="player"><img src="{{cordova_full_path}}images/profile_placeholder.png"> Lorem Ipsum 123</td>
+						<td><img src="{{cordova_full_path}}images/acierto.png"></td>
+						<td><img src="{{cordova_full_path}}images/error.png"></td>
+						<td><img src="{{cordova_full_path}}images/acierto.png"></td>
+						<td><img src="{{cordova_full_path}}images/error.png"></td>
+						<td><img src="{{cordova_full_path}}images/acierto.png"></td>
+						<td><img src="{{cordova_full_path}}images/error.png"></td>
+						<td><img src="{{cordova_full_path}}images/acierto.png"></td>
+						<td><img src="{{cordova_full_path}}images/error.png"></td>
+						<td><img src="{{cordova_full_path}}images/acierto.png"></td>
+						<td><img src="{{cordova_full_path}}images/error.png"></td>
+						<td><img src="{{cordova_full_path}}images/error.png"></td>
+						<td><img src="{{cordova_full_path}}images/error.png"></td>
+						<td><img src="{{cordova_full_path}}images/error.png"></td>
+						<td></td>
+					</tr>
+					<tr class="player_info">
+						<td class="player"><img src="{{cordova_full_path}}images/profile_placeholder.png"> Lorem Ipsum 123</td>
+						<td><img src="{{cordova_full_path}}images/acierto.png"></td>
+						<td><img src="{{cordova_full_path}}images/error.png"></td>
+						<td><img src="{{cordova_full_path}}images/acierto.png"></td>
+						<td><img src="{{cordova_full_path}}images/error.png"></td>
+						<td><img src="{{cordova_full_path}}images/acierto.png"></td>
+						<td><img src="{{cordova_full_path}}images/error.png"></td>
+						<td><img src="{{cordova_full_path}}images/acierto.png"></td>
+						<td><img src="{{cordova_full_path}}images/error.png"></td>
+						<td><img src="{{cordova_full_path}}images/acierto.png"></td>
+						<td><img src="{{cordova_full_path}}images/error.png"></td>
+						<td><img src="{{cordova_full_path}}images/error.png"></td>
+						<td><img src="{{cordova_full_path}}images/error.png"></td>
+						<td><img src="{{cordova_full_path}}images/error.png"></td>
+						<td></td>
+					</tr>
+					<tr class="player_info">
+						<td class="player"><img src="{{cordova_full_path}}images/profile_placeholder.png"> Lorem Ipsum 123</td>
+						<td><img src="{{cordova_full_path}}images/acierto.png"></td>
+						<td><img src="{{cordova_full_path}}images/error.png"></td>
+						<td><img src="{{cordova_full_path}}images/acierto.png"></td>
+						<td><img src="{{cordova_full_path}}images/error.png"></td>
+						<td><img src="{{cordova_full_path}}images/acierto.png"></td>
+						<td><img src="{{cordova_full_path}}images/error.png"></td>
+						<td><img src="{{cordova_full_path}}images/acierto.png"></td>
+						<td><img src="{{cordova_full_path}}images/error.png"></td>
+						<td><img src="{{cordova_full_path}}images/acierto.png"></td>
+						<td><img src="{{cordova_full_path}}images/error.png"></td>
+						<td><img src="{{cordova_full_path}}images/error.png"></td>
+						<td><img src="{{cordova_full_path}}images/error.png"></td>
+						<td><img src="{{cordova_full_path}}images/error.png"></td>
+						<td></td>
+					</tr>
+					<tr class="player_info">
+						<td class="player"><img src="{{cordova_full_path}}images/profile_placeholder.png"> Lorem Ipsum 123</td>
+						<td><img src="{{cordova_full_path}}images/acierto.png"></td>
+						<td><img src="{{cordova_full_path}}images/error.png"></td>
+						<td><img src="{{cordova_full_path}}images/acierto.png"></td>
+						<td><img src="{{cordova_full_path}}images/error.png"></td>
+						<td><img src="{{cordova_full_path}}images/acierto.png"></td>
+						<td><img src="{{cordova_full_path}}images/error.png"></td>
+						<td><img src="{{cordova_full_path}}images/acierto.png"></td>
+						<td><img src="{{cordova_full_path}}images/error.png"></td>
+						<td><img src="{{cordova_full_path}}images/acierto.png"></td>
+						<td><img src="{{cordova_full_path}}images/error.png"></td>
+						<td><img src="{{cordova_full_path}}images/error.png"></td>
+						<td><img src="{{cordova_full_path}}images/error.png"></td>
+						<td><img src="{{cordova_full_path}}images/error.png"></td>
+						<td></td>
+					</tr>
+					<tr class="player_info this_player">
+						<td class="player"><img src="{{cordova_full_path}}images/profile_placeholder.png"> Lorem Ipsum 123</td>
+						<td><img src="{{cordova_full_path}}images/acierto.png"></td>
+						<td><img src="{{cordova_full_path}}images/error.png"></td>
+						<td><img src="{{cordova_full_path}}images/acierto.png"></td>
+						<td><img src="{{cordova_full_path}}images/error.png"></td>
+						<td><img src="{{cordova_full_path}}images/acierto.png"></td>
+						<td><img src="{{cordova_full_path}}images/error.png"></td>
+						<td><img src="{{cordova_full_path}}images/acierto.png"></td>
+						<td><img src="{{cordova_full_path}}images/error.png"></td>
+						<td><img src="{{cordova_full_path}}images/acierto.png"></td>
+						<td><img src="{{cordova_full_path}}images/error.png"></td>
+						<td><img src="{{cordova_full_path}}images/error.png"></td>
+						<td><img src="{{cordova_full_path}}images/error.png"></td>
+						<td><img src="{{cordova_full_path}}images/error.png"></td>
+						<td></td>
+					</tr>
+				</table>
+			</div><!-- picks_grupo -->
+			<div class="tab tab_marcadores clearfix">
+				<div class="marcador clearfix">
+					<table>
+						<tr>
+							<th>Finalizado</th>
+							<th>1</th>
+							<th>2</th>
+							<th>3</th>
+							<th>4</th>
+							<th>T</th>
+						</tr>
+						<tr>
+							<td>OAK</td>
+							<td>7</td>
+							<td>14</td>
+							<td>7</td>
+							<td>10</td>
+							<td>38</td>
+						</tr>
+						<tr>
+							<td>OAK</td>
+							<td>7</td>
+							<td>14</td>
+							<td>7</td>
+							<td>10</td>
+							<td>38</td>
+						</tr>
+					</table>
+				</div><!-- marcador -->
+				<div class="marcador clearfix">
+					<table>
+						<tr>
+							<th>Finalizado</th>
+							<th>R</th>
+							<th>H</th>
+							<th>E</th>
+							<th></th>
+							<th>T</th>
+						</tr>
+						<tr>
+							<td>LAD</td>
+							<td>14</td>
+							<td>21</td>
+							<td>0</td>
+							<td></td>
+							<td>28</td>
+						</tr>
+						<tr>
+							<td>NYY</td>
+							<td>7</td>
+							<td>14</td>
+							<td>1</td>
+							<td></td>
+							<td>7</td>
+						</tr>
+					</table>
+				</div><!-- marcador -->
+				<div class="marcador clearfix">
+					<table>
+						<tr>
+							<th>Finalizado</th>
+							<th></th>
+							<th>1</th>
+							<th>2</th>
+							<th></th>
+							<th>T</th>
+						</tr>
+						<tr>
+							<td>AME</td>
+							<td></td>
+							<td>1</td>
+							<td>0</td>
+							<td></td>
+							<td>1</td>
+						</tr>
+						<tr>
+							<td>MTY</td>
+							<td></td>
+							<td>1</td>
+							<td>1</td>
+							<td></td>
+							<td>2</td>
+						</tr>
+					</table>
+				</div><!-- marcador -->
+				<div class="marcador clearfix">
+					<table>
+						<tr>
+							<th>Finalizado</th>
+							<th>1</th>
+							<th>2</th>
+							<th>3</th>
+							<th>4</th>
+							<th>T</th>
+						</tr>
+						<tr>
+							<td>OAK</td>
+							<td>7</td>
+							<td>14</td>
+							<td>7</td>
+							<td>10</td>
+							<td>38</td>
+						</tr>
+						<tr>
+							<td>OAK</td>
+							<td>7</td>
+							<td>14</td>
+							<td>7</td>
+							<td>10</td>
+							<td>38</td>
+						</tr>
+					</table>
+				</div><!-- marcador -->
+			</div>
+		</div><!-- content -->
+		{{> footer}}
+	</div><!-- container -->

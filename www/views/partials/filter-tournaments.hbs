@@ -1,0 +1,4 @@
+	<li onclick=" app.clear_filters('sport_league');" class="selected"><span>Todas</span></li>
+{{# tournaments}}
+	<li onclick=" app.stack_filter('sport_league', '{{id}}');"><span>{{name}}</span></li>
+{{/ tournaments}}

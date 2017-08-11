@@ -109,6 +109,10 @@
 				moment.locale('es');
 				return moment(date).format(my_format);
 			});
+			Handlebars.registerHelper('unixTime', function(value) {
+				moment.locale('es');
+				return moment(value).format('lll');
+			});
 			Handlebars.registerHelper('coinToPeso', function(value) {
 				return (value*0.00005).toFixed(2);
 			});
@@ -336,15 +340,21 @@
 
 			var extra_data 	= (typeof ask_again === 'undefined' || ask_again === true || !app.data_temp.data ) 
 							? apiRH.getRequest( 'api/pools/available.json', null )
-							: app.data_temp.data.pools;
+							: { pools: app.data_temp.data.pools, pools_unfiltered: app.data_temp.data.pools_unfiltered, tournaments: app.data_temp.data.tournaments, now: app.data_temp.data.now };
+			console.log(extra_data);
 			var template 	= Handlebars.templates['lobby-feed'];
 			app.data_temp	= this.gatherEnvironment( extra_data, "Lobby feed" );
-			app.data_temp.data.pools_unfiltered = app.sort_pool();
 			app.data_temp.selected_lobby = true;
+
+			if(ask_again){
+				app.data_temp.data.pools_unfiltered = app.data_temp.data.pools;
+				app.data_temp.data.pools 			= app.sort_pool();
+			}
 			if(!template){
 				console.log("Template doesn't exist");
 				return false;
 			}
+			console.log(app.data_temp);
 			$('#insertFeed').html( template(app.data_temp) )
 							.css({ "opacity": 0, "display": "block"})
 							.animate({ opacity: 1 }, 220);
@@ -389,9 +399,13 @@
 			extra_data = (extra_data.pool) ? extra_data.pool : [];
 			app.data_temp = this.gatherEnvironment(extra_data, "Detail");
 			console.log(app.data_temp);
-			var template_name = (view == 'registered') ? 'detail-quiniela-registered': 'detail-quiniela';
+			var template_name = (view === 'postures') 	? 'detail-quiniela-registered'	: 'detail-quiniela';
+				template_name = (view === 'chat'	) 	? 'detail-quiniela-chat'		: template_name;
+				template_name = (view === 'prizes'	) 	? 'detail-quiniela-prizes'		: template_name;
+				template_name = (view === 'group-picks')? 'detail-quiniela-group-picks'	: template_name;
+				template_name = (view === 'scores'	) 	? 'detail-quiniela-scores'		: template_name;
 			setTimeout( function(data){
-				return app.switchView('detail-quiniela', app.data_temp, '#exoskeleton', url, 'quiniela-detail');
+				return app.switchView(template_name, app.data_temp, '#exoskeleton', url, 'quiniela-'+view);
 			}, 220);
 		},
 		render_games : function(object_id){
@@ -444,8 +458,10 @@
 			setTimeout(function(){
 				app.showLoader();
 			}, 420);
+			var extra_data = apiRH.getRequest('api/openpay_cards/index.json', null);
 			app.check_or_renderContainer();
-			app.data_temp = this.gatherEnvironment(null, "Agregar fondos a tu cuenta");
+			app.data_temp = this.gatherEnvironment(extra_data, "Agregar fondos a tu cuenta");
+			console.log(app.data_temp);
 			app.data_temp.selected_deposit = true;
 			return app.switchView('deposit', app.data_temp, '#exoskeleton', url, 'deposit');
 		},
@@ -514,12 +530,26 @@
 				);
 			return pool;
 		},
+		render_filter_tournaments : function( ){
+			var extra_data = apiRH.getRequest('api/sports/index.json', null);
+			extra_data = (extra_data) ? extra_data : [];
+			if(!extra_data)
+				return false;
+			extra_data.sports.forEach(function(element, index){
+				if(element.name === 'Fútbol')
+					return extra_data = element;
+			});
+			setTimeout(function(){
+				app.appendView('filter-tournaments', extra_data, '#deporte_soccer');
+			}, 220);
+		},
 		stack_filter : function( filter, value ){
 			/** Filters are stored in a global variable **/
 			if(!app.data_temp.data.pools)
 				return false;
 			var pool = app.data_temp.data.pools;
 			filter_array[filter] = value;
+			return app.apply_filters();
 		},
 		/*** Clears specific filter or all filters if parameter is not set ***/
 		clear_filters : function( filter ){
@@ -532,44 +562,55 @@
 			/*** TODO Start with unfiltered feed from temporary memory, then apply filters ***/
 			var myFilters = window.filter_array;
 			/*** TODO Check temp data before assigning value ***/
-			var myPool 	  = app.data_temp.data.unfiltered_pools;
+			var myPool 	  = app.data_temp.data.pools_unfiltered;
+			console.log(app.data_temp);
+
+			if(typeof myFilters.real_money !== 'undefined' ){
+				
+				/*** min: 0-50, med: 51-250, max: 251-10000 ***/
+				var min_value = (myFilters.real_money === 'min') ?  0 : 251;
+					min_value = (myFilters.real_money === 'med') ? 51 : min_value;
+				var max_value = (myFilters.real_money === 'min') ?  50 	: 10000;
+					max_value = (myFilters.real_money === 'med') ? 250	: max_value;
+				myPool.forEach( function(element, index){
+					var entry = element.entry_fee/100;
+					if( !(entry >= min_value && entry <= max_value) )
+						delete myPool[index];
+				});
+			}
+			if(typeof myFilters.fake_money !== 'undefined' ){
+				/*** min: 0-50, med: 51-250, max: 251-10000 ***/
+				var min_value = (myFilters.real_money === 'min') ?  0 : 251;
+					min_value = (myFilters.real_money === 'med') ? 51 : min_value;
+				var max_value = (myFilters.real_money === 'min') ?  50 	: 10000;
+					max_value = (myFilters.real_money === 'med') ? 250	: max_value;
+				myPool.forEach( function(element, index){
+					var entry = element.entry_fee/100;
+					if( !(entry >= min_value && entry <= max_value) )
+						delete myPool[index];
+				});
+			}
+			if(typeof myFilters.status !== 'undefined' )
+				myPool.forEach( function(element, index){
+					if( element.status !== myFilters.status )
+						delete myPool[index];
+				});
 			
-			// if(filter == 'real_money'){
-			// 	filter_array['real_money'] = value;
-			// 	pool.sort(
-			// 		firstBy( function (v) { return v.closed; } )
-			// 			.thenBy( function (v) { return !v.featured; } )
-			// 			.thenBy('deadline_tz')
-			// 	);
-			// }
-			// if(filter == 'fake_money'){
-			// 	filter_array['fake_money'] = value;
-			// 	pool.sort(
-			// 		firstBy( function (v) { return v.closed; } )
-			// 			.thenBy( function (v) { return !v.featured; } )
-			// 			.thenBy('deadline_tz')
-			// 	);
-			// }
-			// if(filter == 'status' && typeof value != 'undefined'){
-			// 	filter_array['status'] = value;
-			// 	pool.forEach( function(element, index){
-			// 		if( element.status !== value )
-			// 			delete pool[index];
-			// 	});
-			// }
-			myFilters.forEach(function(element, index){
-				if(filter == 'type' && typeof value != 'undefined'){
-					filter_array['type'] = value;
-					pool.sort(
-						firstBy( function (v) { return v.closed; } )
-						 .thenBy( function (v) { return !v.featured; } )
-						 .thenBy('deadline_tz')
-					);
-				}
-			});
-			app.data_temp.data.pools = pool.filter(function(){return true;});
+			if(typeof myFilters.sport !== 'undefined' )
+				myPool.forEach( function(element, index){
+					if( element.sport !== myFilters.sport )
+						delete myPool[index];
+				});
+
+			if(typeof myFilters.type != 'undefined' ){
+				var type_compare = (myFilters.type !== 'open') ? false : true;
+				myPool.forEach( function(element, index){
+					if( element.limited_capacity === type_compare )
+						delete myPool[index];
+				});
+			}
+			app.data_temp.data.pools = myPool.filter(function(){return true;});
 			return app.render_lobby_feed(false);
-			return;
 		},
 		render_dialog : function(title, message, options){
 			return app.showLoader();
@@ -645,7 +686,8 @@
 													 .animate(	{
 																	'margin-top': 0
 																}, 420, 'swing');
-			return setTimeout(function(){ }, 220);
+			return;
+			// return setTimeout(function(){ }, 220);
 		},
 		showLoader: function(){
 			$('#spinner').show();

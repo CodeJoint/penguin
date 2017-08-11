@@ -6,13 +6,13 @@ function requestHandlerAPI(){
 	/*** Attributes ***/
 	this.token = null;
 	this.upload_ready = false;
-	this.version = "1.3";
-	this.app_build = "1.3.2";
+	this.version 	= "1.3";
+	this.app_build 	= "1.3.2";
 	this.device_model = (typeof device != 'undefined') ? device.model : 'not set';
 	this.deviceSessionId = null;
 	this.device_platform = (typeof device != 'undefined') ? device.platform : 'not set';
 	this.device_platform_version = (typeof device != 'undefined') ? device.version : 'not set';
-	this.device_info = {
+	this.device_info =  {
 							sdk_version: this.version,
 							build: this.app_build,
 							model: this.device_model,
@@ -24,7 +24,7 @@ function requestHandlerAPI(){
 	
 	/*** Request headers ***/
 	this.headers = 	{
-						'Content-Type': 'application/x-www-form-urlencoded'
+						'Content-Type': 'application/json'
 					};
 
 	var context = this;
@@ -33,6 +33,9 @@ function requestHandlerAPI(){
 	/*  Production API URL  */
 	window.api_base_url = "http://pickwin.astrata.mx/";
 	// window.api_base_url = "https://pickwin.net/";
+	
+	this.openpay_base_url = "https://sandbox-dashboard.openpay.mx/paynet-pdf/mqfki2pbqpbve54kabor/";
+	// this.openpay_base_url = " https://dashboard.openpay.mx/paynet-pdf/myabfqccohuj4kszwr7y/";
 
 	/* Constructor */
 	this.construct = function(app_context){
@@ -84,8 +87,6 @@ function requestHandlerAPI(){
 				return false;
 			return response;
 		};
-
-		
 
 		/*! 
 		 * Register a new user account the old fashioned way
@@ -228,6 +229,18 @@ function requestHandlerAPI(){
 														});
 								};
 
+
+		/*! 
+		 * Deposit to your account via Store payment
+		 * @return String reference
+		 * @see OpenPay
+		 */
+		this.depositStores = 	function(deposit_info){
+									var response = apiRH.makeRequest('api/users/depositConvenience.json', deposit_info);
+									return response;
+								};
+
+
 		/*! 
 		 * Wrapper for the getRequest, makeRequest methods 
 		 * @param type Request type (POST, GET, PUT, DELETE)
@@ -275,7 +288,7 @@ function requestHandlerAPI(){
 				var myHeaders = (!noHeaders || typeof(noHeaders) == 'undefined') ? apiRH.headers : apiRH.headers;
 				if(myHeaders)
 					options.headers = myHeaders;
-
+				console.log(options);
 				$.ajax(options)
 				 .always( function(response){
 					setTimeout(function(){

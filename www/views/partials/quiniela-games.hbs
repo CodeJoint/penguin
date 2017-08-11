@@ -16,7 +16,7 @@
 			</div><!-- opcion_partido -->
 			<div class="opcion_partido {{# if allow_ties}} empate {{/ if}} cierre clearfix">
 				{{# if allow_ties}}<input type="radio" name="ganador_{{id}}" id="empate">{{/ if}}
-				<span>CIERRE: {{formatDate deadline}}</span>
+				<span>CIERRE: {{ formatDate deadline 'lll' }}</span>
 			</div><!-- opcion_partido -->
 			<div class="opcion_partido visitante clearfix">
 				<input type="radio" name="winner_{{id}}" id="visitante">

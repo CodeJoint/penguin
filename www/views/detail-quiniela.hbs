@@ -8,7 +8,7 @@
 					<a id="reg_into_game"><img src="{{cordova_full_path}}images/registrarse.png"></a>
 				</div><!-- opciones registro -->
 			{{/ data.closed}}
-			<a class="link_wrapper" href="">
+			<a class="link_wrapper">
 				<div class="quiniela
 				{{# if data.upcoming}}quiniela_open{{/ if}} 
 				{{# if data.live}}quiniela_live{{/ if}} 
@@ -31,7 +31,7 @@
 
 						<div class="quiniela_info clearfix">
 							<span class="registros">REG: {{data.entry_count}}</span>
-							<span class="cierre">{{^ if data.closed}}CIERRE{{/ if}}{{# if data.closed}}CERRÓ{{/ if}}: {{formatDate data.deadline_tz}}</span>
+							<span class="cierre">{{^ if data.closed}}CIERRE{{/ if}}{{# if data.closed}}CERRÓ{{/ if}}: {{formatDate data.deadline_tz 'lll'}}</span>
 							{{# data.limited_capacity}}
 								<span class="limite">Limitado a {{data.max_entries}} entradas</span>
 							{{/ data.limited_capacity}}

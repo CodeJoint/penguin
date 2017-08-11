@@ -8,9 +8,9 @@
 					<li onclick="$('#realMoneyFilters').hide(); $('#pickcoinFilters').show(); " data="pickcoin_moneda"><img src="{{cordova_full_path}}images/pickcoin.png"></li>
 				</ul>
 				<ul id="realMoneyFilters" class="clearfix" style="display: none;">
-					<li data-filter="real_money" onclick="app.stack_filter('real_money', 'min');" ><img src="{{cordova_full_path}}images/billete.png"></li>
-					<li data-filter="real_money" onclick="app.stack_filter('real_money', 'med');"><img src="{{cordova_full_path}}images/bill2.png"></li>
-					<li data-filter="real_money" onclick="app.stack_filter('real_money', 'max');"><img src="{{cordova_full_path}}images/bill3.png"></li>
+					<li onclick="app.stack_filter('real_money', 'min');" ><img src="{{cordova_full_path}}images/billete.png"></li>
+					<li onclick="app.stack_filter('real_money', 'med');"><img src="{{cordova_full_path}}images/bill2.png"></li>
+					<li onclick="app.stack_filter('real_money', 'max');"><img src="{{cordova_full_path}}images/bill3.png"></li>
 				</ul>
 				<ul id="pickcoinFilters" class="clearfix" style="display: none;">
 					<li onclick="app.stack_filter('fake_money', 'min');" ><img src="{{cordova_full_path}}images/pickcoin.png"></li>
@@ -22,25 +22,23 @@
 				<h3>DEPORTE</h3>
 				<ul class="clearfix">
 					<li onclick="$('#deporte_soccer').hide(); app.clear_filters('sport');" class="selected"><h3>TODOS</h3></li>
-					<li onclick="$('#deporte_soccer').show();" data="deporte_soccer"><img src="{{cordova_full_path}}images/icon-football.png"></li>
-					<li onclick="$('#deporte_soccer').hide();"  data="deporte_basket"><img src="{{cordova_full_path}}images/ion-ios-basketball-outline.png"></li>
-					<li  onclick="$('#deporte_soccer').hide();" data="deporte_baseball"><img src="{{cordova_full_path}}images/icon-baseball.png"></li>
-					<li onclick="$('#deporte_soccer').hide();"  data="deporte_nfl"><img src="{{cordova_full_path}}images/icon-nfl.png"></li>
+					<li onclick="$('#deporte_soccer').show(); $('#deporte_baseball').hide();" > <img src="{{cordova_full_path}}images/icon-football.png"></li>
+					<li onclick="$('#deporte_soccer').hide(); $('#deporte_baseball').show();" > <img src="{{cordova_full_path}}images/ion-ios-basketball-outline.png"></li>
+					<li onclick="$('#deporte_soccer').hide(); $('#deporte_baseball').hide();" > <img src="{{cordova_full_path}}images/icon-baseball.png"></li>
+					<li onclick="$('#deporte_soccer').hide(); $('#deporte_baseball').hide();" > <img src="{{cordova_full_path}}images/icon-nfl.png"></li>
 				</ul>
 				<ul class="clearfix" id="deporte_soccer" style="display: none;">
-					<li onclick=" app.clear_filters('sport_league');" data="soccer_todas"><span>Todas</span></li>
-					<li data="soccer_ligamx"><span>Liga MX</span></li>
-					<li data="soccer_copamx"><span>Copa MX</span></li>
-					<li data="soccer_laliga"><span>La Liga</span></li>
-					<li data="soccer_premier"><span>Premier</span></li>
-					<li data="soccer_champions"><span>Champions</span></li>
+					
+				</ul>
+				<ul class="clearfix" id="deporte_baseball" style="display: none;">
+					
 				</ul>
 			</div><!-- filtros_deporte -->
 			<div class="filtros_tipo clearfix">
 				<h3>TIPO</h3>
 				<ul class="clearfix">
-					<li onclick="app.stack_filter('type', 'open');" data="tipo_abiertas" class="selected"><h3>Abiertas</h3></li>
-					<li onclick="app.stack_filter('type', 'limited');" data="tipo_limitadas"><h3>Cupo limitado</h3></li>
+					<li onclick="app.stack_filter('type', 'open');" class="selected"><h3>Abiertas</h3></li>
+					<li onclick="app.stack_filter('type', 'limited');" ><h3>Cupo limitado</h3></li>
 				</ul>
 			</div><!-- filtros_deporte -->
 			<div class="filtros_estado clearfix">

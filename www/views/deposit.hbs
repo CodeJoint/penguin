@@ -23,6 +23,7 @@
 						<li><img src="images/amex.png"></li>
 					</ul>
 					<div class="tab_profile radio_group tarjetas selection" >
+						<p>Selecciona una tarjeta para realizar tu compra.</p>
 						<ul>
 							{{# data.cards}}	
 								<li class="clearfix">
@@ -38,7 +39,7 @@
 
 							{{^ data.cards}}
 								<li class="clearfix">
-									<p>No tienes ningún método de pago registrado.</p>					
+									<p>No tienes ningún método de pago registrado. Para registrar una tarjeta <a class="hook" data-resource="profile-methods" href="profile.html?method=methods">ve a tu perfil.</a></p>					
 								</li>
 							{{/ data.cards}}
 						</ul>

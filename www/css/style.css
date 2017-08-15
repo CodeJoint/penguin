@@ -143,16 +143,16 @@ body {width: 100%; margin: 0 auto; font-weight: 300; font-family: 'Lato'!importa
 .header .header_right .header_user_info {width: 75%; float: left; padding-left: 5%;}
 .header .header_right .header_user_info .user_info {width: 100%; margin-bottom: 0.25rem;}
 .header .header_right .header_user_info .user_info img {width: 24px; height: auto; float: left; margin-right: 7px;}
-.header .header_right .header_user_info .user_info h2 {font-weight: 300; font-family: 'Lato'; font-size: 14px; float: left; margin: 0px; padding-top: 2%;}
+.header .header_right .header_user_info .user_info h2 {font-weight: 300; font-family: 'Lato'; font-size: 14px; float: left; margin: 0px; padding-top: 2%; letter-spacing: 1.4px;}
 .header .header_right .header_user_info .user_money {width: 100%;}
 .header .header_right .header_user_info .user_money .money_pesos {float: left; margin-right: 5%;}
 .header .header_right .header_user_info .user_money .money_pesos img {width: 20px; height: auto; float: left; margin-top: 3%}
 .header .header_right .header_user_info .user_money .money_pickcoins {float: left;}
 .header .header_right .header_user_info .user_money .money_pickcoins img {width: 14px; height: auto; float: left;}
-.header .header_right .header_user_info .user_money span {display: block; float: left; font-size: 13px; font-family: 'Lato'; margin-left: 5px;}
+.header .header_right .header_user_info .user_money span {display: block; float: left; font-size: 12px; font-family: 'Lato'; margin-left: 5px;}
 .header .header_right .header_filtros {width: 20%; float: right; text-align: center;}
-.header .header_right .header_filtros h4 {font-weight: 700; font-size: 12px; color: #8A8A8D; margin-bottom: 30%; margin-top: 5%;}
-.header .header_right .header_filtros img {width: 40%}
+.header .header_right .header_filtros h4 {font-weight: 700; font-size: 10px; color: #8A8A8D; margin-bottom: 30%; margin-top: 5%;}
+.header .header_right .header_filtros img {width: 28%}
 
 /*** MENU ***/
 
@@ -175,7 +175,7 @@ body {width: 100%; margin: 0 auto; font-weight: 300; font-family: 'Lato'!importa
 /*** QUINIELAS ***/
 
 a.link_wrapper {color: inherit; text-decoration: none;}
-.quiniela {width: 99%; background: #000; border: 1px solid #414042; padding: 2.5%; border-radius: 3px; margin-top: 10px; text-align: left;}
+.quiniela {width: 99%; background: #000; border: 1px solid #414042; padding: 2.5%; border-radius: 3px; margin-top: 10px; text-align: left; position: relative;}
 .quiniela_header {width: 100%; margin-bottom: 10px;}
 .quiniela_header .quiniela_iconos {float: left; margin-right: 10px;}
 .quiniela_header .quiniela_iconos img {float: left; width: 16px; margin-right: 1px;}
@@ -186,7 +186,7 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 .quiniela_content .quiniela_info span {display: block; margin-bottom: 2px;}
 .quiniela_content .quiniela_info span.limite {color: #F6A623;}
 .quiniela_content .quiniela_info span.live {color: #77BC1F; position: relative; line-height: 1rem;}
-.quiniela_content .quiniela_info span.live::before{ color: #77BC1F; content: "•"; font-size: 2rem; line-height: 0.75rem; position: relative; vertical-align: top; }
+.quiniela_content .quiniela_info span.live::after{ color: #77BC1F; content: "•"; font-size: 2rem; line-height: 0.75rem; position: relative; vertical-align: top; }
 
 .quiniela .quiniela_content div {float: left;}
 .quiniela .quiniela_content span {display: block;}
@@ -700,7 +700,7 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 	.backed_modal::before { content: ""; pointer-events: none; display: block; position: fixed; top: 0; left: 0; z-index: -1; width: 100%; height: 100vh; background: url(../images/bg_trans_negro.png) repeat; opacity: 0.35;}
 	
 	.header .header_right .header_user_info{width: 84%;}
-	.header .header_right .header_filtros{ width: 68px; float: right; text-align: center; position: absolute; top: 1rem; right: 0;}
+	.header .header_right .header_filtros{ width: 68px; float: right; text-align: center; position: absolute; top: 2rem; right: 0;}
 	.header .header_right .header_filtros h4{margin-bottom: 0.5rem;}
 	
 	.small_text{ font-size: 1rem; letter-spacing: 1px; }

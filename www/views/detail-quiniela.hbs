@@ -2,25 +2,19 @@
 	<div class="container clearfix">
 		{{> header}}
 		<div id="detailQuiniela" data-id="{{data.id}}" class="content quiniela_single clearfix">
-			{{^ data.closed}}
-				<div class="registro_quiniela clearfix">
-					<a class="hook" data-resource="lobby" href="lobby.html"><img src="{{cordova_full_path}}images/cierre.png"></a>
-					<a id="reg_into_game"><img src="{{cordova_full_path}}images/registrarse.png"></a>
-				</div><!-- opciones registro -->
-			{{/ data.closed}}
 			<a class="link_wrapper">
 				<div class="quiniela
 				{{# if data.upcoming}}quiniela_open{{/ if}} 
 				{{# if data.live}}quiniela_live{{/ if}} 
 				{{# if_eq data.status 'live'}}quiniela_live{{/ if_eq}} 
 				{{# if data.closed}}quiniela_closed{{/ if}} {{data.sport.name}}
-				{{# if_eq data.point_format "natural" }} natural {{/ if_eq }} garantizado clearfix">
+				{{# if_eq data.format "natural" }} natural {{/ if_eq }} garantizado clearfix">
 					<div class="quiniela_header clearfix">
 						<div class="quiniela_iconos clearfix">
-							{{# if_eq data.point_format "line" }}
+							{{# if_eq data.format "line" }}
 								<img src="{{cordova_full_path}}images/linea.png">
 							{{/ if_eq }}
-							{{# if_eq data.point_format "natural" }}
+							{{# if_eq data.format "natural" }}
 								<img src="{{cordova_full_path}}images/natural.png">
 							{{/ if_eq }}
 							<img src="{{cordova_full_path}}images/{{data.sport.icon}}.png">
@@ -59,7 +53,12 @@
 					</div><!-- quiniela_content -->
 				</div><!-- quiniela -->
 			</a><!-- link_wrapper -->
-			
+			{{^ data.closed}}
+				<div class="registro_quiniela clearfix">
+					<a class="hook" data-resource="lobby" href="lobby.html"><img src="{{cordova_full_path}}images/cierre.png"></a>
+					<a id="reg_into_game"><img src="{{cordova_full_path}}images/registrarse.png"></a>
+				</div><!-- opciones registro -->
+			{{/ data.closed}}
 			{{^ data.closed}}
 				<div class="quinielas_dropdowns clearfix">
 						
@@ -74,7 +73,7 @@
 						</form>
 				</div><!-- dropdowns -->
 
-				<div id="insertPartidos" class="partidos clearfix">
+				<div id="insertPartidos" class="partidos clearfix radio_group">
 
 				</div><!-- partidos -->
 				
@@ -139,7 +138,7 @@
 			{{/ data.closed}}
 		
 			{{^ data.closed}}		
-				<div id="registerNow" class="quiniela_registro_overlay content clearfix" style="display: none;">
+				<div id="registerNow" class="backed_modal clearfix" style="display: none;">
 					<div class="quiniela_registro clearfix">
 						<div class="quiniela_header clearfix">
 							<div class="quiniela_iconos clearfix">
@@ -151,25 +150,38 @@
 								{{/ if_eq }}
 								<img src="{{cordova_full_path}}images/{{data.sport.icon}}.png">
 							</div><!-- iconos -->
-							<h2>{{name_replaced}}</h2>
+							<h2>{{data.name_replaced}}</h2>
+							{{# if_eq data.entry_currency 'real' }}
+								{{# if_less me.balanceReal data.entry_fee}}
+									<p class="error_inline clearfix">No tienes saldo suficiente para registrarte en esta quiniela.</p>
+								{{/ if_less}}
+							{{/ if_eq }}
+							{{# if_eq data.entry_currency 'pickcoin' }}
+								{{# if_less me.balancePc data.entry_fee}}
+									<p class="error_inline clearfix">No tienes saldo suficiente para registrarte en esta quiniela.</p>
+								{{/ if_less }}
+							{{/ if_eq }}
 						</div><!-- quiniela_header -->
 
-						<form id="registerToQuinielaForm" method="POST" action="">
-							
+						<form id="registerToQuinielaForm" method="POST" action="" >
+							<input type="hidden" name="pool_id" id="pool_id" value="{{data.id}}">
+							<input type="hidden" name="entry_id" id="entry_id" value="">
 							<div class="no_registros clearfix">
 								<span class="pregunta">¿Cuántos registros quieres para esta quiniela?</span>
-								<select name="no_registros">
+								<select name="num_entries" id="num_entries">
 									<option value="1" >1</option>
 									<option value="2" >2</option>
 									<option value="3" >3</option>
 									<option value="4" >4</option>
 									<option value="5" >5</option>
 									<option value="6" >6</option>
+									<option value="7" >7</option>
+									<option value="8" >8</option>
 								</select>
 							</div><!-- no_registros -->
 							<div class="copiar_picks clearfix">
 								<span class="pregunta">Utilizar los picks elegidos para todos los registros</span>
-								<input type="checkbox" name="same_picks" value="1">
+								<input type="checkbox" name="use_same_picks" value="true">
 							</div><!-- no_registros -->
 							<div class="balance clearfix">
 								<div class="disponible clearfix">
@@ -192,13 +204,13 @@
 									{{# if_eq data.entry_currency 'real' }}
 										<div class="descontaran_dinero">
 											<img src="{{cordova_full_path}}images/billete.png">
-											<p>${{ formatCurrency data.entry_fee}} MXN</p>
+											<p data-realbalance="{{ formatCurrency me.balanceReal}}">${{ formatCurrency data.entry_fee}} MXN</p>
 										</div><!-- descontaran dinero -->
 									{{/ if_eq }}
 									{{# if_eq data.entry_currency 'pickcoin' }}
 										<div class="descontaran_coins">
 											<img src="{{cordova_full_path}}images/pickcoin.png">
-											<p>{{ formatCurrency data.entry_fee}}</p>
+											<p data-pcbalance="{{ formatCurrency me.balancePc}}">{{ formatCurrency data.entry_fee}}</p>
 										</div><!-- descontaran coins -->
 									{{/ if_eq }}
 								</div><!-- descontaran -->

@@ -5,27 +5,46 @@
 	{{# data.fixtures}}
 		<div data-id="{{id}}" class="partido clearfix">
 			<div class="opcion_partido local clearfix">
-				<input type="radio" name="winner_{{id}}" id="local">
-				<img src="{{cordova_full_path}}images/camisaverde.png">
-				<div class="equipo">
-					<span class="iniciales">{{home_team.abbreviation}}</span>
-				</div><!-- equipo -->
+				{{^ finished}}
+					<input type="radio" id="local_{{id}}" name="{{id}}" value="pick-local-{{id}}">
+				{{/ finished}}
+				<div class="check"></div>	
+				<label for="local_{{id}}" >
+					<img src="{{cordova_full_path}}images/camisaverde.png">
+					<div class="equipo">
+						<span class="iniciales">{{home_team.abbreviation}}</span>
+					</div><!-- equipo -->
+				</label>						
 				<div class="linea">
-					<span>{{# score_away_line}}({{.}}){{/ score_away_line}} {{score_away}}</span>
+					{{# finished}}
+						<span>
+							{{score_away}}
+						</span>
+					{{/ finished}}
 				</div><!-- linea -->
 			</div><!-- opcion_partido -->
 			<div class="opcion_partido {{# if allow_ties}} empate {{/ if}} cierre clearfix">
-				{{# if allow_ties}}<input type="radio" name="ganador_{{id}}" id="empate">{{/ if}}
-				<span>CIERRE: {{ formatDate deadline 'lll' }}</span>
+				{{# if allow_ties}}{{/ if}}
+				<input type="radio" name="{{id}}" value="pick-tie-{{id}}" id="empate">
+				<span>{{ formatDate deadline 'lll' }}</span>
 			</div><!-- opcion_partido -->
 			<div class="opcion_partido visitante clearfix">
-				<input type="radio" name="winner_{{id}}" id="visitante">
-				<img src="{{cordova_full_path}}images/camisaazul.png">
-				<div class="equipo">
-					<span class="iniciales">{{away_team.abbreviation}}</span>
-				</div><!-- equipo -->
+				{{^ finished}}
+					<input type="radio" id="away_{{id}}" name="{{id}}" value="pick-away-{{id}}">
+				{{/ finished}}
+				<div class="check"></div>	
+				<label for="away_{{id}}" >
+					<img src="{{cordova_full_path}}images/camisaazul.png">
+					<div class="equipo">
+						<span class="iniciales">{{away_team.abbreviation}}</span>
+					</div><!-- equipo -->
+				</label>						
 				<div class="linea">
-					<span>{{# score_home_line}}({{.}}){{/ score_home_line}} {{score_home}}</span>
+					{{# finished}}
+						<span>
+							{{score_home}}
+						</span>
+					{{/ finished}}
 				</div><!-- linea -->
 			</div><!-- opcion_partido -->
 		</div><!-- partido -->

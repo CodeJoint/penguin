@@ -397,6 +397,7 @@
 			console.log("Rendering Detail");
 			var extra_data = apiRH.getRequest('api/pools/view/'+object_id+'.json', null);
 			extra_data = (extra_data.pool) ? extra_data.pool : [];
+			console.log(extra_data);
 			app.data_temp = this.gatherEnvironment(extra_data, "Detail");
 			console.log(app.data_temp);
 			var template_name = (view === 'postures') 	? 'detail-quiniela-registered'	: 'detail-quiniela';
@@ -412,9 +413,20 @@
 
 			var extra_data = apiRH.getRequest('api/pools/fixtures/'+object_id+'.json', null);
 			extra_data = (extra_data) ? extra_data : [];
+			console.log(extra_data);
 			app.data_temp = this.gatherEnvironment(extra_data, null);
 			setTimeout(function(){
 				return app.render_partial('quiniela-games', app.data_temp, '#insertPartidos');
+			}, 220);
+		},
+		render_similar_picks : function(object_id){
+
+			var extra_data = apiRH.getRequest('api/entries/similarByPool/'+object_id+'.json', null);
+			extra_data = (extra_data) ? extra_data : [];
+			app.data_temp = this.gatherEnvironment(extra_data, null);
+			console.log(app.data_temp);
+			setTimeout(function(){
+				return app.render_partial('similar-picks', app.data_temp, '#select_copy_picks');
 			}, 220);
 		},
 		render_profile : function(url, tab){

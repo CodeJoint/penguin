@@ -376,38 +376,43 @@ window.initializeEvents = function(){
 
 				var gameId = $('#detailQuiniela').data('id');
 
-					$('#reg_into_game').on('click',function(){
-						$('#registerNow').fadeIn('fast');
-					});
-					$('#closeRegister').on('click',function(){
-						$('#registerNow').fadeOut('fast');
-					});
-					$('#sendRegister').on('click',function(){
-						$('#registerNow').fadeOut('fast');
-					});
-					
-					/** Render quiniela games and picks selectors **/
-					app.render_games(gameId);
+				$('#reg_into_game').on('click',function(){
+					$('#registerNow').fadeIn('fast');
+				});
 
-					$('#registerToQuinielaForm').validate({
-						rules:{
-							gameName	: "required",
-							gameCode 	: "required"
-						},
-						messages:{
-							gameName	: "Debes ingresar el nombre de la quiniela",
-							gameCode 	: "Necesitas el código para encontrar la quiniela"
-						},
-						submitHandler:function( form, event ){
-							event.preventDefault();
-							app.showLoader();
-							var register_data	= app.getFormData(form, 'object');
+				$('#num_entries').on('change', function(){
+					$(this).val();
+				})
 
-							// var response 	= apiRH.searchPrivates(data_search);
-							// return app.render_search_results(response);
-							return false;
-						}
-					});
+				$('#closeRegister').on('click',function(){
+					$('#registerNow').fadeOut('fast');
+				});
+				$('#sendRegister').on('click',function(){
+					$('#registerNow').fadeOut('fast');
+				});
+				
+				/** Render similar picks **/
+				app.render_similar_picks(gameId);
+				
+				/** Render quiniela games and picks selectors **/
+				app.render_games(gameId);
+
+				$('#registerToQuinielaForm').validate({
+					rules:{
+						gameName	: "required",
+						gameCode 	: "required"
+					},
+					messages:{
+						gameName	: "Debes ingresar el nombre de la quiniela",
+						gameCode 	: "Necesitas el código para encontrar la quiniela"
+					},
+					submitHandler:function( form, event ){
+						event.preventDefault();
+						app.showLoader();
+						var register_data	= app.getFormData(form, 'object');
+						return false;
+					}
+				});
 
 			} // END detailQuiniela scope
 			

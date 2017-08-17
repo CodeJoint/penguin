@@ -559,10 +559,8 @@ window.initializeEvents = function(){
 				/** Select amount and set hidden input value **/
 				$('.botones_abono li').on('click', function(){
 					var $mySelection = $(this);
-					console.log($mySelection);
 					$('.botones_abono li').removeClass('selected');
 					$mySelection.addClass('selected');
-					console.log($mySelection.data('amount'));
 					$('input[name=amount]').val($mySelection.data('amount'));
 				});
 
@@ -591,7 +589,7 @@ window.initializeEvents = function(){
 						if(!response.success || !response.payment_method){
 							return app.toast("No se ha podido procesar tu pedido, por favor intenta nuevamente.")
 						}
-						return alert("¡Se han abonado $"+response.amount+" a tu cuenta!");
+						return alert("¡Se han abonado $"+response.amount+" a tu cuenta!", null, "Pickwin", "Jugar");
 					}
 				});
 				

@@ -46,7 +46,7 @@ function requestHandlerAPI(){
 					sdk_app_context = app_context;
 					$( document ).ajaxError(function( event, jqxhr, settings, exception ) {
 					    if ( jqxhr.status== 401 ) {
-					      alert( "Triggered ajaxError handler." );
+					      // alert( "Triggered ajaxError handler." );
 					    }
 					});
 					/* For chaining purposes ::) */
@@ -210,7 +210,7 @@ function requestHandlerAPI(){
 																var response = apiRH.makeRequest('api/openpay_cards/add.json', final_response, null, false);
 																console.log(response);
 																app.hideLoader();
-																alert("Se ha agregado tu método de pago.");
+																alert("Se ha agregado tu método de pago.", null, "Pickwin", "Ok");
 																return app.render_profile('profile.html', 'methods');
 															}
 														}, function(response){

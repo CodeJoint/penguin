@@ -108,6 +108,17 @@
 										</div><!-- desempate_input -->
 									</div><!-- desempate_dos -->
 								{{/ if_eq }}
+								
+								{{# if_eq type 'week_goals'}}
+									<div class="desempate desempate_dos clearfix">
+										<div class="desempate_left">
+											<span>{{label}}</span>
+										</div>
+										<div class="desempate_input">
+											<input type="tel" name="desempate_dos_minuto">
+										</div><!-- desempate_input -->
+									</div><!-- desempate_dos -->
+								{{/ if_eq }}
 
 								{{# if_eq type 'other'}}
 									<div class="desempate desempate_tres clearfix">

@@ -161,10 +161,10 @@
 		// deviceready Event Handler
 		onDeviceReady: function() {
 			app.receivedEvent('deviceready');
-			window.cordova_full_path = ( typeof(cordova) !== 'undefined' ) 
-									 ? cordova.file.applicationDirectory+''
+			window.cordova_full_path = ( typeof cordova !== 'undefined' ) 
+									 ? cordova.file.applicationDirectory+'www/'
 									 : '';
-			console.log("On device ready");
+			console.log("On device ready cordova_full_path");
 			console.log(cordova_full_path);
 			try{
 				app.initPaymentAPI();
@@ -179,7 +179,7 @@
 				app.initPushNotifications();
 			}
 			catch(err){
-				app.toast("Push notifications error: "+JSON.stringify(err));
+				// app.toast("Push notifications error: "+JSON.stringify(err));
 			}
 			if (AndroidFullScreen) {
 			    
@@ -221,7 +221,7 @@
 				parsed['header_title'] = history_title;
 			if( typeof(cordova_full_path) != 'undefined' && cordova_full_path != '' )
 				parsed['cordova_full_path'] = cordova_full_path;
-			// console.log(JSON.stringify(parsed));
+			console.log("Gather environment cordova_full_path "+JSON.stringify(parsed));
 			return parsed;
 		},
 		getUrlVars: function() {

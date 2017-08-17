@@ -1,6 +1,6 @@
 	<h3>PARTIDOS</h3>
 	<div class="opciones_partido clearfix">
-		<span>LOCAL</span> <span>EMPATE</span> <span>VISITA</span>
+		<span>LOCAL</span> <span>EMP</span> <span>VISITANTE</span>
 	</div><!-- opciones_partido -->
 	{{# data.fixtures}}
 		<div data-id="{{id}}" class="partido clearfix">
@@ -49,8 +49,7 @@
 			</div><!-- opcion_partido -->
 		</div><!-- partido -->
 	{{/ data.fixtures}}
-		<div class="props clearfix">
-			<h3>PROPS</h3>
+		<div id="propsContainer" class="props clearfix clear_if_empty">
 		{{# data.fixtures}}
 			{{# props}}
 				
@@ -59,7 +58,11 @@
 						<h3>{{name}} {{../home_team.abbreviation}} VS {{../away_team.abbreviation}}</h3>
 						<div class="opciones_prop dos_opciones clearfix">
 							<div class="opcion_prop clearfix">
-								<input type="radio" name="prop_uno" vlaue="{{../home_team.id}}">
+								<input type="radio" name="prop_uno" value="{{../home_team.id}}">
+								<span>Menor</span>
+							</div><!-- opcion_prop clearfix -->
+							<div class="opcion_prop clearfix">
+								<input type="radio" name="prop_uno" value="{{../home_team.id}}">
 								<span>Menor</span>
 							</div><!-- opcion_prop clearfix -->
 							<div class="opcion_prop clearfix">
@@ -74,17 +77,17 @@
 				<h3>¿Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer aliqua?</h3>
 				<div class="opciones_prop tres_opciones clearfix">
 					<div class="opcion_prop clearfix">
-						<input type="radio" name="prop_dos" vlaue="ame">
+						<input type="radio" name="prop_dos" value="ame">
 						<img src="{{cordova_full_path}}images/camisaamarilla.png">
 						<span>AME</span>
 					</div>
 					<div class="opcion_prop clearfix">
-						<input type="radio" name="prop_dos" vlaue="caz">
+						<input type="radio" name="prop_dos" value="caz">
 						<img src="{{cordova_full_path}}images/camisaroja.png">
 						<span>CAZ</span>
 					</div>
 					<div class="opcion_prop clearfix">
-						<input type="radio" name="prop_dos" vlaue="gua">
+						<input type="radio" name="prop_dos" value="gua">
 						<img src="{{cordova_full_path}}images/camisaverde.png">
 						<span>GUA</span>
 					</div>
@@ -94,22 +97,22 @@
 				<h3>¿Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer aliqua?</h3>
 				<div class="opciones_prop cuatro_opciones clearfix">
 					<div class="opcion_prop clearfix">
-						<input type="radio" name="prop_tres" vlaue="ame">
+						<input type="radio" name="prop_tres" value="ame">
 						<img src="{{cordova_full_path}}images/camisaamarilla.png">
 						<span>AME</span>
 					</div>
 					<div class="opcion_prop clearfix">
-						<input type="radio" name="prop_tres" vlaue="caz">
+						<input type="radio" name="prop_tres" value="caz">
 						<img src="{{cordova_full_path}}images/camisaroja.png">
 						<span>CAZ</span>
 					</div>
 					<div class="opcion_prop clearfix">
-						<input type="radio" name="prop_tres" vlaue="gua">
+						<input type="radio" name="prop_tres" value="gua">
 						<img src="{{cordova_full_path}}images/camisaverde.png">
 						<span>GUA</span>
 					</div>
 					<div class="opcion_prop clearfix">
-						<input type="radio" name="prop_tres" vlaue="nec">
+						<input type="radio" name="prop_tres" value="nec">
 						<img src="{{cordova_full_path}}images/camisaazul.png">
 						<span>NEC</span>
 					</div>

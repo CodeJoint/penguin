@@ -276,7 +276,7 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 .quiniela_single .partidos .partido .opcion_partido.local .equipo {float: left;}
 .quiniela_single .partidos .partido .opcion_partido.local input {float: left; margin-right: 10px;}
 .quiniela_single .partidos .partido .opcion_partido.local img {float: left; margin-right: 5px; margin-left: 15px;}
-.quiniela_single .partidos .partido .opcion_partido.cierre {width: 33.33%; float: left; position: relative; height: 50px;}
+.quiniela_single .partidos .partido .opcion_partido.cierre {width: 33.33%; float: left; position: relative; }
 .quiniela_single .partidos .partido .opcion_partido.cierre input {width: 100%; text-align: center;}
 .quiniela_single .partidos .partido .opcion_partido.cierre span {text-align: center; width: 100%; display: block; position: absolute; bottom: 0px; top: 28px;}
 .quiniela_single .partidos .partido .opcion_partido.visitante {width: 33.33%; float: right;}

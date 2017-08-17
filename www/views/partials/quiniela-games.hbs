@@ -24,9 +24,9 @@
 				</div><!-- linea -->
 			</div><!-- opcion_partido -->
 			<div class="opcion_partido {{# if allow_ties}} empate {{/ if}} cierre clearfix">
+				<span>{{ formatDate deadline 'lll' }}</span>
 				{{# if allow_ties}}{{/ if}}
 				<input type="radio" name="{{id}}" value="pick-tie-{{id}}" id="empate">
-				<span>{{ formatDate deadline 'lll' }}</span>
 			</div><!-- opcion_partido -->
 			<div class="opcion_partido visitante clearfix">
 				{{^ finished}}
@@ -54,21 +54,20 @@
 			{{# props}}
 				
 				{{# if_eq type 'over_under'}}
-					<div class="prop">
+					<div class="prop" data-fixture="{{fixture_id}}" data-prop="{{id}}">
 						<h3>{{name}} {{../home_team.abbreviation}} VS {{../away_team.abbreviation}}</h3>
 						<div class="opciones_prop dos_opciones clearfix">
 							<div class="opcion_prop clearfix">
-								<input type="radio" name="prop_uno" value="{{../home_team.id}}">
+								<input type="radio" name="prop_uno" value="under">
 								<span>Menor</span>
-							</div><!-- opcion_prop clearfix -->
+							</div>
 							<div class="opcion_prop clearfix">
-								<input type="radio" name="prop_uno" value="{{../home_team.id}}">
-								<span>Menor</span>
-							</div><!-- opcion_prop clearfix -->
+								<span>{{value}}</span>
+							</div>
 							<div class="opcion_prop clearfix">
-								<input type="radio" name="prop_uno" value="{{../away_team.id}}">
+								<input type="radio" name="prop_uno" value="over">
 								<span>Mayor</span>
-							</div><!-- opcion_prop clearfix -->
+							</div>
 						</div><!-- opciones_prop dos_opciones -->
 					</div><!-- prop -->
 				{{/ if_eq }}

@@ -429,6 +429,16 @@
 				return app.render_partial('similar-picks', app.data_temp, '#select_copy_picks');
 			}, 220);
 		},
+		render_other_entries : function(entry_id){
+
+			var extra_data = apiRH.getRequest('api/entries/get/'+entry_id+'.json', null);
+			extra_data = (extra_data) ? extra_data : [];
+			app.data_temp = this.gatherEnvironment(extra_data, null);
+			console.log(app.data_temp);
+			setTimeout(function(){
+				return app.render_partial('other-entries', app.data_temp, '#select_copy_picks');
+			}, 220);
+		},
 		render_profile : function(url, tab){
 
 			if(!app.initialized) app.initialize();

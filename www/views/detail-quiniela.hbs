@@ -11,10 +11,10 @@
 				{{# if_eq data.format "natural" }} natural {{/ if_eq }} garantizado clearfix">
 					<div class="quiniela_header clearfix">
 						<div class="quiniela_iconos clearfix">
-							{{# if_eq data.format "line" }}
+							{{# if_eq data.point_format "line" }}
 								<img src="{{cordova_full_path}}images/linea.png">
 							{{/ if_eq }}
-							{{# if_eq data.format "natural" }}
+							{{# if_eq data.point_format "natural" }}
 								<img src="{{cordova_full_path}}images/natural.png">
 							{{/ if_eq }}
 							<img src="{{cordova_full_path}}images/{{data.sport.icon}}.png">
@@ -24,8 +24,8 @@
 					<div class="quiniela_content clearfix">
 
 						<div class="quiniela_info clearfix">
-							<span class="registros">REG: {{data.entry_count}}</span>
-							<span class="cierre">{{^ if data.closed}}CIERRE{{/ if}}{{# if data.closed}}CERRÓ{{/ if}}: {{formatDate data.deadline_tz 'lll'}}</span>
+							<span class="registros">REGISTROS: {{data.entry_count}}</span>
+							<span {{# if_less data.time_left 86400}}data-countdown="{{data.deadline_tz}}"{{/ if_less }} class="cierre">CIERRE: {{^ if_less data.time_left 86400}}{{formatDate data.deadline_tz 'lll'}}{{/ if_less }}</span>
 							{{# data.limited_capacity}}
 								<span class="limite">Limitado a {{data.max_entries}} entradas</span>
 							{{/ data.limited_capacity}}
@@ -68,7 +68,7 @@
 							</select>
 
 							<select id="select_entries" name="select_entries">
-								<option value="">Registros</option>
+								<option value="">Mis Registros</option>
 							</select>
 						</form>
 				</div><!-- dropdowns -->

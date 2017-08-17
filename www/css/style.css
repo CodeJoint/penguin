@@ -255,7 +255,7 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 
 .quiniela_single {padding-top: 100px; padding-bottom: 70px; font-size: 12px; position: relative;}
 .quiniela_single .quiniela {width: 100%;}
-.quiniela_single .registro_quiniela {width: 100%; text-align: center;}
+.quiniela_single .registro_quiniela {width: 100%; text-align: center; margin: 1rem 0;}
 .quiniela_single .registro_quiniela a:first-child {margin-right: 10px;}
 .quiniela_single .quiniela_info {margin-right: 10px; }
 
@@ -263,7 +263,7 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 
 .quinielas_dropdowns {width: 100%; margin: 20px 0;}
 .quinielas_dropdowns select {color: #fff; background: #000; text-decoration: none; display: block; border: 1px solid #414042; padding: 5px; float: left; border-radius: 5px; margin-right: 5%; width: 47.5%;  text-align: center;}
-.quinielas_dropdowns select:last-child {margin-right: 0px;}
+.quinielas_dropdowns select:last-child { margin-right: 0px;}
 
 .quiniela_single .partidos {width: 100%; border-top: 1px solid #77BC1F;}
 .quiniela_single .partidos h3 {font-weight: 300; margin-top: 10px; margin-bottom: 10px; text-align: center; font-size: 12px;}

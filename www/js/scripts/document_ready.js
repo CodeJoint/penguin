@@ -8,6 +8,17 @@
 		
 window.initializeEvents = function(){
 	
+	var initCountdownTimers = function(){
+		$('[data-countdown]').each(function(index, element) {
+			var $this = $(element), finalDate = $(element).data('countdown');
+			var date = moment(finalDate).format('YYYY-MM-DD HH:mm:ss');
+			if(date !== 'Invalid date')
+				$this.countdown(date, function(event) {
+					$this.html('<strong class="timer_active">CIERRE: '+event.strftime('%H:%M:%S')+'</strong>');
+				});
+		});
+	};
+
 	jQuery(document).ready(function($) {
 
 		$('*').unbind();
@@ -360,14 +371,8 @@ window.initializeEvents = function(){
 					}, 320);
 				} // END deporte_soccer
 
-				$('[data-countdown]').each(function(index, element) {
-					var $this = $(element), finalDate = $(element).data('countdown');
-					var date = moment(finalDate).format('YYYY-MM-DD HH:mm:ss');
-					if(date !== 'Invalid date')
-						$this.countdown(date, function(event) {
-							$this.html('<strong class="timer_active">CIERRE: '+event.strftime('%H:%M:%S')+'</strong>');
-						});
-				});
+				initCountdownTimers();
+
 				setTimeout( function(){ initHooks(); }, 300);
 
 			} // END lobbyContainer scope
@@ -391,11 +396,18 @@ window.initializeEvents = function(){
 					$('#registerNow').fadeOut('fast');
 				});
 				
-				/** Render similar picks **/
-				app.render_similar_picks(gameId);
-				
 				/** Render quiniela games and picks selectors **/
 				app.render_games(gameId);
+
+				/** Render similar picks **/
+				setTimeout(function(){
+					app.render_similar_picks(gameId);
+				}, 220);
+				
+				/** Render similar picks **/
+				setTimeout(function(){
+					app.render_other_entries(gameId);
+				}, 220);
 
 				$('#registerToQuinielaForm').validate({
 					rules:{
@@ -413,6 +425,8 @@ window.initializeEvents = function(){
 						return false;
 					}
 				});
+
+				return initCountdownTimers();
 
 			} // END detailQuiniela scope
 			

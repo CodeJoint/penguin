@@ -49,3 +49,72 @@
 			</div><!-- opcion_partido -->
 		</div><!-- partido -->
 	{{/ data.fixtures}}
+		<div class="props clearfix">
+			<h3>PROPS</h3>
+		{{# data.fixtures}}
+			{{# props}}
+				
+				{{# if_eq type 'over_under'}}
+					<div class="prop">
+						<h3>{{name}} {{../home_team.abbreviation}} VS {{../away_team.abbreviation}}</h3>
+						<div class="opciones_prop dos_opciones clearfix">
+							<div class="opcion_prop clearfix">
+								<input type="radio" name="prop_uno" vlaue="{{../home_team.id}}">
+								<span>Menor</span>
+							</div><!-- opcion_prop clearfix -->
+							<div class="opcion_prop clearfix">
+								<input type="radio" name="prop_uno" value="{{../away_team.id}}">
+								<span>Mayor</span>
+							</div><!-- opcion_prop clearfix -->
+						</div><!-- opciones_prop dos_opciones -->
+					</div><!-- prop -->
+				{{/ if_eq }}
+
+			<!-- <div class="prop clearfix">
+				<h3>¿Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer aliqua?</h3>
+				<div class="opciones_prop tres_opciones clearfix">
+					<div class="opcion_prop clearfix">
+						<input type="radio" name="prop_dos" vlaue="ame">
+						<img src="{{cordova_full_path}}images/camisaamarilla.png">
+						<span>AME</span>
+					</div>
+					<div class="opcion_prop clearfix">
+						<input type="radio" name="prop_dos" vlaue="caz">
+						<img src="{{cordova_full_path}}images/camisaroja.png">
+						<span>CAZ</span>
+					</div>
+					<div class="opcion_prop clearfix">
+						<input type="radio" name="prop_dos" vlaue="gua">
+						<img src="{{cordova_full_path}}images/camisaverde.png">
+						<span>GUA</span>
+					</div>
+				</div>
+			</div>
+			<div class="prop clearfix">
+				<h3>¿Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer aliqua?</h3>
+				<div class="opciones_prop cuatro_opciones clearfix">
+					<div class="opcion_prop clearfix">
+						<input type="radio" name="prop_tres" vlaue="ame">
+						<img src="{{cordova_full_path}}images/camisaamarilla.png">
+						<span>AME</span>
+					</div>
+					<div class="opcion_prop clearfix">
+						<input type="radio" name="prop_tres" vlaue="caz">
+						<img src="{{cordova_full_path}}images/camisaroja.png">
+						<span>CAZ</span>
+					</div>
+					<div class="opcion_prop clearfix">
+						<input type="radio" name="prop_tres" vlaue="gua">
+						<img src="{{cordova_full_path}}images/camisaverde.png">
+						<span>GUA</span>
+					</div>
+					<div class="opcion_prop clearfix">
+						<input type="radio" name="prop_tres" vlaue="nec">
+						<img src="{{cordova_full_path}}images/camisaazul.png">
+						<span>NEC</span>
+					</div>
+				</div>
+			</div> props -->
+			{{/ props}}
+		{{/ data.fixtures}}
+		</div> <!-- props -->

@@ -120,6 +120,10 @@
 				console.log(value.substring(value.length - 4));
 				return value.substring(value.length - 4);
 			});
+			Handlebars.registerHelper('cordova_full_path', function() {
+				return window.cordova_full_path;
+			});
+
 		},
 		registerTemplate : function(name) {
 			$.ajax({
@@ -164,8 +168,6 @@
 			window.cordova_full_path = ( typeof cordova !== 'undefined' ) 
 									 ? cordova.file.applicationDirectory+'www/'
 									 : '';
-			console.log("On device ready cordova_full_path");
-			console.log(cordova_full_path);
 			try{
 				app.initPaymentAPI();
 				console.log("Initialized Payment gateway");
@@ -216,12 +218,10 @@
 			if(optional_data){
 				parsed['data'] = optional_data;
 			}
-			// console.log(window.cordova_full_path);
 			if(history_title)
 				parsed['header_title'] = history_title;
-			if( typeof(cordova_full_path) != 'undefined' && cordova_full_path != '' )
-				parsed['cordova_full_path'] = cordova_full_path;
-			console.log("Gather environment cordova_full_path "+JSON.stringify(parsed));
+			if( typeof(sport_allow_ties) !== 'undefined' && sport_allow_ties !== '' )
+				parsed['data']['sport_allow_ties'] = sport_allow_ties;
 			return parsed;
 		},
 		getUrlVars: function() {
@@ -397,9 +397,10 @@
 			console.log("Rendering Detail");
 			var extra_data = apiRH.getRequest('api/pools/view/'+object_id+'.json', null);
 			extra_data = (extra_data.pool) ? extra_data.pool : [];
-			console.log(extra_data);
+
+			if(typeof extra_data.sport !== 'undefined' && typeof extra_data.sport.allow_ties !== 'undefined')
+				window.sport_allow_ties = extra_data.sport.allow_ties;
 			app.data_temp = this.gatherEnvironment(extra_data, "Detail");
-			console.log(app.data_temp);
 			var template_name = (view === 'postures') 	? 'detail-quiniela-registered'	: 'detail-quiniela';
 				template_name = (view === 'chat'	) 	? 'detail-quiniela-chat'		: template_name;
 				template_name = (view === 'prizes'	) 	? 'detail-quiniela-prizes'		: template_name;

@@ -405,8 +405,8 @@ function requestHandlerAPI(){
 			this._ajaxRequest = function(methodType, endpoint, data, contentType, includeHeaders, callback){
 
 				var myHeaders = (typeof includeHeaders !== 'undefined' && includeHeaders ) ? apiRH.headers : {};
-					myHeaders['Content-Type'] = (typeof contentType === 'undefined' || contentType === 'json' ) ? 'application/x-www-form-urlencoded' : apiRH.headers['Content-Type'];
-				var myData 	= (!data) ? "" : JSON.stringify(data);
+					myHeaders['Content-Type'] = (typeof contentType === 'undefined' || contentType === 'json' ) ? apiRH.headers['Content-Type'] : 'application/x-www-form-urlencoded';
+				var myData 	= (!data) ? "" : data;
 				var xhr 	= new XMLHttpRequest();
 				xhr.open(methodType, window.api_base_url+endpoint, true);
 				for (var property in myHeaders) {

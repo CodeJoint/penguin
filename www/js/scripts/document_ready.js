@@ -293,13 +293,16 @@ window.initializeEvents = function(){
 			if($('#lobbyContainer').length){
 
 				/** Render header again to include filters component **/
-				setTimeout(function(){
-					app.render_header(true);
-				}, 180);
-				/** Render lobby **/
-				setTimeout(function(){
-					app.render_lobby_feed('chronological');
-				}, 180);
+				apiRH._ajaxRequest('GET', 'api/users/details.json', null, 'json', true, app.render_header);
+				// var 
+				// app.render_header(true);
+				// setTimeout(function(){
+				// 	apiRH._ajaxRequest()
+				// app.render_lobby_feed(true);
+				// }, 180);
+				// /** Render lobby **/
+				// setTimeout(function(){
+				// }, 180);
 
 				$('.footermenu ul li').removeClass('selected');
 				$('.menu_lobby').addClass('selected');

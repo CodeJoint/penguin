@@ -45,9 +45,9 @@ function requestHandlerAPI(){
 					if(this.keeper.getItem('Auth')) this.headers['Authorization'] = "Bearer "+this.keeper.getItem('Auth');
 					sdk_app_context = app_context;
 					$( document ).ajaxError(function( event, jqxhr, settings, exception ) {
-					    if ( jqxhr.status== 401 ) {
-					      // alert( "Triggered ajaxError handler." );
-					    }
+						if ( jqxhr.status== 401 ) {
+						  // alert( "Triggered ajaxError handler." );
+						}
 					});
 					/* For chaining purposes ::) */
 					return this;
@@ -292,9 +292,9 @@ function requestHandlerAPI(){
 									method 		: 'POST',
 									url			: window.api_base_url+endpoint,
 									statusCode	: {
-												    401 : function() {
-												      return app.toast( "Revisa tus credenciales e intenta de nuevo" );
-												    }
+													401 : function() {
+													  return app.toast( "Revisa tus credenciales e intenta de nuevo" );
+													}
 									},
 									data 		: data,
 									dataType 	: 'json',
@@ -313,7 +313,7 @@ function requestHandlerAPI(){
 					}, 2000);
 				 })
 				 .done( function(response){
-				 	// console.log(response);
+					// console.log(response);
 					result = response;
 				 })
 				 .fail( function(e){
@@ -391,103 +391,66 @@ function requestHandlerAPI(){
 			};
 
 			/*! 
-			 * Executes a PUT call
+			 * GET call and executes a callback when the promise is fullfilled
+			 * @param methodType [GET, POST, PUT, DELETE]
 			 * @param endpoint API endpoint to make the call to
 			 * @param data JSON encoded data 
-			 * *****(SEND data = NULL for closed endpoints)*****
-			 * @return JSON success
-			 * @see API documentation
+			 * @param callback callable 
+			 * @return JSON encoded response
 			 */
-			this.putRequest = function(endpoint, data){
-								
-								sdk_app_context.showLoader();
-								var result = {};
-								/* ContentType is important to parse the data server side since PUT doesn't handle multipart form data */
-								$.ajax({
-									type: 	'PUT',
-									data: 	$.param(data),
-									contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
-									url: 	window.api_base_url+endpoint,
-								})
-								 .done(function(response){
-									result = response;
-									sdk_app_context.hideLoader();
-								 })
-								 .fail(function(e){
-									result = false;
-									console.log(e);
-								 });
-								 return result;
-							};
+			this._ajaxRequest = function(methodType, endpoint, data, contentType, includeHeaders, callback){
 
-			/*! 
-			 * Executes a DELETE call
-			 * @param endpoint API endpoint to make the call to
-			 * @param data JSON encoded data 
-			 * *****(SEND data = NULL for closed endpoints)*****
-			 * @return JSON success
-			 * @see API documentation
-			 */
-			this.deleteRequest = function(endpoint){
-								app.showLoader();
-								
-								var result = {};
-								var options = 	{
-													method 		: 'DELETE',
-													url			: window.api_base_url+endpoint,
-													statusCode	: {
-																    401 : function() {
-																      return app.toast( "Revisa tus credenciales e intenta de nuevo" );
-																    }
-													},
-													dataType 	: 'json',
-													headers 	: apiRH.headers,
-													async 		: false,
-													crossDomain	: true
-												};
-								
-								$.ajax(options)
-								 .always( function(response){
-									setTimeout(function(){
-										app.hideLoader();
-									}, 2000);
-								 })
-								 .done( function(response){
-									result = response;
-								 })
-								 .fail( function(e){
-									result = false;
-								});
-								return result;
-							};
+				var myHeaders = (typeof includeHeaders !== 'undefined' && includeHeaders ) ? apiRH.headers : {};
+					myHeaders['Content-Type'] = (typeof contentType === 'undefined' || contentType === 'json' ) ? 'application/x-www-form-urlencoded' : apiRH.headers['Content-Type'];
+				var myData = (!data) ? "" : JSON.stringify(data);
+				var xhr = new XMLHttpRequest();
+				xhr.open(methodType, window.api_base_url+endpoint, true);
+				for (var property in myHeaders) {
+				    if (myHeaders.hasOwnProperty(property))
+						xhr.setRequestHeader(property, myHeaders[property]);
+				}
+				
+				xhr.onreadystatechange = function(){
+					if (xhr.readyState === 4 && xhr.status === 200){
+						callback(xhr.response);
+						sdk_app_context.hideLoader();
+					}
+					if (xhr.readyState === 4 && xhr.status === 401){
+						app.toast("No estas autorizado para ejecutar esta acción");
+						sdk_app_context.hideLoader();
+					}
+			   		console.log(xhr);
+			   }
+			   xhr.send(myData);
+			};
 
 		/**
 		 * Check FB plugin connection status
 		 */
 		this.checkFBStatus = function() {
 			if(!window.facebookConnectPlugin) return false;
-	    	window.facebookConnectPlugin.getLoginStatus(function(response){
-	    		console.log("response");
-	    		console.log(JSON.stringify(response));
-	    	}, function(error){
-	    		console.log("error", error);
-	    	});
-	    };
+			window.facebookConnectPlugin.getLoginStatus(function(response){
+				console.log("response");
+				console.log(JSON.stringify(response));
+			}, function(error){
+				console.log("error", error);
+			});
+		};
 
 		
 		this.faceLogin = function(userData) {
-		    console.log(userData);
-		    return $.ajax({
-		    				"url": api_base_url+'api/users/facebook_login.json',
-		    				"method": 'POST',
-		    				"data": {
-		    				"uid": userData.userID
-		      				}
-		    		});
+			console.log(userData);
+			return $.ajax({
+							"url": api_base_url+'api/users/facebook_login.json',
+							"method": 'POST',
+							"data": {
+							"uid": userData.userID
+							}
+					});
 		};
 
 		this.fbRegister = function(data) {
-		    return apiRH.makeRequest('api/users/facebook_register.json', data);
+			return apiRH.makeRequest('api/users/facebook_register.json', data);
 		};
 
 		/* 
@@ -495,23 +458,23 @@ function requestHandlerAPI(){
 		 * @see facebookConnectPlugin
 		 */
 		this.FBOauth = function() {
-	    	window.facebookConnectPlugin.login(['email', 'public_profile'], apiRH.handleFBLoginSuccess, apiRH.handleFBError);
-	    },
+			window.facebookConnectPlugin.login(['email', 'public_profile'], apiRH.handleFBLoginSuccess, apiRH.handleFBError);
+		},
 
 
-	    this.getFBUserDetails = function( successCallback, errorCallback ) {
-    		window.facebookConnectPlugin.api('/me?fields=id,name,first_name,last_name,gender,installed,verified,email,picture.type(large)', ['public_profile'],
-        		function(response) {
-          			successCallback(response);
-        		},
-        		function( error ) {
-        			errorCallback(error);
-        		});
-    	};
+		this.getFBUserDetails = function( successCallback, errorCallback ) {
+			window.facebookConnectPlugin.api('/me?fields=id,name,first_name,last_name,gender,installed,verified,email,picture.type(large)', ['public_profile'],
+				function(response) {
+					successCallback(response);
+				},
+				function( error ) {
+					errorCallback(error);
+				});
+		};
 
 		this.handleFBError = function(error) {
-    		console.log(error);
-   		};
+			console.log(error);
+		};
 
 		/* 
 		 * Log in callback for Facebook provider
@@ -519,34 +482,34 @@ function requestHandlerAPI(){
 		 */
 		this.loginCallbackFB = function(response){
 			if ( response.status !== 'connected' ) {
-	        alert('No se conecto');
-	        return;
-	      }
+			alert('No se conecto');
+			return;
+		  }
 
-	      var user = response.authResponse;
-	      apiRH.faceLogin(user)
-	      .done(function(response) {
-	      	console.log(response);
-	        if ( !response.user && !response.jwtoken ) {
-	          apiRH.getFBUserDetails( function(userData){
-	          	console.log(userData);
-	            // var $form = $('#complete-profile-form');
-	            // $('#form-container').fadeIn(500);
-	            // $form.find('#user-profile-picture').val(userData.picture.data.url);
-	            // $form.find('#user-provider-uid').val(userData.id);
-	            // $form.find('#user-name').val(userData.first_name);
-	            // $form.find('#user-email').val(userData.email);
-	            // $form.find('#user-last-name').val(userData.last_name);
-	            // $form.find('#user-nick').val(
-	            //   userData.name.replace(' ', '').substr(0, 8) + '' +
-	            //   (Math.floor(Math.random() * (9999 - 1000)) + 1000 )
-	            // );
+		  var user = response.authResponse;
+		  apiRH.faceLogin(user)
+		  .done(function(response) {
+			console.log(response);
+			if ( !response.user && !response.jwtoken ) {
+			  apiRH.getFBUserDetails( function(userData){
+				console.log(userData);
+				// var $form = $('#complete-profile-form');
+				// $('#form-container').fadeIn(500);
+				// $form.find('#user-profile-picture').val(userData.picture.data.url);
+				// $form.find('#user-provider-uid').val(userData.id);
+				// $form.find('#user-name').val(userData.first_name);
+				// $form.find('#user-email').val(userData.email);
+				// $form.find('#user-last-name').val(userData.last_name);
+				// $form.find('#user-nick').val(
+				//   userData.name.replace(' ', '').substr(0, 8) + '' +
+				//   (Math.floor(Math.random() * (9999 - 1000)) + 1000 )
+				// );
 
-	          }, function(error) {
-	            console.log(error);
-	          });
-	        }
-	      });
+			  }, function(error) {
+				console.log(error);
+			  });
+			}
+		  });
 		};
 		
 		/**

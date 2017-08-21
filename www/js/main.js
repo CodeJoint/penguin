@@ -172,7 +172,7 @@
 		// deviceready Event Handler
 		onDeviceReady: function() {
 			app.receivedEvent('deviceready');
-			window.cordova_full_path = ( typeof cordova !== 'undefined' ) 
+			window.cordova_full_path = ( typeof cordova !== 'undefined' && cordova.file.applicationDirectory !== '' ) 
 									 ? cordova.file.applicationDirectory+'www/'
 									 : '';
 			try{
@@ -278,9 +278,12 @@
 				return app.switchView('exoskeleton', data, '.view', null, '', true, true, false);
 			}
 		},
-		render_header : function(filters){
-			var extra_data = app.gatherEnvironment(null, "Registro");
+		render_header : function(user_data, filters){
+			console.log(user_data);
+			apiRH.save_user_data_clientside(user_data);
+			var extra_data = app.gatherEnvironment(null, "");
 			extra_data.selected_lobby = (filters) ? true : false;
+			console.log(extra_data);
 			app.render_partial('header', extra_data, '#loadHeader');
 			$('#theHeader').fadeOut('fast', function(){
 				$(this).remove();
@@ -344,15 +347,16 @@
 			}, 400);
 		},
 		render_lobby_feed : function( ask_again ){
-
-			var extra_data 	= (typeof ask_again === 'undefined' || ask_again === true || !app.data_temp.data ) 
-							? apiRH.getRequest( 'api/pools/available.json', null )
-							: { pools: app.data_temp.data.pools, pools_unfiltered: app.data_temp.data.pools_unfiltered, tournaments: app.data_temp.data.tournaments, now: app.data_temp.data.now };
-			console.log(extra_data);
+			if(typeof ask_again === 'undefined' || ask_again === true || !app.data_temp.data ){
+				return apiRH._ajaxRequest('GET', 'api/pools/available.json', null, 'json', true, app.render_lobby_feed_callback);
+			}
+			return render_lobby_feed_callback({ pools: app.data_temp.data.pools, pools_unfiltered: app.data_temp.data.pools_unfiltered, tournaments: app.data_temp.data.tournaments, now: app.data_temp.data.now });
+		},
+		render_lobby_feed_callback : function( response ){
+			console.log("callback");
 			var template 	= Handlebars.templates['lobby-feed'];
-			app.data_temp	= app.gatherEnvironment( extra_data, "Lobby feed" );
+			app.data_temp	= app.gatherEnvironment( response, "Lobby feed" );
 			app.data_temp.selected_lobby = true;
-
 			if(ask_again){
 				app.data_temp.data.pools_unfiltered = app.data_temp.data.pools;
 				app.data_temp.data.pools 			= app.sort_pool();

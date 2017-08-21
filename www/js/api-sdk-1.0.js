@@ -136,18 +136,22 @@ function requestHandlerAPI(){
 		 * @see OneSignal.syncHashedEmail
 		 */
 		this.save_user_data_clientside = function(data_login){
-			
+
 			if(data_login){
-				apiRH.headers['Authorization'] = "Bearer "+data_login.jwtoken;
-				data_login.user.balancePc = data_login.balancePc;
-				data_login.user.balancePcReal = data_login.balancePcReal;
-				data_login.user.balanceReal = data_login.balanceReal;
-				app.keeper.setItem('Auth', data_login.jwtoken);
+				
+				data_login.user.balancePc 		= data_login.balancePc;
+				data_login.user.balancePcReal 	= data_login.balancePcReal;
+				data_login.user.balanceReal 	= data_login.balanceReal;
+				if(typeof data_login.jwtoken !== 'undefined' && data_login.jwtoken){
+					app.keeper.setItem('Auth', data_login.jwtoken);
+					apiRH.headers['Authorization'] 	= "Bearer "+data_login.jwtoken;
+				}
 				try{
 					OneSignal.syncHashedEmail(data_login.user.email);
 				}catch(e){
 					console.log(e);
 				}
+				window._user = data_login.user;
 				return app.keeper.setItem('user', JSON.stringify(data_login.user));
 			}
 		};
@@ -402,6 +406,7 @@ function requestHandlerAPI(){
 
 				var myHeaders = (typeof includeHeaders !== 'undefined' && includeHeaders ) ? apiRH.headers : {};
 					myHeaders['Content-Type'] = (typeof contentType === 'undefined' || contentType === 'json' ) ? 'application/x-www-form-urlencoded' : apiRH.headers['Content-Type'];
+				console.log(myHeaders);
 				var myData = (!data) ? "" : JSON.stringify(data);
 				var xhr = new XMLHttpRequest();
 				xhr.open(methodType, window.api_base_url+endpoint, true);
@@ -412,14 +417,13 @@ function requestHandlerAPI(){
 				
 				xhr.onreadystatechange = function(){
 					if (xhr.readyState === 4 && xhr.status === 200){
-						callback(xhr.response);
+						callback(JSON.parse(xhr.response));
 						sdk_app_context.hideLoader();
 					}
 					if (xhr.readyState === 4 && xhr.status === 401){
 						app.toast("No estas autorizado para ejecutar esta acción");
 						sdk_app_context.hideLoader();
 					}
-			   		console.log(xhr);
 			   }
 			   xhr.send(myData);
 			};

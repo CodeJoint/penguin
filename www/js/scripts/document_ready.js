@@ -8,7 +8,7 @@
 		
 window.initializeEvents = function(){
 	
-	var initCountdownTimers = function(){
+	window.initCountdownTimers = function(){
 		$('[data-countdown]').each(function(index, element) {
 			var $this = $(element), finalDate = $(element).data('countdown');
 			var date = moment(finalDate).format('YYYY-MM-DD HH:mm:ss');
@@ -16,6 +16,33 @@ window.initializeEvents = function(){
 				$this.countdown(date, function(event) {
 					$this.html('<strong class="timer_active">CIERRE: '+event.strftime('%H:%M:%S')+'</strong>');
 				});
+		});
+	};
+	window.initFilterActions = function(){
+		console.log("Init filter actions");
+		/*** FILTERS ***/
+		$('.header_filtros').on('click', function(){
+			if($('.filtros_wrapper').hasClass('filtros_show')){
+				$('.filtros_wrapper').removeClass('filtros_show');
+				$('.filtros_wrapper').fadeOut('fast');
+			}else {
+				$('.filtros_wrapper').addClass('filtros_show');
+				$('.filtros_wrapper').fadeIn('fast');
+			}
+		});
+
+		$('.filtros_wrapper').on('click', function(event){
+			if(!$(event.target).closest('.filtros.overlay').length){
+				if($('.filtros_wrapper').hasClass('filtros_show')){
+					$('.filtros_wrapper').removeClass('filtros_show');
+					$('.filtros_wrapper').fadeOut('fast');
+				}
+			}
+		});
+
+		$('.filtros li').on('click', function(){
+			$(this).closest('ul').find('li').removeClass('selected');
+			$(this).addClass('selected');
 		});
 	};
 
@@ -27,6 +54,7 @@ window.initializeEvents = function(){
 		window.alert = (typeof navigator.notification !== 'undefined') ? navigator.notification.alert : window.alert;
 
 		window.initHooks = function(){
+
 			$('.hook').unbind();
 			/* Hook soft links */
 			$('.hook').on('click', function(e){
@@ -90,6 +118,13 @@ window.initializeEvents = function(){
 					return app.render_add_funds_store( $(this).attr('href') );
 				
 				e.stopPropagation();
+			});
+
+			$('body').on('click', function(event){
+				if(!$(event.target).closest('.backed_modal').length)
+			        if($('.backed_modal').is(":visible")) {
+			            $('.backed_modal').hide();
+			        }
 			});
 		};
 
@@ -291,46 +326,15 @@ window.initializeEvents = function(){
 			} // END theHeader
 			
 			if($('#lobbyContainer').length){
+				
+				// TODO: cache this request and save it for a couple of hours
+				app.render_lobby_feed(true);
 
 				/** Render header again to include filters component **/
 				apiRH._ajaxRequest('GET', 'api/users/details.json', null, 'json', true, app.render_header);
-				// var 
-				// app.render_header(true);
-				// setTimeout(function(){
-				// 	apiRH._ajaxRequest()
-				// app.render_lobby_feed(true);
-				// }, 180);
-				// /** Render lobby **/
-				// setTimeout(function(){
-				// }, 180);
 
 				$('.footermenu ul li').removeClass('selected');
 				$('.menu_lobby').addClass('selected');
-
-				/*** FILTERS ***/
-				$('.header_filtros').on('click', function(){
-					if($('.filtros_wrapper').hasClass('filtros_show')){
-						$('.filtros_wrapper').removeClass('filtros_show');
-						$('.filtros_wrapper').fadeOut('fast');
-					}else {
-						$('.filtros_wrapper').addClass('filtros_show');
-						$('.filtros_wrapper').fadeIn('fast');
-					}
-				});
-
-				$('.filtros_wrapper').on('click', function(event){
-					if(!$(event.target).closest('.filtros.overlay').length){
-						if($('.filtros_wrapper').hasClass('filtros_show')){
-							$('.filtros_wrapper').removeClass('filtros_show');
-							$('.filtros_wrapper').fadeOut('fast');
-						}
-					}
-				});
-
-				$('.filtros li').on('click', function(){
-					$(this).closest('ul').find('li').removeClass('selected');
-					$(this).addClass('selected');
-				});
 
 				if($('#misQuinielas').length){
 
@@ -376,10 +380,6 @@ window.initializeEvents = function(){
 						$('#deporte_soccer').hide();
 					}, 320);
 				} // END deporte_soccer
-
-				initCountdownTimers();
-
-				setTimeout( function(){ initHooks(); }, 300);
 
 			} // END lobbyContainer scope
 		
@@ -482,12 +482,6 @@ window.initializeEvents = function(){
 						return (response) ? app.render_profile('profile.html') : app.toast("Ocurrió un error, intenta nuevamente.");
 					}
 
-					$('body').on('click', function(event){
-						if(!$(event.target).closest('.backed_modal').length)
-					        if($('.backed_modal').is(":visible")) {
-					            $('.backed_modal').hide();
-					        }
-					});
 					$('.agregar_tarjeta').click(function(event){
 					    event.stopPropagation();
 					});

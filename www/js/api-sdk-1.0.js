@@ -406,17 +406,16 @@ function requestHandlerAPI(){
 
 				var myHeaders = (typeof includeHeaders !== 'undefined' && includeHeaders ) ? apiRH.headers : {};
 					myHeaders['Content-Type'] = (typeof contentType === 'undefined' || contentType === 'json' ) ? 'application/x-www-form-urlencoded' : apiRH.headers['Content-Type'];
-				console.log(myHeaders);
-				var myData = (!data) ? "" : JSON.stringify(data);
-				var xhr = new XMLHttpRequest();
+				var myData 	= (!data) ? "" : JSON.stringify(data);
+				var xhr 	= new XMLHttpRequest();
 				xhr.open(methodType, window.api_base_url+endpoint, true);
 				for (var property in myHeaders) {
 				    if (myHeaders.hasOwnProperty(property))
 						xhr.setRequestHeader(property, myHeaders[property]);
 				}
-				
 				xhr.onreadystatechange = function(){
 					if (xhr.readyState === 4 && xhr.status === 200){
+						console.log(JSON.parse(xhr.response));
 						callback(JSON.parse(xhr.response));
 						sdk_app_context.hideLoader();
 					}
@@ -537,6 +536,31 @@ function requestHandlerAPI(){
 						destinationType: this.photoDestinationType.FILE_URI,
 						sourceType: sourcetype,
 						mediaType: navigator.camera.MediaType.ALLMEDIA  });
+			return;
+		};
+
+		/**
+		 *
+		 */
+		this.registerEntry = function(entry_data){
+			console.log(entry_data);
+			var data = {
+							pool_id		: parseInt(entry_data.pool_id),
+							entry_id 	: null,
+							num_entries	: parseInt(entry_data.num_entries),
+							entry_payment: 'real',
+							use_same_picks: (typeof entry_data.use_same_picks !== 'undefined') ? entry_data.use_same_picks : 0,
+						};
+			console.log(data);
+			return apiRH._ajaxRequest('POST', 'picks/save.json', data, 'json', true, app.render_entry_success);
+			return;
+		};
+
+		/**
+		 *
+		 */
+		this.editEntry = function(pool_id, entry_id, registry_data){
+
 			return;
 		};
 		

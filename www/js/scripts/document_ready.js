@@ -417,17 +417,19 @@ window.initializeEvents = function(){
 
 				$('#registerToQuinielaForm').validate({
 					rules:{
-						gameName	: "required",
-						gameCode 	: "required"
+						pool_id	 : "required",
+						num_entries : "required"
 					},
 					messages:{
-						gameName	: "Debes ingresar el nombre de la quiniela",
-						gameCode 	: "Necesitas el código para encontrar la quiniela"
+						pool_id	 : "Identificador de quiniela no válido",
+						num_entries : "Especifica el número de registros"
 					},
 					submitHandler:function( form, event ){
 						event.preventDefault();
 						app.showLoader();
-						var register_data	= app.getFormData(form, 'object');
+						var entry_data	= app.getFormData(form, 'object');
+						console.log(entry_data);
+						apiRH.registerEntry(entry_data);
 						return false;
 					}
 				});

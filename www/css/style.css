@@ -257,8 +257,8 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 .quiniela_single {padding-top: 100px; padding-bottom: 70px; font-size: 12px; position: relative;}
 .quiniela_single .quiniela {width: 100%;}
 .quiniela_single .registro_quiniela {width: 100%; text-align: center; margin: 1rem 0;}
-.quiniela_single .registro_quiniela a:first-child {margin-right: 10px;}
-.quiniela_single .quiniela_info {margin-right: 10px; }
+.quiniela_single .registro_quiniela a:first-child {margin-right: 10px; display: block; }
+.quiniela_single .quiniela_info { margin-right: 10px; display: block; }
 
 .error_inline{ display: block; clear: both; margin: 2rem 0 0 0; text-align: center; color: #f55934; text-transform: uppercase; font-size: 10px;}
 
@@ -269,9 +269,9 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 
 .quiniela_single .partidos {width: 100%; border-top: 1px solid #77BC1F;}
 .quiniela_single .partidos h3 {font-weight: 300; margin-top: 10px; margin-bottom: 10px; text-align: center; font-size: 12px;}
-.quiniela_single .partidos .opciones_partido {width: 100%; padding: 10px 0; border-top: 1px solid #8A8A8D;  margin-bottom: 10px;}
+.quiniela_single .partidos .opciones_partido {width: 100%; padding: 10px 0; border-top: 1px solid #8A8A8D;  margin-bottom: 0;}
 .quiniela_single .partidos .opciones_partido span {width: 33.33%; float: left; display: block; text-align: center; font-size: 12px;}
-.quiniela_single .partidos .partido {padding-bottom: 30px; width: 100%; margin-bottom: 10px; border-top: 1px solid #8A8A8D; padding-top: 10px; position: relative;}
+.quiniela_single .partidos .partido { padding-bottom: 20px; width: 100%; margin: 0; border-top: 1px solid #8A8A8D; padding-top: 10px; position: relative;}
 .quiniela_single .partidos .partido .opcion_partido .linea {width: 100%; margin-top: 0px; float: left;}
 .quiniela_single .partidos .partido .opcion_partido .linea span {width: 100%; margin-top: 20px; text-align: center; display: block;}
 .quiniela_single .partidos .partido .opcion_partido.local {width: 33.33%; float: left;}
@@ -286,6 +286,10 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 .quiniela_single .partidos .partido .opcion_partido.visitante .equipo span {display: block;}
 .quiniela_single .partidos .partido .opcion_partido.visitante input {float: right; margin-left: 10px;}
 .quiniela_single .partidos .partido .opcion_partido.visitante img {float: right; margin-left: 10px;}
+/*Extra*/
+.quiniela_single .opcion_partido .equipo .iniciales {font-size: 1rem; letter-spacing: 0.5px;}
+.quiniela_single .opcion_partido.empate .check{left: 38%;}
+.quiniela_single .opcion_partido label{display: inline-block; width: 100%; height: 2rem; position: relative; font-weight: 300; font-size: 1.35em; padding: 4px 2px 2px 8px; margin: 0 auto 0 0; z-index: 9; cursor: pointer; -webkit-transition: all 0.25s linear;}
 
 .quiniela_single .partidos .partido_en_vivo .opcion_partido .linea span {width: 100%; margin-top: 20px; text-align: center; display: block; color: #77BC1F;}
 .quiniela_single .partidos .partido_en_vivo .opcion_partido.local .equipo {float: left; color: #77BC1F;}

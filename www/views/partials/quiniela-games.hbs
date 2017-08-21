@@ -24,16 +24,16 @@
 				</div><!-- linea -->
 			</li><!-- opcion_partido -->
 			<li class="opcion_partido {{# if ../data.sport_allow_ties}} empate {{/ if}} cierre clearfix">
-				<span>{{ formatDate deadline 'lll' }}</span>
 				{{# if ../data.sport_allow_ties}}
 					<input type="radio" id="tie_{{id}}" name="{{id}}" value="pick-tie-{{id}}">
 					<div class="check"></div>	
 					<label for="tie_{{id}}" >
 						<div class="equipo">
-							<span class="iniciales">{{home_team.abbreviation}}</span>
+							<span class="iniciales"></span>
 						</div><!-- equipo -->
 					</label>		
 				{{/ if}}
+				<span>{{ formatDate deadline 'lll' }}</span>
 			</li><!-- opcion_partido -->
 			<li class="opcion_partido visitante clearfix">
 				{{^ finished}}

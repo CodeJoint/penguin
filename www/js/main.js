@@ -527,6 +527,11 @@
 			app.appendView('search-results', response_object, '#insertResults');
 			return app.hideLoader();
 		},
+		render_entry_success : function(response){
+			console.log(response);
+			app.appendView('entry-success', null, '.content');
+			return app.hideLoader();
+		},
 		render_create_private : function(url){
 
 			if(!app.initialized) app.initialize();

@@ -296,6 +296,10 @@ window.initializeEvents = function(){
 				setTimeout(function(){
 					app.render_header(true);
 				}, 180);
+				/** Render lobby **/
+				setTimeout(function(){
+					app.render_lobby_feed('chronological');
+				}, 180);
 
 				$('.footermenu ul li').removeClass('selected');
 				$('.menu_lobby').addClass('selected');
@@ -361,11 +365,6 @@ window.initializeEvents = function(){
 														});
 						});
 				} // END misQuinielas scope
-
-				/** Render lobby **/
-				setTimeout(function(){
-					app.render_lobby_feed('chronological');
-				}, 180);
 			
 				if($('#deporte_soccer').length){
 

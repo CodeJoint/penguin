@@ -10,7 +10,8 @@
 		app_context: this,
 		initialized: false,
 		// Application Constructor
-		initialize: function() {
+		// Chain method runs after initialization if Authentication okays
+		initialize: function(chain_callback) {
 
 			this.bindEvents();
 			/* Initialize API request handler */
@@ -21,6 +22,7 @@
 			var is_logged_in= apiRH.has_token();
 			var forceLogin 	= localStorage.getItem('forceLogin');
 			var is_current 	= localStorage.getItem('valido');
+			window.is_access = (typeof window.is_access !== 'undefined') ? window.is_access : false;
 
 			window.cordova_full_path = "";
 
@@ -44,15 +46,20 @@
 			app.keeper 			= window.localStorage;
 			
 			/*----------------------- Routing user accordingly ---------------------------*/
-			if( is_logged_in ){
-				console.log('You okay, now you can start making calls');
-				/* Take the user to it's timeline */
-				loggedIn 		= true;
-				var is_feed 	= window.is_feed;
-				_user 			= JSON.parse( app.keeper.getItem('user') );
-				return app.render_lobby();
+			if( !is_logged_in ){
+				return app.render_login();
 			}
-			return app.render_login();
+			console.log('You okay, now you can start making calls');
+			/* Take the user to it's timeline */
+			loggedIn 		= true;
+			var is_feed 	= window.is_feed;
+			_user 			= JSON.parse( app.keeper.getItem('user') );
+			if(is_access)
+				return app.render_lobby();
+			setTimeout(function(){
+
+				return chain_callback;
+			},400);
 			/*-------------------- Code below this line won't run ------------------------*/
 		},
 		initPushNotifications: function() {
@@ -266,13 +273,13 @@
 		render_exoskeleton : function(){
 
 			if( typeof window.has_exo == 'undefined' ){
-				var data = this.gatherEnvironment(null, null);
+				var data = app.gatherEnvironment(null, null);
 				window.has_exo;
 				return app.switchView('exoskeleton', data, '.view', null, '', true, true, false);
 			}
 		},
 		render_header : function(filters){
-			var extra_data = this.gatherEnvironment(null, "Registro");
+			var extra_data = app.gatherEnvironment(null, "Registro");
 			extra_data.selected_lobby = (filters) ? true : false;
 			app.render_partial('header', extra_data, '#loadHeader');
 			$('#theHeader').fadeOut('fast', function(){
@@ -299,7 +306,7 @@
 			
 			if(!app.initialized) app.initialize();
 			app.check_or_renderContainer(false);
-			app.data_temp = this.gatherEnvironment(null, "Registro");
+			app.data_temp = app.gatherEnvironment(null, "Registro");
 			return app.switchView('register', app.data_temp, '.view', url, 'registro');
 		},
 		render_register_success : function( url ){
@@ -309,7 +316,7 @@
 				app.showLoader();
 			}, 420);
 			app.check_or_renderContainer(false);
-			var data = this.gatherEnvironment(null, "¡REGISTRO COMPLETO!");
+			var data = app.gatherEnvironment(null, "¡REGISTRO COMPLETO!");
 			return app.switchView('register-success', data, '.view', url, 'registro exitoso');
 		},
 		render_login : function(url){
@@ -319,7 +326,7 @@
 				app.showLoader();
 			}, 420);
 			app.check_or_renderContainer(false);
-			var data = this.gatherEnvironment();
+			var data = app.gatherEnvironment();
 			return app.switchView('login', data, '.view', url, 'login');
 		},
 		render_lobby : function(url, reloadExoskeleton){
@@ -330,11 +337,11 @@
 			}, 420);
 			var reload = (reloadExoskeleton || typeof reloadExoskeleton == 'undefined') ? true : false;
 			app.check_or_renderContainer(reload);
-			app.data_temp 	= this.gatherEnvironment( null, "Lobby container" );
+			app.data_temp 	= app.gatherEnvironment( null, "Lobby container" );
 			app.data_temp.selected_lobby = true;
 			setTimeout( function(data){
 				return app.switchView('lobby', app.data_temp, '#exoskeleton', url, 'quiniela-feed', true, true, true );
-			}, 200);
+			}, 400);
 		},
 		render_lobby_feed : function( ask_again ){
 
@@ -343,7 +350,7 @@
 							: { pools: app.data_temp.data.pools, pools_unfiltered: app.data_temp.data.pools_unfiltered, tournaments: app.data_temp.data.tournaments, now: app.data_temp.data.now };
 			console.log(extra_data);
 			var template 	= Handlebars.templates['lobby-feed'];
-			app.data_temp	= this.gatherEnvironment( extra_data, "Lobby feed" );
+			app.data_temp	= app.gatherEnvironment( extra_data, "Lobby feed" );
 			app.data_temp.selected_lobby = true;
 
 			if(ask_again){
@@ -364,7 +371,7 @@
 		render_myfeed_sidebar : function(url){
 	
 			var extra_data = apiRH.getRequest('api/users/pools.json', null);
-			var data = this.gatherEnvironment(extra_data, "My Lobby");
+			var data = app.gatherEnvironment(extra_data, "My Lobby");
 			var template = Handlebars.templates['my-lobby'];
 			if(!template){
 				console.log("Template doesn't exist");
@@ -377,7 +384,7 @@
 		render_myfeed : function(url){
 	
 			var extra_data = apiRH.getRequest('api/users/pools.json', null);
-			var data = this.gatherEnvironment(extra_data, "My Lobby");
+			var data = app.gatherEnvironment(extra_data, "My Lobby");
 			var template = Handlebars.templates['my-lobby'];
 			if(!template){
 				console.log("Template doesn't exist");
@@ -400,7 +407,7 @@
 
 			if(typeof extra_data.sport !== 'undefined' && typeof extra_data.sport.allow_ties !== 'undefined')
 				window.sport_allow_ties = extra_data.sport.allow_ties;
-			app.data_temp = this.gatherEnvironment(extra_data, "Detail");
+			app.data_temp = app.gatherEnvironment(extra_data, "Detail");
 			var template_name = (view === 'postures') 	? 'detail-quiniela-registered'	: 'detail-quiniela';
 				template_name = (view === 'chat'	) 	? 'detail-quiniela-chat'		: template_name;
 				template_name = (view === 'prizes'	) 	? 'detail-quiniela-prizes'		: template_name;
@@ -415,7 +422,7 @@
 			var extra_data = apiRH.getRequest('api/pools/fixtures/'+object_id+'.json', null);
 			extra_data = (extra_data) ? extra_data : [];
 			console.log(extra_data);
-			app.data_temp = this.gatherEnvironment(extra_data, null);
+			app.data_temp = app.gatherEnvironment(extra_data, null);
 			setTimeout(function(){
 				return app.render_partial('quiniela-games', app.data_temp, '#insertPartidos');
 			}, 220);
@@ -424,7 +431,7 @@
 
 			var extra_data = apiRH.getRequest('api/entries/similarByPool/'+object_id+'.json', null);
 			extra_data = (extra_data) ? extra_data : [];
-			app.data_temp = this.gatherEnvironment(extra_data, null);
+			app.data_temp = app.gatherEnvironment(extra_data, null);
 			console.log(app.data_temp);
 			setTimeout(function(){
 				return app.render_partial('similar-picks', app.data_temp, '#select_copy_picks');
@@ -434,14 +441,13 @@
 
 			var extra_data = apiRH.getRequest('api/entries/get/'+entry_id+'.json', null);
 			extra_data = (extra_data) ? extra_data : [];
-			app.data_temp = this.gatherEnvironment(extra_data, null);
+			app.data_temp = app.gatherEnvironment(extra_data, null);
 			console.log(app.data_temp);
 			setTimeout(function(){
 				return app.render_partial('other-entries', app.data_temp, '#select_copy_picks');
 			}, 220);
 		},
 		render_profile : function(url, tab){
-
 			if(!app.initialized) app.initialize();
 			setTimeout(function(){
 				app.showLoader();
@@ -449,7 +455,9 @@
 			app.check_or_renderContainer();
 			var extra_data = null;
 			var profile_title = '';
-			app.data_temp = this.gatherEnvironment(null, "Perfil de usuario");
+			url = (typeof url === 'undefined') ? 'profile.html' : url;
+			tab = (typeof tab === 'undefined') ? 'method' : tab;
+			app.data_temp = app.gatherEnvironment(null, "Perfil de usuario");
 			app.data_temp.selected_profile = true;
 			var template = '';
 			if(tab == 'documents'){
@@ -472,7 +480,8 @@
 				profile_title = 'Métodos de pago';
 				extra_data = apiRH.getRequest('api/openpay_cards/index.json', null);
 			}
-			app.data_temp = this.gatherEnvironment(extra_data, profile_title);
+			app.data_temp = app.gatherEnvironment(extra_data, profile_title);
+			console.log(app.data_temp);
 			return app.switchView( template, app.data_temp, '#exoskeleton', url, 'user-profile '+tab );
 		},
 		render_add_funds : function(url){
@@ -483,7 +492,7 @@
 			}, 420);
 			var extra_data = apiRH.getRequest('api/openpay_cards/index.json', null);
 			app.check_or_renderContainer();
-			app.data_temp = this.gatherEnvironment(extra_data, "Agregar fondos a tu cuenta");
+			app.data_temp = app.gatherEnvironment(extra_data, "Agregar fondos a tu cuenta");
 			console.log(app.data_temp);
 			app.data_temp.selected_deposit = true;
 			return app.switchView('deposit', app.data_temp, '#exoskeleton', url, 'deposit');
@@ -495,7 +504,7 @@
 				app.showLoader();
 			}, 420);
 			app.check_or_renderContainer();
-			app.data_temp = this.gatherEnvironment(null, "Agregar fondos a tu cuenta");
+			app.data_temp = app.gatherEnvironment(null, "Agregar fondos a tu cuenta");
 			app.data_temp.selected_deposit = true;
 			return app.switchView('deposit-stores', app.data_temp, '#exoskeleton', url, 'deposit stores');
 		},
@@ -506,7 +515,7 @@
 				app.showLoader();
 			}, 420);
 			app.check_or_renderContainer();
-			app.data_temp = this.gatherEnvironment(null, "Quinielas privadas");
+			app.data_temp = app.gatherEnvironment(null, "Quinielas privadas");
 			app.data_temp.selected_pri = true;
 			return app.switchView('private', app.data_temp, '#exoskeleton', url, 'privates');
 		},
@@ -522,7 +531,7 @@
 				app.showLoader();
 			}, 420);
 			app.check_or_renderContainer();
-			app.data_temp = this.gatherEnvironment(null, "Crear quiniela privada");
+			app.data_temp = app.gatherEnvironment(null, "Crear quiniela privada");
 			app.data_temp.selected_pri = true;
 			return app.switchView('private-create', app.data_temp, '#exoskeleton', url, 'privates create');
 		},

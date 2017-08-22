@@ -175,6 +175,9 @@
 			window.cordova_full_path = ( typeof cordova !== 'undefined' && cordova.file.applicationDirectory !== '' ) 
 									 ? cordova.file.applicationDirectory+'www/'
 									 : '';
+			console.log(device.platform);
+			if(typeof device !== 'undefined' && device.platform === 'browser')
+				cordova_full_path = '';
 			try{
 				app.initPaymentAPI();
 				console.log("Initialized Payment gateway");

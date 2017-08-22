@@ -221,7 +221,7 @@
 		gatherEnvironment: function(optional_data, history_title) {
 			/* Gather environment information */
 			var meInfo 	= window._user;
-			var parsed 	= {me: meInfo, data: null};
+			var parsed 	= {me: meInfo, data: {}};
 			if(optional_data){
 				parsed['data'] = optional_data;
 			}
@@ -351,7 +351,7 @@
 			if(typeof ask_again === 'undefined' || ask_again === true || !app.data_temp.data )
 				return apiRH._ajaxRequest('GET', 'api/pools/available.json', null, 'json', true, app.render_lobby_feed_callback);
 
-			return render_lobby_feed_callback({ pools: app.data_temp.data.pools, pools_unfiltered: app.data_temp.data.pools_unfiltered, tournaments: app.data_temp.data.tournaments, now: app.data_temp.data.now });
+			return app.render_lobby_feed_callback({ pools: app.data_temp.data.pools, pools_unfiltered: app.data_temp.data.pools_unfiltered, tournaments: app.data_temp.data.tournaments, now: app.data_temp.data.now });
 		},
 		render_lobby_feed_callback : function( response ){
 
@@ -369,7 +369,7 @@
 			$('#insertFeed').html( template(app.data_temp) )
 							.css({ "opacity": 0, "display": "block"})
 							.animate({ opacity: 1 }, 220);
-			setTimeout( function(){ initHooks(); initCountdownTimers(); $('#filterComponent').fadeIn('fast'); initFilterActions(); }, 100);
+			setTimeout( function(){ initHooks(); initCountdownTimers(); $('#filterComponent').fadeIn('fast'); initFilterActions(); app.hideLoader(); }, 100);
 			return;
 		},
 		render_myfeed_sidebar : function(url){
@@ -412,6 +412,7 @@
 				window.sport_allow_ties = extra_data.sport.allow_ties;
 			app.data_temp = app.gatherEnvironment(extra_data, "Detail");
 			var template_name = (view === 'postures') 	? 'detail-quiniela-registered'	: 'detail-quiniela';
+				template_name = (view === 'closed'	) 	? 'detail-quiniela-closed'		: template_name;
 				template_name = (view === 'chat'	) 	? 'detail-quiniela-chat'		: template_name;
 				template_name = (view === 'prizes'	) 	? 'detail-quiniela-prizes'		: template_name;
 				template_name = (view === 'group-picks')? 'detail-quiniela-group-picks'	: template_name;
@@ -635,10 +636,11 @@
 					if( element.status !== myFilters.status )
 						delete myPool[index];
 				});
-			
+
 			if(typeof myFilters.sport !== 'undefined' )
 				myPool.forEach( function(element, index){
-					if( element.sport !== myFilters.sport )
+					console.log(element.sport.id);
+					if( element.sport.id !== parseInt(myFilters.sport) )
 						delete myPool[index];
 				});
 

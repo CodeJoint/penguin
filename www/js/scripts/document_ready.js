@@ -90,6 +90,10 @@ window.initializeEvents = function(){
 				}
 				if( $(this).data('resource') == "detail" )
 					return app.render_detail( $(this).attr('href'), $(this).data('object') );
+				if( $(this).data('resource') == "detail-closed" )
+					return app.render_detail( $(this).attr('href'), $(this).data('object'), 'closed' );
+				if( $(this).data('resource') == "detail-live" )
+					return app.render_detail( $(this).attr('href'), $(this).data('object'), 'closed' );
 				if( $(this).data('resource') == "detail-postures" )
 					return app.render_detail( $(this).attr('href'), $(this).data('object') );
 				if( $(this).data('resource') == "detail-places" )

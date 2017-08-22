@@ -160,12 +160,12 @@ body {width: 100%; margin: 0 auto; font-weight: 300; font-family: 'Lato'!importa
 .menu ul {list-style: none; padding: 5px 0 0 0; margin: 0px;}
 .menu ul li {display: block; float: left; border-right: 1px solid #8A8A8D; width: 20%; height: 36px; background-image: url('../images/menu_sprite.png'); background-repeat: no-repeat; background-size: 320px; }
 .menu ul li:last-child{border-right: 0px!important;}
-.menu ul li.menu_lobby {background-position-x: 25px}
+.menu ul li.menu_lobby {background-position-x: 23px}
 .menu ul li.menu_quinielas {background-position-x: -45px}
 .menu ul li.menu_privadas {background-position-x: -118px}
 .menu ul li.menu_perfil {background-position-x: -190px}
 .menu ul li.menu_abonar {background-position-x: -265px}
-.menu ul li.selected {background-position-y: -46px;}
+.menu ul li.selected {background-position-y: -45px;}
 
 /*** LOBBY ***/
 
@@ -289,7 +289,7 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 /*Extra*/
 .quiniela_single .opcion_partido .equipo .iniciales {font-size: 1rem; letter-spacing: 0.5px;}
 .quiniela_single .opcion_partido.empate .check{left: 38%;}
-.quiniela_single .opcion_partido label{display: inline-block; width: 100%; height: 2rem; position: relative; font-weight: 300; font-size: 1.35em; padding: 4px 2px 2px 8px; margin: 0 auto 0 0; z-index: 9; cursor: pointer; -webkit-transition: all 0.25s linear;}
+.quiniela_single .opcion_partido label{display: inline-block; width: 100%; height: 2rem; position: relative; font-weight: 300; font-size: 1.35em; padding: 4px 2px 2px 20px; line-height: 16px; margin: 0 auto 0 0; z-index: 9; cursor: pointer; -webkit-transition: all 0.25s linear;}
 
 .quiniela_single .partidos .partido_en_vivo .opcion_partido .linea span {width: 100%; margin-top: 20px; text-align: center; display: block; color: #77BC1F;}
 .quiniela_single .partidos .partido_en_vivo .opcion_partido.local .equipo {float: left; color: #77BC1F;}

@@ -406,7 +406,7 @@ function requestHandlerAPI(){
 
 				var myHeaders = (typeof includeHeaders !== 'undefined' && includeHeaders ) ? apiRH.headers : {};
 					myHeaders['Content-Type'] = (typeof contentType === 'undefined' || contentType === 'json' ) ? apiRH.headers['Content-Type'] : 'application/x-www-form-urlencoded';
-				var myData 	= (!data) ? "" : data;
+				var myData 	= (!data) ? "" : JSON.stringify(data);
 				var xhr 	= new XMLHttpRequest();
 				xhr.open(methodType, window.api_base_url+endpoint, true);
 				for (var property in myHeaders) {
@@ -545,14 +545,14 @@ function requestHandlerAPI(){
 		this.registerEntry = function(entry_data){
 			console.log(entry_data);
 			var data = {
-							pool_id		: parseInt(entry_data.pool_id),
-							entry_id 	: null,
-							num_entries	: parseInt(entry_data.num_entries),
-							entry_payment: 'real',
-							use_same_picks: (typeof entry_data.use_same_picks !== 'undefined') ? entry_data.use_same_picks : 0,
+							pool_id			: parseInt(entry_data.pool_id),
+							entry_id 		: null,
+							num_entries		: parseInt(entry_data.num_entries),
+							entry_payment	: 'real',
+							use_same_picks	: (typeof entry_data.use_same_picks !== 'undefined') ? entry_data.use_same_picks : 0,
 						};
 			console.log(data);
-			return apiRH._ajaxRequest('POST', 'picks/save.json', data, 'json', true, app.render_entry_success);
+			return apiRH._ajaxRequest('POST', 'api/picks/save.json', data, 'json', true, app.render_entry_success);
 			return;
 		};
 

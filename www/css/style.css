@@ -191,14 +191,16 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 
 .quiniela .quiniela_content div {float: left;}
 .quiniela .quiniela_content span {display: block;}
-.quiniela .quiniela_content span.titulo {margin-bottom: 15px;}
+.quiniela .quiniela_content span.titulo {margin-bottom: 8px;}
 .quiniela .quiniela_content span.number {float: left; margin-left: 5px;}
 
 /*quiniela open*/
 
 .quiniela.quiniela_open .quiniela_content .quiniela_info {width: 30%; float: left;}
 .quiniela.quiniela_open .quiniela_content .quiniela_entrada {width: 25%; float: left;}
-.quiniela.quiniela_open .quiniela_content .quiniela_picks_ok {width: 10%; float: left;}
+.quiniela.quiniela_open .quiniela_content .quiniela_picks_ok {width: 12%; float: left;}
+.quiniela .quiniela_content .quiniela_picks_ok>img { display: block; margin: auto; float: none;}
+.quiniela .quiniela_content .quiniela_picks_ok .titulo {text-align: center;}
 .quiniela.quiniela_open .quiniela_content .quiniela_bolsa {width: 25%; float: left;}
 .quiniela.quiniela_open .quiniela_content .quiniela_bolsa span.number {float: left; margin-left: 5px; color: #77BC1F;}
 .quiniela.quiniela_open .quiniela_content .quiniela_bolsa img {margin-top: -2px;}
@@ -206,8 +208,8 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 /*quiniela_live*/
 
 .quiniela.quiniela_live .quiniela_content .quiniela_info {width: 30%; float: left;}
-.quiniela.quiniela_live .quiniela_content .quiniela_picks_ok {width: 15%; float: left;}
-.quiniela.quiniela_live .quiniela_content .quiniela_aganar {width: 20%; float: left;}
+.quiniela.quiniela_live .quiniela_content .quiniela_picks_ok {width: 12%; float: left;}
+.quiniela.quiniela_live .quiniela_content .quiniela_aganar {width: 25%; float: left;}
 .quiniela.quiniela_live .quiniela_content .quiniela_entrada {width: 20%; float: left;}
 .quiniela.quiniela_live .quiniela_content .quiniela_bolsa {width: 15%; float: left;}
 .quiniela.quiniela_live .quiniela_content .quiniela_bolsa span.number {float: left; margin-left: 5px; color: #77BC1F;}

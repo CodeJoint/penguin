@@ -103,7 +103,7 @@ window.initializeEvents = function(){
 				if( resource == "detail-postures" )
 					return app.render_detail( resource_href, resource_object );
 				if( resource == "detail-places" )
-					return app.render_detail( resource_href, resource_object );
+					return app.render_detail( resource_href, resource_object, 'places', resource_extra );
 				if( resource == "detail-chat" )
 					return app.render_detail( resource_href, resource_object );
 				if( resource == "detail-prizes" )

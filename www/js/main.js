@@ -414,6 +414,7 @@
 				template_name = (view === 'closed'	) 	? 'detail-quiniela-closed'		: template_name;
 				template_name = (view === 'live'	) 	? 'detail-quiniela-live'		: template_name;
 				template_name = (view === 'chat'	) 	? 'detail-quiniela-chat'		: template_name;
+				template_name = (view === 'places'	) 	? 'scoreboard'					: template_name;
 				template_name = (view === 'prizes'	) 	? 'detail-quiniela-prizes'		: template_name;
 				template_name = (view === 'group-picks')? 'detail-quiniela-group-picks'	: template_name;
 				template_name = (view === 'scores'	) 	? 'detail-quiniela-scores'		: template_name;

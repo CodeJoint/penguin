@@ -19,7 +19,6 @@ window.initializeEvents = function(){
 		});
 	};
 	window.initFilterActions = function(){
-		console.log("Init filter actions");
 		/*** FILTERS ***/
 		$('.header_filtros').on('click', function(){
 			if($('.filtros_wrapper').hasClass('filtros_show')){
@@ -44,12 +43,15 @@ window.initializeEvents = function(){
 			$(this).closest('ul').find('li').removeClass('selected');
 			$(this).addClass('selected');
 		});
+
+		$('#filterComponent').fadeIn('fast');
 	};
 
 	jQuery(document).ready(function($) {
 
 		$('*').unbind();
 		$('body').removeClass("preventEvents");
+		
 		var ventana = $(window).height();
 		window.alert = (typeof navigator.notification !== 'undefined') ? navigator.notification.alert : window.alert;
 
@@ -61,65 +63,69 @@ window.initializeEvents = function(){
 
 				e.preventDefault();
 				app.showLoader();
+				var resource 		= $(this).data('resource');
+				var resource_href 	= $(this).attr('href');
+				var resource_object = $(this).data('object') ? $(this).data('object'): null;
+				var resource_extra 	= $(this).data('extra') ? $(this).data('extra'): null;
 				/*** Register / Login ***/
-				if( $(this).data('resource') == "register" )
-					return app.render_register( $(this).attr('href') );
-				if( $(this).data('resource') == "forgot-password" )
-					return app.render_forgot_password( $(this).attr('href') );
-				if( $(this).data('resource') == "login" )
-					return app.render_login( $(this).attr('href') );
+				if( resource == "register" )
+					return app.render_register( resource_href );
+				if( resource == "forgot-password" )
+					return app.render_forgot_password( resource_href );
+				if( resource == "login" )
+					return app.render_login( resource_href );
 
-				if( $(this).data('resource') == "lobby" )
-					return app.render_lobby( $(this).attr('href'), false );
-				if( $(this).data('resource') == "first-lobby" )
-					return app.render_lobby( $(this).attr('href') );
-				if( $(this).data('resource') == "privates" )
-					return app.render_private_search( $(this).attr('href') );
-				if( $(this).data('resource') == "privates-create" )
-					return app.render_create_private( $(this).attr('href') );
-				if( $(this).data('resource') == "my_lobby" ){
+				if( resource == "lobby" )
+					return app.render_lobby( resource_href, false );
+				if( resource == "first-lobby" )
+					return app.render_lobby( resource_href );
+				if( resource == "privates" )
+					return app.render_private_search( resource_href );
+				if( resource == "privates-create" )
+					return app.render_create_private( resource_href );
+				if( resource == "my_lobby" ){
 					if($('#misQuinielas').length){
 						$('#misQuinielas').trigger('click');
 						return app.hideLoader();
 					}
 					/** check if sidebar is present or reroute otherwise **/
-					app.render_lobby( $(this).attr('href'), false );
+					app.render_lobby( resource_href, false );
 					setTimeout(function(){
 						$('#misQuinielas').trigger('click');
 					}, 1200);
 				}
-				if( $(this).data('resource') == "detail" )
-					return app.render_detail( $(this).attr('href'), $(this).data('object') );
-				if( $(this).data('resource') == "detail-closed" )
-					return app.render_detail( $(this).attr('href'), $(this).data('object'), 'closed' );
-				if( $(this).data('resource') == "detail-live" )
-					return app.render_detail( $(this).attr('href'), $(this).data('object'), 'closed' );
-				if( $(this).data('resource') == "detail-postures" )
-					return app.render_detail( $(this).attr('href'), $(this).data('object') );
-				if( $(this).data('resource') == "detail-places" )
-					return app.render_detail( $(this).attr('href'), $(this).data('object') );
-				if( $(this).data('resource') == "detail-chat" )
-					return app.render_detail( $(this).attr('href'), $(this).data('object') );
-				if( $(this).data('resource') == "detail-prizes" )
-					return app.render_detail( $(this).attr('href'), $(this).data('object') );
-				if( $(this).data('resource') == "detail-group-picks" )
-					return app.render_detail( $(this).attr('href'), $(this).data('object') );
+				if( resource == "detail" )
+					return app.render_detail( resource_href, resource_object );
+				if( resource == "detail-closed" )
+					return app.render_detail( resource_href, resource_object, 'closed' );
+				if( resource == "detail-live" )
+					return app.render_detail( resource_href, resource_object, 'live', resource_extra );
+				if( resource == "detail-postures" )
+					return app.render_detail( resource_href, resource_object );
+				if( resource == "detail-places" )
+					return app.render_detail( resource_href, resource_object, 'places', resource_extra );
+				if( resource == "detail-chat" )
+					return app.render_detail( resource_href, resource_object );
+				if( resource == "detail-prizes" )
+					return app.render_detail( resource_href, resource_object );
+				if( resource == "detail-group-picks" )
+					return app.render_detail( resource_href, resource_object );
 				
 				/*** User ***/
-				if( $(this).data('resource') == "profile-methods" )
-					return app.render_profile( $(this).attr('href') );
-				if( $(this).data('resource') == "profile-documents" )
-					return app.render_profile( $(this).attr('href'), 'documents' );
-				if( $(this).data('resource') == "profile-withraw" )
-					return app.render_profile( $(this).attr('href'), 'withraw' );
-				if( $(this).data('resource') == "profile-history" )
-					return app.render_profile( $(this).attr('href'), 'history' );
-				if( $(this).data('resource') == "profile-notifications" )
-					return app.render_profile( $(this).attr('href'), 'notifications' );
-				if( $(this).data('resource') == "deposit" )
-					return app.render_add_funds( $(this).attr('href') );
-				if( $(this).data('resource') == "deposit-stores" )
-					return app.render_add_funds_store( $(this).attr('href') );
+				if( resource == "profile-methods" )
+					return app.render_profile( resource_href );
+				if( resource == "profile-documents" )
+					return app.render_profile( resource_href, 'documents' );
+				if( resource == "profile-withraw" )
+					return app.render_profile( resource_href, 'withraw' );
+				if( resource == "profile-history" )
+					return app.render_profile( resource_href, 'history' );
+				if( resource == "profile-notifications" )
+					return app.render_profile( resource_href, 'notifications' );
+				if( resource == "deposit" )
+					return app.render_add_funds( resource_href );
+				if( resource == "deposit-stores" )
+					return app.render_add_funds_store( resource_href );
 				
 				e.stopPropagation();
 			});
@@ -390,9 +396,10 @@ window.initializeEvents = function(){
 			if($('#detailQuiniela').length){
 
 				var gameId = $('#detailQuiniela').data('id');
-
-				$('#reg_into_game').on('click',function(){
-					$('#registerNow').fadeIn('fast');
+				$('.menu li').removeClass('selected');
+				$('#reg_into_game').on('click', function(){
+					console.log("Lorem");
+					$('#registerNow').show();
 				});
 
 				$('#num_entries').on('change', function(){
@@ -402,10 +409,9 @@ window.initializeEvents = function(){
 				$('#closeRegister').on('click',function(){
 					$('#registerNow').fadeOut('fast');
 				});
-				$('#sendRegister').on('click',function(){
-					$('#registerNow').fadeOut('fast');
-				});
-				
+				// $('#sendRegister').on('click',function(){
+				// 	$('#registerNow').fadeOut('fast');
+				// });
 				/** Render quiniela games and picks selectors **/
 				app.render_games(gameId);
 
@@ -437,13 +443,52 @@ window.initializeEvents = function(){
 						return false;
 					}
 				});
+				setTimeout(function(){
+					$('#filterComponent').hide();
+				}, 0);
+				return initCountdownTimers();
 
+			} // END detailQuiniela scope
+			
+			if($('#detailQuinielaRegistered').length){
+				
+				var gameId = $('#detailQuinielaRegistered').data('id');
+				var entryId = $('#detailQuinielaRegistered').data('entry');
+				$('.menu li').removeClass('selected');
+				$('#filterComponent').hide();
+
+				/** Render quiniela games and picks selectors **/
+				app.render_games(gameId);
+
+				/** Render similar picks **/
+				app.render_other_entries(entryId);
+
+				$('#registerToQuinielaForm').validate({
+					rules:{
+						pool_id	 : "required",
+						num_entries : "required"
+					},
+					messages:{
+						pool_id	 : "Identificador de quiniela no válido",
+						num_entries : "Especifica el número de registros"
+					},
+					submitHandler:function( form, event ){
+						event.preventDefault();
+						app.showLoader();
+						var entry_data	= app.getFormData(form, 'object');
+						console.log(entry_data);
+						apiRH.registerEntry(entry_data);
+						return false;
+					}
+				});
 				return initCountdownTimers();
 
 			} // END detailQuiniela scope
 			
 			
 			if($('#busquedaQuinielas').length){
+
+				$('#filterComponent').hide();
 				$('#busquedaQuinielas').validate({
 					rules:{
 						gameName	: "required",
@@ -482,12 +527,12 @@ window.initializeEvents = function(){
 				/* Payment methods tab */
 				if($('#profileTabs').hasClass('methods')){
 					var card_id = null;
-
 					function onDeletionConfirm(buttonIndex) {
 						var response = apiRH.deleteRequest('api/openpay_cards/delete/'+card_id+'.json', {});
 						return (response) ? app.render_profile('profile.html') : app.toast("Ocurrió un error, intenta nuevamente.");
 					}
 
+					$('#filterComponent').hide();
 					$('.agregar_tarjeta').click(function(event){
 					    event.stopPropagation();
 					});
@@ -541,7 +586,7 @@ window.initializeEvents = function(){
 
 				$('.menu li').removeClass('selected');
 				$('.menu_abonar').addClass('selected');
-				
+				$('#filterComponent').hide();
 				$('#depositStoresForm').validate({
 					rules:{
 						amount : "required"
@@ -576,7 +621,7 @@ window.initializeEvents = function(){
 
 				$('.menu li').removeClass('selected');
 				$('.menu_abonar').addClass('selected');
-
+				$('#filterComponent').hide();
 				$('#depositCardForm').validate({
 					rules:{
 						amount : "required",

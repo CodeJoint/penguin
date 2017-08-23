@@ -165,7 +165,7 @@ body {width: 100%; margin: 0 auto; font-weight: 300; font-family: 'Lato'!importa
 .menu ul li.menu_privadas {background-position-x: -118px}
 .menu ul li.menu_perfil {background-position-x: -190px}
 .menu ul li.menu_abonar {background-position-x: -265px}
-.menu ul li.selected {background-position-y: -45px;}
+.menu ul li.selected {background-position-y: -43px;}
 
 /*** LOBBY ***/
 
@@ -211,7 +211,7 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 .quiniela.quiniela_live .quiniela_content .quiniela_picks_ok {width: 12%; float: left;}
 .quiniela.quiniela_live .quiniela_content .quiniela_aganar {width: 25%; float: left;}
 .quiniela.quiniela_live .quiniela_content .quiniela_entrada {width: 20%; float: left;}
-.quiniela.quiniela_live .quiniela_content .quiniela_bolsa {width: 15%; float: left;}
+.quiniela.quiniela_live .quiniela_content .quiniela_bolsa {width: 28%; float: left;}
 .quiniela.quiniela_live .quiniela_content .quiniela_bolsa span.number {float: left; margin-left: 5px; color: #77BC1F;}
 .quiniela.quiniela_live .quiniela_content .quiniela_bolsa img {margin-top: -2px;}
 
@@ -287,11 +287,12 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 .quiniela_single .partidos .partido .opcion_partido.visitante .equipo {margin-left: 10px;}
 .quiniela_single .partidos .partido .opcion_partido.visitante .equipo span {display: block;}
 .quiniela_single .partidos .partido .opcion_partido.visitante input {float: right; margin-left: 10px;}
-.quiniela_single .partidos .partido .opcion_partido.visitante img {float: right; margin-left: 10px;}
+.quiniela_single .partidos .partido .opcion_partido.visitante img {float: right;}
 /*Extra*/
 .quiniela_single .opcion_partido .equipo .iniciales {font-size: 1rem; letter-spacing: 0.5px;}
 .quiniela_single .opcion_partido.empate .check{left: 38%;}
 .quiniela_single .opcion_partido label{display: inline-block; width: 100%; height: 2rem; position: relative; font-weight: 300; font-size: 1.35em; padding: 4px 2px 2px 20px; line-height: 16px; margin: 0 auto 0 0; z-index: 9; cursor: pointer; -webkit-transition: all 0.25s linear;}
+.quiniela_single .opcion_partido.visitante label{padding: 4px 35px 2px 4px;}
 
 .quiniela_single .partidos .partido_en_vivo .opcion_partido .linea span {width: 100%; margin-top: 20px; text-align: center; display: block; color: #77BC1F;}
 .quiniela_single .partidos .partido_en_vivo .opcion_partido.local .equipo {float: left; color: #77BC1F;}
@@ -342,7 +343,7 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 .quiniela_single .desempates .desempate.desempate_tres .desempate_tres_right {width: 50%; float: left; position: relative;}
 /*** RADIOS ***/
 .radio_group input[type=radio] {position: absolute; visibility: hidden;}
-.radio_group input[type=radio]:checked ~ .check { border: 5px solid #598D16!important;}
+.radio_group input[type=radio]:checked ~ .check { border: 4px solid #598D16!important;}
 .radio_group input[type=radio]:checked ~ .check::before{ background: #598D16!important;}
 .radio_group label{display: inline-block; width: 84%; height: 2rem; position: relative; font-weight: 300; font-size: 12px; padding: 2px 2px 2px 8px; margin: 0 auto 0 -2rem; z-index: 9; cursor: pointer; -webkit-transition: all 0.25s linear;}
 .radio_group.selection label{padding: 2px 2px 2px 30px; }
@@ -569,9 +570,9 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 .radio_group ul li .edit_tarjeta img {float: left; margin-left: 10px;}
 .radio_group .agregar_tarjeta {text-align: center;}
 .radio_group ul li .check {display: block; position: absolute; border: 5px solid #AAAAAA; border-radius: 100%; height: 25px; width: 25px; top: 0px; left: 0px; z-index: 8; transition: border .25s linear; -webkit-transition: border .25s linear;}
-.radio_group ul li .check::before { display: block; position: absolute; content: ''; border-radius: 100%; height: 10.5px; width: 10.5px; top: 2.5px; left: 2.5px; margin: auto; transition: background 0.25s linear; -webkit-transition: background 0.25s linear; }
+.radio_group ul li .check::before { display: block; position: absolute; content: ''; border-radius: 100%; height: 13px; width: 13px; top: calc( 50% - 7px); left: calc( 50% - 7px); margin: auto; transition: background 0.25s linear; -webkit-transition: background 0.25s linear; }
 .radio_group ul li input[type=radio] {position: absolute;visibility: hidden;}
-.radio_group ul li input[type=radio]:checked ~ .check { border: 5px solid #598D16;}
+.radio_group ul li input[type=radio]:checked ~ .check { border: 4px solid #598D16;}
 .radio_group ul li input[type=radio]:checked ~ .check::before{ background: #598D16;}
 .radio_group ul li label{display: inline-block; width: 84%; height: 2rem; position: relative; font-weight: 300; font-size: 1.35em; padding: 2px 2px 2px 8px; margin: 0 auto 0 -2rem; z-index: 9; cursor: pointer; -webkit-transition: all 0.25s linear;}
 
@@ -709,7 +710,7 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 	/*Filters */
 	.filtros .filtros_deporte ul li{width: 25%;}
 	
-	p.empty{font-size: 1rem; letter-spacing: 1px; text-align: center;}
+	p.empty{font-size: 1rem; letter-spacing: 1px; text-align: center; margin: 3rem 0;}
 	
 	.backed_modal{ position: absolute; background-color: #000; left: 5%; top: 22vh; width: 90%; z-index: 100;}
 	.backed_modal::before { content: ""; pointer-events: none; display: block; position: fixed; top: 0; left: 0; z-index: -1; width: 100%; height: 100vh; background: url(../images/bg_trans_negro.png) repeat; opacity: 0.35;}
@@ -729,6 +730,7 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 	.profile.withraw{}
 	.profile.withraw p>strong{ color: #90bd7e; font-weight: 300;}
 	.profile .tab_profile{ min-height: 62vh; width: 100%; background: #000; padding: 1.5rem 0.5rem; }
+	.profile .tab_profile.transactions{max-height: 62vh; overflow: auto;}
 	
 	/* User documents and transactions */
 

@@ -6,18 +6,18 @@ function requestHandlerAPI(){
 	/*** Attributes ***/
 	this.token = null;
 	this.upload_ready = false;
-	this.version 	= "1.3";
-	this.app_build 	= "1.3.2";
+	this.version 	= "1.1";
+	this.app_build 	= "1.1.0";
 	this.device_model = (typeof device != 'undefined') ? device.model : 'not set';
 	this.deviceSessionId = null;
 	this.device_platform = (typeof device != 'undefined') ? device.platform : 'not set';
 	this.device_platform_version = (typeof device != 'undefined') ? device.version : 'not set';
 	this.device_info =  {
 							sdk_version: this.version,
-							build: this.app_build,
-							model: this.device_model,
-							platform: this.device_platform,
-							version: this.device_platform_version
+							build: 		this.app_build,
+							model: 		this.device_model,
+							platform: 	this.device_platform,
+							version: 	this.device_platform_version
 						};
 
 	this.keeper = window.localStorage;
@@ -39,13 +39,13 @@ function requestHandlerAPI(){
 
 	/* Constructor */
 	this.construct = function(app_context){
-					console.log('Initialized Duff api-sdk1.0');
 
+					console.log('Initialized Duff api-sdk1.0');
 					if(this.keeper.getItem('request_token')) this.token = this.keeper.getItem('request_token');
 					if(this.keeper.getItem('Auth')) this.headers['Authorization'] = "Bearer "+this.keeper.getItem('Auth');
 					sdk_app_context = app_context;
 					$( document ).ajaxError(function( event, jqxhr, settings, exception ) {
-						if ( jqxhr.status== 401 ) {
+						if ( jqxhr.status == 401 ) {
 						  // alert( "Triggered ajaxError handler." );
 						}
 					});
@@ -100,7 +100,6 @@ function requestHandlerAPI(){
 			var email 		= data_user.email;
 			var pass 		= data_user.password;
 			var cPass		= data_user.repeat_password;
-			console.log(data_user);
 			var data =  {
 							'fingerprint' 	: window.fingerprint ? window.fingerprint.hash : '',
 							'name' 			: data_user.name,
@@ -210,18 +209,14 @@ function requestHandlerAPI(){
 															final_response.token 	= response.data.id;
 															if(final_response.success && final_response.token ){
 																final_response.device_session_id = apiRH.deviceSessionId;
-																console.log(final_response);
 																var response = apiRH.makeRequest('api/openpay_cards/add.json', final_response, null, false);
-																console.log(response);
 																app.hideLoader();
 																alert("Se ha agregado tu método de pago.", null, "Pickwin", "Ok");
 																return app.render_profile('profile.html', 'methods');
 															}
 														}, function(response){
-															console.log(response);
 															final_response.success 	= false;
 															final_response.error	= response.data.error_code;
-															console.log(final_response);
 															var message = 'Ocurrió un error, revisa tus datos e intenta nuevamente.';
 																message = (final_response.error == 2004) 	? 'El código de verificación no es válido.'			
 																											: message;
@@ -309,7 +304,6 @@ function requestHandlerAPI(){
 					myHeaders['Content-Type'] = (typeof contentType === 'undefined' || contentType === 'json' ) ? 'application/x-www-form-urlencoded' : apiRH.headers['Content-Type'];
 				if(myHeaders)
 					options.headers = myHeaders;
-				console.log(options);
 				$.ajax(options)
 				 .always( function(response){
 					setTimeout(function(){
@@ -322,42 +316,12 @@ function requestHandlerAPI(){
 				 })
 				 .fail( function(e){
 					result = false;
-					// console.log(e);
+					console.log(e);
 				});
 				return result;
 				
 			};
 
-			/*! 
-			 * Executes a PATCH request
-			 * @param endpoint API endpoint to make the call to
-			 * @param data JSON encoded data 
-			 * @return JSON encoded response
-			 */
-			this.patchRequest = function(endpoint, data){
-				
-				sdk_app_context.showLoader();
-				var result = {};
-
-				$.ajax({
-				  type: 'PATCH',
-				  headers: apiRH.headers,
-				  url: window.api_base_url+endpoint,
-				  data: JSON.stringify(data.data),
-				  dataType: 'json',
-				  async: false
-				})
-				 .done(function(response){
-					result = response;
-					sdk_app_context.hideLoader(response);
-				})
-				 .fail(function(e){
-					result = false;
-					console.log(JSON.stringify(e));
-				});
-				return result;
-			};
-			
 			/*! 
 			 * Executes a GET call
 			 * @param endpoint API endpoint to make the call to
@@ -540,10 +504,11 @@ function requestHandlerAPI(){
 		};
 
 		/**
-		 *
+		 * Registry entry to game
+		 * @param Object entry_data
 		 */
 		this.registerEntry = function(entry_data){
-			console.log(entry_data);
+
 			var data = {
 							pool_id			: parseInt(entry_data.pool_id),
 							entry_id 		: null,
@@ -557,9 +522,11 @@ function requestHandlerAPI(){
 		};
 
 		/**
-		 *
+		 * Edit existing entry picks
+		 * @param Integer entry_id
+		 * @param Object entry_data
 		 */
-		this.editEntry = function(pool_id, entry_id, registry_data){
+		this.editEntry = function(entry_id, entry_data){
 
 			return;
 		};

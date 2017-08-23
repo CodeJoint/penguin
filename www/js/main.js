@@ -421,9 +421,9 @@
 			console.log(app.data_temp);
 			if(extra)
 				app.data_temp.data.entry_id = extra;
-			setTimeout( function(){
-				return app.switchView(template_name, app.data_temp, '#exoskeleton', url, 'quiniela-'+view);
-			}, 220);
+			if(view === 'places' || view === 'prizes' || view === 'group-picks')
+				return app.appendView(template_name, app.data_temp, '#tabContainer');
+			return app.switchView(template_name, app.data_temp, '#exoskeleton', url, 'quiniela-'+view);
 		},
 		render_games : function(object_id){
 

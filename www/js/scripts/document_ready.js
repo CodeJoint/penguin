@@ -356,7 +356,7 @@ window.initializeEvents = function(){
 							$('.menu li').removeClass('selected');
 							if (!positiveMargin) {
 								var left = "0%";
-								var padd = "1%";
+								var padd = "5%";
 								positiveMargin = true;
 								$('.menu .menu_quinielas').addClass('selected');
 								setTimeout(function(){

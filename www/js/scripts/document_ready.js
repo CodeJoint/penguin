@@ -457,10 +457,10 @@ window.initializeEvents = function(){
 				$('.menu li').removeClass('selected');
 				$('#filterComponent').hide();
 
-				/** Render quiniela games and picks selectors **/
+				/** Call Render quiniela games and picks selectors **/
 				app.render_games(gameId);
 
-				/** Render similar picks **/
+				/** Call Render similar picks **/
 				app.render_other_entries(entryId);
 
 				$('#registerToQuinielaForm').validate({
@@ -481,9 +481,10 @@ window.initializeEvents = function(){
 						return false;
 					}
 				});
+				app.hideLoader();
 				return initCountdownTimers();
 
-			} // END detailQuiniela scope
+			} // END detailQuinielaRegistered scope
 			
 			
 			if($('#busquedaQuinielas').length){

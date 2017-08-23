@@ -372,23 +372,12 @@
 			setTimeout( function(){ initHooks(); initCountdownTimers(); $('#filterComponent').fadeIn('fast'); initFilterActions(); app.hideLoader(); }, 100);
 			return;
 		},
-		render_myfeed_sidebar : function(url){
-	
-			var extra_data = apiRH.getRequest('api/users/pools.json', null);
-			var data = app.gatherEnvironment(extra_data, "My Lobby");
-			var template = Handlebars.templates['my-lobby'];
-			if(!template){
-				console.log("Template doesn't exist");
-				return false;
-			}
-			$('#misQuinielas').html( template(data) ).css({ "opacity": 0, "display": "block"})
-													 .animate(	{ opacity: 1 }, 220);
-			return;
+		render_myfeed_sidebar : function(){
+			return apiRH._ajaxRequest('GET', 'api/users/pools.json', null, 'json', true, app.render_myfeed_callback);
 		},
-		render_myfeed : function(url){
+		render_myfeed_callback : function(response){
 	
-			var extra_data = apiRH.getRequest('api/users/pools.json', null);
-			var data = app.gatherEnvironment(extra_data, "My Lobby");
+			var data = app.gatherEnvironment(response, "My Lobby");
 			var template = Handlebars.templates['my-lobby'];
 			if(!template){
 				console.log("Template doesn't exist");
@@ -575,17 +564,24 @@
 			return pool;
 		},
 		render_filter_tournaments : function( ){
-			var extra_data = apiRH.getRequest('api/sports/index.json', null);
-			extra_data = (extra_data) ? extra_data : [];
-			if(!extra_data)
+
+			return apiRH._ajaxRequest('GET', 'api/sports/index.json', null, 'json', true, app.filter_tournaments_callback);
+		},
+		filter_tournaments_callback : function( response ){
+
+			if(!response)
 				return false;
-			extra_data.sports.forEach(function(element, index){
+			var temp = [];
+			var obj_temp = [];
+			response.sports.forEach(function(element, index){
 				if(element.name === 'Fútbol')
-					return extra_data = element;
+					obj_temp['futbol'] = element;
+				if(element.name === 'Baseball')
+					obj_temp['baseball'] = element;
 			});
-			setTimeout(function(){
-				app.appendView('filter-tournaments', extra_data, '#deporte_soccer');
-			}, 220);
+			temp.push(obj_temp);
+			app.appendView('filter-tournaments', temp.futbol, '#deporte_soccer');
+			app.appendView('filter-tournaments', temp.baseball, '#deporte_baseball');
 		},
 		stack_filter : function( filter, value ){
 			/** Filters are stored in a global variable **/

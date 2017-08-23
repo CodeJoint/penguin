@@ -1,88 +1,79 @@
 
-	<div class="container clearfix">
+	<div id="detailQuinielaRegistered" data-id="{{data.id}}" data-entry="{{data.entry_id}}" class="content quiniela_single quiniela_registrada_single">
 		
-		{{> header}}
-
-		<div id="detailQuinielaRegistered" data-id="{{data.id}}" class="content quiniela_single quiniela_registrada_single">
+		<a class="link_wrapper">
+			<div class="quiniela {{# if data.upcoming}}quiniela_open{{/ if}} 
+			{{# if data.live}}quiniela_live{{/ if}} 
+			{{# if_eq data.status 'live'}}quiniela_live{{/ if_eq}} 
+			{{# if data.closed}}quiniela_closed{{/ if}} {{data.sport.name}}
+			{{# if_eq data.point_format "natural" }} natural {{/ if_eq }}  clearfix">
+				<div class="quiniela_header clearfix">
+					<div class="quiniela_iconos clearfix">
+						{{# if_eq data.point_format "line" }}
+							<img src="{{cordova_full_path}}images/linea.png">
+						{{/ if_eq }}
+						{{# if_eq data.point_format "natural" }}
+							<img src="{{cordova_full_path}}images/natural.png">
+						{{/ if_eq }}
+						<img src="{{cordova_full_path}}images/{{data.sport.icon}}.png">
+					</div><!-- iconos -->
+					<h2>{{data.name_replaced}}</h2>
+				</div><!-- quiniela_header -->
+				<div class="quiniela_content clearfix">
+					<div class="quiniela_info clearfix">
+						<span class="registros">REG: {{data.entry_count}}</span>
+						<span class="cierre">{{^ if data.closed}}CIERRE{{/ if}}{{# if data.closed}}CERRÓ{{/ if}}: {{formatDate data.deadline_tz 'lll'}}</span>
+						{{# data.limited_capacity}}
+							<span class="limite">Limitado a {{data.max_entries}} entradas</span>
+						{{/ data.limited_capacity}}
+						{{# data.closed}}
+							<span class="limite">FINALIZÓ</span>
+						{{/ data.closed}}
+						{{# if_eq status "live"}}
+							<span class="live">JUGANDO</span>
+						{{/ if_eq}}
+					</div><!-- quiniela_info -->
+					
+					<div class="quiniela_entrada clearfix">
+						<span class="titulo">ENTRADA</span>
+						{{# if_eq data.entry_currency 'real' }}
+							<img src="{{cordova_full_path}}images/billecoin.png">
+						{{/ if_eq }}
+						{{# if_eq data.entry_currency 'pickcoin' }}
+							<img src="{{cordova_full_path}}images/pickcoin.png">
+						{{/ if_eq }}
+						<span class="number">${{ formatCurrency data.entry_fee}}</span>
+					</div>
+					<div class="quiniela_bolsa clearfix">
+						<span class="titulo">BOLSA</span>
+						{{# if data.guaranteed_prize}}
+							<img src="{{cordova_full_path}}images/garantizado.png">
+						{{/ if }}
+						<span class="number">${{ formatCurrency data.available}}</span>
+					</div>
+				</div><!-- quiniela_content -->
+			</div><!-- quiniela -->
+		</a><!-- link_wrapper -->
+		<div class="tabs_quiniela clearfix">
+			<ul>
+				<li class="selected"><a href="">Picks</a></li>
+				<li><a class="hook" data-resource="detail-places" href="detail.html?registered=true&tab=places">Posiciones</a></li>
+				<li><a class="hook" data-resource="detail-chat" href="detail.html?registered=true&tab=chat">Chat</a></li>
+				<li><a class="hook" data-resource="detail-prizes" href="detail.html?registered=true&tab=prizes">Premios</a></li>
+				<li><a class="hook" data-resource="detail-group-picks" href="detail.html?registered=true&tab=group-picks">Picks de grupo</a></li>
+				<li><a class="hook" data-resource="detail-scores" href="detail.html?registered=true&tab=scores">Marcadores</a></li>
+			</ul>
+		</div>
+		<div id="lesDrops" class="quinielas_dropdowns live clearfix">
 			
-			<a class="link_wrapper">
-				<div class="quiniela {{# if data.upcoming}}quiniela_open{{/ if}} 
-				{{# if data.live}}quiniela_live{{/ if}} 
-				{{# if_eq data.status 'live'}}quiniela_live{{/ if_eq}} 
-				{{# if data.closed}}quiniela_closed{{/ if}} {{data.sport.name}}
-				{{# if_eq data.point_format "natural" }} natural {{/ if_eq }}  clearfix">
-					<div class="quiniela_header clearfix">
-						<div class="quiniela_iconos clearfix">
-							{{# if_eq data.point_format "line" }}
-								<img src="{{cordova_full_path}}images/linea.png">
-							{{/ if_eq }}
-							{{# if_eq data.point_format "natural" }}
-								<img src="{{cordova_full_path}}images/natural.png">
-							{{/ if_eq }}
-							<img src="{{cordova_full_path}}images/{{data.sport.icon}}.png">
-						</div><!-- iconos -->
-						<h2>{{data.name_replaced}}</h2>
-					</div><!-- quiniela_header -->
-					<div class="quiniela_content clearfix">
-						<div class="quiniela_info clearfix">
-							<span class="registros">REG: {{data.entry_count}}</span>
-							<span class="cierre">{{^ if data.closed}}CIERRE{{/ if}}{{# if data.closed}}CERRÓ{{/ if}}: {{formatDate data.deadline_tz}}</span>
-							{{# data.limited_capacity}}
-								<span class="limite">Limitado a {{data.max_entries}} entradas</span>
-							{{/ data.limited_capacity}}
-							{{# data.closed}}
-								<span class="limite">FINALIZÓ</span>
-							{{/ data.closed}}
-						</div><!-- quiniela_info -->
-						
-						<div class="quiniela_entrada clearfix">
-							<span class="titulo">ENTRADA</span>
-							{{# if_eq data.entry_currency 'real' }}
-								<img src="{{cordova_full_path}}images/billecoin.png">
-							{{/ if_eq }}
-							{{# if_eq data.entry_currency 'pickcoin' }}
-								<img src="{{cordova_full_path}}images/pickcoin.png">
-							{{/ if_eq }}
-							<span class="number">${{ formatCurrency data.entry_fee}}</span>
-						</div>
-						<div class="quiniela_bolsa clearfix">
-							<span class="titulo">BOLSA</span>
-							{{# if data.guaranteed_prize}}
-								<img src="{{cordova_full_path}}images/garantizado.png">
-							{{/ if }}
-							<span class="number">${{ formatCurrency data.available}}</span>
-						</div>
-					</div><!-- quiniela_content -->
-				</div><!-- quiniela -->
-			</a><!-- link_wrapper -->
-			<div class="tabs_quiniela clearfix">
-				<ul>
-					<li class="selected"><a href="">Picks</a></li>
-					<li><a class="hook" data-resource="detail-places" href="detail.html?registered=true&tab=places">Posiciones</a></li>
-					<li><a class="hook" data-resource="detail-chat" href="detail.html?registered=true&tab=chat">Chat</a></li>
-					<li><a class="hook" data-resource="detail-prizes" href="detail.html?registered=true&tab=prizes">Premios</a></li>
-					<li><a class="hook" data-resource="detail-group-picks" href="detail.html?registered=true&tab=group-picks">Picks de grupo</a></li>
-					<li><a class="hook" data-resource="detail-scores" href="detail.html?registered=true&tab=scores">Marcadores</a></li>
-				</ul>
-			</div>
-			<div class="quinielas_dropdowns clearfix">
-				
-					<select>
-						<option>No se pueden copiar picks</option>
-					</select>
+	
+		</div><!-- dropdowns -->
 
-				
-					<select>
-						<option>Registros</option>
-					</select>
+		
+		<div id="insertPartidos" class="partidos clearfix radio_group">
 
-			
-			</div><!-- dropdowns -->
-
-			<section class="tab tab_picks partidos clearfix">
-				
-			</section> <!-- tab_picks -->
-			
-		</div><!-- content -->
-		{{> footer}}
-	</div><!-- container -->
+		</div><!-- partidos -->
+		
+		
+	</div><!-- content -->
+	

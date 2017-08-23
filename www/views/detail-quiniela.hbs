@@ -60,14 +60,15 @@
 			{{/ data.closed}}
 			{{^ data.closed}}
 				<div class="quinielas_dropdowns clearfix">
-						
-					<form id="pickActionsForm" action="" method="POST">
-						<select id="select_copy_picks" class="unique" name="select_copy_picks">
-							<option value="">Copiar picks</option>
-						</select>
-					</form>
+					{{# if data.entry_id}}
+						<form id="pickActionsForm" action="" method="POST">
+							<select id="select_copy_picks" class="unique" name="select_copy_picks">
+								<option value="">Copiar picks</option>
+							</select>
+						</form>
+					{{/ if}}
 				</div><!-- dropdowns -->
-
+				
 				<div id="insertPartidos" class="partidos clearfix radio_group">
 
 				</div><!-- partidos -->

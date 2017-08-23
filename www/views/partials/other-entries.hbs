@@ -1,3 +1,10 @@
-{{# data.other_entries}}
-	<option value="{{id}}">{{number}}/{{data.other_entries.length}}</option>
-{{/ data.other_entries}}
+{{# if other_entries}}
+	<form id="pickActionsForm" action="" method="POST">
+		<select id="select_other_entries" class="unique" name="select_other_entries">
+			<option value="">Mis registros</option>
+			{{# other_entries}}
+				<option value="{{id}}">{{number}}/{{ inc ../other_entries.length}}</option>
+			{{/ other_entries}}
+		</select>
+	</form>
+{{/ if}}

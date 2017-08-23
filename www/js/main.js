@@ -124,13 +124,14 @@
 				return (value*0.00005).toFixed(2);
 			});
 			Handlebars.registerHelper('lastFour', function(value) {
-				console.log(value.substring(value.length - 4));
 				return value.substring(value.length - 4);
 			});
 			Handlebars.registerHelper('cordova_full_path', function() {
 				return window.cordova_full_path;
 			});
-
+			Handlebars.registerHelper('inc', function(value) {
+				return value+1;
+			});
 		},
 		registerTemplate : function(name) {
 			$.ajax({
@@ -175,7 +176,6 @@
 			window.cordova_full_path = ( typeof cordova !== 'undefined' && cordova.file.applicationDirectory !== '' ) 
 									 ? cordova.file.applicationDirectory+'www/'
 									 : '';
-			console.log(device.platform);
 			if(typeof device !== 'undefined' && device.platform === 'browser')
 				cordova_full_path = '';
 			try{
@@ -189,8 +189,7 @@
 
 			try{
 				app.initPushNotifications();
-			}
-			catch(err){
+			} catch(err){
 				// app.toast("Push notifications error: "+JSON.stringify(err));
 			}
 			if (AndroidFullScreen) {
@@ -285,7 +284,6 @@
 			var saved 	= apiRH.save_user_data_clientside(user_data);
 			var extra_data = app.gatherEnvironment(null, "");
 			extra_data.selected_lobby = (filters) ? true : false;
-			console.log(extra_data);
 			$('#theHeader').fadeOut('fast', function(){
 				$(this).remove();
 			});
@@ -368,7 +366,6 @@
 			app.data_temp.selected_lobby = true;
 			app.data_temp.data.pools_unfiltered = app.data_temp.data.pools;
 			app.data_temp.data.pools 			= app.sort_pool();
-			console.log(app.data_temp);
 			$('#insertFeed').html( template(app.data_temp) )
 							.css({ "opacity": 0, "display": "block"})
 							.animate({ opacity: 1 }, 220);
@@ -401,14 +398,13 @@
 													 .animate(	{ opacity: 1 }, 220);
 			return;
 		},
-		render_detail : function(url, object_id, view){
+		render_detail : function(url, object_id, view, extra){
 			
 			if(!app.initialized) app.initialize();
 			setTimeout(function(){
 				app.showLoader();
-			}, 420);
+			}, 220);
 			app.check_or_renderContainer();
-			console.log("Rendering Detail");
 			var extra_data = apiRH.getRequest('api/pools/view/'+object_id+'.json', null);
 			extra_data = (extra_data.pool) ? extra_data.pool : [];
 			if(typeof extra_data.sport !== 'undefined' && typeof extra_data.sport.allow_ties !== 'undefined')
@@ -416,23 +412,27 @@
 			app.data_temp = app.gatherEnvironment(extra_data, "Detail");
 			var template_name = (view === 'postures') 	? 'detail-quiniela-registered'	: 'detail-quiniela';
 				template_name = (view === 'closed'	) 	? 'detail-quiniela-closed'		: template_name;
+				template_name = (view === 'live'	) 	? 'detail-quiniela-live'		: template_name;
 				template_name = (view === 'chat'	) 	? 'detail-quiniela-chat'		: template_name;
 				template_name = (view === 'prizes'	) 	? 'detail-quiniela-prizes'		: template_name;
 				template_name = (view === 'group-picks')? 'detail-quiniela-group-picks'	: template_name;
 				template_name = (view === 'scores'	) 	? 'detail-quiniela-scores'		: template_name;
+			console.log(app.data_temp);
+			if(extra)
+				app.data_temp.data.entry_id = extra;
 			setTimeout( function(){
 				return app.switchView(template_name, app.data_temp, '#exoskeleton', url, 'quiniela-'+view);
 			}, 220);
 		},
 		render_games : function(object_id){
 
-			var extra_data = apiRH.getRequest('api/pools/fixtures/'+object_id+'.json', null);
-			extra_data = (extra_data) ? extra_data : [];
-			console.log(extra_data);
+			apiRH._ajaxRequest('GET', 'api/pools/fixtures/'+object_id+'.json', null, 'json', true, app.render_games_callback);
+		},
+		render_games_callback : function(response){
+
+			extra_data = (response) ? response : [];
 			app.data_temp = app.gatherEnvironment(extra_data, null);
-			setTimeout(function(){
-				return app.render_partial('quiniela-games', app.data_temp, '#insertPartidos');
-			}, 220);
+			return app.render_partial('quiniela-games', app.data_temp, '#insertPartidos');
 		},
 		render_similar_picks : function(object_id){
 
@@ -445,51 +445,50 @@
 			}, 220);
 		},
 		render_other_entries : function(entry_id){
-
-			var extra_data = apiRH.getRequest('api/entries/get/'+entry_id+'.json', null);
-			extra_data = (extra_data) ? extra_data : [];
-			app.data_temp = app.gatherEnvironment(extra_data, null);
-			console.log(app.data_temp);
-			setTimeout(function(){
-				return app.render_partial('other-entries', app.data_temp, '#select_copy_picks');
-			}, 220);
+			return apiRH._ajaxRequest('GET', 'api/entries/get/'+entry_id+'.json', null, 'json', true, app.render_other_entries_callback);
+		},
+		render_other_entries_callback : function(response){
+			return app.render_partial('other-entries', response, '#lesDrops');
 		},
 		render_profile : function(url, tab){
 			if(!app.initialized) app.initialize();
 			setTimeout(function(){
 				app.showLoader();
-			}, 420);
+			}, 220);
 			app.check_or_renderContainer();
 			var extra_data = null;
-			var profile_title = '';
-			url = (typeof url === 'undefined') ? 'profile.html' : url;
-			tab = (typeof tab === 'undefined') ? 'method' : tab;
+			window.dynamic_params = [];
+			dynamic_params.profile_title = '';
+			dynamic_params.template = '';
+			dynamic_params.url = (typeof url === 'undefined') ? 'profile.html' : url;
+			dynamic_params._tab = (typeof tab === 'undefined') ? 'method' : tab;
 			app.data_temp = app.gatherEnvironment(null, "Perfil de usuario");
 			app.data_temp.selected_profile = true;
-			var template = '';
-			if(tab == 'documents'){
-				template = 'profile-documents';
-				profile_title = 'Mis documentos';
-				extra_data = apiRH.getRequest('api/documents/index.json', null);
+			if(dynamic_params._tab == 'documents'){
+				dynamic_params.template = 'profile-documents';
+				dynamic_params.profile_title = 'Mis documentos';
+				apiRH._ajaxRequest('GET', 'api/documents/index.json', null, 'json',true, app.render_profile_callback);
 			}else if(tab == 'withraw'){
-				template = 'profile-withraw'
-				profile_title = 'Retirar fondos';
+				dynamic_params.template = 'profile-withraw'
+				dynamic_params.profile_title = 'Retirar fondos';
 			}else if(tab == 'history'){
-				template = 'profile-history'
-				profile_title = 'Historial de transacciones';
-				extra_data = apiRH.getRequest('api/transactions/history.json', null);
+				dynamic_params.template = 'profile-history'
+				dynamic_params.profile_title = 'Historial de transacciones';
+				apiRH._ajaxRequest('GET', 'api/transactions/history.json', null, 'json',true, app.render_profile_callback);
 			}else if(tab == 'notifications'){
-				template = 'profile-notifications'
-				profile_title = 'Centro de notificaciones';
-				// extra_data = apiRH.getRequest('api/openpay_cards/index.json', null);
+				dynamic_params.template = 'profile-notifications'
+				dynamic_params.profile_title = 'Centro de notificaciones';
 			}else{
-				template = 'profile'
-				profile_title = 'Métodos de pago';
-				extra_data = apiRH.getRequest('api/openpay_cards/index.json', null);
+				dynamic_params.template = 'profile'
+				dynamic_params.profile_title = 'Métodos de pago';
+				apiRH._ajaxRequest('GET', 'api/openpay_cards/index.json', null, 'json',true, app.render_profile_callback);
 			}
-			app.data_temp = app.gatherEnvironment(extra_data, profile_title);
+		},
+		render_profile_callback : function(response){
+
+			app.data_temp = app.gatherEnvironment(response, dynamic_params.profile_title);
 			console.log(app.data_temp);
-			return app.switchView( template, app.data_temp, '#exoskeleton', url, 'user-profile '+tab );
+			return app.switchView( dynamic_params.template, app.data_temp, '#exoskeleton', dynamic_params.url, 'user-profile '+dynamic_params._tab );
 		},
 		render_add_funds : function(url){
 
@@ -670,7 +669,7 @@
 
 			/* Push to history if url is supplied */
 			if(recordUrl) window.history.pushState(newTemplate, newTemplate, '/'+recordUrl);
-			
+			console.log(newTemplate);
 			leNiceTransition = (typeof(leNiceTransition) != 'undefined') ? leNiceTransition : true;
 			var template = Handlebars.templates[newTemplate];
 			if(!template){

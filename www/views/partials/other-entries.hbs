@@ -1,9 +1,12 @@
 {{# if other_entries}}
 	<form id="pickActionsForm" action="" method="POST">
-		<select id="select_other_entries" class="unique" name="select_other_entries">
+		<select onchange="return app.render_detail('detail-quiniela.html?id='+$(this).val()+'&entry={{entry.pool_id}}', {{entry.pool_id}}, 'live', $(this).val() );" id="select_other_entries" class="unique" name="select_other_entries">
 			<option value="">Mis registros</option>
+			{{# entry}}
+				<option value="{{id}}" selected>Postura {{number}}/{{ inc ../other_entries.length}}</option>
+			{{/ entry}}
 			{{# other_entries}}
-				<option value="{{id}}">{{number}}/{{ inc ../other_entries.length}}</option>
+				<option value="{{id}}">Postura {{number}}/{{ inc ../other_entries.length}}</option>
 			{{/ other_entries}}
 		</select>
 	</form>

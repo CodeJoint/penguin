@@ -571,7 +571,6 @@
 
 			if(!response)
 				return false;
-			var temp = [];
 			var obj_temp = [];
 			response.sports.forEach(function(element, index){
 				if(element.name === 'Fútbol')
@@ -579,9 +578,10 @@
 				if(element.name === 'Baseball')
 					obj_temp['baseball'] = element;
 			});
-			temp.push(obj_temp);
-			app.appendView('filter-tournaments', temp.futbol, '#deporte_soccer');
-			app.appendView('filter-tournaments', temp.baseball, '#deporte_baseball');
+			console.log(obj_temp);
+			app.appendView('filter-tournaments', obj_temp.futbol, '#deporte_soccer');
+			app.appendView('filter-tournaments', obj_temp.baseball, '#deporte_baseball');
+			$('#deporte_baseball, #deporte_soccer').hide();
 		},
 		stack_filter : function( filter, value ){
 			/** Filters are stored in a global variable **/
@@ -638,7 +638,6 @@
 
 			if(typeof myFilters.sport !== 'undefined' )
 				myPool.forEach( function(element, index){
-					console.log(element.sport.id);
 					if( element.sport.id !== parseInt(myFilters.sport) )
 						delete myPool[index];
 				});

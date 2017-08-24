@@ -388,35 +388,33 @@
 			return;
 		},
 		render_detail : function(url, object_id, view, extra){
-			
+
 			if(!app.initialized) app.initialize();
-			setTimeout(function(){
-				app.showLoader();
-			}, 220);
+
 			app.check_or_renderContainer();
 			var extra_data = apiRH.getRequest('api/pools/view/'+object_id+'.json', null);
 			extra_data = (extra_data.pool) ? extra_data.pool : [];
 			if(typeof extra_data.sport !== 'undefined' && typeof extra_data.sport.allow_ties !== 'undefined')
 				window.sport_allow_ties = extra_data.sport.allow_ties;
 			app.data_temp = app.gatherEnvironment(extra_data, "Detail");
+				// Full view load
 			var template_name = (view === 'postures') 	? 'detail-quiniela-registered'	: 'detail-quiniela';
 				template_name = (view === 'closed'	) 	? 'detail-quiniela-closed'		: template_name;
 				template_name = (view === 'live'	) 	? 'detail-quiniela-live'		: template_name;
-				template_name = (view === 'chat'	) 	? 'detail-quiniela-chat'		: template_name;
-				template_name = (view === 'places'	) 	? 'scoreboard'					: template_name;
-				template_name = (view === 'prizes'	) 	? 'detail-quiniela-prizes'		: template_name;
-				template_name = (view === 'group-picks')? 'detail-quiniela-group-picks'	: template_name;
-				template_name = (view === 'scores'	) 	? 'detail-quiniela-scores'		: template_name;
-			console.log(app.data_temp);
+				// Partials tabs
+				template_name = (view === 'chat'	) 	? view	: template_name;
+				template_name = (view === 'places'	) 	? view	: template_name;
+				template_name = (view === 'prizes'	) 	? view	: template_name;
+				template_name = (view === 'group-picks')? view	: template_name;
+				template_name = (view === 'scoreboard') ? view	: template_name;
 			if(extra)
 				app.data_temp.data.entry_id = extra;
-			if(view === 'places' || view === 'prizes' || view === 'group-picks')
+			if(view === 'chat' || view === 'places' || view === 'prizes' || view === 'group-picks' || view === 'scoreboard')
 				return app.appendView(template_name, app.data_temp, '#tabContainer');
 			return app.switchView(template_name, app.data_temp, '#exoskeleton', url, 'quiniela-'+view);
 		},
 		render_games : function(object_id){
-
-			apiRH._ajaxRequest('GET', 'api/pools/fixtures/'+object_id+'.json', null, 'json', true, app.render_games_callback);
+			return apiRH._ajaxRequest('GET', 'api/pools/fixtures/'+object_id+'.json', null, 'json', true, app.render_games_callback);
 		},
 		render_games_callback : function(response){
 
@@ -425,14 +423,13 @@
 			return app.render_partial('quiniela-games', app.data_temp, '#insertPartidos');
 		},
 		render_similar_picks : function(object_id){
+			return apiRH._ajaxRequest('GET', 'api/entries/similarByPool/'+object_id+'.json', null, 'json', true, app.similar_picks_callback);
+		},
+		similar_picks_callback : function(response){
 
-			var extra_data = apiRH.getRequest('api/entries/similarByPool/'+object_id+'.json', null);
-			extra_data = (extra_data) ? extra_data : [];
+			var extra_data = (response) ? response : [];
 			app.data_temp = app.gatherEnvironment(extra_data, null);
-			console.log(app.data_temp);
-			setTimeout(function(){
-				return app.render_partial('similar-picks', app.data_temp, '#select_copy_picks');
-			}, 220);
+			return app.render_partial('similar-picks', app.data_temp, '#select_copy_picks');
 		},
 		render_other_entries : function(entry_id){
 			return apiRH._ajaxRequest('GET', 'api/entries/get/'+entry_id+'.json', null, 'json', true, app.render_other_entries_callback);
@@ -578,7 +575,6 @@
 				if(element.name === 'Baseball')
 					obj_temp['baseball'] = element;
 			});
-			console.log(obj_temp);
 			app.appendView('filter-tournaments', obj_temp.futbol, '#deporte_soccer');
 			app.appendView('filter-tournaments', obj_temp.baseball, '#deporte_baseball');
 			$('#deporte_baseball, #deporte_soccer').hide();
@@ -726,8 +722,7 @@
 													 .animate(	{
 																	'margin-top': 0
 																}, 420, 'swing');
-			return;
-			// return setTimeout(function(){ }, 220);
+			return app.hideLoader();
 		},
 		showLoader: function(){
 			$('#spinner').show();

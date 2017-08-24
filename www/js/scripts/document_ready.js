@@ -101,15 +101,17 @@ window.initializeEvents = function(){
 				if( resource == "detail-live" )
 					return app.render_detail( resource_href, resource_object, 'live', resource_extra );
 				if( resource == "detail-postures" )
-					return app.render_detail( resource_href, resource_object );
+					return app.render_detail( resource_href, resource_object, 'postures', resource_extra  );
 				if( resource == "detail-places" )
 					return app.render_detail( resource_href, resource_object, 'places', resource_extra );
 				if( resource == "detail-chat" )
-					return app.render_detail( resource_href, resource_object );
+					return app.render_detail( resource_href, resource_object, 'chat', resource_extra  );
 				if( resource == "detail-prizes" )
-					return app.render_detail( resource_href, resource_object );
+					return app.render_detail( resource_href, resource_object, 'prizes', resource_extra  );
 				if( resource == "detail-group-picks" )
-					return app.render_detail( resource_href, resource_object );
+					return app.render_detail( resource_href, resource_object, 'group-picks', resource_extra  );
+				if( resource == "detail-scores" )
+					return app.render_detail( resource_href, resource_object, 'scoreboard', resource_extra  );
 				
 				/*** User ***/
 				if( resource == "profile-methods" )
@@ -396,10 +398,12 @@ window.initializeEvents = function(){
 			if($('#detailQuiniela').length){
 
 				var gameId = $('#detailQuiniela').data('id');
+				var entryId = $('#detailQuiniela').data('extra');
+				console.log(entryId);
 				$('.menu li').removeClass('selected');
+
 				$('#reg_into_game').on('click', function(){
-					console.log("Lorem");
-					$('#registerNow').show();
+					$('#registerNow').fadeIn('fast');
 				});
 
 				$('#num_entries').on('change', function(){
@@ -412,18 +416,14 @@ window.initializeEvents = function(){
 				// $('#sendRegister').on('click',function(){
 				// 	$('#registerNow').fadeOut('fast');
 				// });
+
 				/** Render quiniela games and picks selectors **/
 				app.render_games(gameId);
 
 				/** Render similar picks **/
-				setTimeout(function(){
-					app.render_similar_picks(gameId);
-				}, 220);
-				
-				/** Render similar picks **/
-				setTimeout(function(){
-					app.render_other_entries(gameId);
-				}, 220);
+				if(!entryId)
+					return app.render_similar_picks(gameId);
+				return app.render_similar_picks(entryId);
 
 				$('#registerToQuinielaForm').validate({
 					rules:{
@@ -452,10 +452,21 @@ window.initializeEvents = function(){
 			
 			if($('#detailQuinielaRegistered').length){
 				
-				var gameId = $('#detailQuinielaRegistered').data('id');
+				var gameId 	= $('#detailQuinielaRegistered').data('id');
 				var entryId = $('#detailQuinielaRegistered').data('entry');
+				$('.missing_info').each(function(){
+					$(this).data('extra', entryId)
+							.removeClass('missing_info');
+				});
 				$('.menu li').removeClass('selected');
 				$('#filterComponent').hide();
+
+				$('.tabs_quiniela a').on('click', function(e){
+					$(e.target).parent().siblings().each(function(index,element){
+						$(element).removeClass('selected');
+					});
+					$(e.target).parent().addClass('selected');
+				});
 
 				/** Call Render quiniela games and picks selectors **/
 				app.render_games(gameId);
@@ -463,25 +474,6 @@ window.initializeEvents = function(){
 				/** Call Render similar picks **/
 				app.render_other_entries(entryId);
 
-				$('#registerToQuinielaForm').validate({
-					rules:{
-						pool_id	 : "required",
-						num_entries : "required"
-					},
-					messages:{
-						pool_id	 : "Identificador de quiniela no válido",
-						num_entries : "Especifica el número de registros"
-					},
-					submitHandler:function( form, event ){
-						event.preventDefault();
-						app.showLoader();
-						var entry_data	= app.getFormData(form, 'object');
-						console.log(entry_data);
-						apiRH.registerEntry(entry_data);
-						return false;
-					}
-				});
-				app.hideLoader();
 				return initCountdownTimers();
 
 			} // END detailQuinielaRegistered scope
@@ -600,7 +592,7 @@ window.initializeEvents = function(){
 						app.showLoader();
 						var deposit_data = app.getFormData(form, 'object');
 						var myResponse = apiRH.depositStores(deposit_data);
-						console.log(myResponse);
+						console.log(JSON.stringify(myResponse));
 						if(!myResponse.success || !myResponse.payment_method){
 							app.toast("No se ha podido procesar tu pedido, por favor intenta nuevamente.")
 						}

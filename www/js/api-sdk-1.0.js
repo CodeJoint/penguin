@@ -235,7 +235,7 @@ function requestHandlerAPI(){
 		 * @see OpenPay
 		 */
 		this.depositStores = 	function(deposit_info){
-									var response = apiRH.makeRequest('api/users/depositConvenience.json', deposit_info);
+									var response = apiRH.makeRequest('api/users/depositConvenience.json', deposit_info, null, null, 'json');
 									return response;
 								};
 
@@ -304,6 +304,7 @@ function requestHandlerAPI(){
 					myHeaders['Content-Type'] = (typeof contentType === 'undefined' || contentType === 'json' ) ? 'application/x-www-form-urlencoded' : apiRH.headers['Content-Type'];
 				if(myHeaders)
 					options.headers = myHeaders;
+				console.log(JSON.stringify(myHeaders));
 				$.ajax(options)
 				 .always( function(response){
 					setTimeout(function(){

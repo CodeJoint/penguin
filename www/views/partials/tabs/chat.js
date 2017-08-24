@@ -1,0 +1,1 @@
+!function(){var a=Handlebars.template,t=Handlebars.templates=Handlebars.templates||{};t["chat"]=a({compiler:[7,">= 4.0.0"],main:function(a,t,e,n,s){return'\t<div class="tab tab_chat clearfix">\n\t\t<p>Aqui va el chat component</p>\n\t</div><!-- posiciones -->'},useData:!0})}();

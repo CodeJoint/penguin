@@ -1,14 +1,148 @@
 
-	<div class="container clearfix">
-		{{> header}}
-		<div id="detailQuiniela" data-id="{{data.id}}" class="content quiniela_single clearfix">
-			<a class="link_wrapper">
-				<div class="quiniela
-				{{# if data.upcoming}}quiniela_open{{/ if}} 
-				{{# if data.live}}quiniela_live{{/ if}} 
-				{{# if_eq data.status 'live'}}quiniela_live{{/ if_eq}} 
-				{{# if data.closed}}quiniela_closed{{/ if}} {{data.sport.name}}
-				{{# if_eq data.format "natural" }} natural {{/ if_eq }} garantizado clearfix">
+	<div id="detailQuiniela" data-id="{{data.id}}" class="content quiniela_single clearfix">
+		<a class="link_wrapper">
+			<div class="quiniela
+			{{# if data.upcoming}}quiniela_open{{/ if}} 
+			{{# if data.live}}quiniela_live{{/ if}} 
+			{{# if_eq data.status 'live'}}quiniela_live{{/ if_eq}} 
+			{{# if data.closed}}quiniela_closed{{/ if}} {{data.sport.name}}
+			{{# if_eq data.format "natural" }} natural {{/ if_eq }} garantizado clearfix">
+				<div class="quiniela_header clearfix">
+					<div class="quiniela_iconos clearfix">
+						{{# if_eq data.point_format "line" }}
+							<img src="{{cordova_full_path}}images/linea.png">
+						{{/ if_eq }}
+						{{# if_eq data.point_format "natural" }}
+							<img src="{{cordova_full_path}}images/natural.png">
+						{{/ if_eq }}
+						<img src="{{cordova_full_path}}images/{{data.sport.icon}}.png">
+					</div><!-- iconos -->
+					<h2>{{data.name_replaced}}</h2>
+				</div><!-- quiniela_header -->
+				<div class="quiniela_content clearfix">
+
+					<div class="quiniela_info clearfix">
+						<span class="registros">REGISTROS: {{data.entry_count}}</span>
+						<span {{# if_less data.time_left 86400}}data-countdown="{{data.deadline_tz}}"{{/ if_less }} class="cierre">CIERRE: {{^ if_less data.time_left 86400}}{{formatDate data.deadline_tz 'lll'}}{{/ if_less }}</span>
+						{{# data.limited_capacity}}
+							<span class="limite">Limitado a {{data.max_entries}} entradas</span>
+						{{/ data.limited_capacity}}
+						{{# data.closed}}
+							<span class="limite">FINALIZÓ</span>
+						{{/ data.closed}}
+					</div><!-- quiniela_info -->
+					<div class="quiniela_entrada clearfix">
+						<span class="titulo">ENTRADA</span>
+						{{# if_eq data.entry_currency 'real' }}
+							<img src="{{cordova_full_path}}images/billecoin.png">
+						{{/ if_eq }}
+						{{# if_eq data.entry_currency 'pickcoin' }}
+							<img src="{{cordova_full_path}}images/pickcoin.png">
+						{{/ if_eq }}
+						<span class="number">${{ formatCurrency data.entry_fee}}</span>
+					</div>
+					<div class="quiniela_bolsa clearfix">
+						<span class="titulo">BOLSA</span>
+						{{# if data.guaranteed_prize}}
+							<img src="{{cordova_full_path}}images/garantizado.png">
+						{{/ if }}
+						<span class="number">${{ formatCurrency data.available}}</span>
+					</div>
+				</div><!-- quiniela_content -->
+			</div><!-- quiniela -->
+		</a><!-- link_wrapper -->
+		{{^ data.closed}}
+			<div class="registro_quiniela clearfix">
+				<a id="reg_into_game"><img src="{{cordova_full_path}}images/registrarse.png"></a>
+			</div><!-- opciones registro -->
+		{{/ data.closed}}
+		{{^ data.closed}}
+			<div class="quinielas_dropdowns clearfix">
+				<form id="pickActionsForm" action="" method="POST">
+					<select id="select_copy_picks" class="unique" name="select_copy_picks">
+						<option value="">Copiar picks</option>
+					</select>
+				</form>
+			</div><!-- dropdowns -->
+			
+			<div id="insertPartidos" class="partidos clearfix radio_group">
+
+			</div><!-- partidos -->
+			
+			{{# if data.tiebreakers}}
+				<div class="desempates clearfix">
+					<h3>DESEMPATE</h3>
+						{{# data.tiebreakers}}
+							{{# if_eq type 'score'}}
+								<div class="desempate desempate_uno clearfix">
+									
+									<div class="desempate_left">
+										<span>{{label}}</span>
+									</div>
+									<div class="desempate_input">
+										<span>LOC</span>
+										<input type="tel" name="desempate_uno_local">
+										<span>-</span>
+										<input type="tel" name="desempate_uno_visitante">
+										<span>VIS</span>
+									</div><!-- desempate_input -->
+								
+								</div><!-- desempate_uno -->
+							{{/ if_eq }}
+
+							{{# if_eq type 'number'}}
+								<div class="desempate desempate_dos clearfix">
+									<div class="desempate_left">
+										<span>{{label}}</span>
+									</div>
+									<div class="desempate_input">
+										<input type="tel" name="desempate_dos_minuto">
+									</div><!-- desempate_input -->
+								</div><!-- desempate_dos -->
+							{{/ if_eq }}
+							
+							{{# if_eq type 'week_goals'}}
+								<div class="desempate desempate_dos clearfix">
+									<div class="desempate_left">
+										<span>{{label}}</span>
+									</div>
+									<div class="desempate_input">
+										<input type="tel" name="desempate_dos_minuto">
+									</div><!-- desempate_input -->
+								</div><!-- desempate_dos -->
+							{{/ if_eq }}
+
+							{{# if_eq type 'other'}}
+								<div class="desempate desempate_tres clearfix">
+									<div class="desempate_left">
+										<span>{{label}}</span>
+									</div>
+									<div class="desempate_input">
+										<span>SI</span>
+										<input type="radio" name="desempate_tres" value="si">
+										<span>NO</span>
+										<input type="radio" name="desempate_tres" value="no">
+									</div><!-- desempate_input -->
+								</div><!-- desempate_tres -->
+							{{/ if_eq }}
+						{{/ data.tiebreakers}}
+
+				</div><!-- dempates -->
+			{{/ if }}
+
+		{{/ data.closed}}
+		
+		{{# data.closed}}
+
+			<div id="insertResults" class="results clearfix">
+				Inserte resultados
+			</div><!-- partidos -->
+
+		{{/ data.closed}}
+	
+		{{^ data.closed}}		
+			<div id="registerNow" class="backed_modal clearfix" style="display: none;">
+				<div class="quiniela_registro clearfix">
 					<div class="quiniela_header clearfix">
 						<div class="quiniela_iconos clearfix">
 							{{# if_eq data.point_format "line" }}
@@ -20,234 +154,93 @@
 							<img src="{{cordova_full_path}}images/{{data.sport.icon}}.png">
 						</div><!-- iconos -->
 						<h2>{{data.name_replaced}}</h2>
+						{{# if_eq data.entry_currency 'real' }}
+							{{# if_less me.balanceReal data.entry_fee}}
+								<p class="error_inline clearfix">No tienes saldo suficiente para registrarte en esta quiniela.</p>
+							{{/ if_less}}
+						{{/ if_eq }}
+						{{# if_eq data.entry_currency 'pickcoin' }}
+							{{# if_less me.balancePc data.entry_fee}}
+								<p class="error_inline clearfix">No tienes saldo suficiente para registrarte en esta quiniela.</p>
+							{{/ if_less }}
+						{{/ if_eq }}
 					</div><!-- quiniela_header -->
-					<div class="quiniela_content clearfix">
 
-						<div class="quiniela_info clearfix">
-							<span class="registros">REGISTROS: {{data.entry_count}}</span>
-							<span {{# if_less data.time_left 86400}}data-countdown="{{data.deadline_tz}}"{{/ if_less }} class="cierre">CIERRE: {{^ if_less data.time_left 86400}}{{formatDate data.deadline_tz 'lll'}}{{/ if_less }}</span>
-							{{# data.limited_capacity}}
-								<span class="limite">Limitado a {{data.max_entries}} entradas</span>
-							{{/ data.limited_capacity}}
-							{{# data.closed}}
-								<span class="limite">FINALIZÓ</span>
-							{{/ data.closed}}
-						</div><!-- quiniela_info -->
-						<div class="quiniela_entrada clearfix">
-							<span class="titulo">ENTRADA</span>
-							{{# if_eq data.entry_currency 'real' }}
-								<img src="{{cordova_full_path}}images/billecoin.png">
-							{{/ if_eq }}
-							{{# if_eq data.entry_currency 'pickcoin' }}
-								<img src="{{cordova_full_path}}images/pickcoin.png">
-							{{/ if_eq }}
-							<span class="number">${{ formatCurrency data.entry_fee}}</span>
-						</div>
-						<div class="quiniela_bolsa clearfix">
-							<span class="titulo">BOLSA</span>
-							{{# if data.guaranteed_prize}}
-								<img src="{{cordova_full_path}}images/garantizado.png">
-							{{/ if }}
-							<span class="number">${{ formatCurrency data.available}}</span>
-						</div>
-					</div><!-- quiniela_content -->
-				</div><!-- quiniela -->
-			</a><!-- link_wrapper -->
-			{{^ data.closed}}
-				<div class="registro_quiniela clearfix">
-					<a id="reg_into_game"><img src="{{cordova_full_path}}images/registrarse.png"></a>
-				</div><!-- opciones registro -->
-			{{/ data.closed}}
-			{{^ data.closed}}
-				<div class="quinielas_dropdowns clearfix">
-					{{# if data.entry_id}}
-						<form id="pickActionsForm" action="" method="POST">
-							<select id="select_copy_picks" class="unique" name="select_copy_picks">
-								<option value="">Copiar picks</option>
+					<form id="registerToQuinielaForm" method="POST" action="" >
+						<input type="hidden" name="pool_id" id="pool_id" value="{{data.id}}">
+						<input type="hidden" name="entry_id" id="entry_id" value="">
+						<div class="no_registros clearfix">
+							<span class="pregunta">¿Cuántos registros quieres para esta quiniela?</span>
+							<select name="num_entries" id="num_entries">
+								<option value="1" >1</option>
+								<option value="2" >2</option>
+								<option value="3" >3</option>
+								<option value="4" >4</option>
+								<option value="5" >5</option>
+								<option value="6" >6</option>
+								<option value="7" >7</option>
+								<option value="8" >8</option>
 							</select>
-						</form>
-					{{/ if}}
-				</div><!-- dropdowns -->
-				
-				<div id="insertPartidos" class="partidos clearfix radio_group">
-
-				</div><!-- partidos -->
-				
-				{{# if data.tiebreakers}}
-					<div class="desempates clearfix">
-						<h3>DESEMPATE</h3>
-							{{# data.tiebreakers}}
-								{{# if_eq type 'score'}}
-									<div class="desempate desempate_uno clearfix">
-										
-										<div class="desempate_left">
-											<span>{{label}}</span>
-										</div>
-										<div class="desempate_input">
-											<span>LOC</span>
-											<input type="tel" name="desempate_uno_local">
-											<span>-</span>
-											<input type="tel" name="desempate_uno_visitante">
-											<span>VIS</span>
-										</div><!-- desempate_input -->
-									
-									</div><!-- desempate_uno -->
+						</div><!-- no_registros -->
+						<div class="copiar_picks clearfix">
+							<span class="pregunta">Utilizar los picks elegidos para todos los registros</span>
+							<input type="checkbox" name="use_same_picks" value="1">
+						</div><!-- no_registros -->
+						<div class="balance clearfix">
+							<div class="disponible clearfix">
+								<p>Balance disponible:</p>
+								{{# if_eq data.entry_currency 'real' }}
+									<div class="disponible_dinero clearfix">
+										<img src="{{cordova_full_path}}images/billete.png">
+										<p>${{ formatCurrency me.balanceReal}} MXN</p>
+									</div><!-- disponible dinero -->
 								{{/ if_eq }}
-
-								{{# if_eq type 'number'}}
-									<div class="desempate desempate_dos clearfix">
-										<div class="desempate_left">
-											<span>{{label}}</span>
-										</div>
-										<div class="desempate_input">
-											<input type="tel" name="desempate_dos_minuto">
-										</div><!-- desempate_input -->
-									</div><!-- desempate_dos -->
+								{{# if_eq data.entry_currency 'pickcoin' }}
+									<div class="disponible_coins">
+										<img src="{{cordova_full_path}}images/pickcoin.png">
+										<p>{{ formatCurrency me.balancePc}}</p>
+									</div><!-- disponible coins -->
 								{{/ if_eq }}
-								
-								{{# if_eq type 'week_goals'}}
-									<div class="desempate desempate_dos clearfix">
-										<div class="desempate_left">
-											<span>{{label}}</span>
-										</div>
-										<div class="desempate_input">
-											<input type="tel" name="desempate_dos_minuto">
-										</div><!-- desempate_input -->
-									</div><!-- desempate_dos -->
+							</div><!-- disponible -->
+							<div class="descontaran clearfix">
+								<p>Se descontarán:</p>
+								{{# if_eq data.entry_currency 'real' }}
+									<div class="descontaran_dinero">
+										<img src="{{cordova_full_path}}images/billete.png">
+										<p data-realbalance="{{ formatCurrency me.balanceReal}}">${{ formatCurrency data.entry_fee}} MXN</p>
+									</div><!-- descontaran dinero -->
 								{{/ if_eq }}
-
-								{{# if_eq type 'other'}}
-									<div class="desempate desempate_tres clearfix">
-										<div class="desempate_left">
-											<span>{{label}}</span>
-										</div>
-										<div class="desempate_input">
-											<span>SI</span>
-											<input type="radio" name="desempate_tres" value="si">
-											<span>NO</span>
-											<input type="radio" name="desempate_tres" value="no">
-										</div><!-- desempate_input -->
-									</div><!-- desempate_tres -->
+								{{# if_eq data.entry_currency 'pickcoin' }}
+									<div class="descontaran_coins">
+										<img src="{{cordova_full_path}}images/pickcoin.png">
+										<p data-pcbalance="{{ formatCurrency me.balancePc}}">{{ formatCurrency data.entry_fee}}</p>
+									</div><!-- descontaran coins -->
 								{{/ if_eq }}
-							{{/ data.tiebreakers}}
-
-					</div><!-- dempates -->
-				{{/ if }}
-
-			{{/ data.closed}}
-			
-			{{# data.closed}}
-
-				<div id="insertResults" class="results clearfix">
-					Inserte resultados
-				</div><!-- partidos -->
-
-			{{/ data.closed}}
-		
-			{{^ data.closed}}		
-				<div id="registerNow" class="backed_modal clearfix" style="display: none;">
-					<div class="quiniela_registro clearfix">
-						<div class="quiniela_header clearfix">
-							<div class="quiniela_iconos clearfix">
-								{{# if_eq data.point_format "line" }}
-									<img src="{{cordova_full_path}}images/linea.png">
+							</div><!-- descontaran -->
+							<div class="total clearfix">
+								<p>Entrada:</p>
+								{{# if_eq data.entry_currency 'real' }}
+									<div class="total_dinero">
+										<img src="{{cordova_full_path}}images/billete.png">
+										<p>${{ formatCurrency data.real_entry_fee}} MXN + ${{ formatCurrency data.commission_fee}} comisión</p>
+									</div><!-- total dinero -->
 								{{/ if_eq }}
-								{{# if_eq data.point_format "natural" }}
-									<img src="{{cordova_full_path}}images/natural.png">
+								{{# if_eq data.entry_currency 'pickcoin' }}
+									<div class="total_coins">
+										<img src="{{cordova_full_path}}images/pickcoin.png">
+										<p>{{ formatCurrency data.real_entry_fee}} + {{ formatCurrency data.commission_fee}} comisión</p>
+									</div><!-- total coins -->
 								{{/ if_eq }}
-								<img src="{{cordova_full_path}}images/{{data.sport.icon}}.png">
-							</div><!-- iconos -->
-							<h2>{{data.name_replaced}}</h2>
-							{{# if_eq data.entry_currency 'real' }}
-								{{# if_less me.balanceReal data.entry_fee}}
-									<p class="error_inline clearfix">No tienes saldo suficiente para registrarte en esta quiniela.</p>
-								{{/ if_less}}
-							{{/ if_eq }}
-							{{# if_eq data.entry_currency 'pickcoin' }}
-								{{# if_less me.balancePc data.entry_fee}}
-									<p class="error_inline clearfix">No tienes saldo suficiente para registrarte en esta quiniela.</p>
-								{{/ if_less }}
-							{{/ if_eq }}
-						</div><!-- quiniela_header -->
+							</div><!-- total -->
+						</div><!-- balance -->
 
-						<form id="registerToQuinielaForm" method="POST" action="" >
-							<input type="hidden" name="pool_id" id="pool_id" value="{{data.id}}">
-							<input type="hidden" name="entry_id" id="entry_id" value="">
-							<div class="no_registros clearfix">
-								<span class="pregunta">¿Cuántos registros quieres para esta quiniela?</span>
-								<select name="num_entries" id="num_entries">
-									<option value="1" >1</option>
-									<option value="2" >2</option>
-									<option value="3" >3</option>
-									<option value="4" >4</option>
-									<option value="5" >5</option>
-									<option value="6" >6</option>
-									<option value="7" >7</option>
-									<option value="8" >8</option>
-								</select>
-							</div><!-- no_registros -->
-							<div class="copiar_picks clearfix">
-								<span class="pregunta">Utilizar los picks elegidos para todos los registros</span>
-								<input type="checkbox" name="use_same_picks" value="1">
-							</div><!-- no_registros -->
-							<div class="balance clearfix">
-								<div class="disponible clearfix">
-									<p>Balance disponible:</p>
-									{{# if_eq data.entry_currency 'real' }}
-										<div class="disponible_dinero clearfix">
-											<img src="{{cordova_full_path}}images/billete.png">
-											<p>${{ formatCurrency me.balanceReal}} MXN</p>
-										</div><!-- disponible dinero -->
-									{{/ if_eq }}
-									{{# if_eq data.entry_currency 'pickcoin' }}
-										<div class="disponible_coins">
-											<img src="{{cordova_full_path}}images/pickcoin.png">
-											<p>{{ formatCurrency me.balancePc}}</p>
-										</div><!-- disponible coins -->
-									{{/ if_eq }}
-								</div><!-- disponible -->
-								<div class="descontaran clearfix">
-									<p>Se descontarán:</p>
-									{{# if_eq data.entry_currency 'real' }}
-										<div class="descontaran_dinero">
-											<img src="{{cordova_full_path}}images/billete.png">
-											<p data-realbalance="{{ formatCurrency me.balanceReal}}">${{ formatCurrency data.entry_fee}} MXN</p>
-										</div><!-- descontaran dinero -->
-									{{/ if_eq }}
-									{{# if_eq data.entry_currency 'pickcoin' }}
-										<div class="descontaran_coins">
-											<img src="{{cordova_full_path}}images/pickcoin.png">
-											<p data-pcbalance="{{ formatCurrency me.balancePc}}">{{ formatCurrency data.entry_fee}}</p>
-										</div><!-- descontaran coins -->
-									{{/ if_eq }}
-								</div><!-- descontaran -->
-								<div class="total clearfix">
-									<p>Entrada:</p>
-									{{# if_eq data.entry_currency 'real' }}
-										<div class="total_dinero">
-											<img src="{{cordova_full_path}}images/billete.png">
-											<p>${{ formatCurrency data.real_entry_fee}} MXN + ${{ formatCurrency data.commission_fee}} comisión</p>
-										</div><!-- total dinero -->
-									{{/ if_eq }}
-									{{# if_eq data.entry_currency 'pickcoin' }}
-										<div class="total_coins">
-											<img src="{{cordova_full_path}}images/pickcoin.png">
-											<p>{{ formatCurrency data.real_entry_fee}} + {{ formatCurrency data.commission_fee}} comisión</p>
-										</div><!-- total coins -->
-									{{/ if_eq }}
-								</div><!-- total -->
-							</div><!-- balance -->
+						<div class="botones clarfix">
+							<input type="submit" id="sendRegister">
+						</div>
+					</form>
+				</div><!-- quiniela-registro -->
 
-							<div class="botones clarfix">
-								<input type="submit" id="sendRegister">
-							</div>
-						</form>
-					</div><!-- quiniela-registro -->
-
-				</div><!-- quiniela_registro_overlay -->
-			{{/ data.closed}}
-			<a id="savePicks" class="green_button">Guardar picks</a>
-		</div><!-- content -->
-		{{> footer}}
-	</div><!-- container -->
-	{{> filters}}
+			</div><!-- quiniela_registro_overlay -->
+		{{/ data.closed}}
+		<a id="savePicks" class="green_button">Guardar picks</a>
+	</div><!-- content -->

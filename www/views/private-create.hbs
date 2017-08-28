@@ -6,10 +6,10 @@
 				<a class="selected" >Crear quiniela privada</a>
 			</div>
 			<div class="crear_quiniela detalles">
-				<form id="busqueda_quinielas">
+				<form id="searchPrivates" method="POST" action="">
 					<h3>DETALLES</h3>
-					<input type="text" placeholder="Nombre de la quiniela">
-					<input type="text" placeholder="Código de la quiniela">
+					<input name="name" type="text" placeholder="Nombre de la quiniela">
+					<input name="password" type="text" placeholder="Código de la quiniela">
 					<h3>DEPORTE</h3>
 					<div class="deportes_select_crear clearfix">
 						<ul class="clearfix">
@@ -19,120 +19,118 @@
 							<li class="selected">Champions League</li>
 						</ul>
 					</div>
-					<select>
-						<option>Formato</option>
-						<option>Sin spread (Natural)</option>
+					<select id="format_select" name="point_format">
+						<option value="">Formato</option>
+						<option value="natural">Sin spread (Natural)</option>
 					</select>
-					<select>
-						<option>Duración</option>
-						<option>Siguiente jornada</option>
-						<option>Toda la temporada</option>
+					<select id="duration_select" name="type">
+						<option value="">Duración</option>
+						<option value="week">Siguiente jornada</option>
+						<option value="full">Toda la temporada</option>
 					</select>
 					<div class="checkbox_crear clearfix">
-						<input type="checkbox">
+						<input name="use_tibreakers" value="true" type="checkbox">
 						<label>Usar desempates</label>
 					</div>
 					<div class="checkbox_crear clearfix">
-						<input type="checkbox">
+						<input name="autopicks" value="true" type="checkbox">
 						<label>Picks automáticos</label>
 					</div>
-					<h3>PARTIDOS</h3>
-					<div class="partidos_crea clearfix">
-						<div class="partido clarfix">
-							<div class="partido_header clearfix">
-								<span>#1</span>
-								<span class="fecha">28.feb.17 / 12:34</span>
+					<div style="display: none;">
+						
+						<h3>PARTIDOS</h3>
+						<div class="partidos_crea clearfix">
+							<div class="partido clarfix">
+								<div class="partido_header clearfix">
+									<span>#1</span>
+									<span class="fecha">28.feb.17 / 12:34</span>
+								</div>
+								<div class="partido_oponentes clearfix">
+									<p>LOC</p><span>VS</span><p>VIS</p>
+								</div>
 							</div>
-							<div class="partido_oponentes clearfix">
-								<p>LOC</p><span>VS</span><p>VIS</p>
+							<div class="partido clarfix">
+								<div class="partido_header clearfix">
+									<span>#1</span>
+									<span class="fecha">28.feb.17 / 12:34</span>
+								</div>
+								<div class="partido_oponentes clearfix">
+									<p>LOC</p><span>VS</span><p>VIS</p>
+								</div>
 							</div>
-						</div>
-						<div class="partido clarfix">
-							<div class="partido_header clearfix">
-								<span>#1</span>
-								<span class="fecha">28.feb.17 / 12:34</span>
+							<div class="partido clarfix">
+								<div class="partido_header clearfix">
+									<span>#1</span>
+									<span class="fecha">28.feb.17 / 12:34</span>
+								</div>
+								<div class="partido_oponentes clearfix">
+									<p>LOC</p><span>VS</span><p>VIS</p>
+								</div>
 							</div>
-							<div class="partido_oponentes clearfix">
-								<p>LOC</p><span>VS</span><p>VIS</p>
+							<div class="partido clarfix">
+								<div class="partido_header clearfix">
+									<span>#1</span>
+									<span class="fecha">28.feb.17 / 12:34</span>
+								</div>
+								<div class="partido_oponentes clearfix">
+									<p>LOC</p><span>VS</span><p>VIS</p>
+								</div>
 							</div>
-						</div>
-						<div class="partido clarfix">
-							<div class="partido_header clearfix">
-								<span>#1</span>
-								<span class="fecha">28.feb.17 / 12:34</span>
+							<div class="partido clarfix">
+								<div class="partido_header clearfix">
+									<span>#1</span>
+									<span class="fecha">28.feb.17 / 12:34</span>
+								</div>
+								<div class="partido_oponentes clearfix">
+									<p>LOC</p><span>VS</span><p>VIS</p>
+								</div>
 							</div>
-							<div class="partido_oponentes clearfix">
-								<p>LOC</p><span>VS</span><p>VIS</p>
+							<div class="partido clarfix">
+								<div class="partido_header clearfix">
+									<span>#1</span>
+									<span class="fecha">28.feb.17 / 12:34</span>
+								</div>
+								<div class="partido_oponentes clearfix">
+									<p>LOC</p><span>VS</span><p>VIS</p>
+								</div>
 							</div>
-						</div>
-						<div class="partido clarfix">
-							<div class="partido_header clearfix">
-								<span>#1</span>
-								<span class="fecha">28.feb.17 / 12:34</span>
+							<div class="partido clarfix">
+								<div class="partido_header clearfix">
+									<span>#1</span>
+									<span class="fecha">28.feb.17 / 12:34</span>
+								</div>
+								<div class="partido_oponentes clearfix">
+									<p>LOC</p><span>VS</span><p>VIS</p>
+								</div>
 							</div>
-							<div class="partido_oponentes clearfix">
-								<p>LOC</p><span>VS</span><p>VIS</p>
+							<div class="partido clarfix">
+								<div class="partido_header clearfix">
+									<span>#1</span>
+									<span class="fecha">28.feb.17 / 12:34</span>
+								</div>
+								<div class="partido_oponentes clearfix">
+									<p>LOC</p><span>VS</span><p>VIS</p>
+								</div>
 							</div>
-						</div>
-						<div class="partido clarfix">
-							<div class="partido_header clearfix">
-								<span>#1</span>
-								<span class="fecha">28.feb.17 / 12:34</span>
+							<div class="partido clarfix">
+								<div class="partido_header clearfix">
+									<span>#1</span>
+									<span class="fecha">28.feb.17 / 12:34</span>
+								</div>
+								<div class="partido_oponentes clearfix">
+									<p>LOC</p><span>VS</span><p>VIS</p>
+								</div>
 							</div>
-							<div class="partido_oponentes clearfix">
-								<p>LOC</p><span>VS</span><p>VIS</p>
-							</div>
-						</div>
-						<div class="partido clarfix">
-							<div class="partido_header clearfix">
-								<span>#1</span>
-								<span class="fecha">28.feb.17 / 12:34</span>
-							</div>
-							<div class="partido_oponentes clearfix">
-								<p>LOC</p><span>VS</span><p>VIS</p>
-							</div>
-						</div>
-						<div class="partido clarfix">
-							<div class="partido_header clearfix">
-								<span>#1</span>
-								<span class="fecha">28.feb.17 / 12:34</span>
-							</div>
-							<div class="partido_oponentes clearfix">
-								<p>LOC</p><span>VS</span><p>VIS</p>
-							</div>
-						</div>
-						<div class="partido clarfix">
-							<div class="partido_header clearfix">
-								<span>#1</span>
-								<span class="fecha">28.feb.17 / 12:34</span>
-							</div>
-							<div class="partido_oponentes clearfix">
-								<p>LOC</p><span>VS</span><p>VIS</p>
-							</div>
-						</div>
-						<div class="partido clarfix">
-							<div class="partido_header clearfix">
-								<span>#1</span>
-								<span class="fecha">28.feb.17 / 12:34</span>
-							</div>
-							<div class="partido_oponentes clearfix">
-								<p>LOC</p><span>VS</span><p>VIS</p>
-							</div>
-						</div>
-					</div><!-- partidos -->
+						</div><!-- partidos -->
+					</div>
+
 					<div class="participantes clearfix">
 						<h3>PARTICIPANTES</h3>
 						<div class="participantes_top clearfix">
 							<label>Número de participantes</label>
-							<select>
-								<option></option>
-								<option>1</option>
-								<option>2</option>
-								<option>3</option>
-								<option>4</option>
-							</select>
+							<input type="text" name="max_entries" value="">
 							<label>Entrada</label>
-							<input type="text">
+							<input type="text" name="entry_fee" value="">
 						</div><!-- participantes_top -->
 						<div class="participantes_bottom clearfix">
 							<input type="checkbox">
@@ -141,24 +139,27 @@
 						</div><!-- participantes_bottom -->
 					</div><!-- participantes -->
 					<div class="premios clearfix">
-						<h3>PREMIOS</h3>
+						<div style="display: none;" id="weeklyPrizes">
+							<h3>PREMIOS SEMANALES</h3>
+							<div class="premios_top clearfix">
+								<select id="prizeScheme" name="prize_scheme">
+									<option value="">Esquema de premios</option>
+									<opton value="">Dinámico</opton>
+									<opton value="">Personalizada</opton>
+								</select>
+							</div>
+						</div>
+						<h3>PREMIOS FINAL</h3>
 						<div class="premios_top clearfix">
-							<select>
-								<option>Esquema de premios</option>
-								<opton></opton>
-								<opton></opton>
-								<opton></opton>
+							<select id="prizeScheme" name="prize_scheme">
+								<option value="">Esquema de premios</option>
+								<opton value="">Dinámico</opton>
+								<opton value="">Personalizada</opton>
 							</select>
 						</div>
 						<div class="premios_bottom clearfix">
 							<label>Número de participantes</label>
-							<select>
-								<option></option>
-								<option>1</option>
-								<option>2</option>
-								<option>3</option>
-								<option>4</option>
-							</select>
+							<input type="text" name="max_entries" value="">
 						</div>
 						<table>
 							<tr class="table_title">

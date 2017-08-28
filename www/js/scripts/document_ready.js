@@ -238,21 +238,9 @@ window.initializeEvents = function(){
 						event.preventDefault();
 						app.showLoader();
 						var data_user	= app.getFormData(form, 'object');
-						var register_response 	= apiRH.registerNative(data_user);
-
-						if(register_response){
-
-							localStorage.setItem("Auth", register_response.jwtoken);
-							apiRH.save_user_data_clientside(register_response);
-							if(register_response.user){
-								window._user = (register_response.user) ? register_response.user : null; 
-								return app.render_register_success('register-success.html');
-							}
-
-						}else{
-							app.toast("Ocurrió un error, por favor revisa que tus datos sean correctos.")
-							return app.hideLoader();
-						}
+						if(!data_user.provider_uid)
+							return apiRH.registerNative(data_user);
+						return apiRH.registerFB(data_user);
 					}
 				});
 
@@ -278,22 +266,12 @@ window.initializeEvents = function(){
 					submitHandler:function( form, event ){
 						event.preventDefault();
 						var data_login		= app.getFormData(form, 'object');
-						var login_response 	= apiRH.loginNative(data_login);
-						if(login_response){
-							apiRH.headers['Authorization'] = "Bearer "+login_response.jwtoken;
-							apiRH.save_user_data_clientside(login_response);
-							if(login_response.user){
-								window._user = (login_response.user) ? login_response.user : null;
-								return app.render_lobby('lobby.html');
-							}
-						}else{
-							app.toast("Ocurrió un error, por favor revisa que tus datos sean correctos.")
-							return app.hideLoader();
-						}
+						return apiRH.loginNative(data_login);
 					}
 				});
 
 				$('#fb_login').on('click', function(e) {
+					console.log("Clicked login fb");
 					e.preventDefault();
 					return apiRH.FBOauth();
 				});
@@ -350,6 +328,7 @@ window.initializeEvents = function(){
 
 				if($('#misQuinielas').length){
 
+						// Call render sidebar feed
 						app.render_myfeed_sidebar();
 
 						var positiveMargin = false;
@@ -383,6 +362,8 @@ window.initializeEvents = function(){
 															complete: function() { }
 														});
 						});
+
+						return app.initHooks();
 				} // END misQuinielas scope
 			
 				if($('#deporte_soccer').length){
@@ -504,6 +485,29 @@ window.initializeEvents = function(){
 				});
 	
 			} // END busquedaQuinielas scope
+			
+			if($('#searchPrivates').length){
+
+				$('#filterComponent').hide();
+				$('#searchPrivates').validate({
+					rules:{
+						name	: "required",
+						password: "required"
+					},
+					messages:{
+						name		: "Especifica un nombre para la quiniela",
+						password 	: "Ingresa un código de seguridad"
+					},
+					submitHandler:function( form, event ){
+						event.preventDefault();
+						app.showLoader();
+						var data_new_game	= app.getFormData(form, 'object');
+						console.log(data_new_game);
+						return apiRH.createPrivate(data_new_game);
+					}
+				});
+	
+			} // END busquedaQuinielas scope
 		
 			if($('#profileTabs').length){
 
@@ -590,13 +594,9 @@ window.initializeEvents = function(){
 					submitHandler:function( form, event ){
 						event.preventDefault();
 						app.showLoader();
-						var deposit_data = app.getFormData(form, 'object');
-						var myResponse = apiRH.depositStores(deposit_data);
-						console.log(JSON.stringify(myResponse));
-						if(!myResponse.success || !myResponse.payment_method){
-							app.toast("No se ha podido procesar tu pedido, por favor intenta nuevamente.")
-						}
-						var ref = cordova.InAppBrowser.open(apiRH.openpay_base_url+myResponse.response.payment_method.reference, '_system', 'location=yes');
+						var deposit_data 	= app.getFormData(form, 'object');
+						console.log(deposit_data);
+						return apiRH.depositStores(deposit_data);						
 					}
 				});
 				
@@ -629,11 +629,7 @@ window.initializeEvents = function(){
 						app.showLoader();
 						var deposit_data = app.getFormData(form, 'object');
 						console.log(deposit_data);
-						var response = apiRH.depositCard(deposit_data);
-						if(!response.success || !response.payment_method){
-							return app.toast("No se ha podido procesar tu pedido, por favor intenta nuevamente.")
-						}
-						return alert("¡Se han abonado $"+response.amount+" a tu cuenta!", null, "Pickwin", "Jugar");
+						return apiRH.depositCard(deposit_data);
 					}
 				});
 				

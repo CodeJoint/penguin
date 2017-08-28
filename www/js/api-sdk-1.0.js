@@ -69,10 +69,20 @@ function requestHandlerAPI(){
 				return false;
 
 			this.token = response.jwtoken;
-			apiRH.keeper.setItem( 'token'	, response.jwtoken);
-			apiRH.keeper.setItem( 'mail'	, response.user.email);
-			apiRH.keeper.setItem( 'userId'	, response.user.id);
-			return response;
+			app.keeper.setItem( 'token'	, response.jwtoken);
+			app.keeper.setItem( 'mail'	, response.user.email);
+			app.keeper.setItem( 'userId'	, response.user.id);
+			if(response){
+				apiRH.headers['Authorization'] = "Bearer "+response.jwtoken;
+				apiRH.save_user_data_clientside(response);
+				if(response.user){
+					window._user = (response.user) ? response.user : null;
+					return app.render_lobby('lobby.html');
+				}
+			}else{
+				app.toast("Ocurrió un error, por favor revisa que tus datos sean correctos.")
+				return app.hideLoader();
+			}
 		};
 
 		/**
@@ -88,6 +98,34 @@ function requestHandlerAPI(){
 			return response;
 		};
 
+
+		this.register_callback = function(response){
+
+			console.log(response);
+			if(!response.success){
+				if(response.errors.nick)
+					return app.toast(response.errors.nick.unique);
+				return app.toast("Error :: ");
+			}
+			
+			var token = response.jwtoken;
+			app.keeper.setItem('request_token', token);
+			app.keeper.setItem('token'	, response.jwtoken);
+			app.keeper.setItem('mail'	, response.user.email);
+			app.keeper.setItem('userId' , response.user.id);
+			if(response){
+				apiRH.headers['Authorization'] = "Bearer "+response.jwtoken;
+				apiRH.save_user_data_clientside(response);
+				if(response.user){
+					window._user = (response.user) ? response.user : null;
+					return app.render_lobby('lobby.html');
+				}
+			}else{
+				app.toast("Ocurrió un error, por favor revisa que tus datos sean correctos.")
+				return app.hideLoader();
+			}
+		}
+
 		/*! 
 		 * Register a new user account the old fashioned way
 		 * @param data_user JSON {user_login, user_password}
@@ -95,11 +133,6 @@ function requestHandlerAPI(){
 		 */
 		this.registerNative = function(data_user){
 
-			var name 		= data_user.name;
-			var last_name 	= data_user.last_name;
-			var email 		= data_user.email;
-			var pass 		= data_user.password;
-			var cPass		= data_user.repeat_password;
 			var data =  {
 							'fingerprint' 	: window.fingerprint ? window.fingerprint.hash : '',
 							'name' 			: data_user.name,
@@ -109,24 +142,38 @@ function requestHandlerAPI(){
 							'password' 		: data_user.password,
 							'cpassword' 	: data_user.repeat_password,
 							'tos' 			: data_user.accept_terms,
+							'referalCode' 	: data_user.referalCode,
 							'oldenough' 	: data_user.is_M18,
 							'newsletter' 	: false
 						};
 
-			var response = this.makeRequest('api/users/register.json', data, true, false);
-			console.log(response);
-			if(!response.success){
-				if(response.errors.nick)
-					return app.toast(response.errors.nick.unique);
-				return app.toast("Error :: ");
-			}
-			
-			this.token = response.jwtoken;
-			this.keeper.setItem('request_token', this.token);
-			this.keeper.setItem('token'	, response.jwtoken);
-			this.keeper.setItem('mail'	, response.user.email);
-			this.keeper.setItem('userId', response.user.id);
-			return response;
+			return apiRH._ajaxRequest('POST', 'api/users/register.json', data, 'json', true, apiRH.register_callback);
+		};
+
+		/*! 
+		 * Register a new user account using Facebook Oauth data
+		 * @param data_user JSON {user_login, user_password}
+		 * @return status Bool true is successfully logged in; false if an error ocurred (User already exists)
+		 */
+		this.registerFB = function(data_user){
+			console.log("registerFB");
+			var data =  {
+							'fingerprint' 	: window.fingerprint ? window.fingerprint.hash : '',
+							'name' 			: data_user.name,
+							'last_name' 	: data_user.last_name,
+							'nick' 			: data_user.nickname,
+							'profile_picture': data_user.profile_picture,
+							'provider_uid' 	: data_user.provider_uid,
+							'email' 		: data_user.email,
+							'password' 		: data_user.password,
+							'cpassword' 	: data_user.repeat_password,
+							'tos' 			: data_user.accept_terms,
+							'referalCode' 	: data_user.referalCode,
+							'oldenough' 	: data_user.is_M18,
+							'newsletter' 	: false
+						};
+			console.log(data_user);
+			return apiRH._ajaxRequest('POST', 'api/users/facebook_register.json', data, 'json', true, apiRH.register_callback);
 		};
 
 		/**
@@ -186,13 +233,28 @@ function requestHandlerAPI(){
 		this.get_request_token = function(){
 									return this.token;
 								};
+
+
+
 		/*! 
 		 * Search private games
 		 * @return response JSON encoded object
 		 */
 		this.searchPrivates = 	function(data){
-									var response = this.makeRequest('api/pools/search_private.json', data, null, false);
-									return response;
+									return apiRH._ajaxRequest('POST', 'api/pools/search_private.json', data, 'json', true, apiRH.search_callback);									
+								};
+			
+			this.search_callback = function(response){ 
+									app.render_search_results(response);
+									return initHooks();
+								};
+
+		/*! 
+		 * Search private games
+		 * @return response JSON encoded object
+		 */
+		this.createPrivate = 	function(data){
+									return apiRH._ajaxRequest('POST', 'api/pools/search_private.json', data, 'json', true, function(response){ return response; });
 								};
 		
 		/*! 
@@ -229,15 +291,32 @@ function requestHandlerAPI(){
 								};
 
 
+		var deposit_store_callback = function(response){
+
+			if(!response.success || typeof response.payment_method === 'undefined' || !response.payment_method)
+				return app.toast("No se ha podido procesar tu pedido, por favor intenta nuevamente.")
+
+			var ref = cordova.InAppBrowser.open(apiRH.openpay_base_url+response.response.payment_method.reference, '_system', 'location=yes');
+			return;
+		};
+
+		var deposit_card_callback = function(response){
+
+			if(!response.success || typeof response.payment_method === 'undefined' || !response.payment_method)
+				return app.toast("No se ha podido procesar tu pedido, por favor intenta nuevamente.");
+
+			return alert("¡Se han abonado $"+response.amount+" a tu cuenta!", null, "Pickwin", "Jugar");
+		};
+
 		/*! 
 		 * Deposit to your account via Store payment
 		 * @return Object deposit_info
 		 * @see OpenPay
 		 */
 		this.depositStores = 	function(deposit_info){
-									var response = apiRH.makeRequest('api/users/depositConvenience.json', deposit_info, null, null, 'json');
-									return response;
+									return apiRH._ajaxRequest('POST', 'api/users/depositConvenience.json', deposit_info, 'json', true, deposit_store_callback);
 								};
+
 
 		/*! 
 		 * Deposit to your account via Credit card payment
@@ -245,30 +324,47 @@ function requestHandlerAPI(){
 		 * @see OpenPay
 		 */
 		this.depositCard = 	function(deposit_info){
-									if( typeof apiRH.deviceSessionId === 'undefined' || !apiRH.deviceSessionId ){
-										app.toast("Tu dispositivo no contiene una firma válida");
-										return false;
-									}
-									deposit_info.device_session_id = apiRH.deviceSessionId;
-									var response = apiRH.makeRequest('api/users/dopurchase.json', deposit_info, null, null, 'json');
-									return response;
-								};
+													if( typeof apiRH.deviceSessionId === 'undefined' || !apiRH.deviceSessionId ){
+														app.toast("Tu dispositivo no contiene una firma válida");
+														return false;
+													}
+													deposit_info.device_session_id = apiRH.deviceSessionId;
+													return apiRH._ajaxRequest('POST', 'api/users/dopurchase.json', deposit_info, 'json', true, deposit_card_callback);
+												};
 
 
-		/*! 
-		 * Wrapper for the getRequest, makeRequest methods 
-		 * @param type Request type (POST, GET, PUT, DELETE)
-		 * @param endpoint String The API endpoint (See Documentation)
-		 * @param data JSON Data to pass to the endpoint in a JSON format
-		 * @return stored token, false if no token is stored
-		 * TO DO: Manage put, delete methods
-		 */
-		this.execute = function(type, endpoint, data){
-						if(type === 'POST') return this.makeRequest(endpoint, data);
-						if(type === 'GET')  return this.getRequest(endpoint, data);
-						if(type === 'PUT')  return this.putRequest(endpoint, data);
-					};
+			/*! 
+			 * GET call and executes a callback when the promise is fullfilled
+			 * @param methodType [GET, POST, PUT, DELETE]
+			 * @param endpoint API endpoint to make the call to
+			 * @param data JSON encoded data 
+			 * @param callback callable 
+			 * @return JSON encoded response
+			 */
+			this._ajaxRequest = function(methodType, endpoint, data, contentType, includeHeaders, callback){
 
+				var myHeaders = (typeof includeHeaders !== 'undefined' && includeHeaders ) ? apiRH.headers : {};
+					myHeaders['Content-Type'] = (typeof contentType === 'undefined' || contentType === 'json' ) ? apiRH.headers['Content-Type'] : 'application/x-www-form-urlencoded';
+				var myData 	= (!data) ? "" : JSON.stringify(data);
+				var xhr 	= new XMLHttpRequest();
+				xhr.open(methodType, window.api_base_url+endpoint, true);
+				for (var property in myHeaders) {
+					if (myHeaders.hasOwnProperty(property))
+						xhr.setRequestHeader(property, myHeaders[property]);
+				}
+				xhr.onreadystatechange = function(){
+					if (xhr.readyState === 4 && xhr.status === 200){
+						console.log(JSON.parse(xhr.response));
+						callback(JSON.parse(xhr.response));
+						sdk_app_context.hideLoader();
+					}
+					if (xhr.readyState === 4 && xhr.status === 401){
+						app.toast("No estas autorizado para ejecutar esta acción");
+						sdk_app_context.hideLoader();
+					}
+			   }
+			   xhr.send(myData);
+			};
 
 			/*! 
 			 * Executes a POST call
@@ -359,38 +455,6 @@ function requestHandlerAPI(){
 				return result;
 			};
 
-			/*! 
-			 * GET call and executes a callback when the promise is fullfilled
-			 * @param methodType [GET, POST, PUT, DELETE]
-			 * @param endpoint API endpoint to make the call to
-			 * @param data JSON encoded data 
-			 * @param callback callable 
-			 * @return JSON encoded response
-			 */
-			this._ajaxRequest = function(methodType, endpoint, data, contentType, includeHeaders, callback){
-
-				var myHeaders = (typeof includeHeaders !== 'undefined' && includeHeaders ) ? apiRH.headers : {};
-					myHeaders['Content-Type'] = (typeof contentType === 'undefined' || contentType === 'json' ) ? apiRH.headers['Content-Type'] : 'application/x-www-form-urlencoded';
-				var myData 	= (!data) ? "" : JSON.stringify(data);
-				var xhr 	= new XMLHttpRequest();
-				xhr.open(methodType, window.api_base_url+endpoint, true);
-				for (var property in myHeaders) {
-				    if (myHeaders.hasOwnProperty(property))
-						xhr.setRequestHeader(property, myHeaders[property]);
-				}
-				xhr.onreadystatechange = function(){
-					if (xhr.readyState === 4 && xhr.status === 200){
-						console.log(JSON.parse(xhr.response));
-						callback(JSON.parse(xhr.response));
-						sdk_app_context.hideLoader();
-					}
-					if (xhr.readyState === 4 && xhr.status === 401){
-						app.toast("No estas autorizado para ejecutar esta acción");
-						sdk_app_context.hideLoader();
-					}
-			   }
-			   xhr.send(myData);
-			};
 
 		/**
 		 * Check FB plugin connection status
@@ -405,16 +469,42 @@ function requestHandlerAPI(){
 			});
 		};
 
-		
-		this.faceLogin = function(userData) {
-			console.log(userData);
-			return $.ajax({
-							"url": api_base_url+'api/users/facebook_login.json',
-							"method": 'POST',
-							"data": {
-							"uid": userData.userID
-							}
-					});
+		this.face_login_callback = function(response){
+			
+			if ( !response.user && !response.jwtoken ) {
+				apiRH.getFBUserDetails( function(userData){
+					console.log(userData);
+					app.render_register();
+					app.showLoader();
+					setTimeout(function(){
+
+						var $form = $('#register_form');
+						$form.find('#profile_picture').val(userData.picture.data.url);
+						$form.find('#provider_uid').val(userData.id);
+						$form.find('#name').val(userData.first_name);
+						$form.find('#last_name').val(userData.last_name);
+						$form.find('#email').val(userData.email);
+						$form.find('#nickname').val(
+						  userData.name.replace(' ', '').substr(0, 8) + '' +
+						  (Math.floor(Math.random() * (9999 - 1000)) + 1000 )
+						);
+						app.toast('Por favor completa tus datos para continuar con tu registro.')
+						app.hideLoader();
+					}, 420);
+
+			  	}, function(error) {
+					console.log(error);
+			  	});
+			  	return;
+			}
+		};
+
+		this.faceLogin = function(response) {
+
+			if ( response.status !== 'connected' )
+				return alert('Falló la conexión con Facebook, intenta nuevamente.');
+
+			return apiRH._ajaxRequest('POST', 'api/users/facebook_login.json', response.authResponse, 'json', true, apiRH.face_login_callback);
 		};
 
 		this.fbRegister = function(data) {
@@ -426,7 +516,7 @@ function requestHandlerAPI(){
 		 * @see facebookConnectPlugin
 		 */
 		this.FBOauth = function() {
-			window.facebookConnectPlugin.login(['email', 'public_profile'], apiRH.handleFBLoginSuccess, apiRH.handleFBError);
+			window.facebookConnectPlugin.login(['email', 'public_profile'], apiRH.faceLogin, apiRH.handleFBError);
 		},
 
 
@@ -442,42 +532,6 @@ function requestHandlerAPI(){
 
 		this.handleFBError = function(error) {
 			console.log(error);
-		};
-
-		/* 
-		 * Log in callback for Facebook provider
-		 * @param Object response
-		 */
-		this.loginCallbackFB = function(response){
-			if ( response.status !== 'connected' ) {
-			alert('No se conecto');
-			return;
-		  }
-
-		  var user = response.authResponse;
-		  apiRH.faceLogin(user)
-		  .done(function(response) {
-			console.log(response);
-			if ( !response.user && !response.jwtoken ) {
-			  apiRH.getFBUserDetails( function(userData){
-				console.log(userData);
-				// var $form = $('#complete-profile-form');
-				// $('#form-container').fadeIn(500);
-				// $form.find('#user-profile-picture').val(userData.picture.data.url);
-				// $form.find('#user-provider-uid').val(userData.id);
-				// $form.find('#user-name').val(userData.first_name);
-				// $form.find('#user-email').val(userData.email);
-				// $form.find('#user-last-name').val(userData.last_name);
-				// $form.find('#user-nick').val(
-				//   userData.name.replace(' ', '').substr(0, 8) + '' +
-				//   (Math.floor(Math.random() * (9999 - 1000)) + 1000 )
-				// );
-
-			  }, function(error) {
-				console.log(error);
-			  });
-			}
-		  });
 		};
 		
 		/**

@@ -205,7 +205,11 @@
 			    AndroidFullScreen.immersiveMode();
 			}
 
-			// apiRH.checkFBStatus();
+			// try{
+			// 	codePush.sync();
+			// } catch(err){
+			// 	alert("Error initializing codePush");
+			// }
 			
 			var backButtonElement = document.getElementById("backBtn");
 			if(backButtonElement)

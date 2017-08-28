@@ -25,14 +25,17 @@
             "cordova-plugin-dialogs": {},
             "cordova-plugin-inappbrowser": {},
             "cordova-plugin-splashscreen": {},
-            "cordova-plugin-browsersync": {}
+            "cordova-plugin-browsersync": {},
+            "cordova-plugin-code-push": {}
         }
     },
     "dependencies": {
+        "code-push": "^2.0.1-beta",
         "cordova-android": "^6.2.3",
         "cordova-browser": "^4.1.0",
         "cordova-ios": "^4.4.0",
         "cordova-plugin-browsersync": "^0.1.6",
+        "cordova-plugin-code-push": "^1.9.7-beta",
         "cordova-plugin-compat": "^1.1.0",
         "cordova-plugin-console": "~1.0.5",
         "cordova-plugin-device": "^1.1.6",
@@ -47,6 +50,7 @@
         "cordova-plugin-splashscreen": "~4.0.1",
         "cordova-plugin-whitelist": "1",
         "cordova-plugin-x-toast": "~2.6.0",
+        "cordova-plugin-zip": "^3.1.0",
         "onesignal-cordova-plugin": "^2.1.2"
     }
 }

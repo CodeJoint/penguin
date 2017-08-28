@@ -129,5 +129,29 @@
         },
         "is_top_level": true,
         "variables": {}
+    },
+    "cordova-plugin-code-push": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-code-push@latest"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "code-push": {
+        "source": {
+            "type": "registry",
+            "id": "code-push@2.0.1-beta"
+        },
+        "is_top_level": false,
+        "variables": {}
+    },
+    "cordova-plugin-zip": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-zip@>=3.0.0"
+        },
+        "is_top_level": false,
+        "variables": {}
     }
 }

@@ -63,10 +63,11 @@
 			_user 			= JSON.parse( app.keeper.getItem('user') );
 			if(is_access)
 				return app.render_lobby();
-			setTimeout(function(){
+			return this.initialized;
+			// setTimeout(function(){
 
-				return chain_callback;
-			},400);
+			// 	return chain_callback;
+			// },400);
 			/*-------------------- Code below this line won't run ------------------------*/
 		},
 		initPushNotifications: function() {
@@ -284,7 +285,9 @@
 			if( typeof window.has_exo == 'undefined' ){
 				var data = app.gatherEnvironment(null, null);
 				window.has_exo;
-				return app.switchView('exoskeleton', data, '.view', null, '', true, true, false);
+				app.switchView('exoskeleton', data, '.view', null, '', true, true, false);
+				/** Render header if not present **/
+				apiRH._ajaxRequest('GET', 'api/users/details.json', null, 'json', true, app.render_header);
 			}
 		},
 		render_header : function(user_data, filters){
@@ -445,16 +448,17 @@
 			return app.render_partial('other-entries', response, '#lesDrops');
 		},
 		render_profile : function(url, tab){
-			if(!app.initialized) app.initialize();
+			if(!app.initialized) 
+				app.initialize();
 			setTimeout(function(){
 				app.showLoader();
 			}, 220);
-			app.check_or_renderContainer();
+			app.check_or_renderContainer(true);
 			var extra_data = null;
 			window.dynamic_params = [];
 			dynamic_params.profile_title = '';
 			dynamic_params.template = '';
-			dynamic_params.url = (typeof url === 'undefined') ? 'profile.html' : url;
+			dynamic_params.url 	= (typeof url === 'undefined') ? 'profile.html' : url;
 			dynamic_params._tab = (typeof tab === 'undefined') ? 'method' : tab;
 			app.data_temp = app.gatherEnvironment(null, "Perfil de usuario");
 			app.data_temp.selected_profile = true;
@@ -481,7 +485,6 @@
 		render_profile_callback : function(response){
 
 			app.data_temp = app.gatherEnvironment(response, dynamic_params.profile_title);
-			console.log(app.data_temp);
 			return app.switchView( dynamic_params.template, app.data_temp, '#exoskeleton', dynamic_params.url, 'user-profile '+dynamic_params._tab );
 		},
 		render_add_funds : function(url){
@@ -493,7 +496,6 @@
 			var extra_data = apiRH.getRequest('api/openpay_cards/index.json', null);
 			app.check_or_renderContainer();
 			app.data_temp = app.gatherEnvironment(extra_data, "Agregar fondos a tu cuenta");
-			console.log(app.data_temp);
 			app.data_temp.selected_deposit = true;
 			return app.switchView('deposit', app.data_temp, '#exoskeleton', url, 'deposit');
 		},
@@ -520,12 +522,10 @@
 			return app.switchView('private', app.data_temp, '#exoskeleton', url, 'privates');
 		},
 		render_search_results : function(response_object){
-			console.log(response_object);
 			app.appendView('search-results', response_object, '#insertResults');
 			return app.hideLoader();
 		},
 		render_entry_success : function(response){
-			console.log(response);
 			app.appendView('entry-success', null, '.content');
 			return app.hideLoader();
 		},

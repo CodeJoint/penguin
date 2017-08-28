@@ -320,9 +320,6 @@ window.initializeEvents = function(){
 				// TODO: cache this request and save it for a couple of hours
 				app.render_lobby_feed(true);
 
-				/** Render header again to include filters component **/
-				apiRH._ajaxRequest('GET', 'api/users/details.json', null, 'json', true, app.render_header);
-
 				$('.footermenu ul li').removeClass('selected');
 				$('.menu_lobby').addClass('selected');
 

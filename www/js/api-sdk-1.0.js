@@ -101,7 +101,6 @@ function requestHandlerAPI(){
 
 		this.register_callback = function(response){
 
-			console.log(response);
 			if(!response.success){
 				if(response.errors.nick)
 					return app.toast(response.errors.nick.unique);
@@ -156,7 +155,6 @@ function requestHandlerAPI(){
 		 * @return status Bool true is successfully logged in; false if an error ocurred (User already exists)
 		 */
 		this.registerFB = function(data_user){
-			console.log("registerFB");
 			var data =  {
 							'fingerprint' 	: window.fingerprint ? window.fingerprint.hash : '',
 							'name' 			: data_user.name,
@@ -172,7 +170,6 @@ function requestHandlerAPI(){
 							'oldenough' 	: data_user.is_M18,
 							'newsletter' 	: false
 						};
-			console.log(data_user);
 			return apiRH._ajaxRequest('POST', 'api/users/facebook_register.json', data, 'json', true, apiRH.register_callback);
 		};
 
@@ -377,7 +374,7 @@ function requestHandlerAPI(){
 			this.makeRequest = function( endpoint, data, noHeaders, stringify, contentType ){
 
 				app.showLoader();
-				console.log(' ::: MAKE REQUEST ::: ');
+				console.log(' ::: YE OLDE MAKE REQUEST ::: ');
 				if( typeof(stringify) == 'undefined' || stringify == true )
 					data = JSON.stringify(data);
 
@@ -400,7 +397,6 @@ function requestHandlerAPI(){
 					myHeaders['Content-Type'] = (typeof contentType === 'undefined' || contentType === 'json' ) ? 'application/x-www-form-urlencoded' : apiRH.headers['Content-Type'];
 				if(myHeaders)
 					options.headers = myHeaders;
-				console.log(JSON.stringify(myHeaders));
 				$.ajax(options)
 				 .always( function(response){
 					setTimeout(function(){
@@ -408,7 +404,6 @@ function requestHandlerAPI(){
 					}, 2000);
 				 })
 				 .done( function(response){
-					// console.log(response);
 					result = response;
 				 })
 				 .fail( function(e){
@@ -441,7 +436,6 @@ function requestHandlerAPI(){
 				  async: false
 				})
 				 .done(function(response){
-					// console.log(response);
 					result = response;
 					sdk_app_context.hideLoader(response);
 				})
@@ -462,7 +456,6 @@ function requestHandlerAPI(){
 		this.checkFBStatus = function() {
 			if(!window.facebookConnectPlugin) return false;
 			window.facebookConnectPlugin.getLoginStatus(function(response){
-				console.log("response");
 				console.log(JSON.stringify(response));
 			}, function(error){
 				console.log("error", error);
@@ -473,7 +466,6 @@ function requestHandlerAPI(){
 			
 			if ( !response.user && !response.jwtoken ) {
 				apiRH.getFBUserDetails( function(userData){
-					console.log(userData);
 					app.render_register();
 					app.showLoader();
 					setTimeout(function(){

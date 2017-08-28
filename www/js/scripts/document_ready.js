@@ -360,7 +360,7 @@ window.initializeEvents = function(){
 														});
 						});
 
-						return app.initHooks();
+						return initHooks();
 				} // END misQuinielas scope
 			
 				if($('#deporte_soccer').length){

@@ -353,7 +353,7 @@ function requestHandlerAPI(){
 				}
 				xhr.onreadystatechange = function(){
 					if (xhr.readyState === 4 && xhr.status === 200){
-						console.log(JSON.parse(xhr.response));
+						// console.log(JSON.parse(xhr.response));
 						callback(JSON.parse(xhr.response));
 						sdk_app_context.hideLoader();
 					}

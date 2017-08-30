@@ -56,17 +56,22 @@
 			</li><!-- opcion_partido -->
 		</ul>
 	{{/ data.fixtures}}
-		<div id="propsContainer" class="props clearfix clear_if_empty">
+	<div id="propsContainer" class="props clearfix clear_if_empty">
 		{{# data.fixtures}}
+			<ul data-id="{{id}}" class="partido radio_group clearfix">
 			{{# props}}
 				
 				{{# if_eq type 'over_under'}}
-					<div class="prop" data-fixture="{{fixture_id}}" data-prop="{{id}}">
+					<li class="opcion_partido prop clearfix" data-fixture="{{fixture_id}}" data-prop="{{id}}">
 						<h3>{{name}} {{../home_team.abbreviation}} VS {{../away_team.abbreviation}}</h3>
 						<div class="opciones_prop dos_opciones clearfix">
 							<div class="opcion_prop clearfix">
-								<input type="radio" name="prop_uno" value="under">
-								<span>Menor</span>
+								<div class="check"></div>	
+								<label for="local_{{id}}" >
+									<div class="equipo">
+										<span class="iniciales">Menor</span>
+									</div><!-- equipo -->
+								</label>	
 							</div>
 							<div class="opcion_prop clearfix">
 								<span>{{value}}</span>
@@ -76,7 +81,9 @@
 								<span>Mayor</span>
 							</div>
 						</div><!-- opciones_prop dos_opciones -->
-					</div><!-- prop -->
+											
+					</li><!-- opcion_partido -->
+					
 				{{/ if_eq }}
 
 			<!-- <div class="prop clearfix">
@@ -125,5 +132,6 @@
 				</div>
 			</div> props -->
 			{{/ props}}
+			</ul>
 		{{/ data.fixtures}}
-		</div> <!-- props -->
+	</div> <!-- props -->

@@ -652,7 +652,7 @@ window.initializeEvents = function(){
 				});
 			} // END depositCard scope
 		
-		}, 280); // END General Timeout
+		}, 200); // END General Timeout
 
 	});
 

@@ -367,16 +367,15 @@
 		},
 		render_lobby_feed : function(){
 			var cachedFeed = app.fetchCacheElement('lobby-feed');
-			if( cachedFeed ){
-				console.log("Feed is cached");
+			if( cachedFeed.length && cachedFeed.timestamp )
 				return app.render_lobby_feed_callback(cachedFeed, true);
-			}
+
 			return apiRH._ajaxRequest('GET', 'api/pools/available.json', null, 'json', true, app.render_lobby_feed_callback);
-			// return app.render_lobby_feed_callback({ pools: app.data_temp.data.pools, pools_unfiltered: app.data_temp.data.pools_unfiltered, tournaments: app.data_temp.data.tournaments, now: app.data_temp.data.now });
 		},
 		render_lobby_feed_callback : function( response, cached ){
 
-			var template 	= Handlebars.templates['lobby-feed'];
+			var cached 	 = (cached) ? cached : false;
+			var template = Handlebars.templates['lobby-feed'];
 			if(!template){
 				console.log("Template doesn't exist");
 				return false;
@@ -389,8 +388,7 @@
 			$('#insertFeed').html( template(app.data_temp) )
 							.css({ "opacity": 0, "display": "block"})
 							.animate({ opacity: 1 }, 220);
-			setTimeout( function(){ initHooks(); initCountdownTimers(); $('#filterComponent').fadeIn('fast'); initFilterActions(); app.hideLoader(); }, 100);
-			return;
+			return setTimeout( function(){ initHooks(); initCountdownTimers(); $('#filterComponent').fadeIn('fast'); initFilterActions(); app.hideLoader(); }, 100);
 		},
 		render_myfeed_sidebar : function(){
 			return apiRH._ajaxRequest('GET', 'api/users/pools.json', null, 'json', true, app.render_myfeed_callback);
@@ -694,7 +692,6 @@
 
 			/* Push to history if url is supplied */
 			if(recordUrl) window.history.pushState(newTemplate, newTemplate, '/'+recordUrl);
-			console.log(newTemplate);
 			leNiceTransition = (typeof(leNiceTransition) != 'undefined') ? leNiceTransition : true;
 			var template = Handlebars.templates[newTemplate];
 			if(!template){
@@ -758,43 +755,28 @@
 			return app.hideLoader();
 		},
 		stackCacheElement: function( element_tag, jsonData, force ){
-			console.log(jsonData);
+			
 			var force = ( typeof force !== 'undefined' && force === true) ? true : false;
-			var stack_intent = app.keeper.getItem('cache-stack');
-			var stack = (!stack_intent) ? [] : app.keeper.getObj('cache-stack');
-			var object_to_push = { timestamp: new Date().getTime(), data: jsonData };
-			console.log(stack[element_tag]);
+			var stack_intent = app.keeper.getItem('cache-stack-'+element_tag);
+
+			var stack_element 	= ( !stack_intent || stack_intent === "" ) ? null : app.keeper.getObj('cache-stack-'+element_tag);
+			var object_to_push 	= { timestamp: new Date().getTime(), data: jsonData };
+			
 			// Element does not exist in cache
-			if( typeof stack[element_tag] === 'undefined' || !stack[element_tag]){
-				stack[element_tag] = JSON.stringify(object_to_push);
-				console.log(JSON.stringify(stack));
-				return app.keeper.setObj('cache-stack', stack);
-			}
-			console.log("cached_stamp debug");
-			var diff_stamps  = (stack[element_tag].timestamp) 	? (new Date().getTime() - stack[element_tag].timestamp)/1000 : 0;
-			console.log(diff_stamps);
+			if(!stack_element)
+				return app.keeper.setItem('cache-stack-'+element_tag, JSON.stringify(object_to_push));
+
+			var diff_stamps  = (stack_element.timestamp) 	? (new Date().getTime() - stack_element.timestamp)/1000 : 0;
 			/** Stack forced or non-existing element **/
-			if( diff_stamps > 4000 || force ){
-				console.log("Forcing");
-				stack[element_tag] = object_to_push;
-				return app.keeper.setObj('cache-stack', stack);
-			}
+			if( diff_stamps > 4000 || force )
+				return app.keeper.setItem('cache-stack-'+element_tag, JSON.stringify(object_to_push));
+
 			return false;
 		},
 		// Returns element from stack or false if it doesn't exist
 		fetchCacheElement: function( element_tag ){
-			console.log(element_tag);
-			console.log(app.keeper.getItem('cache-stack'));
-			var stack = ( !app.keeper.getItem('cache-stack') ) ? [] : JSON.parse(app.keeper.getItem('cache-stack'));
-			console.log(stack);
-			// stack = JSON.parse(stack);
-			// console.log(stack);
-			if( typeof stack[element_tag] === 'undefined' || !stack[element_tag] ){
-				console.log("Element is not here");
-				return false;
-			}
-			console.log("Element is here");
-			return stack[element_tag];
+			var stack_element = ( !app.keeper.getItem('cache-stack-'+element_tag) ) ? [] : app.keeper.getItem('cache-stack-'+element_tag);
+			return ( typeof stack_element === 'undefined' || !stack_element || stack_element === '' ) ? false : stack_element;
 		},
 		showLoader: function(){
 			$('#spinner').show();

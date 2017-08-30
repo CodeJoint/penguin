@@ -95,23 +95,23 @@ window.initializeEvents = function(){
 					}, 1200);
 				}
 				if( resource == "detail" )
-					return app.render_detail( resource_href, resource_object );
+					return app.fetch_detail( resource_href, resource_object );
 				if( resource == "detail-closed" )
-					return app.render_detail( resource_href, resource_object, 'closed' );
+					return app.fetch_detail( resource_href, resource_object, 'closed' );
 				if( resource == "detail-live" )
-					return app.render_detail( resource_href, resource_object, 'live', resource_extra );
+					return app.fetch_detail( resource_href, resource_object, 'live', resource_extra );
 				if( resource == "detail-postures" )
-					return app.render_detail( resource_href, resource_object, 'postures', resource_extra  );
+					return app.fetch_detail( resource_href, resource_object, 'postures', resource_extra  );
 				if( resource == "detail-places" )
-					return app.render_detail( resource_href, resource_object, 'places', resource_extra );
+					return app.fetch_detail( resource_href, resource_object, 'places', resource_extra );
 				if( resource == "detail-chat" )
-					return app.render_detail( resource_href, resource_object, 'chat', resource_extra  );
+					return app.fetch_detail( resource_href, resource_object, 'chat', resource_extra  );
 				if( resource == "detail-prizes" )
-					return app.render_detail( resource_href, resource_object, 'prizes', resource_extra  );
+					return app.fetch_detail( resource_href, resource_object, 'prizes', resource_extra  );
 				if( resource == "detail-group-picks" )
-					return app.render_detail( resource_href, resource_object, 'group-picks', resource_extra  );
+					return app.fetch_detail( resource_href, resource_object, 'group-picks', resource_extra  );
 				if( resource == "detail-scores" )
-					return app.render_detail( resource_href, resource_object, 'scoreboard', resource_extra  );
+					return app.fetch_detail( resource_href, resource_object, 'scoreboard', resource_extra  );
 				
 				/*** User ***/
 				if( resource == "profile-methods" )
@@ -450,7 +450,15 @@ window.initializeEvents = function(){
 				app.render_games(gameId);
 
 				/** Call Render similar picks **/
-				app.render_other_entries(entryId);
+				if(entryId)
+					app.render_other_entries(entryId);
+				
+				/** Call prize distribution **/
+				app.fetch_prize_distribution(gameId);
+				/** Call full standings **/
+				app.fetch_standings(gameId);
+				/** Call group picks **/
+				app.fetch_group_picks(gameId);
 
 				return initCountdownTimers();
 
@@ -508,6 +516,9 @@ window.initializeEvents = function(){
 		
 			if($('#profileTabs').length){
 
+					$('#filterComponent').hide();
+					$('#logoutComponent').show();
+
 					/* Log Out from the API */
 					$('#logoutComponent').on('click', function(e){
 						/* TODO: Requesting logout from server */
@@ -526,7 +537,6 @@ window.initializeEvents = function(){
 						return (response) ? app.render_profile('profile.html') : app.toast("Ocurrió un error, intenta nuevamente.");
 					}
 
-					$('#filterComponent').hide();
 					$('.agregar_tarjeta').click(function(event){
 					    event.stopPropagation();
 					});

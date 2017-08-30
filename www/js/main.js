@@ -17,6 +17,7 @@
 			/* Initialize API request handler */
 			window.apiRH = new requestHandlerAPI().construct(app);
 			window.firstTime = true;
+			window._cache 	 = {};
 			this.initialized = true;
 
 			var is_logged_in= apiRH.has_token();
@@ -117,6 +118,12 @@
 			Handlebars.registerHelper('formatCurrency', function(value) {
 				value = (value/100).toFixed(2);
 				return value.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+			});
+			Handlebars.registerHelper('calcPercentage', function(value, total) {
+				return ((total*100)/value).toFixed(2);
+			});
+			Handlebars.registerHelper('calcAmount', function(value, total) {
+				return ((value*100)/total).toFixed(2);
 			});
 			Handlebars.registerHelper('formatDate', function(value, format) {
 				var date 	  = Date.parse(value);
@@ -298,9 +305,8 @@
 			var saved 	= apiRH.save_user_data_clientside(user_data);
 			var extra_data = app.gatherEnvironment(null, "");
 			extra_data.selected_lobby = (filters) ? true : false;
-			$('#theHeader').fadeOut('fast', function(){
-				$(this).remove();
-			});
+			if($('#theHeader').length)
+				$('#theHeader').remove();
 			return app.render_partial('header', extra_data, '#loadHeader');
 		},
 		render_forgot_password : function( url ){
@@ -401,31 +407,40 @@
 													 .animate(	{ opacity: 1 }, 220);
 			return;
 		},
-		render_detail : function(url, object_id, view, extra){
+		render_detail : function(response){
 
-			if(!app.initialized) app.initialize();
-
-			app.check_or_renderContainer();
-			var extra_data = apiRH.getRequest('api/pools/view/'+object_id+'.json', null);
-			extra_data = (extra_data.pool) ? extra_data.pool : [];
+			extra_data = (response.pool) ? response.pool : [];
 			if(typeof extra_data.sport !== 'undefined' && typeof extra_data.sport.allow_ties !== 'undefined')
 				window.sport_allow_ties = extra_data.sport.allow_ties;
 			app.data_temp = app.gatherEnvironment(extra_data, "Detail");
 				// Full view load
-			var template_name = (view === 'postures') 	? 'detail-quiniela-registered'	: 'detail-quiniela';
-				template_name = (view === 'closed'	) 	? 'detail-quiniela-closed'		: template_name;
-				template_name = (view === 'live'	) 	? 'detail-quiniela-live'		: template_name;
+			var template_name = (dynamic_params.view === 'postures') 	? 'detail-quiniela-registered'	: 'detail-quiniela';
+				template_name = (dynamic_params.view === 'closed'	) 	? 'detail-quiniela-closed'		: template_name;
+				template_name = (dynamic_params.view === 'live'	) 		? 'detail-quiniela-live'		: template_name;
 				// Partials tabs
-				template_name = (view === 'chat'	) 	? view	: template_name;
-				template_name = (view === 'places'	) 	? view	: template_name;
-				template_name = (view === 'prizes'	) 	? view	: template_name;
-				template_name = (view === 'group-picks')? view	: template_name;
-				template_name = (view === 'scoreboard') ? view	: template_name;
-			if(extra)
-				app.data_temp.data.entry_id = extra;
-			if(view === 'chat' || view === 'places' || view === 'prizes' || view === 'group-picks' || view === 'scoreboard')
-				return app.appendView(template_name, app.data_temp, '#tabContainer');
-			return app.switchView(template_name, app.data_temp, '#exoskeleton', url, 'quiniela-'+view);
+				template_name = (dynamic_params.view === 'chat'	) 	   ? dynamic_params.view	: template_name;
+				template_name = (dynamic_params.view === 'places'	)  ? dynamic_params.view	: template_name;
+				template_name = (dynamic_params.view === 'prizes'	)  ? dynamic_params.view	: template_name;
+				template_name = (dynamic_params.view === 'group-picks')? dynamic_params.view	: template_name;
+				template_name = (dynamic_params.view === 'scoreboard') ? dynamic_params.view	: template_name;
+			if(dynamic_params.extra)
+				app.data_temp.data.entry_id = dynamic_params.extra;
+			if(dynamic_params.view === 'chat' || dynamic_params.view === 'places' || dynamic_params.view === 'prizes' || dynamic_params.view === 'group-picks' || dynamic_params.view === 'scoreboard')
+				return app.appendView(template_name, window._cache, '#tabContainer');
+			console.log(dynamic_params)
+			return app.switchView(template_name, app.data_temp, '#exoskeleton', dynamic_params.url, 'quiniela-'+dynamic_params.view);
+		},
+		fetch_detail : function(url, object_id, view, extra){
+			if(!app.initialized) app.initialize();
+			app.check_or_renderContainer();
+			
+			dynamic_params = [];
+			dynamic_params.url 		= url;
+			dynamic_params.object_id = object_id;
+			dynamic_params.view 	= view;
+			dynamic_params.extra 	= extra;
+
+			return apiRH._ajaxRequest('GET', 'api/pools/view/'+dynamic_params.object_id+'.json', null, 'json', true, app.render_detail);
 		},
 		render_games : function(object_id){
 			return apiRH._ajaxRequest('GET', 'api/pools/fixtures/'+object_id+'.json', null, 'json', true, app.render_games_callback);
@@ -435,6 +450,10 @@
 			extra_data = (response) ? response : [];
 			app.data_temp = app.gatherEnvironment(extra_data, null);
 			return app.render_partial('quiniela-games', app.data_temp, '#insertPartidos');
+		},
+		fill_picks_radio : function(options){
+
+			return;
 		},
 		render_similar_picks : function(object_id){
 			return apiRH._ajaxRequest('GET', 'api/entries/similarByPool/'+object_id+'.json', null, 'json', true, app.similar_picks_callback);
@@ -454,10 +473,10 @@
 		render_profile : function(url, tab){
 			if(!app.initialized) 
 				app.initialize();
+			app.check_or_renderContainer(true);
 			setTimeout(function(){
 				app.showLoader();
 			}, 220);
-			app.check_or_renderContainer(true);
 			var extra_data = null;
 			window.dynamic_params = [];
 			dynamic_params.profile_title = '';
@@ -659,14 +678,17 @@
 			app.data_temp.data.pools = myPool.filter(function(){return true;});
 			return app.render_lobby_feed(false);
 		},
+		fetch_prize_distribution : function(gameId){
+			return apiRH._ajaxRequest('GET', 'pools/prize_distribution/'+gameId+'.json', null, 'json', true, function(response){ window._cache.prize_distribution = response; });
+		},
+		fetch_standings : function(gameId){
+			return apiRH._ajaxRequest('GET', 'api/standings/full/'+gameId+'.json', null, 'json', true, function(response){ window._cache.full_standings = response; });
+		},
+		fetch_group_picks : function(gameId){
+			// return apiRH._ajaxRequest('GET', 'api/standings/full/'+gameId+'.json', null, 'json', true, function(response){ window.group_picks = response; });
+		},
 		render_dialog : function(title, message, options){
 			return app.showLoader();
-		},
-		back_with_logout : function(event){
-			var link = $(event.target).attr('href');
-			localStorage.clear();
-			window.location.assign(link);
-			return;
 		},
 		switchView: function(newTemplate, data, targetSelector, recordUrl, targetClass, keepLoader, leNiceTransition, initEvents){
 

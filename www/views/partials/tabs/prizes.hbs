@@ -5,45 +5,22 @@
 				<th>PORCENTAJE</th>
 				<th>MONTO</th>
 			</tr>
-			<tr class="player_info">
-				<td>1 LUGAR</td>
-				<td>12.3%</td>
-				<td class="ganar"><img src="images/billete.png">$1,234 MXN</td>
-			</tr>
-			<tr class="player_info">
-				<td>1 LUGAR</td>
-				<td>12.3%</td>
-				<td class="ganar"><img src="images/billete.png">$1,234 MXN</td>
-			</tr>
-			<tr class="player_info">
-				<td>1 LUGAR</td>
-				<td>12.3%</td>
-				<td class="ganar"><img src="images/billete.png">$1,234 MXN</td>
-			</tr>
-			<tr class="player_info">
-				<td>1 LUGAR</td>
-				<td>12.3%</td>
-				<td class="ganar"><img src="images/billete.png">$1,234 MXN</td>
-			</tr>
-			<tr class="player_info">
-				<td>1 LUGAR</td>
-				<td>12.3%</td>
-				<td class="ganar"><img src="images/billete.png">$1,234 MXN</td>
-			</tr>
-			<tr class="player_info">
-				<td>1 LUGAR</td>
-				<td>12.3%</td>
-				<td class="ganar"><img src="images/billete.png">$1,234 MXN</td>
-			</tr>
-			<tr class="player_info">
-				<td>1 LUGAR</td>
-				<td>12.3%</td>
-				<td class="ganar"><img src="images/billete.png">$1,234 MXN</td>
-			</tr>
-			<tr class="player_info">
-				<td>1 LUGAR</td>
-				<td>12.3%</td>
-				<td class="ganar"><img src="images/billete.png">$1,234 MXN</td>
-			</tr>
+			{{# if prize_distribution.pool_prizes }}
+				{{# each prizes }}
+					<tr class="player_info">
+						<td>{{position}} LUGAR</td>
+						{{# if_eq type 'fixed'}}
+							<td>{{calcPercentage amount ../available}}%</td>
+							<td class="ganar"><img src="images/billete.png">${{formatCurrency amount}} MXN</td>
+						{{/ if_eq }}
+						{{# if_eq type 'percentage'}}
+							<td>{{formatCurrency percentage}}%</td>
+							<td class="ganar"><img src="images/billete.png">${{calcAmount percentage prize_distribution.pool.available}} MXN</td>
+						{{/ if_eq }}
+					</tr>
+				el 1 ->{{prize_distribution.pool.available}}
+				el ->{{../prize_distribution.pool.available}}
+				{{/ each }}
+			{{/ if }}
 		</table>
 	</div><!-- premios -->

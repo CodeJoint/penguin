@@ -74,11 +74,15 @@
     <script type="text/javascript" src="js/easing.js"></script>
     <script type="text/javascript" src="js/bower_components/thenby/thenBy.min.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
-    
+
     <script type="text/javascript">
         window.is_access = false;
 		var get = app.getUrlVars();
-		app.render_detail(null, get.id);
+        var entry_id = (typeof get.entry_id !== 'undefined') ? get.entry_id: null;
+        var game_id = (typeof get.id !== 'undefined') ? get.id: null;
+		app.fetch_detail(null, game_id, 'live', entry_id);
     </script>
     <script type="text/javascript" src="js/scripts/document_ready.js"></script>
 </html>
+
+    

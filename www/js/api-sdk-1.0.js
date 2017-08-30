@@ -311,6 +311,7 @@ function requestHandlerAPI(){
 		 * @see OpenPay
 		 */
 		this.depositStores = 	function(deposit_info){
+									app.toast("Estamos procesando tu pago...");
 									return apiRH._ajaxRequest('POST', 'api/users/depositConvenience.json', deposit_info, 'json', true, deposit_store_callback);
 								};
 
@@ -325,6 +326,7 @@ function requestHandlerAPI(){
 														app.toast("Tu dispositivo no contiene una firma válida");
 														return false;
 													}
+													app.toast("Estamos procesando tu pago...");
 													deposit_info.device_session_id = apiRH.deviceSessionId;
 													return apiRH._ajaxRequest('POST', 'api/users/dopurchase.json', deposit_info, 'json', true, deposit_card_callback);
 												};
@@ -339,7 +341,7 @@ function requestHandlerAPI(){
 			 * @return JSON encoded response
 			 */
 			this._ajaxRequest = function(methodType, endpoint, data, contentType, includeHeaders, callback){
-
+				console.log(endpoint);
 				var myHeaders = (typeof includeHeaders !== 'undefined' && includeHeaders ) ? apiRH.headers : {};
 					myHeaders['Content-Type'] = (typeof contentType === 'undefined' || contentType === 'json' ) ? apiRH.headers['Content-Type'] : 'application/x-www-form-urlencoded';
 				var myData 	= (!data) ? "" : JSON.stringify(data);
@@ -450,7 +452,7 @@ function requestHandlerAPI(){
 			};
 
 
-		/**
+		/*!
 		 * Check FB plugin connection status
 		 */
 		this.checkFBStatus = function() {

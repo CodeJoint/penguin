@@ -500,11 +500,12 @@
 			}else{
 				dynamic_params.template = 'profile'
 				dynamic_params.profile_title = 'Métodos de pago';
+				console.log(dynamic_params);
 				apiRH._ajaxRequest('GET', 'api/openpay_cards/index.json', null, 'json',true, app.render_profile_callback);
 			}
 		},
 		render_profile_callback : function(response){
-
+			console.log("El callbackio");
 			app.data_temp = app.gatherEnvironment(response, dynamic_params.profile_title);
 			return app.switchView( dynamic_params.template, app.data_temp, '#exoskeleton', dynamic_params.url, 'user-profile '+dynamic_params._tab );
 		},

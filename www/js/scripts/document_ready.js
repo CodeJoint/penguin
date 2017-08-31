@@ -380,22 +380,6 @@ window.initializeEvents = function(){
 
 				$('.menu li').removeClass('selected');
 
-				$('#reg_into_game').click(function(event){
-					console.log(event);
-					$('#registerNow').fadeIn('fast');
-				});
-
-				$('#num_entries').on('change', function(){
-					$(this).val();
-				})
-
-				// $('#closeRegister').on('click',function(){
-				// 	$('#registerNow').fadeOut('fast');
-				// });
-				// $('#sendRegister').on('click',function(){
-				// 	$('#registerNow').fadeOut('fast');
-				// });
-
 				/** Render quiniela games and picks selectors **/
 				app.render_games(gameId);
 
@@ -422,9 +406,32 @@ window.initializeEvents = function(){
 						return false;
 					}
 				});
+
+				// Register modal
+				$('#reg_into_game').on('click', function(event){
+					console.log(event);
+					console.log($('#registerNow'));
+					$('#registerNow').show();
+					// $('#registerNow').fadeIn('fast');
+					event.preventDefault();
+					event.stopPropagation();
+				});
+
+				$('#num_entries').on('change', function(){
+					$(this).val();
+				})
+
+				// $('#closeRegister').on('click',function(){
+				// 	$('#registerNow').fadeOut('fast');
+				// });
+				// $('#sendRegister').on('click',function(){
+				// 	$('#registerNow').fadeOut('fast');
+				// });
+
 				setTimeout(function(){
 					$('#filterComponent').hide();
 				}, 0);
+
 				return initCountdownTimers();
 
 			} // END detailQuiniela scope

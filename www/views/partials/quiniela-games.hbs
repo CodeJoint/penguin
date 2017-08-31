@@ -33,7 +33,7 @@
 						</div><!-- equipo -->
 					</label>		
 				{{/ if}}
-				<span>{{ formatDate deadline 'lll' }}</span>
+				<span>Cierre: {{ formatDate deadline 'lll' }}</span>
 			</li><!-- opcion_partido -->
 			<li class="opcion_partido visitante clearfix">
 				{{^ finished}}
@@ -59,14 +59,14 @@
 	<div id="propsContainer" class="props clearfix clear_if_empty">
 		{{# data.fixtures}}
 			<h3>PROPS</h3>
-			<ul data-id="{{id}}" class="partido radio_group clearfix">
+			<ul data-id="{{id}}" class="radio_group clearfix">
 				{{# props}}
 					
 					{{# if boolean}}
-						<li class="opcion_partido prop clearfix" data-fixture="{{fixture_id}}" data-prop="{{id}}">
+						<li class="prop clearfix" data-fixture="{{fixture_id}}" data-prop="{{id}}">
 							<h3>{{name}} {{../home_team.abbreviation}} VS {{../away_team.abbreviation}}</h3>
-							<div class="opciones_prop dos_opciones clearfix">
-								<div class="opcion_prop clearfix">
+							<div class="opciones_prop tres_opciones clearfix">
+								<div class="opcion_prop opcion_partido local clearfix">
 									<input type="radio" id="prop_under_{{id}}" name="{{id}}" value="pick-prop-{{id}}">
 									<div class="check"></div>	
 									<label for="prop_under_{{id}}" >
@@ -75,29 +75,29 @@
 										</div><!-- equipo -->
 									</label>	
 								</div>
-								<div class="opcion_prop clearfix">
+								<div class="opcion_prop empate clearfix">
 									<span>{{value}}</span>
 								</div>
-								<div class="opcion_prop clearfix">
+								<div class="opcion_prop opcion_partido visitante clearfix">
+									<input type="radio" id="prop_over_{{id}}" name="{{id}}" value="pick-prop-{{id}}">
+									<div class="check"></div>	
 									<label for="prop_over_{{id}}" >
 										<div class="equipo">
 											<span class="iniciales">Mayor</span>
 										</div><!-- equipo -->
 									</label>
-									<input type="radio" id="prop_over_{{id}}" name="{{id}}" value="pick-prop-{{id}}">
-									<div class="check"></div>	
 								</div>
-							</div><!-- opciones_prop dos_opciones -->
+							</div><!-- opciones_prop tres_opciones -->
 												
 						</li><!-- opcion_prop -->
 						
 					{{/ if }}
 
 					{{# unless boolean}}
-						<li class="opcion_partido prop clearfix" data-fixture="{{fixture_id}}" data-prop="{{id}}">
+						<li class="prop clearfix" data-fixture="{{fixture_id}}" data-prop="{{id}}">
 							<h3>{{name}} {{../home_team.abbreviation}} VS {{../away_team.abbreviation}}</h3>
 							<div class="opciones_prop dos_opciones clearfix">
-								<div class="opcion_prop opcion_partido clearfix">
+								<div class="opcion_prop opcion_partido local clearfix">
 									<input type="radio" id="prop_under_{{id}}" name="{{id}}" value="pick-prop-{{id}}">
 									<div class="check"></div>	
 									<label for="prop_under_{{id}}" >
@@ -109,14 +109,14 @@
 								<div class="opcion_prop opcion_partido clearfix">
 									<span></span>
 								</div>
-								<div class="opcion_prop opcion_partido clearfix">
+								<div class="opcion_prop opcion_partido visitante clearfix">
+									<input type="radio" id="prop_over_{{id}}" name="{{id}}" value="pick-prop-{{id}}">
+									<div class="check"></div>	
 									<label for="prop_over_{{id}}" >
 										<div class="equipo">
 											<span class="iniciales">No</span>
 										</div><!-- equipo -->
 									</label>
-									<input type="radio" id="prop_over_{{id}}" name="{{id}}" value="pick-prop-{{id}}">
-									<div class="check"></div>	
 								</div>
 							</div><!-- opciones_prop dos_opciones -->
 												

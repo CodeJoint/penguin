@@ -147,6 +147,13 @@
 			Handlebars.registerHelper('inc', function(value) {
 				return value+1;
 			});
+			Handlebars.registerHelper('numberOptions', function(value) {
+				var html = '';
+				for(var i = 1; i<=value; i++){
+					html += '<option value="'+i+'" >'+i+'</option>'
+				}
+				return html;
+			});
 		},
 		registerTemplate : function(name) {
 			$.ajax({
@@ -354,14 +361,13 @@
 		render_lobby : function(url, reloadExoskeleton){
 
 			if(!app.initialized || !_user) app.initialize();
-			setTimeout(function(){
-				app.showLoader();
-			}, 420);
+
 			var reload = (reloadExoskeleton || typeof reloadExoskeleton == 'undefined') ? true : false;
 			app.check_or_renderContainer(reload);
 			app.data_temp 	= app.gatherEnvironment( null, "Lobby container" );
 			app.data_temp.selected_lobby = true;
 			setTimeout( function(data){
+				app.showLoader();
 				return app.switchView('lobby', app.data_temp, '#exoskeleton', url, 'quiniela-feed', true, true, true );
 			}, 400);
 		},

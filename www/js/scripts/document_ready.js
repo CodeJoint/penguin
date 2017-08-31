@@ -377,10 +377,11 @@ window.initializeEvents = function(){
 
 				var gameId = $('#detailQuiniela').data('id');
 				var entryId = $('#detailQuiniela').data('extra');
-				console.log(entryId);
+
 				$('.menu li').removeClass('selected');
 
-				$('#reg_into_game').on('click', function(){
+				$('#reg_into_game').click(function(event){
+					console.log(event);
 					$('#registerNow').fadeIn('fast');
 				});
 
@@ -388,9 +389,9 @@ window.initializeEvents = function(){
 					$(this).val();
 				})
 
-				$('#closeRegister').on('click',function(){
-					$('#registerNow').fadeOut('fast');
-				});
+				// $('#closeRegister').on('click',function(){
+				// 	$('#registerNow').fadeOut('fast');
+				// });
 				// $('#sendRegister').on('click',function(){
 				// 	$('#registerNow').fadeOut('fast');
 				// });

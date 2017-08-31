@@ -296,18 +296,18 @@
 			if( typeof window.has_exo == 'undefined' ){
 				var data = app.gatherEnvironment(null, null);
 				window.has_exo;
-				app.switchView('exoskeleton', data, '.view', null, '', true, true, false);
-				/** Render header if not present **/
-				apiRH._ajaxRequest('GET', 'api/users/details.json', null, 'json', true, app.render_header);
+				$.when( app.switchView('exoskeleton', data, '.view', null, '', true, true, false) ).then( function(){
+					return apiRH._ajaxRequest('GET', 'api/users/details.json', null, 'json', true, app.render_header);
+				} );
 			}
 		},
 		render_header : function(user_data, filters){
+
 			var saved 	= apiRH.save_user_data_clientside(user_data);
 			var extra_data = app.gatherEnvironment(null, "");
 			extra_data.selected_lobby = (filters) ? true : false;
-			if($('#theHeader').length)
-				$('#theHeader').remove();
-			return app.render_partial('header', extra_data, '#loadHeader');
+			$.when($('#theHeader').remove())
+			 .then( app.render_partial('header', extra_data, '#loadHeader') );
 		},
 		render_forgot_password : function( url ){
 			
@@ -406,7 +406,7 @@
 			return;
 		},
 		render_detail : function(response){
-
+			console.log(response);
 			extra_data = (response.pool) ? response.pool : [];
 			if(typeof extra_data.sport !== 'undefined' && typeof extra_data.sport.allow_ties !== 'undefined')
 				window.sport_allow_ties = extra_data.sport.allow_ties;
@@ -425,7 +425,7 @@
 				app.data_temp.data.entry_id = dynamic_params.extra;
 			if(dynamic_params.view === 'chat' || dynamic_params.view === 'places' || dynamic_params.view === 'prizes' || dynamic_params.view === 'group-picks' || dynamic_params.view === 'scoreboard')
 				return app.appendView(template_name, window._cache, '#tabContainer');
-			console.log(dynamic_params)
+
 			return app.switchView(template_name, app.data_temp, '#exoskeleton', dynamic_params.url, 'quiniela-'+dynamic_params.view);
 		},
 		fetch_detail : function(url, object_id, view, extra){

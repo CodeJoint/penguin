@@ -169,7 +169,7 @@ body {width: 100%; margin: 0 auto; font-weight: 300; font-family: 'Lato'!importa
 
 /*** LOBBY ***/
 
-.lobby {background-image: url('../images/background.png'); background-position: center top; background-attachment: fixed; background-size: cover; }
+.lobby { background-image: url(../images/background.png); background-position: center top; background-attachment: fixed; background-size: auto; background-repeat: no-repeat; }
 .quinielas {padding-top: 90px; padding-bottom: 70px;}
 
 /*** QUINIELAS ***/
@@ -309,7 +309,7 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 .quiniela_single .partidos .partido_finalizado .opcion_partido.visitante .equipo span {display: block; color: #FF576C;}
 
 .quiniela_single .props {width: 100%; border-top: 1px solid #77BC1F;}
-.quiniela_single .props h3 {font-weight: 300; margin-top: 10px; margin-bottom: 10px; text-align: center; font-size: 12px;}
+.quiniela_single .props h3 {font-weight: 300; margin-top: 20px; margin-bottom: 10px; text-align: center; font-size: 12px;}
 .quiniela_single .props .prop {width: 100%; margin-bottom: 10px; border-top: 1px solid #8A8A8D; padding-top: 10px; position: relative;}
 .quiniela_single .props .prop h3 {margin-bottom: 20px;}
 .quiniela_single .props .prop .opcion_prop input {float: left;}
@@ -741,3 +741,5 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 	.tab_profile.documents>ul>li:nth-of-type(2n),
 	.tab_profile.transactions>ul>li:nth-of-type(2n){background-color: #3c3a3a;}
 	.tab_profile li .highlight{color: #2196F3;}
+	
+	small.info{text-align: left; color: #678946; font-size: 1rem; letter-spacing: 1px;}

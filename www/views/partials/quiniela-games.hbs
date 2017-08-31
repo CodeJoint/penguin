@@ -58,80 +58,74 @@
 	{{/ data.fixtures}}
 	<div id="propsContainer" class="props clearfix clear_if_empty">
 		{{# data.fixtures}}
+			<h3>PROPS</h3>
 			<ul data-id="{{id}}" class="partido radio_group clearfix">
-			{{# props}}
-				
-				{{# if_eq type 'over_under'}}
-					<li class="opcion_partido prop clearfix" data-fixture="{{fixture_id}}" data-prop="{{id}}">
-						<h3>{{name}} {{../home_team.abbreviation}} VS {{../away_team.abbreviation}}</h3>
-						<div class="opciones_prop dos_opciones clearfix">
-							<div class="opcion_prop clearfix">
-								<div class="check"></div>	
-								<label for="local_{{id}}" >
-									<div class="equipo">
-										<span class="iniciales">Menor</span>
-									</div><!-- equipo -->
-								</label>	
-							</div>
-							<div class="opcion_prop clearfix">
-								<span>{{value}}</span>
-							</div>
-							<div class="opcion_prop clearfix">
-								<input type="radio" name="prop_uno" value="over">
-								<span>Mayor</span>
-							</div>
-						</div><!-- opciones_prop dos_opciones -->
-											
-					</li><!-- opcion_partido -->
+				{{# props}}
 					
-				{{/ if_eq }}
+					{{# if boolean}}
+						<li class="opcion_partido prop clearfix" data-fixture="{{fixture_id}}" data-prop="{{id}}">
+							<h3>{{name}} {{../home_team.abbreviation}} VS {{../away_team.abbreviation}}</h3>
+							<div class="opciones_prop dos_opciones clearfix">
+								<div class="opcion_prop clearfix">
+									<input type="radio" id="prop_under_{{id}}" name="{{id}}" value="pick-prop-{{id}}">
+									<div class="check"></div>	
+									<label for="prop_under_{{id}}" >
+										<div class="equipo">
+											<span class="iniciales">Menor</span>
+										</div><!-- equipo -->
+									</label>	
+								</div>
+								<div class="opcion_prop clearfix">
+									<span>{{value}}</span>
+								</div>
+								<div class="opcion_prop clearfix">
+									<label for="prop_over_{{id}}" >
+										<div class="equipo">
+											<span class="iniciales">Mayor</span>
+										</div><!-- equipo -->
+									</label>
+									<input type="radio" id="prop_over_{{id}}" name="{{id}}" value="pick-prop-{{id}}">
+									<div class="check"></div>	
+								</div>
+							</div><!-- opciones_prop dos_opciones -->
+												
+						</li><!-- opcion_prop -->
+						
+					{{/ if }}
 
-			<!-- <div class="prop clearfix">
-				<h3>¿Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer aliqua?</h3>
-				<div class="opciones_prop tres_opciones clearfix">
-					<div class="opcion_prop clearfix">
-						<input type="radio" name="prop_dos" value="ame">
-						<img src="{{cordova_full_path}}images/camisaamarilla.png">
-						<span>AME</span>
-					</div>
-					<div class="opcion_prop clearfix">
-						<input type="radio" name="prop_dos" value="caz">
-						<img src="{{cordova_full_path}}images/camisaroja.png">
-						<span>CAZ</span>
-					</div>
-					<div class="opcion_prop clearfix">
-						<input type="radio" name="prop_dos" value="gua">
-						<img src="{{cordova_full_path}}images/camisaverde.png">
-						<span>GUA</span>
-					</div>
-				</div>
-			</div>
-			<div class="prop clearfix">
-				<h3>¿Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer aliqua?</h3>
-				<div class="opciones_prop cuatro_opciones clearfix">
-					<div class="opcion_prop clearfix">
-						<input type="radio" name="prop_tres" value="ame">
-						<img src="{{cordova_full_path}}images/camisaamarilla.png">
-						<span>AME</span>
-					</div>
-					<div class="opcion_prop clearfix">
-						<input type="radio" name="prop_tres" value="caz">
-						<img src="{{cordova_full_path}}images/camisaroja.png">
-						<span>CAZ</span>
-					</div>
-					<div class="opcion_prop clearfix">
-						<input type="radio" name="prop_tres" value="gua">
-						<img src="{{cordova_full_path}}images/camisaverde.png">
-						<span>GUA</span>
-					</div>
-					<div class="opcion_prop clearfix">
-						<input type="radio" name="prop_tres" value="nec">
-						<img src="{{cordova_full_path}}images/camisaazul.png">
-						<span>NEC</span>
-					</div>
-				</div>
-			</div> props -->
-			{{/ props}}
+					{{# unless boolean}}
+						<li class="opcion_partido prop clearfix" data-fixture="{{fixture_id}}" data-prop="{{id}}">
+							<h3>{{name}} {{../home_team.abbreviation}} VS {{../away_team.abbreviation}}</h3>
+							<div class="opciones_prop dos_opciones clearfix">
+								<div class="opcion_prop opcion_partido clearfix">
+									<input type="radio" id="prop_under_{{id}}" name="{{id}}" value="pick-prop-{{id}}">
+									<div class="check"></div>	
+									<label for="prop_under_{{id}}" >
+										<div class="equipo">
+											<span class="iniciales">Si</span>
+										</div><!-- equipo -->
+									</label>	
+								</div>
+								<div class="opcion_prop opcion_partido clearfix">
+									<span></span>
+								</div>
+								<div class="opcion_prop opcion_partido clearfix">
+									<label for="prop_over_{{id}}" >
+										<div class="equipo">
+											<span class="iniciales">No</span>
+										</div><!-- equipo -->
+									</label>
+									<input type="radio" id="prop_over_{{id}}" name="{{id}}" value="pick-prop-{{id}}">
+									<div class="check"></div>	
+								</div>
+							</div><!-- opciones_prop dos_opciones -->
+												
+						</li><!-- opcion_prop -->
+						
+					{{/ unless }}
+
+				{{/ props}}
 			</ul>
 		{{/ data.fixtures}}
 	</div> <!-- props -->
+	<small class="info">Se tomarán los resultados únicamente de tiempo reglamentario. (No tiempos extras)</small>

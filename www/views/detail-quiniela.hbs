@@ -69,7 +69,7 @@
 
 		</div><!-- partidos -->
 			
-		{{# if data.tiebreakers}}
+		{{# data.tiebreakers}}
 			<div class="desempates clearfix">
 				<h3>DESEMPATE</h3>
 					{{# each data.tiebreakers}}
@@ -128,7 +128,7 @@
 					{{/ each}}
 
 			</div><!-- dempates -->
-		{{/ if }}
+		{{/ data.tiebreakers }}
 
 	{{/ data.closed}}
 		
@@ -172,7 +172,7 @@
 					<div class="no_registros clearfix">
 						<span class="pregunta">¿Cuántos registros quieres para esta quiniela?</span>
 						<select name="num_entries" id="num_entries">
-							{{# numberOptions 40}}
+							{{ numberOptions 40}}
 						</select>
 					</div><!-- no_registros -->
 					<div class="copiar_picks clearfix">

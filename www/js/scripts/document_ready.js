@@ -384,9 +384,11 @@ window.initializeEvents = function(){
 				app.render_games(gameId);
 
 				/** Render similar picks **/
-				if(!entryId)
-					return app.render_similar_picks(gameId);
-				return app.render_similar_picks(entryId);
+				if(!entryId){
+					app.render_similar_picks(gameId);
+				}else{
+					app.render_similar_picks(entryId);
+				}
 
 				$('#registerToQuinielaForm').validate({
 					rules:{
@@ -418,7 +420,7 @@ window.initializeEvents = function(){
 				});
 
 				$('#num_entries').on('change', function(){
-					$(this).val();
+					console.log($(this).val());
 				})
 
 				// $('#closeRegister').on('click',function(){

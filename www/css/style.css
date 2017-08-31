@@ -259,7 +259,6 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 .quiniela_single {padding-top: 100px; padding-bottom: 70px; font-size: 12px; position: relative;}
 .quiniela_single .quiniela {width: 100%;}
 .quiniela_single .registro_quiniela {width: 100%; text-align: center; margin: 1rem 0;}
-.quiniela_single .registro_quiniela a:first-child {display: block; margin: 0 auto;}
 .quiniela_single .quiniela_info { margin-right: 10px; display: block; }
 
 .error_inline{ display: block; clear: both; margin: 2rem 0 0 0; text-align: center; color: #f55934; text-transform: uppercase; font-size: 10px;}
@@ -679,7 +678,7 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 
 	.rootContainer{ min-height: 100vh!important;}
 	.form input.submit_green{ background-color: #678946; border-color: #aaca7d; border-style: groove; text-transform: uppercase; letter-spacing: 1.5px; font-size: 1.25rem; width: 240px; -webkit-border-radius: 2px; -moz-border-radius: 2px; border-radius: 2px;}
-	.green_button{background-color: #678946; border-color: #aaca7d; border-style: groove; text-transform: uppercase; text-align: center; font-weight: 300; letter-spacing: 1.5px; font-size: 1rem; width: 180px; -webkit-border-radius: 2px; -moz-border-radius: 2px; border-radius: 2px; color: #FFF; padding: 0.5rem 1rem; text-decoration: none; margin: 2.5rem auto 0 auto; display: block;}
+	.green_button{background-color: #678946; border-color: #9dc16b; border-style: groove; text-transform: uppercase; text-align: center; font-weight: 300; letter-spacing: 1.5px; font-size: 1rem; width: 180px; -webkit-border-radius: 2px; -moz-border-radius: 2px; border-radius: 2px; color: #FFF; padding: 0.5rem 1rem; text-decoration: none; margin: 0.5rem auto; display: block; }
 	form label.error{ color: #678946; text-align: left; float: none; display: block; font-size: 1.1rem; letter-spacing: 1px; margin: 0 0 1rem 0;}
 	
 	.view,

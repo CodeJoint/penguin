@@ -566,7 +566,16 @@ function requestHandlerAPI(){
 							use_same_picks	: (typeof entry_data.use_same_picks !== 'undefined') ? entry_data.use_same_picks : 0,
 						};
 			console.log(data);
-			return apiRH._ajaxRequest('POST', 'api/picks/save.json', data, 'json', true, app.render_entry_success);
+			// return apiRH._ajaxRequest('POST', 'api/picks/save.json', data, 'json', true, app.render_entry_success);
+			return;
+		};
+
+		/**
+		 * Entry success callback
+		 */
+		this.render_entry_success = function(response){
+			app.toast('¡Te has registrado a la quiniela! Elige tus picks');
+			$('#registerNow').fadeOut('fast');
 			return;
 		};
 
@@ -580,4 +589,12 @@ function requestHandlerAPI(){
 			return;
 		};
 		
+		/**
+		 * Eedit entry success callback
+		 */
+		this.render_edit_entry_success = function(response){
+			
+			$('#registerNow').fadeOut('fast');
+			return;
+		};
 	}

@@ -386,7 +386,7 @@ window.initializeEvents = function(){
 				/** Render similar picks **/
 				if(!entryId){
 					app.render_similar_picks(gameId);
-				}else{
+				} else{
 					app.render_similar_picks(entryId);
 				}
 
@@ -404,31 +404,27 @@ window.initializeEvents = function(){
 						app.showLoader();
 						var entry_data	= app.getFormData(form, 'object');
 						console.log(entry_data);
-						apiRH.registerEntry(entry_data);
-						return false;
+						return apiRH.registerEntry(entry_data);
 					}
 				});
 
+				
 				// Register modal
-				$('#reg_into_game').on('click', function(event){
-					console.log(event);
-					console.log($('#registerNow'));
-					$('#registerNow').show();
-					// $('#registerNow').fadeIn('fast');
-					event.preventDefault();
-					event.stopPropagation();
+				$('#reg_into_game').on('click', function(e){
+					$('#registerNow').fadeIn('fast');
+					e.preventDefault();
+					e.stopPropagation();
 				});
 
 				$('#num_entries').on('change', function(){
 					console.log($(this).val());
-				})
-
-				// $('#closeRegister').on('click',function(){
-				// 	$('#registerNow').fadeOut('fast');
-				// });
-				// $('#sendRegister').on('click',function(){
-				// 	$('#registerNow').fadeOut('fast');
-				// });
+				});
+				
+				// Remove empty select controls from the view
+				$('select:not(.no_check)').each(function(){
+					if( $(this).has('option').length > 0 )
+						$(this).remove();
+				});
 
 				setTimeout(function(){
 					$('#filterComponent').hide();

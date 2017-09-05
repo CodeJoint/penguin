@@ -2,7 +2,7 @@
 	<div class="opciones_partido clearfix">
 		<span>LOCAL</span> <span>EMP</span> <span>VISITANTE</span>
 	</div><!-- opciones_partido -->
-	{{# data.fixtures}}
+	{{# each data.fixtures}}
 		<ul data-id="{{id}}" class="partido radio_group clearfix">
 			<li class="opcion_partido local clearfix">
 				{{^ finished}}
@@ -55,14 +55,16 @@
 				</div><!-- linea -->
 			</li><!-- opcion_partido -->
 		</ul>
-	{{/ data.fixtures}}
+
+	{{/ each}}
 	<div id="propsContainer" class="props clearfix clear_if_empty">
-		{{# data.fixtures}}
-			<h3>PROPS</h3>
-			<ul data-id="{{id}}" class="radio_group clearfix">
-				{{# props}}
-					
-					{{# if boolean}}
+		<h3>PROPS</h3>
+		<ul data-id="{{id}}" class="radio_group clearfix">
+			
+			{{# each data.fixtures}}
+				{{# each props}}
+				
+					{{# unless boolean}}
 						<li class="prop clearfix" data-fixture="{{fixture_id}}" data-prop="{{id}}">
 							<h3>{{name}} {{../home_team.abbreviation}} VS {{../away_team.abbreviation}}</h3>
 							<div class="opciones_prop tres_opciones clearfix">
@@ -91,9 +93,9 @@
 												
 						</li><!-- opcion_prop -->
 						
-					{{/ if }}
+					{{/ unless }}
 
-					{{# unless boolean}}
+					{{# if boolean}}
 						<li class="prop clearfix" data-fixture="{{fixture_id}}" data-prop="{{id}}">
 							<h3>{{name}} {{../home_team.abbreviation}} VS {{../away_team.abbreviation}}</h3>
 							<div class="opciones_prop dos_opciones clearfix">
@@ -122,10 +124,12 @@
 												
 						</li><!-- opcion_prop -->
 						
-					{{/ unless }}
+					{{/ if }}
 
-				{{/ props}}
-			</ul>
-		{{/ data.fixtures}}
+				{{/ each}}
+			{{/ each}}
+	
+		</ul>
 	</div> <!-- props -->
+		
 	<small class="info">Se tomarán los resultados únicamente de tiempo reglamentario. (No tiempos extras)</small>

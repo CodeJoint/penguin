@@ -123,7 +123,7 @@
 				return ((total*100)/value).toFixed(2);
 			});
 			Handlebars.registerHelper('calcAmount', function(value, total) {
-				return ((value*100)/total).toFixed(2);
+				return ((total/100)*value).toFixed(2);
 			});
 			Handlebars.registerHelper('formatDate', function(value, format) {
 				var date 	  = Date.parse(value);
@@ -413,11 +413,22 @@
 		},
 		render_detail : function(response){
 			console.log(response);
-			extra_data = (response.pool) ? response.pool : [];
+			extra_data = (response.pool) ? response : [];
 			if(typeof extra_data.sport !== 'undefined' && typeof extra_data.sport.allow_ties !== 'undefined')
 				window.sport_allow_ties = extra_data.sport.allow_ties;
 			app.data_temp = app.gatherEnvironment(extra_data, "Detail");
-				// Full view load
+			console.log(extra_data);
+			if(app.data_temp.data.tiebreakers){
+				app.data_temp.data.tiebreakers_iter = [];
+				for (var key in app.data_temp.data.tiebreakers) {
+				   	if (app.data_temp.data.tiebreakers.hasOwnProperty(key)) {
+				      	app.data_temp.data.tiebreakers_iter.push(app.data_temp.data.tiebreakers[key]);
+				   	}
+				}
+				window._cache['tiebreakers_iter'] = app.data_temp.data.tiebreakers_iter;
+				window._cache['pool'] 			  = app.data_temp.data.pool;
+			}
+			// Full view load
 			var template_name = (dynamic_params.view === 'postures') 	? 'detail-quiniela-registered'	: 'detail-quiniela';
 				template_name = (dynamic_params.view === 'closed'	) 	? 'detail-quiniela-closed'		: template_name;
 				template_name = (dynamic_params.view === 'live'	) 		? 'detail-quiniela-live'		: template_name;

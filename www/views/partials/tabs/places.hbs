@@ -1,58 +1,21 @@
 	<div class="tab tab_posiciones clearfix">
-		<table>
-			<tr class="table_title">
-				<th>POS</th>
-				<th>JUGADOR</th>
-				<th>ACIERTOS</th>
-				<th>A GANAR</th>
-			</tr>
-			<tr class="player_info">
-				<td>1</td>
-				<td class="player"><img src="images/profile_placeholder.png"> Lorem Ipsum 123</td>
-				<td>12</td>
-				<td class="ganar"><img src="images/billete.png">$1,234</td>
-			</tr>
-			<tr class="player_info">
-				<td>1</td>
-				<td class="player"><img src="images/profile_placeholder.png"> Lorem Ipsum 123</td>
-				<td>12</td>
-				<td class="ganar"><img src="images/billete.png">$1,234</td>
-			</tr>
-			<tr class="player_info">
-				<td>1</td>
-				<td class="player"><img src="images/profile_placeholder.png"> Lorem Ipsum 123</td>
-				<td>12</td>
-				<td class="ganar"><img src="images/billete.png">$1,234</td>
-			</tr>
-			<tr class="player_info">
-				<td>1</td>
-				<td class="player"><img src="images/profile_placeholder.png"> Lorem Ipsum 123</td>
-				<td>12</td>
-				<td class="ganar"><img src="images/billete.png">$1,234</td>
-			</tr>
-			<tr class="player_info">
-				<td>1</td>
-				<td class="player"><img src="images/profile_placeholder.png"> Lorem Ipsum 123</td>
-				<td>12</td>
-				<td class="ganar"><img src="images/billete.png">$1,234</td>
-			</tr>
-			<tr class="player_info">
-				<td>1</td>
-				<td class="player"><img src="images/profile_placeholder.png"> Lorem Ipsum 123</td>
-				<td>12</td>
-				<td class="ganar"><img src="images/billete.png">$1,234</td>
-			</tr>
-			<tr class="player_info">
-				<td>1</td>
-				<td class="player"><img src="images/profile_placeholder.png"> Lorem Ipsum 123</td>
-				<td>12</td>
-				<td class="ganar"><img src="images/billete.png">$1,234</td>
-			</tr>
-			<tr class="player_info">
-				<td>1</td>
-				<td class="player"><img src="images/profile_placeholder.png"> Lorem Ipsum 123</td>
-				<td>12</td>
-				<td class="ganar"><img src="images/billete.png">$1,234</td>
-			</tr>
-		</table>
+		{{# each pool_prizes}}
+			<table>
+				<tr class="table_title">
+					<th>POS</th>
+					<th>JUGADOR</th>
+					<th>ACIERTOS</th>
+					<th>A GANAR</th>
+				</tr>
+				{{# each prizes}}
+					<tr class="player_info">
+						<td>{{position}}</td>
+						<td class="player"><img src="images/profile_placeholder.png"> Lorem Ipsum 123</td>
+						<td>12</td>
+						<td class="ganar"><img src="images/billete.png">${{formatCurrency }}</td>
+					</tr>
+				{{/ each}}
+				
+			</table>
+		{{/ each}}
 	</div><!-- posiciones -->

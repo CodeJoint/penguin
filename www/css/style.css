@@ -329,16 +329,17 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 .quiniela_single .props .prop .cuatro_opciones .opcion_prop img {margin-right: 5px; margin-left: 10%;}
 .quiniela_single .props .prop .cuatro_opciones .opcion_prop span {margin-left: 55%; padding-top: 5%;}
 
-.quiniela_single .desempates {width: 100%; border-top: 1px solid #77BC1F;}
-.quiniela_single .desempates h3 {font-weight: 300; margin-top: 10px; margin-bottom: 20px; text-align: center; font-size: 12px; border-bottom: 1px solid #8A8A8D; padding-bottom: 10px;}
-.quiniela_single .desempates .desempate {width: 100%; margin-bottom: 20px;}
-.quiniela_single .desempates .desempate .desempate_left {width: 50%; float: left;}
-.quiniela_single .desempates .desempate span {padding-top: 10px; display: block; float: left;}
-.quiniela_single .desempates .desempate .desempate_input {width: 40%; float: right; position: relative;}
-.quiniela_single .desempates .desempate .desempate_input input[type="text"] {background: transparent; border-radius: 5px; border: 1px solid #8A8A8D; height: 30px; color: #fff; font-weight: 300; font-family: 'Lato'; padding: 5px; }
-.quiniela_single .desempates .desempate.desempate_uno .desempate_input span {float: left; margin-right: 5px; padding-top: 7px;}
-.quiniela_single .desempates .desempate.desempate_uno .desempate_input input[type="text"] {width: 30px; float: left; margin-right: 5px;}
-.quiniela_single .desempates .desempate.desempate_tres .desempate_input input[type="radio"] {width: 30px; float: left; margin-right: 5px; margin-top: 10px; }
+.desempates {width: 100%; border-top: 1px solid #77BC1F;}
+.desempates h3 {font-weight: 300; margin-top: 10px; margin-bottom: 20px; text-align: center; font-size: 12px; border-bottom: 1px solid #8A8A8D; padding-bottom: 10px;}
+.desempates .desempate {width: 100%; margin-bottom: 20px;}
+.desempates .desempate .desempate_left {width: 50%; float: left;}
+.desempates .desempate span {padding-top: 10px; display: block; float: left;}
+.desempates .desempate .desempate_input {width: 40%; float: right; position: relative;}
+.desempates .desempate .desempate_input input[type="text"],
+.desempates .desempate .desempate_input input[type="tel"] {background: transparent; border-radius: 5px; border: 1px solid #8A8A8D; height: 30px; color: #fff; font-weight: 300; font-family: 'Lato'; padding: 5px; }
+.desempates .desempate.desempate_uno .desempate_input span {float: left; margin-right: 5px; padding-top: 7px;}
+.desempates .desempate.desempate_uno .desempate_input input[type="text"] {width: 30px; float: left; margin-right: 5px;}
+.desempates .desempate.desempate_tres .desempate_input input[type="radio"] {width: 30px; float: left; margin-right: 5px; margin-top: 10px; }
 
 .quiniela_single .desempates .desempate.desempate_tres .desempate_tres_left {width: 50%; float: left; position: relative;}
 .quiniela_single .desempates .desempate.desempate_tres .desempate_tres_right {width: 50%; float: left; position: relative;}
@@ -743,4 +744,4 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 	.tab_profile.transactions>ul>li:nth-of-type(2n){background-color: #3c3a3a;}
 	.tab_profile li .highlight{color: #2196F3;}
 	
-	small.info{text-align: left; color: #678946; font-size: 1rem; letter-spacing: 1px;}
+	small.info{text-align: center; display: block; color: #77bc1f; font-size: 0.85rem; letter-spacing: 1px;}

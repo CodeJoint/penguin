@@ -5,7 +5,7 @@
 				<th>PORCENTAJE</th>
 				<th>MONTO</th>
 			</tr>
-			{{# if prize_distribution.pool_prizes }}
+			{{# prize_distribution.pool_prizes }}
 				{{# each prizes }}
 					<tr class="player_info">
 						<td>{{position}} LUGAR</td>
@@ -15,12 +15,10 @@
 						{{/ if_eq }}
 						{{# if_eq type 'percentage'}}
 							<td>{{formatCurrency percentage}}%</td>
-							<td class="ganar"><img src="images/billete.png">${{calcAmount percentage prize_distribution.pool.available}} MXN</td>
+							<td class="ganar"><img src="images/billete.png">${{calcAmount normalized ../../prize_distribution.pool.available}} MXN</td>
 						{{/ if_eq }}
 					</tr>
-				el 1 ->{{prize_distribution.pool.available}}
-				el ->{{../prize_distribution.pool.available}}
 				{{/ each }}
-			{{/ if }}
+			{{/ prize_distribution.pool_prizes }}
 		</table>
 	</div><!-- premios -->

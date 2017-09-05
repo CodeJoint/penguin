@@ -66,7 +66,7 @@ window.initializeEvents = function(){
 				var resource 		= $(this).data('resource');
 				var resource_href 	= $(this).attr('href');
 				var resource_object = $(this).data('object') ? $(this).data('object'): null;
-				var resource_extra 	= $(this).data('extra') ? $(this).data('extra'): null;
+				var resource_extra 	= $(this).data('extra')  ? $(this).data('extra') : null;
 				/*** Register / Login ***/
 				if( resource == "register" )
 					return app.render_register( resource_href );
@@ -436,8 +436,11 @@ window.initializeEvents = function(){
 			
 			if($('#detailQuinielaRegistered').length){
 				
+				$('#detailQuinielaRegistered').data('entry', _cache.entry_id);
 				var gameId 	= $('#detailQuinielaRegistered').data('id');
 				var entryId = $('#detailQuinielaRegistered').data('entry');
+				var weekId  = $('#detailQuinielaRegistered').data('weekid');
+
 				$('.missing_info').each(function(){
 					$(this).data('extra', entryId)
 							.removeClass('missing_info');
@@ -464,8 +467,11 @@ window.initializeEvents = function(){
 				/** Call full standings **/
 				app.fetch_standings(gameId);
 				/** Call group picks **/
-				app.fetch_group_picks(gameId);
+				app.fetch_group_picks(gameId, weekId);
 
+				setTimeout( function(){
+					app.fill_entry_picks()
+				}, 620);
 				return initCountdownTimers();
 
 			} // END detailQuinielaRegistered scope

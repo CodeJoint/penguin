@@ -101,6 +101,13 @@
 					return opts.inverse(this);
 				}
 			});
+			Handlebars.registerHelper('if_diff', function(a, b, opts) {
+				if (a != b) {
+					return opts.fn(this);
+				} else {
+					return opts.inverse(this);
+				}
+			});
 			Handlebars.registerHelper('if_less', function(a, b, opts) {
 				if (a < b && a > 0) {
 					return opts.fn(this);
@@ -412,12 +419,13 @@
 			return;
 		},
 		render_detail : function(response){
-			console.log(response);
+
 			extra_data = (response.pool) ? response : [];
-			if(typeof extra_data.sport !== 'undefined' && typeof extra_data.sport.allow_ties !== 'undefined')
-				window.sport_allow_ties = extra_data.sport.allow_ties;
+			if(typeof extra_data.pool.sport !== 'undefined' && typeof extra_data.pool.sport.allow_ties !== 'undefined')
+				window.sport_allow_ties = extra_data.pool.sport.allow_ties;
+
 			app.data_temp = app.gatherEnvironment(extra_data, "Detail");
-			console.log(extra_data);
+			window._cache['entry_id'] = dynamic_params.extra;
 			if(app.data_temp.data.tiebreakers){
 				app.data_temp.data.tiebreakers_iter = [];
 				for (var key in app.data_temp.data.tiebreakers) {
@@ -461,13 +469,39 @@
 			return apiRH._ajaxRequest('GET', 'api/pools/fixtures/'+object_id+'.json', null, 'json', true, app.render_games_callback);
 		},
 		render_games_callback : function(response){
-
+			window._cache['fixtures'] = response;
 			extra_data = (response) ? response : [];
 			app.data_temp = app.gatherEnvironment(extra_data, null);
 			return app.render_partial('quiniela-games', app.data_temp, '#insertPartidos');
 		},
-		fill_picks_radio : function(options){
+		fill_entry_picks : function(){
 
+			var myPicks = _cache.entries.entry.picks;
+			myPicks.forEach(function(element){
+
+				var $home = $('.partido[data-id='+element.fixture_id+']').find('.local_sel');
+				var $away = $('.partido[data-id='+element.fixture_id+']').find('.away_sel');
+				var $tie  = $('.partido[data-id='+element.fixture_id+']').find('.empate_sel');
+				if(element.pick === 'home')
+					$home.trigger('click');
+				if(element.pick === 'away')
+					$away.trigger('click');
+				if(element.pick === 'tie')
+					$tie.trigger('click');
+
+			});
+			var myPropPicks = _cache.entries.entry.picks_props;
+			myPropPicks.forEach(function(element){
+
+				var $under = $('.prop[data-fixture='+element.fixture_id+']').find('.under_sel');
+				var $over  = $('.prop[data-fixture='+element.fixture_id+']').find('.over_sel');
+
+				if(element.pick === 'under')
+					$under.trigger('click');
+				if(element.pick === 'over')
+					$over.trigger('click');
+
+			});
 			return;
 		},
 		render_similar_picks : function(object_id){
@@ -483,6 +517,7 @@
 			return apiRH._ajaxRequest('GET', 'api/entries/get/'+entry_id+'.json', null, 'json', true, app.render_other_entries_callback);
 		},
 		render_other_entries_callback : function(response){
+			window._cache['entries'] = response;
 			return app.render_partial('other-entries', response, '#lesDrops');
 		},
 		render_profile : function(url, tab){
@@ -631,6 +666,7 @@
 				return false;
 			var pool = app.data_temp.data.pools;
 			filter_array[filter] = value;
+			console.log(filter_array);
 			return app.apply_filters();
 		},
 		/*** Clears specific filter or all filters if parameter is not set ***/
@@ -700,8 +736,8 @@
 		fetch_standings : function(gameId){
 			return apiRH._ajaxRequest('GET', 'api/standings/full/'+gameId+'.json', null, 'json', true, function(response){ window._cache.full_standings = response; });
 		},
-		fetch_group_picks : function(gameId){
-			// return apiRH._ajaxRequest('GET', 'api/standings/full/'+gameId+'.json', null, 'json', true, function(response){ window.group_picks = response; });
+		fetch_group_picks : function(gameId, weekId){
+			return apiRH._ajaxRequest('GET', 'api/standings/group_picks/'+gameId+'/'+weekId+'.json', null, 'json', true, function(response){ window._cache.group_picks = response; });
 		},
 		render_dialog : function(title, message, options){
 			return app.showLoader();

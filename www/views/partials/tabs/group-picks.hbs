@@ -2,15 +2,9 @@
 		<table>
 			<tr class="table_title">
 				<th></th>
-				<th>VIS @ LOC</th>
-				<th>VIS @ LOC</th>
-				<th>VIS @ LOC</th>
-				<th>VIS @ LOC</th>
-				<th>VIS @ LOC</th>
-				<th>VIS @ LOC</th>
-				<th>VIS @ LOC</th>
-				<th>VIS @ LOC</th>
-				<th>VIS @ LOC</th>
+				{{# each fixtures.fixtures}}
+					<th data-fixture="{{id}}">{{away_team.abbreviation}} @ {{home_team.abbreviation}}</th>
+				{{/ each}}
 				<th>MARCADOR EXACTO</th>
 				<th>MINUTO PRIMER GOL</th>
 				<th>MINUTO ÚLTIMO GOL</th>
@@ -70,105 +64,30 @@
 			</tr>
 			<tr class="table_title">
 				<th></th>
-				<th>VIS @ LOC</th>
-				<th>VIS @ LOC</th>
-				<th>VIS @ LOC</th>
-				<th>VIS @ LOC</th>
-				<th>VIS @ LOC</th>
-				<th>VIS @ LOC</th>
-				<th>VIS @ LOC</th>
-				<th>VIS @ LOC</th>
-				<th>VIS @ LOC</th>
+				{{# each fixtures.fixtures}}
+					<th data-fixture="{{id}}">{{away_team.abbreviation}} @ {{home_team.abbreviation}}</th>
+				{{/ each}}
 				<th>MARCADOR EXACTO</th>
 				<th>MINUTO PRIMER GOL</th>
 				<th>MINUTO ÚLTIMO GOL</th>
 				<th>TOTAL S12</th>
 				<th></th>
 			</tr>
-			<tr class="player_info">
-				<td class="player"><img src="images/profile_placeholder.png"> Lorem Ipsum 123</td>
-				<td><img src="images/acierto.png"></td>
-				<td><img src="images/error.png"></td>
-				<td><img src="images/acierto.png"></td>
-				<td><img src="images/error.png"></td>
-				<td><img src="images/acierto.png"></td>
-				<td><img src="images/error.png"></td>
-				<td><img src="images/acierto.png"></td>
-				<td><img src="images/error.png"></td>
-				<td><img src="images/acierto.png"></td>
-				<td><img src="images/error.png"></td>
-				<td><img src="images/error.png"></td>
-				<td><img src="images/error.png"></td>
-				<td><img src="images/error.png"></td>
-				<td></td>
-			</tr>
-			<tr class="player_info">
-				<td class="player"><img src="images/profile_placeholder.png"> Lorem Ipsum 123</td>
-				<td><img src="images/acierto.png"></td>
-				<td><img src="images/error.png"></td>
-				<td><img src="images/acierto.png"></td>
-				<td><img src="images/error.png"></td>
-				<td><img src="images/acierto.png"></td>
-				<td><img src="images/error.png"></td>
-				<td><img src="images/acierto.png"></td>
-				<td><img src="images/error.png"></td>
-				<td><img src="images/acierto.png"></td>
-				<td><img src="images/error.png"></td>
-				<td><img src="images/error.png"></td>
-				<td><img src="images/error.png"></td>
-				<td><img src="images/error.png"></td>
-				<td></td>
-			</tr>
-			<tr class="player_info">
-				<td class="player"><img src="images/profile_placeholder.png"> Lorem Ipsum 123</td>
-				<td><img src="images/acierto.png"></td>
-				<td><img src="images/error.png"></td>
-				<td><img src="images/acierto.png"></td>
-				<td><img src="images/error.png"></td>
-				<td><img src="images/acierto.png"></td>
-				<td><img src="images/error.png"></td>
-				<td><img src="images/acierto.png"></td>
-				<td><img src="images/error.png"></td>
-				<td><img src="images/acierto.png"></td>
-				<td><img src="images/error.png"></td>
-				<td><img src="images/error.png"></td>
-				<td><img src="images/error.png"></td>
-				<td><img src="images/error.png"></td>
-				<td></td>
-			</tr>
-			<tr class="player_info">
-				<td class="player"><img src="images/profile_placeholder.png"> Lorem Ipsum 123</td>
-				<td><img src="images/acierto.png"></td>
-				<td><img src="images/error.png"></td>
-				<td><img src="images/acierto.png"></td>
-				<td><img src="images/error.png"></td>
-				<td><img src="images/acierto.png"></td>
-				<td><img src="images/error.png"></td>
-				<td><img src="images/acierto.png"></td>
-				<td><img src="images/error.png"></td>
-				<td><img src="images/acierto.png"></td>
-				<td><img src="images/error.png"></td>
-				<td><img src="images/error.png"></td>
-				<td><img src="images/error.png"></td>
-				<td><img src="images/error.png"></td>
-				<td></td>
-			</tr>
-			<tr class="player_info this_player">
-				<td class="player"><img src="images/profile_placeholder.png"> Lorem Ipsum 123</td>
-				<td><img src="images/acierto.png"></td>
-				<td><img src="images/error.png"></td>
-				<td><img src="images/acierto.png"></td>
-				<td><img src="images/error.png"></td>
-				<td><img src="images/acierto.png"></td>
-				<td><img src="images/error.png"></td>
-				<td><img src="images/acierto.png"></td>
-				<td><img src="images/error.png"></td>
-				<td><img src="images/acierto.png"></td>
-				<td><img src="images/error.png"></td>
-				<td><img src="images/error.png"></td>
-				<td><img src="images/error.png"></td>
-				<td><img src="images/error.png"></td>
-				<td></td>
-			</tr>
+
+			{{# each group_picks.items}}
+				<tr class="player_info">
+					<td class="player"><img src="{{avatar}}"> {{nick}}</td>
+					{{# each picks}}
+						{{# if_eq @key pick}}
+							<td><img src="images/acierto.png"></td>
+						{{/ if_eq}}
+						<td>{{pres}}</td>
+						
+					{{/ each}}
+
+					<td></td>
+				</tr>
+			{{/ each}}
+			
 		</table>
 	</div><!-- picks_grupo -->

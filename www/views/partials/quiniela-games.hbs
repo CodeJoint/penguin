@@ -1,6 +1,6 @@
 	<h3>PARTIDOS</h3>
 	<div class="opciones_partido clearfix">
-		<span>LOCAL</span> <span>EMP</span> <span>VISITANTE</span>
+		<span>LOCAL</span> <span>{{# if data.sport_allow_ties}}EMP{{/ if}}</span> <span>VISITANTE</span>
 	</div><!-- opciones_partido -->
 	{{# each data.fixtures}}
 		<ul data-id="{{id}}" class="partido radio_group clearfix">
@@ -9,7 +9,7 @@
 					<input type="radio" id="local_{{id}}" name="{{id}}" value="pick-local-{{id}}">
 				{{/ finished}}
 				<div class="check"></div>	
-				<label for="local_{{id}}" >
+				<label class="local_sel" for="local_{{id}}" >
 					<img src="{{cordova_full_path}}images/camisaverde.png">
 					<div class="equipo">
 						<span class="iniciales">{{home_team.abbreviation}}</span>
@@ -27,7 +27,7 @@
 				{{# if ../data.sport_allow_ties}}
 					<input type="radio" id="tie_{{id}}" name="{{id}}" value="pick-tie-{{id}}">
 					<div class="check"></div>	
-					<label for="tie_{{id}}" >
+					<label class="empate_sel" for="tie_{{id}}" >
 						<div class="equipo">
 							<span class="iniciales"></span>
 						</div><!-- equipo -->
@@ -40,7 +40,7 @@
 					<input type="radio" id="away_{{id}}" name="{{id}}" value="pick-away-{{id}}">
 				{{/ finished}}
 				<div class="check"></div>	
-				<label for="away_{{id}}" >
+				<label class="away_sel" for="away_{{id}}" >
 					<img src="{{cordova_full_path}}images/camisaazul.png">
 					<div class="equipo">
 						<span class="iniciales">{{away_team.abbreviation}}</span>
@@ -71,7 +71,7 @@
 								<div class="opcion_prop opcion_partido local clearfix">
 									<input type="radio" id="prop_under_{{id}}" name="{{id}}" value="pick-prop-{{id}}">
 									<div class="check"></div>	
-									<label for="prop_under_{{id}}" >
+									<label class="under_sel" for="prop_under_{{id}}" >
 										<div class="equipo">
 											<span class="iniciales">Menor</span>
 										</div><!-- equipo -->
@@ -83,7 +83,7 @@
 								<div class="opcion_prop opcion_partido visitante clearfix">
 									<input type="radio" id="prop_over_{{id}}" name="{{id}}" value="pick-prop-{{id}}">
 									<div class="check"></div>	
-									<label for="prop_over_{{id}}" >
+									<label class="over_sel" for="prop_over_{{id}}" >
 										<div class="equipo">
 											<span class="iniciales">Mayor</span>
 										</div><!-- equipo -->
@@ -102,7 +102,7 @@
 								<div class="opcion_prop opcion_partido local clearfix">
 									<input type="radio" id="prop_under_{{id}}" name="{{id}}" value="pick-prop-{{id}}">
 									<div class="check"></div>	
-									<label for="prop_under_{{id}}" >
+									<label class="yes_sel" for="prop_under_{{id}}" >
 										<div class="equipo">
 											<span class="iniciales">Si</span>
 										</div><!-- equipo -->
@@ -114,7 +114,7 @@
 								<div class="opcion_prop opcion_partido visitante clearfix">
 									<input type="radio" id="prop_over_{{id}}" name="{{id}}" value="pick-prop-{{id}}">
 									<div class="check"></div>	
-									<label for="prop_over_{{id}}" >
+									<label class="no_sel" for="prop_over_{{id}}" >
 										<div class="equipo">
 											<span class="iniciales">No</span>
 										</div><!-- equipo -->
@@ -127,6 +127,7 @@
 					{{/ if }}
 
 				{{/ each}}
+				
 			{{/ each}}
 	
 		</ul>

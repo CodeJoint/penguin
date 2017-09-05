@@ -744,4 +744,4 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 	.tab_profile.transactions>ul>li:nth-of-type(2n){background-color: #3c3a3a;}
 	.tab_profile li .highlight{color: #2196F3;}
 	
-	small.info{text-align: center; display: block; color: #77bc1f; font-size: 0.85rem; letter-spacing: 1px;}
+	small.info{ text-align: center; display: block; color: #77bc1f; font-size: 0.85rem; letter-spacing: 1px; }

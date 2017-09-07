@@ -396,8 +396,11 @@
 			app.stackCacheElement('lobby-feed', response, cached);
 			app.data_temp	= app.gatherEnvironment( response, "Lobby feed" );
 			app.data_temp.selected_lobby = true;
-			app.data_temp.data.pools_unfiltered = app.data_temp.data.pools;
-			app.data_temp.data.pools 			= app.sort_pool();
+			app.data_temp.data.pools 	 = app.sort_pool();
+			if(typeof cached === 'undefined' || !cached){
+				app.data_temp.data.pools_unfiltered = app.data_temp.data.pools;
+			}
+
 			$('#insertFeed').html( template(app.data_temp) )
 							.css({ "opacity": 0, "display": "block"})
 							.animate({ opacity: 1 }, 220);
@@ -421,8 +424,14 @@
 		render_detail : function(response){
 
 			extra_data = (response.pool) ? response : [];
-			if(typeof extra_data.pool.sport !== 'undefined' && typeof extra_data.pool.sport.allow_ties !== 'undefined')
-				window.sport_allow_ties = extra_data.pool.sport.allow_ties;
+
+			if(typeof extra_data.pool === 'undefined'){
+				if(typeof _cache.pool.sport !== 'undefined' && typeof _cache.pool.sport.allow_ties !== 'undefined')
+					window.sport_allow_ties = _cache.pool.sport.allow_ties;
+			}else{
+				if(typeof extra_data.pool.sport !== 'undefined' && typeof extra_data.pool.sport.allow_ties !== 'undefined')
+						window.sport_allow_ties = extra_data.pool.sport.allow_ties;
+			}
 
 			app.data_temp = app.gatherEnvironment(extra_data, "Detail");
 			window._cache['entry_id'] = dynamic_params.extra;
@@ -446,6 +455,7 @@
 				template_name = (dynamic_params.view === 'prizes'	)  ? dynamic_params.view	: template_name;
 				template_name = (dynamic_params.view === 'group-picks')? dynamic_params.view	: template_name;
 				template_name = (dynamic_params.view === 'scoreboard') ? dynamic_params.view	: template_name;
+			console.log(template_name);
 			if(dynamic_params.extra)
 				app.data_temp.data.entry_id = dynamic_params.extra;
 			if(dynamic_params.view === 'chat' || dynamic_params.view === 'places' || dynamic_params.view === 'prizes' || dynamic_params.view === 'group-picks' || dynamic_params.view === 'scoreboard')
@@ -557,7 +567,7 @@
 			}
 		},
 		render_profile_callback : function(response){
-			console.log("El callbackio");
+			console.log(response);
 			app.data_temp = app.gatherEnvironment(response, dynamic_params.profile_title);
 			return app.switchView( dynamic_params.template, app.data_temp, '#exoskeleton', dynamic_params.url, 'user-profile '+dynamic_params._tab );
 		},
@@ -666,7 +676,6 @@
 				return false;
 			var pool = app.data_temp.data.pools;
 			filter_array[filter] = value;
-			console.log(filter_array);
 			return app.apply_filters();
 		},
 		/*** Clears specific filter or all filters if parameter is not set ***/
@@ -679,56 +688,62 @@
 
 			/*** TODO Start with unfiltered feed from temporary memory, then apply filters ***/
 			var myFilters = window.filter_array;
+			console.log(myFilters);
 			/*** TODO Check temp data before assigning value ***/
-			var myPool 	  = app.data_temp.data.pools_unfiltered;
-			console.log(app.data_temp);
-
+			var myPool 	= app.data_temp.data.pools_unfiltered;
+			var newPool	= [];
+			
 			if(typeof myFilters.real_money !== 'undefined' ){
 				
 				/*** min: 0-50, med: 51-250, max: 251-10000 ***/
-				var min_value = (myFilters.real_money === 'min') ?  0 : 251;
-					min_value = (myFilters.real_money === 'med') ? 51 : min_value;
+				var min_value = (myFilters.real_money === 'min') ?  0 	: 251;
+					min_value = (myFilters.real_money === 'med') ?  51 	: min_value;
 				var max_value = (myFilters.real_money === 'min') ?  50 	: 10000;
 					max_value = (myFilters.real_money === 'med') ? 250	: max_value;
 				myPool.forEach( function(element, index){
 					var entry = element.entry_fee/100;
-					if( !(entry >= min_value && entry <= max_value) )
-						delete myPool[index];
+					if( entry >= min_value && entry <= max_value )
+						newPool.push( myPool[index] );
 				});
 			}
 			if(typeof myFilters.fake_money !== 'undefined' ){
+				
 				/*** min: 0-50, med: 51-250, max: 251-10000 ***/
-				var min_value = (myFilters.real_money === 'min') ?  0 : 251;
-					min_value = (myFilters.real_money === 'med') ? 51 : min_value;
+				var min_value = (myFilters.real_money === 'min') ?  0 	: 251;
+					min_value = (myFilters.real_money === 'med') ?  51 	: min_value;
 				var max_value = (myFilters.real_money === 'min') ?  50 	: 10000;
 					max_value = (myFilters.real_money === 'med') ? 250	: max_value;
 				myPool.forEach( function(element, index){
 					var entry = element.entry_fee/100;
-					if( !(entry >= min_value && entry <= max_value) )
-						delete myPool[index];
+					if( entry >= min_value && entry <= max_value )
+						newPool.push( myPool[index] );
 				});
 			}
 			if(typeof myFilters.status !== 'undefined' )
 				myPool.forEach( function(element, index){
-					if( element.status !== myFilters.status )
-						delete myPool[index];
+
+					if( element.status === myFilters.status )
+						newPool.push( myPool[index] );
 				});
 
 			if(typeof myFilters.sport !== 'undefined' )
 				myPool.forEach( function(element, index){
-					if( element.sport.id !== parseInt(myFilters.sport) )
-						delete myPool[index];
+					if( element.sport.id === parseInt(myFilters.sport) )
+						newPool.push( myPool[index] );
 				});
 
 			if(typeof myFilters.type != 'undefined' ){
-				var type_compare = (myFilters.type !== 'open') ? false : true;
+				var type_compare = (myFilters.type === 'open') ? false : true;
 				myPool.forEach( function(element, index){
 					if( element.limited_capacity === type_compare )
-						delete myPool[index];
+						newPool.push( myPool[index] );
 				});
 			}
-			app.data_temp.data.pools = myPool.filter(function(){return true;});
-			return app.render_lobby_feed(false);
+
+			newPool = newPool.filter(function(){return true;});
+			console.log(newPool.length);
+			app.data_temp.data.pools = newPool;
+			return app.render_lobby_feed_callback(app.data_temp.data, true);
 		},
 		fetch_prize_distribution : function(gameId){
 			return apiRH._ajaxRequest('GET', 'pools/prize_distribution/'+gameId+'.json', null, 'json', true, function(response){ window._cache.prize_distribution = response; });

@@ -9,13 +9,13 @@
 			{{# if_eq data.pool.point_format "natural" }} natural {{/ if_eq }}  clearfix">
 				<div class="quiniela_header clearfix">
 					<div class="quiniela_iconos clearfix">
+						<img src="{{cordova_full_path}}images/{{data.pool.sport.icon}}.png">
 						{{# if_eq data.pool.point_format "line" }}
 							<img src="{{cordova_full_path}}images/linea.png">
 						{{/ if_eq }}
 						{{# if_eq data.pool.point_format "natural" }}
 							<img src="{{cordova_full_path}}images/natural.png">
 						{{/ if_eq }}
-						<img src="{{cordova_full_path}}images/{{data.pool.sport.icon}}.png">
 					</div><!-- iconos -->
 					<h2>{{data.pool.name_replaced}}</h2>
 				</div><!-- quiniela_header -->

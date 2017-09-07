@@ -19,6 +19,9 @@ window.initializeEvents = function(){
 		});
 	};
 	window.initFilterActions = function(){
+
+		$('.header_filtros').unbind();
+		
 		/*** FILTERS ***/
 		$('.header_filtros').on('click', function(){
 			if($('.filtros_wrapper').hasClass('filtros_show')){

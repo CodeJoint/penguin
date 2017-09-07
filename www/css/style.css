@@ -443,7 +443,7 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 .tab_posiciones .ganar img {width: 16px; margin-right: 5px;}
 
 
-.tab_premios {width: 100%;}
+.tab_premios { width: 100%;}
 .tab_premios table {width: 100%; border: none!important; font-size: 10px; text-align: center;}
 .tab_premios table .table_title {border-bottom: 1px solid #fff; line-height: 20px;}
 .tab_premios table tr th {font-size: 10px; font-weight: normal!important;}
@@ -452,17 +452,18 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 .tab_premios table tr.player_info:nth-child(2n){background: #414042}
 .tab_premios .ganar img {width: 16px; margin-right: 5px; }
 
-.tab_picks_grupo {width: 100%;  white-space: nowrap; margin-right: 10%; overflow-x: scroll }
+.tab_picks_grupo { width: 100%;  white-space: nowrap; margin-right: 10%; overflow-x: scroll }
 .tab_picks_grupo table { border: none!important; font-size: 10px; text-align: center; white-space:nowrap; margin-right: 10%;}
-.tab_picks_grupo table .table_title {border-bottom: 1px solid #fff; line-height: 20px;}
-.tab_picks_grupo table tr th {font-size: 10px; font-weight: normal!important; white-space:nowrap; background: }
-.tab_picks_grupo table th {border: none!important; white-space:nowrap;}
-.tab_picks_grupo table td {border: none!important; padding: 5px; white-space:nowrap;}
-.tab_picks_grupo table tr.player_info:nth-child(2n){background: #414042;}
-.tab_picks_grupo table tr.player_info img {width: 16px;}
-.tab_picks_grupo .player img {width: 16px; margin-right: 5px;}
-.tab_picks_grupo .ganar img {width: 16px; margin-right: 5px;}
-.tab_picks_grupo .this_player {background: #5A7849!important;}
+.tab_picks_grupo table .table_title { border-bottom: 1px solid #fff; line-height: 20px;}
+.tab_picks_grupo table tr th { font-size: 10px; font-weight: normal!important; white-space:nowrap; background: }
+.tab_picks_grupo table th { border: none!important; white-space:nowrap;}
+.tab_picks_grupo table td { border: none!important; padding: 5px; white-space:nowrap;}
+.tab_picks_grupo table tr.player_info:nth-child(2n){ background: #414042;}
+.tab_picks_grupo table tr .player { text-align: left;}
+.tab_picks_grupo table tr.player_info img { width: 16px;}
+.tab_picks_grupo .player img { width: 16px; margin-right: 5px;}
+.tab_picks_grupo .ganar img { width: 16px; margin-right: 5px;}
+.tab_picks_grupo .this_player { background: #5A7849!important;}
 
 .tab_marcadores {width: 100%;}
 .tab_marcadores .marcador {width: 50%; float: left; border-right: 1px solid #fff; padding: 5px; border-bottom: 1px solid #fff;}

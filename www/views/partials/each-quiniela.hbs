@@ -6,6 +6,7 @@
 		<div class="quiniela _noborder {{# if upcoming}}quiniela_open {{/ if}} {{# if featured}}featured {{/ if}} {{# if live}}quiniela_live {{/ if}} {{# if_eq status 'live'}}quiniela_live {{/ if_eq}} {{# if closed}}quiniela_closed {{/ if}} {{sport.name}} {{point_format}} garantizado clearfix">
 			<div class="quiniela_header clearfix">
 				<div class="quiniela_iconos clearfix">
+					<img src="{{cordova_full_path}}images/{{# sport.icon}}{{.}}{{/ sport.icon}}{{# sport_icon_class}}{{.}}{{/ sport_icon_class}}.png">
 					{{# if_eq format "line" }}
 						<img src="{{cordova_full_path}}images/linea.png">
 					{{/ if_eq }}
@@ -14,7 +15,6 @@
 							<img src="{{cordova_full_path}}images/natural.png">
 						{{/ if_eq }}
 					{{/ if_eq }}
-					<img src="{{cordova_full_path}}images/{{# sport.icon}}{{.}}{{/ sport.icon}}{{# sport_icon_class}}{{.}}{{/ sport_icon_class}}.png">
 				</div><!-- iconos -->
 				<h2>{{name_replaced}}</h2>
 			</div><!-- quiniela_header -->

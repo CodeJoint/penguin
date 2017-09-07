@@ -1,6 +1,6 @@
 	<h3>PARTIDOS</h3>
 	<div class="opciones_partido clearfix">
-		<span>LOCAL</span> <span>{{# if data.sport_allow_ties}}EMP{{/ if}}</span> <span>VISITANTE</span>
+		<span>LOCAL</span> <span>{{# if data.sport_allow_ties}}EMP{{/ if}}{{# data.fixtures.0.advantage}}LÍNEA{{/ data.fixtures.0.advantage}}</span> <span>VISITANTE</span>
 	</div><!-- opciones_partido -->
 	{{# each data.fixtures}}
 		<ul data-id="{{id}}" class="partido radio_group clearfix">

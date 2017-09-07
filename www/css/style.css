@@ -173,7 +173,7 @@ body {width: 100%; margin: 0 auto; font-weight: 300; font-family: 'Lato'!importa
 .quinielas {padding-top: 90px; padding-bottom: 70px;}
 
 /*** QUINIELAS ***/
-.content.quinielas{position: relative; min-height: 100vh;}
+.content.quinielas{position: relative; min-height: 100vh; width: 97%;}
 .content.quinielas:empty::after{ content: "Cargando quinielas en el lobby..."; position: absolute; width: 100%; top: 49vh; text-align: center; font-size: 0.9rem; letter-spacing: 0.5px; z-index: 999; }
 a.link_wrapper {color: inherit; text-decoration: none;}
 .quiniela {width: 99%; background: #000; border: 1px solid #414042; padding: 2.5%; border-radius: 3px; margin-top: 10px; text-align: left; position: relative;}
@@ -246,7 +246,7 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 
 /*** MIS QUINIELAS OVERLAY ***/
 
-.misquinielas { position: fixed; top: 92px; width: 100%; margin-left: 97%; background: url(../images/bg_trans_quinielas.png) repeat; height: 100vh; overflow: auto; padding: 1% 1% 11rem 1%; z-index: 100;}
+.misquinielas { position: fixed; top: 95px; width: 100%; margin-left: 95%; background-color: rgba(47, 45, 45, 0.8); height: 100vh; overflow: auto; padding: 1% 1% 11rem 1%; z-index: 100; }
 .misquinielas .link_wrapper{pointer-events: none; display: block;}
 .misquinielas.open .link_wrapper{pointer-events: initial;}
 .quiniela_open:not(._noborder) {border-left: 3px solid #DDDDDD;}
@@ -411,7 +411,6 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 .quiniela_registro .balance .total_coins img {float: left; width: 16px; height: auto; margin-right: 5px;}
 
 .quiniela_registro .botones {width: 100%; margin-top: 20px; }
-.quiniela_registro .botones a {float: left; margin-left: 20px; margin-right: 20px;}
 .quiniela_registro .botones input { display: block; margin: auto; background: url('../images/confirmar_y_guardar.png') no-repeat!important; width: 192px; height: 36px; border: none; text-indent: -1000000px;}
 
 
@@ -715,7 +714,7 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 	
 	p.empty{font-size: 1rem; letter-spacing: 1px; text-align: center; margin: 3rem 0;}
 	
-	.backed_modal{ position: absolute; background-color: #000; left: 5%; top: 22vh; width: 90%; z-index: 100;}
+	.backed_modal{ position: fixed; background-color: #000; left: 5%; top: 22vh; width: 90%; z-index: 100;}
 	.backed_modal::before { content: ""; pointer-events: none; display: block; position: fixed; top: 0; left: 0; z-index: -1; width: 100%; height: 100vh; background: url(../images/bg_trans_negro.png) repeat; opacity: 0.35;}
 	
 	.header .header_right .header_user_info{width: 84%;}

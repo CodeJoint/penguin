@@ -72,7 +72,7 @@
 
 		</div><!-- partidos -->
 			
-		{{# data.tiebreakers}}
+		{{# data.pool.tiebreakers}}
 			<div class="desempates clearfix">
 				<h3>DESEMPATE</h3>
 					{{# each data.tiebreakers}}
@@ -131,51 +131,51 @@
 					{{/ each}}
 
 			</div><!-- dempates -->
-		{{/ data.tiebreakers }}
+		{{/ data.pool.tiebreakers }}
 
 	{{/ data.closed}}
 		
-	{{# data.closed}}
+	{{# data.pool.closed}}
 
 		<div id="insertResults" class="results clearfix">
 			Inserte resultados
 		</div><!-- partidos -->
 
-	{{/ data.closed}}
+	{{/ data.pool.closed}}
 
-	{{^ data.closed}}		
+	{{^ data.pool.closed}}		
 		<div id="registerNow" class="backed_modal clearfix" style="display: none;">
 			<div class="quiniela_registro clearfix">
 				<div class="quiniela_header clearfix">
 					<div class="quiniela_iconos clearfix">
-						{{# if_eq data.point_format "line" }}
+						{{# if_eq data.pool.point_format "line" }}
 							<img src="{{cordova_full_path}}images/linea.png">
 						{{/ if_eq }}
-						{{# if_eq data.point_format "natural" }}
+						{{# if_eq data.pool.point_format "natural" }}
 							<img src="{{cordova_full_path}}images/natural.png">
 						{{/ if_eq }}
-						<img src="{{cordova_full_path}}images/{{data.sport.icon}}.png">
+						<img src="{{cordova_full_path}}images/{{data.pool.sport.icon}}.png">
 					</div><!-- iconos -->
-					<h2>{{data.name_replaced}}</h2>
-					{{# if_eq data.entry_currency 'real' }}
-						{{# if_less me.balanceReal data.entry_fee}}
+					<h2>{{data.pool.name_replaced}}</h2>
+					{{# if_eq data.pool.entry_currency 'real' }}
+						{{# if_less me.balanceReal data.pool.entry_fee}}
 							<p class="error_inline clearfix">No tienes saldo suficiente para registrarte en esta quiniela.</p>
 						{{/ if_less}}
 					{{/ if_eq }}
-					{{# if_eq data.entry_currency 'pickcoin' }}
-						{{# if_less me.balancePc data.entry_fee}}
+					{{# if_eq data.pool.entry_currency 'pickcoin' }}
+						{{# if_less me.balancePc data.pool.entry_fee}}
 							<p class="error_inline clearfix">No tienes saldo suficiente para registrarte en esta quiniela.</p>
 						{{/ if_less }}
 					{{/ if_eq }}
 				</div><!-- quiniela_header -->
 
 				<form id="registerToQuinielaForm" method="POST" action="" >
-					<input type="hidden" name="pool_id" id="pool_id" value="{{data.id}}">
+					<input type="hidden" name="pool_id" id="pool_id" value="{{data.pool.id}}">
 					<input type="hidden" name="entry_id" id="entry_id" value="">
 					<div class="no_registros clearfix">
 						<span class="pregunta">¿Cuántos registros quieres para esta quiniela?</span>
 						<select class="no_check" name="num_entries" id="num_entries">
-							{{{ numberOptions 40}}}
+							{{{ numberOptions 1 40}}}
 						</select>
 					</div><!-- no_registros -->
 					<div class="copiar_picks clearfix">
@@ -185,13 +185,13 @@
 					<div class="balance clearfix">
 						<div class="disponible clearfix">
 							<p>Balance disponible:</p>
-							{{# if_eq data.entry_currency 'real' }}
+							{{# if_eq data.pool.entry_currency 'real' }}
 								<div class="disponible_dinero clearfix">
 									<img src="{{cordova_full_path}}images/billete.png">
 									<p>${{ formatCurrency me.balanceReal}} MXN</p>
 								</div><!-- disponible dinero -->
 							{{/ if_eq }}
-							{{# if_eq data.entry_currency 'pickcoin' }}
+							{{# if_eq data.pool.entry_currency 'pickcoin' }}
 								<div class="disponible_coins">
 									<img src="{{cordova_full_path}}images/pickcoin.png">
 									<p>{{ formatCurrency me.balancePc}}</p>
@@ -200,43 +200,43 @@
 						</div><!-- disponible -->
 						<div class="descontaran clearfix">
 							<p>Se descontarán:</p>
-							{{# if_eq data.entry_currency 'real' }}
+							{{# if_eq data.pool.entry_currency 'real' }}
 								<div class="descontaran_dinero">
 									<img src="{{cordova_full_path}}images/billete.png">
-									<p data-realbalance="{{ formatCurrency me.balanceReal}}">${{ formatCurrency data.entry_fee}} MXN</p>
+									<p data-realbalance="{{ formatCurrency me.balanceReal}}">${{ formatCurrency data.pool.entry_fee}} MXN</p>
 								</div><!-- descontaran dinero -->
 							{{/ if_eq }}
-							{{# if_eq data.entry_currency 'pickcoin' }}
+							{{# if_eq data.pool.entry_currency 'pickcoin' }}
 								<div class="descontaran_coins">
 									<img src="{{cordova_full_path}}images/pickcoin.png">
-									<p data-pcbalance="{{ formatCurrency me.balancePc}}">{{ formatCurrency data.entry_fee}}</p>
+									<p data-pcbalance="{{ formatCurrency me.balancePc}}">{{ formatCurrency data.pool.entry_fee}}</p>
 								</div><!-- descontaran coins -->
 							{{/ if_eq }}
 						</div><!-- descontaran -->
 						<div class="total clearfix">
 							<p>Entrada:</p>
-							{{# if_eq data.entry_currency 'real' }}
+							{{# if_eq data.pool.entry_currency 'real' }}
 								<div class="total_dinero">
 									<img src="{{cordova_full_path}}images/billete.png">
-									<p>${{ formatCurrency data.real_entry_fee}} MXN + ${{ formatCurrency data.commission_fee}} comisión</p>
+									<p>${{ formatCurrency data.pool.real_entry_fee}} MXN + ${{ formatCurrency data.pool.commission_fee}} comisión</p>
 								</div><!-- total dinero -->
 							{{/ if_eq }}
-							{{# if_eq data.entry_currency 'pickcoin' }}
+							{{# if_eq data.pool.entry_currency 'pickcoin' }}
 								<div class="total_coins">
 									<img src="{{cordova_full_path}}images/pickcoin.png">
-									<p>{{ formatCurrency data.real_entry_fee}} + {{ formatCurrency data.commission_fee}} comisión</p>
+									<p>{{ formatCurrency data.pool.real_entry_fee}} + {{ formatCurrency data.pool.commission_fee}} comisión</p>
 								</div><!-- total coins -->
 							{{/ if_eq }}
 						</div><!-- total -->
 					</div><!-- balance -->
 
 					<div class="botones clarfix">
-						<input type="submit" id="sendRegister">
+						<a id="sendRegister" class="green_button">Registrarse</a>
 					</div>
 				</form>
 			</div><!-- quiniela-registro -->
 
 		</div><!-- quiniela_registro_overlay -->
-	{{/ data.closed}}
+	{{/ data.pool.closed}}
 		<a id="savePicks" class="green_button">Guardar picks</a>
 	</div><!-- content -->

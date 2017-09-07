@@ -44,7 +44,7 @@ $(document).ready(function(){
 	        var padd = "1%";
 	        positiveMargin = false;
 	    }
-	     $('.misquinielas').animate({
+	     $('.misquinielas').velocity({
 	               marginLeft: left,
 	               paddingLeft: padd,
 	               }, {

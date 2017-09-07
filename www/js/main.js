@@ -154,9 +154,9 @@
 			Handlebars.registerHelper('inc', function(value) {
 				return value+1;
 			});
-			Handlebars.registerHelper('numberOptions', function(value) {
+			Handlebars.registerHelper('numberOptions', function(base, limit) {
 				var html = '';
-				for(var i = 1; i<=value; i++){
+				for(var i = base; i<=limit; i++){
 					html += '<option value="'+i+'" >'+i+'</option>'
 				}
 				return html;
@@ -403,8 +403,8 @@
 
 			$('#insertFeed').html( template(app.data_temp) )
 							.css({ "opacity": 0, "display": "block"})
-							.animate({ opacity: 1 }, 220);
-			return setTimeout( function(){ initHooks(); initCountdownTimers(); $('#filterComponent').fadeIn('fast'); initFilterActions(); app.hideLoader(); }, 100);
+							.velocity({ opacity: 1 }, 220);
+			return setTimeout( function(){ initHooks(); initCountdownTimers(); $('#filterComponent').velocity('fast'); initFilterActions(); app.hideLoader(); }, 100);
 		},
 		render_myfeed_sidebar : function(){
 			return apiRH._ajaxRequest('GET', 'api/users/pools.json', null, 'json', true, app.render_myfeed_callback);
@@ -418,7 +418,7 @@
 				return false;
 			}
 			$('#misQuinielas').html( template(data) ).css({ "opacity": 0, "display": "block"})
-													 .animate(	{ opacity: 1 }, 220);
+													 .velocity(	{ opacity: 1 }, 220);
 			return;
 		},
 		render_detail : function(response){
@@ -633,7 +633,7 @@
 			}
 
 			$(appendTarget).append( modalTemplate(additional_data) )
-							.animate(	{
+							.velocity(	{
 								opacity: 1
 							}, 120);
 			app.hideLoader();
@@ -774,16 +774,16 @@
 				if(!leNiceTransition){
 
 					$(targetSelector).html( template(data) ).css({ "opacity": 0, "display": "block"})
-															 .animate(	{
+															 .velocity(	{
 																opacity: 1
 															}, 420);
 				}else{
 
 					$(targetSelector).html( template(data) ).css("opacity", 0.7)
 															 .css("display", "block")
-															 .css("margin-left", "48px")
+															 // .css("margin-left", "48px")
 															 .css("width", "100%")
-															 .animate(	{
+															 .velocity(	{
 																			'margin-left': "0",
 																			opacity: 1
 																		}, 420, 'swing');
@@ -818,7 +818,7 @@
 			}
 			$(targetSelector).html( '<div style\'margin-top="2rem;"\'>'+template(data)+'</div>' )
 													 .css("display", "block")
-													 .animate(	{
+													 .velocity(	{
 																	'margin-top': 0
 																}, 420, 'swing');
 			return app.hideLoader();

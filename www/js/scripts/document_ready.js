@@ -29,7 +29,7 @@ window.initializeEvents = function(){
 				$('.filtros_wrapper').fadeOut('fast');
 			}else {
 				$('.filtros_wrapper').addClass('filtros_show');
-				$('.filtros_wrapper').fadeIn('fast');
+				$('.filtros_wrapper').velocity('fadeIn');
 			}
 		});
 
@@ -47,7 +47,7 @@ window.initializeEvents = function(){
 			$(this).addClass('selected');
 		});
 
-		$('#filterComponent').fadeIn('fast');
+		$('#filterComponent').velocity('fadeIn');
 	};
 
 	jQuery(document).ready(function($) {
@@ -61,6 +61,7 @@ window.initializeEvents = function(){
 		window.initHooks = function(){
 
 			$('.hook').unbind();
+			$('#logoutComponent').hide();
 			/* Hook soft links */
 			$('.hook').on('click', function(e){
 
@@ -353,7 +354,7 @@ window.initializeEvents = function(){
 								$('.misquinielas').removeClass('open');
 								$('#insertFeed').removeClass('noscroll');
 							}
-							$('.misquinielas').animate( {
+							$('.misquinielas').velocity( {
 															marginLeft: left,
 															paddingLeft: padd,
 														}, 
@@ -414,7 +415,7 @@ window.initializeEvents = function(){
 				
 				// Register modal
 				$('#reg_into_game').on('click', function(e){
-					$('#registerNow').fadeIn('fast');
+					$('#registerNow').velocity('fadeIn');
 					e.preventDefault();
 					e.stopPropagation();
 				});

@@ -11,11 +11,11 @@
 						<td>{{position}} LUGAR</td>
 						{{# if_eq type 'fixed'}}
 							<td>{{calcPercentage amount ../available}}%</td>
-							<td class="ganar"><img src="images/billete.png">${{formatCurrency amount}} MXN</td>
+							<td class="ganar"><img src="{{cordova_full_path}}images/billete.png">${{formatCurrency amount}} MXN</td>
 						{{/ if_eq }}
 						{{# if_eq type 'percentage'}}
 							<td>{{formatCurrency percentage}}%</td>
-							<td class="ganar"><img src="images/billete.png">${{calcAmount normalized ../../prize_distribution.pool.available}} MXN</td>
+							<td class="ganar"><img src="{{cordova_full_path}}images/billete.png">${{calcAmount normalized ../../prize_distribution.pool.available}} MXN</td>
 						{{/ if_eq }}
 					</tr>
 				{{/ each }}

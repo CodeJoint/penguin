@@ -575,7 +575,7 @@ function requestHandlerAPI(){
 		 */
 		this.render_entry_success = function(response){
 			app.toast('¡Te has registrado a la quiniela! Elige tus picks');
-			$('#registerNow').fadeOut('fast');
+			$('#registerNow').velocity('fadeOut');
 			return;
 		};
 
@@ -594,7 +594,7 @@ function requestHandlerAPI(){
 		 */
 		this.render_edit_entry_success = function(response){
 			
-			$('#registerNow').fadeOut('fast');
+			$('#registerNow').velocity('fadeOut');
 			return;
 		};
 	}

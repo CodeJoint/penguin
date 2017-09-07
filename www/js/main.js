@@ -157,7 +157,7 @@
 			Handlebars.registerHelper('numberOptions', function(base, limit) {
 				var html = '';
 				for(var i = base; i<=limit; i++){
-					html += '<option value="'+i+'" >'+i+'</option>'
+					html += '<option value="'+i+'" >'+i+'</option>';
 				}
 				return html;
 			});
@@ -404,7 +404,7 @@
 			$('#insertFeed').html( template(app.data_temp) )
 							.css({ "opacity": 0, "display": "block"})
 							.velocity({ opacity: 1 }, 220);
-			return setTimeout( function(){ initHooks(); initCountdownTimers(); $('#filterComponent').velocity('fast'); initFilterActions(); app.hideLoader(); }, 100);
+			return setTimeout( function(){ initHooks(); initCountdownTimers(); $('#filterComponent').velocity('fadeIn'); initFilterActions(); app.hideLoader(); }, 100);
 		},
 		render_myfeed_sidebar : function(){
 			return apiRH._ajaxRequest('GET', 'api/users/pools.json', null, 'json', true, app.render_myfeed_callback);
@@ -567,8 +567,8 @@
 			}
 		},
 		render_profile_callback : function(response){
-			console.log(response);
 			app.data_temp = app.gatherEnvironment(response, dynamic_params.profile_title);
+			console.log(app.data_temp);
 			return app.switchView( dynamic_params.template, app.data_temp, '#exoskeleton', dynamic_params.url, 'user-profile '+dynamic_params._tab );
 		},
 		render_add_funds : function(url){
@@ -767,7 +767,7 @@
 				console.log("Template doesn't exist");
 				return false;
 			}
-			$(targetSelector).fadeOut(360, function(){
+			$(targetSelector).velocity('fadeIn', function(){
 
 				if(targetClass) $(targetSelector).attr('class','view').addClass(targetClass);
 

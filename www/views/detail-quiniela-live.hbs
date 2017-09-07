@@ -54,10 +54,11 @@
 				</div><!-- quiniela_content -->
 			</div><!-- quiniela -->
 		</a><!-- link_wrapper -->
+
 		<div id="lesDrops" class="quinielas_dropdowns live clearfix">
-			
-	
-		</div><!-- dropdowns -->
+
+		</div> <!-- dropdowns -->
+
 		<div class="tabs_quiniela clearfix">
 			<ul>
 				<li class="selected"><a class="hook missing_info" data-object="{{data.pool.id}}" data-extra="" data-resource="detail-postures" href="detail.html?registered=true&tab=postures">Picks</a></li>
@@ -73,68 +74,68 @@
 			<div id="insertPartidos" class="partidos clearfix radio_group">
 				
 			</div><!-- partidos -->
-				<div class="desempates clearfix">
-					<h3>DESEMPATE</h3>
-						{{# each data.tiebreakers_iter}}
-						{{# each .}}
-						
-							{{# if_eq type 'score'}}
-								<div class="desempate desempate_uno clearfix">
-									
-									<div class="desempate_left">
-										<span>{{label}}</span>
-									</div>
-									<div class="desempate_input">
-										<span>LOC</span>
-										<input type="tel" name="desempate_uno_local">
-										<span>-</span>
-										<input type="tel" name="desempate_uno_visitante">
-										<span>VIS</span>
-									</div><!-- desempate_input -->
+			<div class="desempates clearfix">
+				<h3>DESEMPATE</h3>
+					{{# each data.tiebreakers_iter}}
+					{{# each .}}
+					
+						{{# if_eq type 'score'}}
+							<div class="desempate desempate_uno clearfix">
 								
-								</div><!-- desempate_uno -->
-							{{/ if_eq }}
-
-							{{# if_eq type 'number'}}
-								<div class="desempate desempate_dos clearfix">
-									<div class="desempate_left">
-										<span>{{label}}</span>
-									</div>
-									<div class="desempate_input">
-										<input type="tel" name="desempate_dos_minuto">
-									</div><!-- desempate_input -->
-								</div><!-- desempate_dos -->
-							{{/ if_eq }}
+								<div class="desempate_left">
+									<span>{{label}}</span>
+								</div>
+								<div class="desempate_input">
+									<span>LOC</span>
+									<input type="tel" name="desempate_uno_local">
+									<span>-</span>
+									<input type="tel" name="desempate_uno_visitante">
+									<span>VIS</span>
+								</div><!-- desempate_input -->
 							
-							{{# if_eq type 'week_goals'}}
-								<div class="desempate desempate_dos clearfix">
-									<div class="desempate_left">
-										<span>{{label}}</span>
-									</div>
-									<div class="desempate_input">
-										<input type="tel" name="desempate_dos_minuto">
-									</div><!-- desempate_input -->
-								</div><!-- desempate_dos -->
-							{{/ if_eq }}
+							</div><!-- desempate_uno -->
+						{{/ if_eq }}
 
-							{{# if_eq type 'other'}}
-								<div class="desempate desempate_tres clearfix">
-									<div class="desempate_left">
-										<span>{{label}}</span>
-									</div>
-									<div class="desempate_input">
-										<span>SI</span>
-										<input type="radio" name="desempate_tres" value="si">
-										<span>NO</span>
-										<input type="radio" name="desempate_tres" value="no">
-									</div><!-- desempate_input -->
-								</div><!-- desempate_tres -->
-							{{/ if_eq }}
-						{{/ each}}
-						{{/ each}}
+						{{# if_eq type 'number'}}
+							<div class="desempate desempate_dos clearfix">
+								<div class="desempate_left">
+									<span>{{label}}</span>
+								</div>
+								<div class="desempate_input">
+									<input type="tel" name="desempate_dos_minuto">
+								</div><!-- desempate_input -->
+							</div><!-- desempate_dos -->
+						{{/ if_eq }}
+						
+						{{# if_eq type 'week_goals'}}
+							<div class="desempate desempate_dos clearfix">
+								<div class="desempate_left">
+									<span>{{label}}</span>
+								</div>
+								<div class="desempate_input">
+									<input type="tel" name="desempate_dos_minuto">
+								</div><!-- desempate_input -->
+							</div><!-- desempate_dos -->
+						{{/ if_eq }}
 
-				</div><!-- dempates -->
-				<small class="info">Se tomarán los resultados únicamente de tiempo reglamentario. (No tiempos extras)</small>
+						{{# if_eq type 'other'}}
+							<div class="desempate desempate_tres clearfix">
+								<div class="desempate_left">
+									<span>{{label}}</span>
+								</div>
+								<div class="desempate_input">
+									<span>SI</span>
+									<input type="radio" name="desempate_tres" value="si">
+									<span>NO</span>
+									<input type="radio" name="desempate_tres" value="no">
+								</div><!-- desempate_input -->
+							</div><!-- desempate_tres -->
+						{{/ if_eq }}
+					{{/ each}}
+					{{/ each}}
+
+			</div><!-- dempates -->
+			<small class="info">Se tomarán los resultados únicamente de tiempo reglamentario. (No tiempos extras)</small>
 		</div>
 		
 		

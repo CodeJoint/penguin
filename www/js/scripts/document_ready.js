@@ -566,16 +566,17 @@ window.initializeEvents = function(){
 							cvv2 			 : "required"
 						},
 						messages:{
-							holder_name		 : "Ingresa el nombre del tarjetahabiente",
-							card_number 	 : "Ingresa el número de tu tarjeta",
+							holder_name		 : "Ingresa el nombre como aparece en tu tarjeta",
+							card_number 	 : "Ingresa el número de la tarjeta",
 							expiration_month : "Campo obligatorio",
 							expiration_year  : "Campo obligatorio",
-							cvv2 			 : "Ingresa tu código de seguridad"
+							cvv2 			 : "Ingresa el CVV"
 						},
 						submitHandler:function( form, event ){
 							event.preventDefault();
 							app.showLoader();
 							var card_data = app.getFormData(form, 'object');
+								card_data.expiration_year = card_data.expiration_year.slice(-2);
 							return apiRH.addPaymentMethod(card_data);
 						}
 					});

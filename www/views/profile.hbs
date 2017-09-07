@@ -33,7 +33,7 @@
 						</li>
 					{{/ data.cards}}
 				</ul>
-				<a class="agregar_tarjeta" onclick="$('#addNewCard').fadeIn();"><img src="{{cordova_full_path}}images/agregar_tarjeta.png"></a>
+				<a onclick="$('#addNewCard').velocity('fadeIn');" id="promptAddCard" class="green_button">Agregar tarjeta</a>
 			</div>
 			<div id="addNewCard" class="agregartarjeta clearfix backed_modal" style="display: none;">
 				<h3>AGREGAR TARJETA</h3>
@@ -58,25 +58,12 @@
 						</select>
 						<select name="expiration_year" id="expiration_year" data-openpay-card="expiration_year">
 							<option>Año</option>
-							<option value="17">2017</option>
-							<option value="18">2018</option>
-							<option value="19">2019</option>
-							<option value="20">2020</option>
-							<option value="21">2021</option>
-							<option value="22">2022</option>
-							<option value="23">2023</option>
-							<option value="24">2024</option>
-							<option value="25">2025</option>
-							<option value="26">2026</option>
-							<option value="27">2027</option>
-							<option value="28">2028</option>
-							<option value="29">2029</option>
-							<option value="30">2030</option>
+							{{{ numberOptions 2017 2050 }}}
 						</select>
 						<input name="cvv2" id="cvv2" type="text" placeholder="CVV" data-openpay-card="cvv2">
 					</div>
 					<div class="submit_holder">
-						<a id="savePicks" class="green_button">Agregar tarjeta</a>
+						<input type="submit" id="savePicks" class="green_button" value="Guardar" />
 					</div>
 				</form>
 			</div><!-- backed_modal -->

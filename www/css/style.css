@@ -219,7 +219,7 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 /*** FILTROS ***/
 
 .filtros_wrapper {width: 100%; height: 100%; position: fixed; top: 87px; left: 0px; background: url('../images/bg_trans_filtros.png') repeat; z-index: 999;}
-.filtros {position: fixed; top: 87px; right: 0; background: #000; width: 85%; text-align: center; padding: 20px; height: 100%; z-index: 90;}
+.filtros {position: absolute; top: 0; right: 0; background: #000; width: 85%; text-align: center; padding: 20px; height: 100%; z-index: 90;}
 .filtros div {margin-bottom: 20px;}
 .filtros ul {list-style: none; margin: 10px 0 0px 0; padding: 0px; width: 100%;}
 .filtros ul li {display: inline-block; float: left; background: url('../images/bg_gradient_32.png') repeat-x; height: 32px; padding-top: 7px; border-radius: 0px 0px 5px 5px }
@@ -261,7 +261,7 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 .quiniela_single .registro_quiniela {width: 100%; text-align: center; margin: 1rem 0;}
 .quiniela_single .quiniela_info { margin-right: 10px; display: block; }
 
-.error_inline{ display: block; clear: both; margin: 2rem 0 0 0; text-align: center; color: #f55934; text-transform: uppercase; font-size: 10px;}
+.error_inline{ display: block; clear: both; margin: 2rem 0 0 0; text-align: center; color: #FF8D00; text-transform: uppercase; font-size: 10px;}
 
 .quinielas_dropdowns {width: 100%; margin: 20px 0;}
 .quinielas_dropdowns select {color: #fff; background: #000; text-decoration: none; display: block; border: 1px solid #414042; padding: 5px; float: left; border-radius: 5px; margin-right: 5%; width: 47.5%;  text-align: center;}
@@ -345,8 +345,8 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 .quiniela_single .desempates .desempate.desempate_tres .desempate_tres_right {width: 50%; float: left; position: relative;}
 /*** RADIOS ***/
 .radio_group input[type=radio] {position: absolute; visibility: hidden;}
-.radio_group input[type=radio]:checked ~ .check { border-color: #598D16!important;}
-.radio_group input[type=radio]:checked ~ .check::before{ background: #598D16!important;}
+.radio_group input[type=radio]:checked ~ .check { border-color: #5ba433!important;}
+.radio_group input[type=radio]:checked ~ .check::before{ background: #5ba433!important;}
 .radio_group label{display: inline-block; width: 84%; height: 2rem; position: relative; font-weight: 300; font-size: 12px; padding: 2px 2px 2px 8px; margin: 0 auto 0 -2rem; z-index: 9; cursor: pointer; -webkit-transition: all 0.25s linear;}
 .radio_group.selection label{padding: 2px 2px 2px 30px; }
 
@@ -411,7 +411,6 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 .quiniela_registro .balance .total_coins img {float: left; width: 16px; height: auto; margin-right: 5px;}
 
 .quiniela_registro .botones {width: 100%; margin-top: 20px; }
-.quiniela_registro .botones input { display: block; margin: auto; background: url('../images/confirmar_y_guardar.png') no-repeat!important; width: 192px; height: 36px; border: none; text-indent: -1000000px;}
 
 
 /*** QUINIELA REGISTRADA ***/
@@ -428,7 +427,7 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 .tabs_quiniela ul li {display: block; width: 100px; display: table-cell; white-space: nowrap; text-align: center; border-right: 1px solid #414042; height: 22px; padding-top: 3px;}
 .tabs_quiniela ul li:last-child {border-right: 0px; border-top-right-radius: 3px; border-bottom-right-radius: 3px; }
 .tabs_quiniela ul li:first-child {border-top-left-radius: 3px; border-bottom-left-radius: 3px; }
-.tabs_quiniela ul li.selected {background: #598D16;}
+.tabs_quiniela ul li.selected {background: #5ba433;}
 .tabs_quiniela ul li a {text-decoration: none; color: #fff;}
 
 .tab_posiciones {width: 100%;}
@@ -475,7 +474,7 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 .quiniela_privada_uno .busqueda_quinielas {padding-top: 110px; width: 100%;}
 .quiniela_privada_uno .botones {width: 100%; margin-bottom: 20px;}
 .quiniela_privada_uno .botones a {display: block; width: 50%; float: left; border:1px solid #414042; text-align: center;  padding-top: 10px; padding-bottom: 10px; font-size: 12px; text-decoration: none; color: #fff; background: #000; border-radius: 3px;}
-.quiniela_privada_uno .botones a.selected {background: #598D16;}
+.quiniela_privada_uno .botones a.selected {background: #5ba433;}
 .quiniela_privada_uno form {width: 100%; padding: 5%; background: #000;}
 .quiniela_privada_uno form p {text-align: center; columns: #fff; font-size: 10px; margin-bottom: 20px; padding: 0 10%; line-height: 15px;}
 .quiniela_privada_uno form input[type="text"] {width: 100%; border: 1px solid #8A8A8D; background: transparent; font-size: 12px; padding: 10px 5px; margin-bottom: 10px; color: #fff; border-radius: 3px;}
@@ -486,7 +485,7 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 .quiniela_privada_crear .busqueda_quinielas {padding-top: 110px; width: 100%;}
 .quiniela_privada_crear .botones {width: 100%; }
 .quiniela_privada_crear .botones a {display: block; width: 50%; float: left; border:1px solid #414042; text-align: center;  padding-top: 10px; padding-bottom: 10px; font-size: 12px; text-decoration: none; color: #fff; background: #000; border-radius: 3px;}
-.quiniela_privada_crear .botones a.selected {background: #598D16;}
+.quiniela_privada_crear .botones a.selected {background: #5ba433;}
 
 .quiniela_privada_crear h3 {text-align: center; margin: 30px 0; text-align: center; border-top: 1px solid #77BC1F; padding-top: 10px; font-size: 10px; font-weight: normal;}
 .quiniela_privada_crear h3:first-child {margin-top: 0px;}
@@ -495,7 +494,7 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 .quiniela_privada_crear .deportes_select_crear ul {margin: 20px 0; list-style: none; padding: 0px;}
 .quiniela_privada_crear .deportes_select_crear ul li {margin: 0px; display: block; padding: 10px 0; width: 50%; float: left; text-align: center; font-size: 10px; border-radius: 3px;}
 .quiniela_privada_crear .deportes_select_crear ul li img {margin-right: 5px; width: 16px;}
-.quiniela_privada_crear .deportes_select_crear ul li.selected {background: #598D16;}
+.quiniela_privada_crear .deportes_select_crear ul li.selected {background: #5ba433;}
 .quiniela_privada_crear select {width: 100%; color: #fff; border: 1px solid #8A8A8D; border-radius: 3PX; margin-bottom: 10px; background: transparent; font-size: 10px; padding: 10px;}
 .quiniela_privada_crear .checkbox_crear {width: 50%; float: left; font-size: 10px; color: #fff;}
 .quiniela_privada_crear .checkbox_crear input {float: left; margin-right: 10px;}
@@ -547,7 +546,7 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 .quiniela_privada_creada .quiniela_privada_info ul li:last-child {display: block; float: left; margin-right: 0px;}
 .quiniela_privada_creada .botones {width: 100%; margin-bottom: 20px;}
 .quiniela_privada_creada .botones a {display: block; width: 50%; float: left; border:1px solid #414042; text-align: center;  padding-top: 10px; padding-bottom: 10px; font-size: 12px; text-decoration: none; color: #fff; background: #000; border-radius: 3px;}
-.quiniela_privada_creada .botones a.selected {background: #598D16;}
+.quiniela_privada_creada .botones a.selected {background: #5ba433;}
 
 .quiniela_privada_creada .participantes {background: #000;}
 
@@ -559,7 +558,7 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 .tabs_quiniela ul li {display: block; width: 100px; display: table-cell; white-space: nowrap; text-align: center; border-right: 1px solid #414042; height: 22px; padding: 10px 0;}
 .tabs_quiniela ul li:last-child {border-right: 0px; border-top-right-radius: 3px; border-bottom-right-radius: 3px; }
 .tabs_quiniela ul li:first-child {border-top-left-radius: 3px; border-bottom-left-radius: 3px; }
-.tabs_quiniela ul li.selected {background: #598D16;}
+.tabs_quiniela ul li.selected {background: #5ba433;}
 .tabs_quiniela ul li a {text-decoration: none; color: #fff;}
 
 .radio_group {width: 100%; background: #000; padding: 5px; text-align: center;}
@@ -574,8 +573,8 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 .radio_group ul li .check { display: block; position: absolute; border: 3.5px solid #AAAAAA; border-radius: 100%; height: 20px; width: 20px; top: 0px; left: 0px; z-index: 8; transition: border .25s linear; -webkit-transition: border .25s linear;}
 .radio_group ul li .check::before { display: block; position: absolute; content: ''; border-radius: 100%; height: 8px; width: 8px; top: 2.5px; left: 2.5px; transition: background 0.25s linear; -webkit-transition: background 0.25s linear; }
 .radio_group ul li input[type=radio] {position: absolute;visibility: hidden;}
-.radio_group ul li input[type=radio]:checked ~ .check { border-color: #598D16;}
-.radio_group ul li input[type=radio]:checked ~ .check::before{ background: #598D16;}
+.radio_group ul li input[type=radio]:checked ~ .check { border-color: #5ba433;}
+.radio_group ul li input[type=radio]:checked ~ .check::before{ background: #5ba433;}
 .radio_group ul li label{display: inline-block; width: 84%; height: 2rem; position: relative; font-weight: 300; font-size: 1.35em; padding: 2px 2px 2px 8px; margin: 0 auto 0 -2rem; z-index: 9; cursor: pointer; -webkit-transition: all 0.25s linear;}
 
 
@@ -584,7 +583,6 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 .profile .agregartarjeta form p {text-align: center; columns: #fff; font-size: 10px; margin-bottom: 20px; padding: 0 10%; line-height: 15px;}
 .profile .agregartarjeta form input[type="text"] {width: 100%; border: 1px solid #8A8A8D; background: transparent; font-size: 12px; padding: 10px 5px; margin-bottom: 10px; color: #fff; border-radius: 3px;}
 .profile .agregartarjeta form input::placeholder {color: #fff;}
-.profile .agregartarjeta form .submit_holder {width: 80px; height: 36px; margin: 10px auto;}
 .profile .agregartarjeta form input[type="submit"] {width: 92px; height: 36px; background: url('../images/guardar.png') no-repeat; border: none!important; text-indent: -100000px; text-align: center;}
 .profile .agregartarjeta form .fecha_vencimiento select {width: 20%; float: left; margin-right: 10px; background: transparent; font-size: 12px; padding: 10px 5px; margin-bottom: 10px; color: #fff; border-radius: 3px;}
 .profile .agregartarjeta form .fecha_vencimiento input[type="text"] {width: 30%; border: 1px solid #8A8A8D; background: transparent; font-size: 12px; padding: 10px 5px; margin-bottom: 10px; color: #fff; border-radius: 3px;}
@@ -598,19 +596,18 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 .abonar h3 {font-weight: normal; text-align: center; margin-bottom: 20px;}
 .abonar .botones {width: 100%; margin-bottom: 10px; }
 .abonar .botones a {display: block; width: 50%; float: left; border:1px solid #414042; text-align: center;  padding-top: 10px; padding-bottom: 10px; font-size: 12px; text-decoration: none; color: #fff; background: #000; border-radius: 3px;}
-.abonar .botones a.selected {background: #598D16;}
+.abonar .botones a.selected {background: #5ba433;}
 .abonar form {width: 100%; padding: 5px; background: #000; padding-bottom: 5%; margin-bottom: 10%;}
 .abonar form p {text-align: center; columns: #fff; font-size: 10px; margin-bottom: 20px; padding: 0 10%; line-height: 15px;}
 .abonar form input[type="text"] {width: 100%; border: 1px solid #8A8A8D; background: transparent; font-size: 12px; padding: 10px 5px; margin-bottom: 10px; color: #fff; border-radius: 3px;}
 .abonar form input::placeholder {color: #fff;}
-.abonar form .submit_holder {width: 80px; height: 36px; margin: 10px auto;}
 .abonar form input[type="submit"] {width: 92px; height: 36px; background: url('../images/comprar.png') no-repeat; border: none!important; text-indent: -100000px; text-align: center;}
 .abonar form .fecha_vencimiento select {width: 20%; float: left; margin-right: 10px; background: transparent; font-size: 12px; padding: 10px 5px; margin-bottom: 10px; color: #fff; border-radius: 3px;}
 .abonar form .fecha_vencimiento input[type="text"] {width: 30%; border: 1px solid #8A8A8D; background: transparent; font-size: 12px; padding: 10px 5px; margin-bottom: 10px; color: #fff; border-radius: 3px;}
 
 .abonar .botones_abono { width: 100%; background: #000; padding: 10px 0; margin: 0 auto 10px auto}
 .abonar .botones_abono li {display: table-cell; width: 1%; color: #fff; text-decoration: none;  text-align: center; padding: 5px 0; border-right: 1px solid #8A8A8D; margin-right: 2px;}
-.abonar .botones_abono li.selected {background: #598D16;}
+.abonar .botones_abono li.selected {background: #5ba433;}
 .abonar .botones_abono li:last-child {border-right: 0px;}
 .abonar .botones_abono li img {width: 24px;  margin-right: 5px; vertical-align: middle; }
 
@@ -621,7 +618,7 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 .abonar_tiendas .legales { margin-bottom: 20%;}
 .abonar_tiendas form input[type="submit"] { width: 108px; height: 36px; background: url('../images/vercodigo.png') no-repeat; border: none!important; text-indent: -100000px; text-align: center;}
 
-#other_amount{ position: absolute; top: 0; left: 0; width: 100%; height: 100%; margin: 0; padding: 0.25rem; background-color: #598d16; color: #FFF; letter-spacing: 1px; font-weight: 300;}
+#other_amount{ position: absolute; top: 0; left: 0; width: 100%; height: 100%; margin: 0; padding: 0.25rem; background-color: #5ba433; color: #FFF; letter-spacing: 1px; font-weight: 300;}
 #other_amount::before{content: "$";}
 	/* John overrides */
 	
@@ -678,9 +675,9 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 	.header .header_right .header_user_info .user_info img { width: 100%; height: auto; }
 
 	.rootContainer{ min-height: 100vh!important;}
-	.form input.submit_green{ background-color: #678946; border-color: #aaca7d; border-style: groove; text-transform: uppercase; letter-spacing: 1.5px; font-size: 1.25rem; width: 240px; -webkit-border-radius: 2px; -moz-border-radius: 2px; border-radius: 2px;}
-	.green_button{background-color: #678946; border-color: #9dc16b; border-style: groove; text-transform: uppercase; text-align: center; font-weight: 300; letter-spacing: 1.5px; font-size: 1rem; width: 180px; -webkit-border-radius: 2px; -moz-border-radius: 2px; border-radius: 2px; color: #FFF; padding: 0.5rem 1rem; text-decoration: none; margin: 0.5rem auto; display: block; }
-	form label.error{ color: #678946; text-align: left; float: none; display: block; font-size: 1.1rem; letter-spacing: 1px; margin: 0 0 1rem 0;}
+	.form input.submit_green{ background-color: #5ba433; border-color: #aaca7d; border-style: groove; text-transform: uppercase; letter-spacing: 1.5px; font-size: 1.25rem; width: 240px; -webkit-border-radius: 2px; -moz-border-radius: 2px; border-radius: 2px;}
+	.green_button{ background-color: #5ba433; border-color: #9dc16b; border-style: outset; border-width: 1.5px; text-transform: uppercase; text-align: center; font-family: 'Lato'!important; font-weight: 300; letter-spacing: 1.5px; font-size: 1rem; width: 180px; -webkit-border-radius: 2px; -moz-border-radius: 2px; border-radius: 2px; color: #FFF; padding: 0.5rem 1rem; text-decoration: none; margin: 0.5rem auto; display: block; }
+	form label.error{ color: #FF8D00; text-align: left; float: none; display: block; font-size: 0.85rem; letter-spacing: 1px; margin: 0 0 1rem 0;}
 	
 	.view,
 	.content{ min-height: 100vh;}

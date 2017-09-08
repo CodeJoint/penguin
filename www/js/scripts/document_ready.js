@@ -480,33 +480,6 @@ window.initializeEvents = function(){
 
 			} // END detailQuinielaRegistered scope
 			
-			
-			if($('#busquedaQuinielas').length){
-
-				$('#filterComponent').hide();
-				$('#busquedaQuinielas').validate({
-					rules:{
-						gameName	: "required",
-						gameCode 	: "required"
-					},
-					messages:{
-						gameName	: "Debes ingresar el nombre de la quiniela",
-						gameCode 	: "Necesitas el código para encontrar la quiniela"
-					},
-					submitHandler:function( form, event ){
-						event.preventDefault();
-						app.showLoader();
-						var data_search	= app.getFormData(form, 'object');
-						var response 	= apiRH.searchPrivates(data_search);
-						app.render_search_results(response);
-						setTimeout(function(){
-							return initHooks();
-						},300);
-					}
-				});
-	
-			} // END busquedaQuinielas scope
-			
 			if($('#searchPrivates').length){
 
 				$('#filterComponent').hide();
@@ -600,6 +573,28 @@ window.initializeEvents = function(){
 
 				$('.menu li').removeClass('selected');
 				$('.menu_privadas').addClass('selected');
+
+				$('#busquedaQuinielas').validate({
+					rules:{
+						name		 : "required",
+						password 	 : "required"
+					},
+					messages:{
+						name		 : "Proporciona el nombre de la quiniela",
+						password 	 : "Es necesario conocer la clave"
+					},
+					submitHandler:function( form, event ){
+						event.preventDefault();
+						app.showLoader();
+						var data_search	= app.getFormData(form, 'object');
+						var response 	= apiRH.searchPrivates(data_search);
+						app.render_search_results(response);
+						setTimeout(function(){
+							return initHooks();
+						},300);
+					}
+				});
+
 			} // END detailQuiniela scope
 		
 

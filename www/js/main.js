@@ -449,7 +449,7 @@
 			var template_name = (dynamic_params.view === 'postures') 	? 'detail-quiniela-registered'	: 'detail-quiniela';
 				template_name = (dynamic_params.view === 'closed'	) 	? 'detail-quiniela-closed'		: template_name;
 				template_name = (dynamic_params.view === 'live'	) 		? 'detail-quiniela-live'		: template_name;
-				// Partials tabs
+			// Partials tabs
 				template_name = (dynamic_params.view === 'chat'	) 	   ? dynamic_params.view	: template_name;
 				template_name = (dynamic_params.view === 'places'	)  ? dynamic_params.view	: template_name;
 				template_name = (dynamic_params.view === 'prizes'	)  ? dynamic_params.view	: template_name;
@@ -464,15 +464,15 @@
 			return app.switchView(template_name, app.data_temp, '#exoskeleton', dynamic_params.url, 'quiniela-'+dynamic_params.view);
 		},
 		fetch_detail : function(url, object_id, view, extra){
-			if(!app.initialized) app.initialize();
-			app.check_or_renderContainer();
 			
+			if(!app.initialized) 
+				app.initialize();
+			app.check_or_renderContainer();
 			dynamic_params = [];
 			dynamic_params.url 		= url;
 			dynamic_params.object_id = object_id;
 			dynamic_params.view 	= view;
 			dynamic_params.extra 	= extra;
-
 			return apiRH._ajaxRequest('GET', 'api/pools/view/'+dynamic_params.object_id+'.json', null, 'json', true, app.render_detail);
 		},
 		render_games : function(object_id){
@@ -530,6 +530,7 @@
 			window._cache['entries'] = response;
 			return app.render_partial('other-entries', response, '#lesDrops');
 		},
+		// render profile
 		render_profile : function(url, tab){
 			if(!app.initialized) 
 				app.initialize();
@@ -566,6 +567,7 @@
 				apiRH._ajaxRequest('GET', 'api/openpay_cards/index.json', null, 'json',true, app.render_profile_callback);
 			}
 		},
+		// fetch profile
 		render_profile_callback : function(response){
 			app.data_temp = app.gatherEnvironment(response, dynamic_params.profile_title);
 			console.log(app.data_temp);

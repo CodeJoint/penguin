@@ -108,6 +108,8 @@ window.initializeEvents = function(){
 					return app.fetch_detail( resource_href, resource_object, 'postures', resource_extra  );
 				if( resource == "detail-places" )
 					return app.fetch_detail( resource_href, resource_object, 'places', resource_extra );
+				if( resource == "detail-participants" )
+					return app.fetch_detail( resource_href, resource_object, 'participants', resource_extra );
 				if( resource == "detail-chat" )
 					return app.fetch_detail( resource_href, resource_object, 'chat', resource_extra  );
 				if( resource == "detail-prizes" )
@@ -379,28 +381,25 @@ window.initializeEvents = function(){
 		
 			if($('#detailQuiniela').length){
 
-				var gameId = $('#detailQuiniela').data('id');
-				var entryId = $('#detailQuiniela').data('extra');
+				var gameId 	= $('#detailQuiniela').data('id');
+				var weekId  = $('#detailQuiniela').data('weekid');
 
 				$('.menu li').removeClass('selected');
-
-				/** Render quiniela games and picks selectors **/
-				app.render_games(gameId);
-
-				/** Render similar picks **/
-				if(!entryId){
-					app.render_similar_picks(gameId);
-				} else{
-					app.render_similar_picks(entryId);
-				}
-
+				
+				// Remove empty select controls from the view
+				$('select:not(.no_check)').each(function(){
+					if( $(this).has('option').length > 0 )
+						$(this).remove();
+				});
+				
+				/*** Form validation ***/
 				$('#registerToQuinielaForm').validate({
 					rules:{
 						pool_id	 : "required",
 						num_entries : "required"
 					},
 					messages:{
-						pool_id	 : "Identificador de quiniela no válido",
+						pool_id	 : "El Id de la quiniela no es válido",
 						num_entries : "Especifica el número de registros"
 					},
 					submitHandler:function( form, event ){
@@ -412,23 +411,42 @@ window.initializeEvents = function(){
 					}
 				});
 
-				
-				// Register modal
+				$('.missing_info').each(function(){
+					$(this).data('extra', entryId)
+							.removeClass('missing_info');
+				});
+
+				$('.tabs_quiniela a').on('click', function(e){
+					$(e.target).parent().siblings().each(function(index,element){
+						$(element).removeClass('selected');
+					});
+					$(e.target).parent().addClass('selected');
+				});
+
+				/**** Register modal ****/
 				$('#reg_into_game').on('click', function(e){
 					$('#registerNow').velocity('fadeIn');
 					e.preventDefault();
 					e.stopPropagation();
 				});
 
-				$('#num_entries').on('change', function(){
-					console.log($(this).val());
-				});
+					$('#num_entries').on('change', function(){
+						console.log($(this).val());
+					});
 				
-				// Remove empty select controls from the view
-				$('select:not(.no_check)').each(function(){
-					if( $(this).has('option').length > 0 )
-						$(this).remove();
-				});
+				/** Call Render quiniela games and picks selectors **/
+				app.render_games(gameId);
+				/** Call prize distribution **/
+				app.fetch_prize_distribution(gameId);
+				/** Call full standings **/
+				app.fetch_standings(gameId);
+				
+				/** Render similar picks **/
+				if(!entryId){
+					app.render_similar_picks(gameId);
+				} else{
+					app.render_similar_picks(entryId);
+				}
 
 				setTimeout(function(){
 					$('#filterComponent').hide();
@@ -449,6 +467,7 @@ window.initializeEvents = function(){
 					$(this).data('extra', entryId)
 							.removeClass('missing_info');
 				});
+
 				$('.menu li').removeClass('selected');
 				$('#filterComponent').hide();
 
@@ -474,7 +493,8 @@ window.initializeEvents = function(){
 				app.fetch_group_picks(gameId, weekId);
 
 				setTimeout( function(){
-					app.fill_entry_picks()
+					if(entryId)
+						app.fill_entry_picks()
 				}, 620);
 				return initCountdownTimers();
 

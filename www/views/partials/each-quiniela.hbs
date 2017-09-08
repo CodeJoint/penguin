@@ -15,6 +15,9 @@
 							<img src="{{cordova_full_path}}images/natural.png">
 						{{/ if_eq }}
 					{{/ if_eq }}
+					{{# if guaranteed_prize}}
+						<img src="{{cordova_full_path}}images/garantizado.png">
+					{{/ if }}
 				</div><!-- iconos -->
 				<h2>{{name_replaced}}</h2>
 			</div><!-- quiniela_header -->
@@ -51,12 +54,7 @@
 				</div>
 				<div class="quiniela_aganar clearfix">
 					<span class="titulo">BOLSA</span>
-					{{# if guaranteed_prize}}
-						<img src="{{cordova_full_path}}images/garantizado.png">
-					{{/ if }}
-					{{^ if guaranteed_prize}}
 						<img src="{{cordova_full_path}}images/billete.png">
-					{{/ if }}
 					<span class="number">${{ formatCurrency available}}</span>
 				</div>
 			</div><!-- quiniela_content -->

@@ -130,7 +130,8 @@
 				return ((total*100)/value).toFixed(2);
 			});
 			Handlebars.registerHelper('calcAmount', function(value, total) {
-				return ((total/100)*value).toFixed(2);
+				value = ((total/100)*value).toFixed(2);
+				return value.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
 			});
 			Handlebars.registerHelper('formatDate', function(value, format) {
 				var date 	  = Date.parse(value);
@@ -452,13 +453,14 @@
 			// Partials tabs
 				template_name = (dynamic_params.view === 'chat'	) 	   ? dynamic_params.view	: template_name;
 				template_name = (dynamic_params.view === 'places'	)  ? dynamic_params.view	: template_name;
+				template_name = (dynamic_params.view === 'participants'	)  ? dynamic_params.view	: template_name;
 				template_name = (dynamic_params.view === 'prizes'	)  ? dynamic_params.view	: template_name;
 				template_name = (dynamic_params.view === 'group-picks')? dynamic_params.view	: template_name;
 				template_name = (dynamic_params.view === 'scoreboard') ? dynamic_params.view	: template_name;
 			console.log(template_name);
 			if(dynamic_params.extra)
 				app.data_temp.data.entry_id = dynamic_params.extra;
-			if(dynamic_params.view === 'chat' || dynamic_params.view === 'places' || dynamic_params.view === 'prizes' || dynamic_params.view === 'group-picks' || dynamic_params.view === 'scoreboard')
+			if(dynamic_params.view === 'chat' || dynamic_params.view === 'places' || dynamic_params.view === 'participants' || dynamic_params.view === 'prizes' || dynamic_params.view === 'group-picks' || dynamic_params.view === 'scoreboard')
 				return app.appendView(template_name, window._cache, '#tabContainer');
 
 			return app.switchView(template_name, app.data_temp, '#exoskeleton', dynamic_params.url, 'quiniela-'+dynamic_params.view);
@@ -485,7 +487,6 @@
 			return app.render_partial('quiniela-games', app.data_temp, '#insertPartidos');
 		},
 		fill_entry_picks : function(){
-
 			var myPicks = _cache.entries.entry.picks;
 			myPicks.forEach(function(element){
 

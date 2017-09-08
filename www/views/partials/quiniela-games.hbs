@@ -1,3 +1,4 @@
+	<p class="instructions">Elige tus picks y guarda tu selección.</p>
 	<h3>PARTIDOS</h3>
 	<div class="opciones_partido clearfix">
 		<span>LOCAL</span> <span>{{# if data.sport_allow_ties}}EMP{{/ if}}{{# data.fixtures.0.advantage}}LÍNEA{{/ data.fixtures.0.advantage}}</span> <span>VISITANTE</span>
@@ -14,14 +15,7 @@
 					<div class="equipo">
 						<span class="iniciales">{{home_team.abbreviation}}</span>
 					</div><!-- equipo -->
-				</label>						
-				<div class="linea">
-					{{# finished}}
-						<span>
-							{{score_away}}
-						</span>
-					{{/ finished}}
-				</div><!-- linea -->
+				</label>
 			</li><!-- opcion_partido -->
 			<li class="opcion_partido {{# if ../data.sport_allow_ties}} empate {{/ if}} cierre clearfix">
 				{{# if ../data.sport_allow_ties}}
@@ -32,6 +26,24 @@
 							<span class="iniciales"></span>
 						</div><!-- equipo -->
 					</label>		
+				{{/ if}}
+				{{# if advantage}}
+					<span class="linea home">
+						{{# if_eq favorite 'home'}}
+							<p>{{advantage}}</p>		
+						{{/ if_eq}}
+					</span>
+					<span class="linea pd">
+						{{# if_eq favorite 'pd'}}
+							<p>PD</p>		
+						{{/ if_eq}}
+					</span>
+					<span class="linea away">
+						{{# if_eq favorite 'away'}}
+							<p>{{advantage}}</p>		
+						{{/ if_eq}}
+					</span>
+					
 				{{/ if}}
 				<span>Cierre: {{ formatDate deadline 'lll' }}</span>
 			</li><!-- opcion_partido -->

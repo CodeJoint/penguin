@@ -16,6 +16,9 @@
 						{{# if_eq data.pool.point_format "natural" }}
 							<img src="{{cordova_full_path}}images/natural.png">
 						{{/ if_eq }}
+						{{# if data.pool.guaranteed_prize}}
+							<img src="{{cordova_full_path}}images/garantizado.png">
+						{{/ if }}
 					</div><!-- iconos -->
 					<h2>{{data.pool.name_replaced}}</h2>
 				</div><!-- quiniela_header -->
@@ -46,9 +49,7 @@
 					</div>
 					<div class="quiniela_bolsa clearfix">
 						<span class="titulo">BOLSA</span>
-						{{# if data.pool.guaranteed_prize}}
-							<img src="{{cordova_full_path}}images/garantizado.png">
-						{{/ if }}
+						<img src="{{cordova_full_path}}images/billete.png">
 						<span class="number">${{ formatCurrency data.pool.available}}</span>
 					</div>
 				</div><!-- quiniela_content -->
@@ -60,18 +61,24 @@
 			<a id="reg_into_game" class="green_button">Registrarse</a>
 		</div><!-- opciones registro -->
 	
-		<div class="quinielas_dropdowns clearfix">
-			<form id="pickActionsForm" action="" method="POST">
-				<select id="select_copy_picks" class="unique" name="select_copy_picks">
-					<option value="">Copiar picks</option>
-				</select>
-			</form>
-		</div><!-- dropdowns -->
-		<p class="instructions">Elige tus picks y guarda tu selección.</p>
-		<div id="insertPartidos" class="partidos clearfix radio_group">
+		<div id="lesDrops" class="quinielas_dropdowns live clearfix">
 
-		</div><!-- partidos -->
-			
+		</div> <!-- dropdowns -->
+
+		<div class="tabs_quiniela min clearfix">
+			<ul>
+				<li class="selected"><a class="hook missing_info" data-object="{{data.pool.id}}" data-extra="" data-resource="detail-postures" href="detail.html?registered=true&tab=postures">Picks</a></li>
+				<li><a class="hook missing_info" data-object="{{data.pool.id}}" data-extra="" data-resource="detail-prizes" href="detail.html?registered=true&tab=prizes">Premios</a></li>
+				<li><a class="hook missing_info" data-object="{{data.pool.id}}" data-extra="" data-resource="detail-participants" href="detail.html?registered=true&tab=participants">Participantes</a></li>
+			</ul>
+		</div>
+
+		<div id="tabContainer" class="tabs">
+			<div id="insertPartidos" class="partidos clearfix radio_group">
+
+			</div><!-- partidos -->
+		</div><!-- tabContainer -->
+
 		{{# data.pool.tiebreakers}}
 			<div class="desempates clearfix">
 				<h3>DESEMPATE</h3>
@@ -148,13 +155,16 @@
 			<div class="quiniela_registro clearfix">
 				<div class="quiniela_header clearfix">
 					<div class="quiniela_iconos clearfix">
+						<img src="{{cordova_full_path}}images/{{data.pool.sport.icon}}.png">
 						{{# if_eq data.pool.point_format "line" }}
 							<img src="{{cordova_full_path}}images/linea.png">
 						{{/ if_eq }}
 						{{# if_eq data.pool.point_format "natural" }}
 							<img src="{{cordova_full_path}}images/natural.png">
 						{{/ if_eq }}
-						<img src="{{cordova_full_path}}images/{{data.pool.sport.icon}}.png">
+						{{# if data.pool.guaranteed_prize}}
+							<img src="{{cordova_full_path}}images/garantizado.png">
+						{{/ if }}
 					</div><!-- iconos -->
 					<h2>{{data.pool.name_replaced}}</h2>
 					{{# if_eq data.pool.entry_currency 'real' }}
@@ -179,8 +189,9 @@
 						</select>
 					</div><!-- no_registros -->
 					<div class="copiar_picks clearfix">
-						<span class="pregunta">Utilizar los picks elegidos para todos los registros</span>
-						<input type="checkbox" name="use_same_picks" value="1">
+						<span class="pregunta"></span>
+						<input type="checkbox" id="use_same_picks" name="use_same_picks" class="css-checkbox lrg" value="1">
+						<label for="use_same_picks" name="use_same_picks" class="css-label lrg vlad">Utilizar los picks elegidos para todos los registros</label>
 					</div><!-- no_registros -->
 					<div class="balance clearfix">
 						<div class="disponible clearfix">

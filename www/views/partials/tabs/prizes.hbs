@@ -8,7 +8,7 @@
 			{{# prize_distribution.pool_prizes }}
 				{{# each prizes }}
 					<tr class="player_info">
-						<td>{{position}} LUGAR</td>
+						<td>{{position}}º </td>
 						{{# if_eq type 'fixed'}}
 							<td>{{calcPercentage amount ../available}}%</td>
 							<td class="ganar"><img src="{{cordova_full_path}}images/billete.png">${{formatCurrency amount}} MXN</td>

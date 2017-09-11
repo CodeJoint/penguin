@@ -1,0 +1,1277 @@
+/* line 2, flags-sprites.scss */
+.flag-asean, .flag-afghanistan, .flag-african-union, .flag-aland, .flag-albania, .flag-alderney, .flag-algeria, .flag-american-samoa, .flag-andorra, .flag-angola, .flag-anguilla, .flag-antarctica, .flag-antigua-barbuda, .flag-arab-league, .flag-argentina, .flag-armenia, .flag-aruba, .flag-australia, .flag-austria, .flag-azerbaijan, .flag-bahamas, .flag-bahrain, .flag-bangladesh, .flag-barbados, .flag-basque-country, .flag-belarus, .flag-belgium, .flag-belize, .flag-benin, .flag-bermuda, .flag-bhutan, .flag-bolivia, .flag-bonaire-sint-eustatius-and-saba, .flag-bosnia-herzegovina, .flag-botswana, .flag-bouvet, .flag-brazil, .flag-british-indian-ocean-territory, .flag-brunei, .flag-bulgaria, .flag-burkina-faso, .flag-burundi, .flag-caricom, .flag-cis, .flag-cambodja, .flag-cameroon, .flag-canada, .flag-cape-verde, .flag-catalonia, .flag-cayman-islands, .flag-central-african-republic, .flag-chad, .flag-chile, .flag-china, .flag-christmas, .flag-cocos-keeling, .flag-colombia, .flag-commonwealth, .flag-comoros, .flag-congo-brazzaville, .flag-congo-kinshasa-zaire, .flag-cook-islands, .flag-costa-rica, .flag-cote-divoire, .flag-croatia, .flag-cuba, .flag-curacao, .flag-cyprus, .flag-czech-republic, .flag-denmark, .flag-djibouti, .flag-dominica, .flag-dominican-republic, .flag-ecuador, .flag-egypt, .flag-el-salvador, .flag-england, .flag-equatorial-guinea, .flag-eritrea, .flag-estonia, .flag-ethiopia, .flag-european-union, .flag-fao, .flag-falkland-malvinas, .flag-faroes, .flag-fiji, .flag-finland, .flag-france, .flag-french-guiana, .flag-french-southern-and-antarctic-lands, .flag-gabon, .flag-galicia, .flag-gambia, .flag-georgia, .flag-germany, .flag-ghana, .flag-gibraltar, .flag-greece, .flag-greenland, .flag-grenada, .flag-guadeloupe, .flag-guam, .flag-guatemala, .flag-guernsey, .flag-guinea-bissau, .flag-guinea, .flag-guyana, .flag-haiti, .flag-heard-island-and-mcdonald, .flag-honduras, .flag-hong-kong, .flag-hungary, .flag-iaea, .flag-iho, .flag-iceland, .flag-india, .flag-indonezia, .flag-iran, .flag-iraq, .flag-ireland, .flag-islamic-conference, .flag-isle-of-man, .flag-israel, .flag-italy, .flag-jamaica, .flag-japan, .flag-jersey, .flag-jordan, .flag-kazakhstan, .flag-kenya, .flag-kiribati, .flag-kosovo, .flag-kuwait, .flag-kyrgyzstan, .flag-laos, .flag-latvia, .flag-lebanon, .flag-lesotho, .flag-liberia, .flag-libya, .flag-liechtenshein, .flag-lithuania, .flag-luxembourg, .flag-macao, .flag-macedonia, .flag-madagascar, .flag-malawi, .flag-malaysia, .flag-maldives, .flag-mali, .flag-malta, .flag-marshall-islands, .flag-martinique, .flag-mauritania, .flag-mauritius, .flag-mayotte, .flag-mexico, .flag-micronesia, .flag-moldova, .flag-monaco, .flag-mongolia, .flag-montenegro, .flag-montserrat, .flag-morocco, .flag-mozambique, .flag-myanmar-burma, .flag-nato, .flag-namibia, .flag-nauru, .flag-nepal, .flag-netherlands-antilles, .flag-netherlands, .flag-new-zealand, .flag-new-caledonia, .flag-nicaragua, .flag-niger, .flag-nigeria, .flag-niue, .flag-norfolk, .flag-north-korea, .flag-northern-cyprus, .flag-northern-ireland, .flag-northern-mariana, .flag-norway, .flag-oas, .flag-oecd, .flag-opec, .flag-olimpic-movement, .flag-oman, .flag-pakistan, .flag-palau, .flag-palestine, .flag-panama, .flag-papua-new-guinea, .flag-paraguay, .flag-peru, .flag-philippines, .flag-pitcairn, .flag-poland, .flag-portugal, .flag-puerto-rico, .flag-qatar, .flag-quebec, .flag-red-cross, .flag-reunion, .flag-romania, .flag-russian-federation, .flag-rwanda, .flag-saint-barthelemy, .flag-saint-helena, .flag-saint-lucia, .flag-saint-martin, .flag-saint-pierre-and-miquelon, .flag-samoa, .flag-san-marino, .flag-sao-tome-principe, .flag-saudi-arabia, .flag-scotland, .flag-senegal, .flag-serbia-yugoslavia, .flag-seychelles, .flag-sierra-leone, .flag-singapore, .flag-sint-maarten, .flag-slovakia, .flag-slovenia, .flag-solomon-islands, .flag-somalia, .flag-somaliland, .flag-south-africa, .flag-south-georgia-and-south-sandwich, .flag-south-korea, .flag-southern-sudan, .flag-spain, .flag-sri-lanka, .flag-st-kitts-nevis, .flag-st-vincent-the-grenadines, .flag-sudan, .flag-suriname, .flag-svalbard-and-jan-mayen, .flag-swaziland, .flag-sweden, .flag-switzerland, .flag-syria, .flag-tahiti-french-polinesia, .flag-taiwan, .flag-tajikistan, .flag-tanzania, .flag-thailand, .flag-timor-leste, .flag-togo, .flag-tokelau, .flag-tonga, .flag-trinidad-tobago, .flag-tristan-da-cunha, .flag-tunisia, .flag-turkey, .flag-turkmenistan, .flag-turks-and-caicos-islands, .flag-tuvalu, .flag-unesco, .flag-unicef, .flag-uganda, .flag-ukraine, .flag-united-arab-emirates, .flag-united-kingdom-great-britain, .flag-united-states-minor-outlying, .flag-usa, .flag-united-nations, .flag-uruguay, .flag-uzbekistan, .flag-vanutau, .flag-vatican-city, .flag-venezuela, .flag-viet-nam, .flag-virgin-islands-british, .flag-virgin-islands-us, .flag-who, .flag-wto, .flag-wales, .flag-wallis-and-futuna, .flag-western-sahara, .flag-yemen, .flag-zambia, .flag-zimbabwe { height: 25px; width: 25px; max-width: 100%; background-size: 100%; background-image: url("flags.png"); }
+
+/* line 61, flags-sprites.scss */
+.flag-asean { background-position: 0 0%; background-size: 100%; }
+
+/* line 62, flags-sprites.scss */
+.flag-afghanistan { background-position: 0 0.352113%; background-size: 100%; }
+
+/* line 63, flags-sprites.scss */
+.flag-african-union { background-position: 0 0.704225%; background-size: 100%; }
+
+/* line 64, flags-sprites.scss */
+.flag-aland { background-position: 0 1.056338%; background-size: 100%; }
+
+/* line 65, flags-sprites.scss */
+.flag-albania { background-position: 0 1.408451%; background-size: 100%; }
+
+/* line 66, flags-sprites.scss */
+.flag-alderney { background-position: 0 1.760563%; background-size: 100%; }
+
+/* line 67, flags-sprites.scss */
+.flag-algeria { background-position: 0 2.112676%; background-size: 100%; }
+
+/* line 68, flags-sprites.scss */
+.flag-american-samoa { background-position: 0 2.464789%; background-size: 100%; }
+
+/* line 69, flags-sprites.scss */
+.flag-andorra { background-position: 0 2.816901%; background-size: 100%; }
+
+/* line 70, flags-sprites.scss */
+.flag-angola { background-position: 0 3.169014%; background-size: 100%; }
+
+/* line 71, flags-sprites.scss */
+.flag-anguilla { background-position: 0 3.521127%; background-size: 100%; }
+
+/* line 72, flags-sprites.scss */
+.flag-antarctica { background-position: 0 3.873239%; background-size: 100%; }
+
+/* line 73, flags-sprites.scss */
+.flag-antigua-barbuda { background-position: 0 4.225352%; background-size: 100%; }
+
+/* line 74, flags-sprites.scss */
+.flag-arab-league { background-position: 0 4.577465%; background-size: 100%; }
+
+/* line 75, flags-sprites.scss */
+.flag-argentina { background-position: 0 4.929577%; background-size: 100%; }
+
+/* line 76, flags-sprites.scss */
+.flag-armenia { background-position: 0 5.28169%; background-size: 100%; }
+
+/* line 77, flags-sprites.scss */
+.flag-aruba { background-position: 0 5.633803%; background-size: 100%; }
+
+/* line 78, flags-sprites.scss */
+.flag-australia { background-position: 0 5.985915%; background-size: 100%; }
+
+/* line 79, flags-sprites.scss */
+.flag-austria { background-position: 0 6.338028%; background-size: 100%; }
+
+/* line 80, flags-sprites.scss */
+.flag-azerbaijan { background-position: 0 6.690141%; background-size: 100%; }
+
+/* line 81, flags-sprites.scss */
+.flag-bahamas { background-position: 0 7.042254%; background-size: 100%; }
+
+/* line 82, flags-sprites.scss */
+.flag-bahrain { background-position: 0 7.394366%; background-size: 100%; }
+
+/* line 83, flags-sprites.scss */
+.flag-bangladesh { background-position: 0 7.746479%; background-size: 100%; }
+
+/* line 84, flags-sprites.scss */
+.flag-barbados { background-position: 0 8.098592%; background-size: 100%; }
+
+/* line 85, flags-sprites.scss */
+.flag-basque-country { background-position: 0 8.450704%; background-size: 100%; }
+
+/* line 86, flags-sprites.scss */
+.flag-belarus { background-position: 0 8.802817%; background-size: 100%; }
+
+/* line 87, flags-sprites.scss */
+.flag-belgium { background-position: 0 9.15493%; background-size: 100%; }
+
+/* line 88, flags-sprites.scss */
+.flag-belize { background-position: 0 9.507042%; background-size: 100%; }
+
+/* line 89, flags-sprites.scss */
+.flag-benin { background-position: 0 9.859155%; background-size: 100%; }
+
+/* line 90, flags-sprites.scss */
+.flag-bermuda { background-position: 0 10.211268%; background-size: 100%; }
+
+/* line 91, flags-sprites.scss */
+.flag-bhutan { background-position: 0 10.56338%; background-size: 100%; }
+
+/* line 92, flags-sprites.scss */
+.flag-bolivia { background-position: 0 10.915493%; background-size: 100%; }
+
+/* line 93, flags-sprites.scss */
+.flag-bonaire-sint-eustatius-and-saba { background-position: 0 11.267606%; background-size: 100%; }
+
+/* line 94, flags-sprites.scss */
+.flag-bosnia-herzegovina { background-position: 0 11.619718%; background-size: 100%; }
+
+/* line 95, flags-sprites.scss */
+.flag-botswana { background-position: 0 11.971831%; background-size: 100%; }
+
+/* line 96, flags-sprites.scss */
+.flag-bouvet { background-position: 0 12.323944%; background-size: 100%; }
+
+/* line 97, flags-sprites.scss */
+.flag-brazil { background-position: 0 12.676056%; background-size: 100%; }
+
+/* line 98, flags-sprites.scss */
+.flag-british-indian-ocean-territory { background-position: 0 13.028169%; background-size: 100%; }
+
+/* line 99, flags-sprites.scss */
+.flag-brunei { background-position: 0 13.380282%; background-size: 100%; }
+
+/* line 100, flags-sprites.scss */
+.flag-bulgaria { background-position: 0 13.732394%; background-size: 100%; }
+
+/* line 101, flags-sprites.scss */
+.flag-burkina-faso { background-position: 0 14.084507%; background-size: 100%; }
+
+/* line 102, flags-sprites.scss */
+.flag-burundi { background-position: 0 14.43662%; background-size: 100%; }
+
+/* line 103, flags-sprites.scss */
+.flag-caricom { background-position: 0 14.788732%; background-size: 100%; }
+
+/* line 104, flags-sprites.scss */
+.flag-cis { background-position: 0 15.140845%; background-size: 100%; }
+
+/* line 105, flags-sprites.scss */
+.flag-cambodja { background-position: 0 15.492958%; background-size: 100%; }
+
+/* line 106, flags-sprites.scss */
+.flag-cameroon { background-position: 0 15.84507%; background-size: 100%; }
+
+/* line 107, flags-sprites.scss */
+.flag-canada { background-position: 0 16.197183%; background-size: 100%; }
+
+/* line 108, flags-sprites.scss */
+.flag-cape-verde { background-position: 0 16.549296%; background-size: 100%; }
+
+/* line 109, flags-sprites.scss */
+.flag-catalonia { background-position: 0 16.901408%; background-size: 100%; }
+
+/* line 110, flags-sprites.scss */
+.flag-cayman-islands { background-position: 0 17.253521%; background-size: 100%; }
+
+/* line 111, flags-sprites.scss */
+.flag-central-african-republic { background-position: 0 17.605634%; background-size: 100%; }
+
+/* line 112, flags-sprites.scss */
+.flag-chad { background-position: 0 17.957746%; background-size: 100%; }
+
+/* line 113, flags-sprites.scss */
+.flag-chile { background-position: 0 18.309859%; background-size: 100%; }
+
+/* line 114, flags-sprites.scss */
+.flag-china { background-position: 0 18.661972%; background-size: 100%; }
+
+/* line 115, flags-sprites.scss */
+.flag-christmas { background-position: 0 19.014085%; background-size: 100%; }
+
+/* line 116, flags-sprites.scss */
+.flag-cocos-keeling { background-position: 0 19.366197%; background-size: 100%; }
+
+/* line 117, flags-sprites.scss */
+.flag-colombia { background-position: 0 19.71831%; background-size: 100%; }
+
+/* line 118, flags-sprites.scss */
+.flag-commonwealth { background-position: 0 20.070423%; background-size: 100%; }
+
+/* line 119, flags-sprites.scss */
+.flag-comoros { background-position: 0 20.422535%; background-size: 100%; }
+
+/* line 120, flags-sprites.scss */
+.flag-congo-brazzaville { background-position: 0 20.774648%; background-size: 100%; }
+
+/* line 121, flags-sprites.scss */
+.flag-congo-kinshasa-zaire { background-position: 0 21.126761%; background-size: 100%; }
+
+/* line 122, flags-sprites.scss */
+.flag-cook-islands { background-position: 0 21.478873%; background-size: 100%; }
+
+/* line 123, flags-sprites.scss */
+.flag-costa-rica { background-position: 0 21.830986%; background-size: 100%; }
+
+/* line 124, flags-sprites.scss */
+.flag-cote-divoire { background-position: 0 22.183099%; background-size: 100%; }
+
+/* line 125, flags-sprites.scss */
+.flag-croatia { background-position: 0 22.535211%; background-size: 100%; }
+
+/* line 126, flags-sprites.scss */
+.flag-cuba { background-position: 0 22.887324%; background-size: 100%; }
+
+/* line 127, flags-sprites.scss */
+.flag-curacao { background-position: 0 23.239437%; background-size: 100%; }
+
+/* line 128, flags-sprites.scss */
+.flag-cyprus { background-position: 0 23.591549%; background-size: 100%; }
+
+/* line 129, flags-sprites.scss */
+.flag-czech-republic { background-position: 0 23.943662%; background-size: 100%; }
+
+/* line 130, flags-sprites.scss */
+.flag-denmark { background-position: 0 24.295775%; background-size: 100%; }
+
+/* line 131, flags-sprites.scss */
+.flag-djibouti { background-position: 0 24.647887%; background-size: 100%; }
+
+/* line 132, flags-sprites.scss */
+.flag-dominica { background-position: 0 25%; background-size: 100%; }
+
+/* line 133, flags-sprites.scss */
+.flag-dominican-republic { background-position: 0 25.352113%; background-size: 100%; }
+
+/* line 134, flags-sprites.scss */
+.flag-ecuador { background-position: 0 25.704225%; background-size: 100%; }
+
+/* line 135, flags-sprites.scss */
+.flag-egypt { background-position: 0 26.056338%; background-size: 100%; }
+
+/* line 136, flags-sprites.scss */
+.flag-el-salvador { background-position: 0 26.408451%; background-size: 100%; }
+
+/* line 137, flags-sprites.scss */
+.flag-england { background-position: 0 26.760563%; background-size: 100%; }
+
+/* line 138, flags-sprites.scss */
+.flag-equatorial-guinea { background-position: 0 27.112676%; background-size: 100%; }
+
+/* line 139, flags-sprites.scss */
+.flag-eritrea { background-position: 0 27.464789%; background-size: 100%; }
+
+/* line 140, flags-sprites.scss */
+.flag-estonia { background-position: 0 27.816901%; background-size: 100%; }
+
+/* line 141, flags-sprites.scss */
+.flag-ethiopia { background-position: 0 28.169014%; background-size: 100%; }
+
+/* line 142, flags-sprites.scss */
+.flag-european-union { background-position: 0 28.521127%; background-size: 100%; }
+
+/* line 143, flags-sprites.scss */
+.flag-fao { background-position: 0 28.873239%; background-size: 100%; }
+
+/* line 144, flags-sprites.scss */
+.flag-falkland-malvinas { background-position: 0 29.225352%; background-size: 100%; }
+
+/* line 145, flags-sprites.scss */
+.flag-faroes { background-position: 0 29.577465%; background-size: 100%; }
+
+/* line 146, flags-sprites.scss */
+.flag-fiji { background-position: 0 29.929577%; background-size: 100%; }
+
+/* line 147, flags-sprites.scss */
+.flag-finland { background-position: 0 30.28169%; background-size: 100%; }
+
+/* line 148, flags-sprites.scss */
+.flag-france { background-position: 0 30.633803%; background-size: 100%; }
+
+/* line 149, flags-sprites.scss */
+.flag-french-guiana { background-position: 0 30.985915%; background-size: 100%; }
+
+/* line 150, flags-sprites.scss */
+.flag-french-southern-and-antarctic-lands { background-position: 0 31.338028%; background-size: 100%; }
+
+/* line 151, flags-sprites.scss */
+.flag-gabon { background-position: 0 31.690141%; background-size: 100%; }
+
+/* line 152, flags-sprites.scss */
+.flag-galicia { background-position: 0 32.042254%; background-size: 100%; }
+
+/* line 153, flags-sprites.scss */
+.flag-gambia { background-position: 0 32.394366%; background-size: 100%; }
+
+/* line 154, flags-sprites.scss */
+.flag-georgia { background-position: 0 32.746479%; background-size: 100%; }
+
+/* line 155, flags-sprites.scss */
+.flag-germany { background-position: 0 33.098592%; background-size: 100%; }
+
+/* line 156, flags-sprites.scss */
+.flag-ghana { background-position: 0 33.450704%; background-size: 100%; }
+
+/* line 157, flags-sprites.scss */
+.flag-gibraltar { background-position: 0 33.802817%; background-size: 100%; }
+
+/* line 158, flags-sprites.scss */
+.flag-greece { background-position: 0 34.15493%; background-size: 100%; }
+
+/* line 159, flags-sprites.scss */
+.flag-greenland { background-position: 0 34.507042%; background-size: 100%; }
+
+/* line 160, flags-sprites.scss */
+.flag-grenada { background-position: 0 34.859155%; background-size: 100%; }
+
+/* line 161, flags-sprites.scss */
+.flag-guadeloupe { background-position: 0 35.211268%; background-size: 100%; }
+
+/* line 162, flags-sprites.scss */
+.flag-guam { background-position: 0 35.56338%; background-size: 100%; }
+
+/* line 163, flags-sprites.scss */
+.flag-guatemala { background-position: 0 35.915493%; background-size: 100%; }
+
+/* line 164, flags-sprites.scss */
+.flag-guernsey { background-position: 0 36.267606%; background-size: 100%; }
+
+/* line 165, flags-sprites.scss */
+.flag-guinea-bissau { background-position: 0 36.619718%; background-size: 100%; }
+
+/* line 166, flags-sprites.scss */
+.flag-guinea { background-position: 0 36.971831%; background-size: 100%; }
+
+/* line 167, flags-sprites.scss */
+.flag-guyana { background-position: 0 37.323944%; background-size: 100%; }
+
+/* line 168, flags-sprites.scss */
+.flag-haiti { background-position: 0 37.676056%; background-size: 100%; }
+
+/* line 169, flags-sprites.scss */
+.flag-heard-island-and-mcdonald { background-position: 0 38.028169%; background-size: 100%; }
+
+/* line 170, flags-sprites.scss */
+.flag-honduras { background-position: 0 38.380282%; background-size: 100%; }
+
+/* line 171, flags-sprites.scss */
+.flag-hong-kong { background-position: 0 38.732394%; background-size: 100%; }
+
+/* line 172, flags-sprites.scss */
+.flag-hungary { background-position: 0 39.084507%; background-size: 100%; }
+
+/* line 173, flags-sprites.scss */
+.flag-iaea { background-position: 0 39.43662%; background-size: 100%; }
+
+/* line 174, flags-sprites.scss */
+.flag-iho { background-position: 0 39.788732%; background-size: 100%; }
+
+/* line 175, flags-sprites.scss */
+.flag-iceland { background-position: 0 40.140845%; background-size: 100%; }
+
+/* line 176, flags-sprites.scss */
+.flag-india { background-position: 0 40.492958%; background-size: 100%; }
+
+/* line 177, flags-sprites.scss */
+.flag-indonezia { background-position: 0 40.84507%; background-size: 100%; }
+
+/* line 178, flags-sprites.scss */
+.flag-iran { background-position: 0 41.197183%; background-size: 100%; }
+
+/* line 179, flags-sprites.scss */
+.flag-iraq { background-position: 0 41.549296%; background-size: 100%; }
+
+/* line 180, flags-sprites.scss */
+.flag-ireland { background-position: 0 41.901408%; background-size: 100%; }
+
+/* line 181, flags-sprites.scss */
+.flag-islamic-conference { background-position: 0 42.253521%; background-size: 100%; }
+
+/* line 182, flags-sprites.scss */
+.flag-isle-of-man { background-position: 0 42.605634%; background-size: 100%; }
+
+/* line 183, flags-sprites.scss */
+.flag-israel { background-position: 0 42.957746%; background-size: 100%; }
+
+/* line 184, flags-sprites.scss */
+.flag-italy { background-position: 0 43.309859%; background-size: 100%; }
+
+/* line 185, flags-sprites.scss */
+.flag-jamaica { background-position: 0 43.661972%; background-size: 100%; }
+
+/* line 186, flags-sprites.scss */
+.flag-japan { background-position: 0 44.014085%; background-size: 100%; }
+
+/* line 187, flags-sprites.scss */
+.flag-jersey { background-position: 0 44.366197%; background-size: 100%; }
+
+/* line 188, flags-sprites.scss */
+.flag-jordan { background-position: 0 44.71831%; background-size: 100%; }
+
+/* line 189, flags-sprites.scss */
+.flag-kazakhstan { background-position: 0 45.070423%; background-size: 100%; }
+
+/* line 190, flags-sprites.scss */
+.flag-kenya { background-position: 0 45.422535%; background-size: 100%; }
+
+/* line 191, flags-sprites.scss */
+.flag-kiribati { background-position: 0 45.774648%; background-size: 100%; }
+
+/* line 192, flags-sprites.scss */
+.flag-kosovo { background-position: 0 46.126761%; background-size: 100%; }
+
+/* line 193, flags-sprites.scss */
+.flag-kuwait { background-position: 0 46.478873%; background-size: 100%; }
+
+/* line 194, flags-sprites.scss */
+.flag-kyrgyzstan { background-position: 0 46.830986%; background-size: 100%; }
+
+/* line 195, flags-sprites.scss */
+.flag-laos { background-position: 0 47.183099%; background-size: 100%; }
+
+/* line 196, flags-sprites.scss */
+.flag-latvia { background-position: 0 47.535211%; background-size: 100%; }
+
+/* line 197, flags-sprites.scss */
+.flag-lebanon { background-position: 0 47.887324%; background-size: 100%; }
+
+/* line 198, flags-sprites.scss */
+.flag-lesotho { background-position: 0 48.239437%; background-size: 100%; }
+
+/* line 199, flags-sprites.scss */
+.flag-liberia { background-position: 0 48.591549%; background-size: 100%; }
+
+/* line 200, flags-sprites.scss */
+.flag-libya { background-position: 0 48.943662%; background-size: 100%; }
+
+/* line 201, flags-sprites.scss */
+.flag-liechtenshein { background-position: 0 49.295775%; background-size: 100%; }
+
+/* line 202, flags-sprites.scss */
+.flag-lithuania { background-position: 0 49.647887%; background-size: 100%; }
+
+/* line 203, flags-sprites.scss */
+.flag-luxembourg { background-position: 0 50%; background-size: 100%; }
+
+/* line 204, flags-sprites.scss */
+.flag-macao { background-position: 0 50.352113%; background-size: 100%; }
+
+/* line 205, flags-sprites.scss */
+.flag-macedonia { background-position: 0 50.704225%; background-size: 100%; }
+
+/* line 206, flags-sprites.scss */
+.flag-madagascar { background-position: 0 51.056338%; background-size: 100%; }
+
+/* line 207, flags-sprites.scss */
+.flag-malawi { background-position: 0 51.408451%; background-size: 100%; }
+
+/* line 208, flags-sprites.scss */
+.flag-malaysia { background-position: 0 51.760563%; background-size: 100%; }
+
+/* line 209, flags-sprites.scss */
+.flag-maldives { background-position: 0 52.112676%; background-size: 100%; }
+
+/* line 210, flags-sprites.scss */
+.flag-mali { background-position: 0 52.464789%; background-size: 100%; }
+
+/* line 211, flags-sprites.scss */
+.flag-malta { background-position: 0 52.816901%; background-size: 100%; }
+
+/* line 212, flags-sprites.scss */
+.flag-marshall-islands { background-position: 0 53.169014%; background-size: 100%; }
+
+/* line 213, flags-sprites.scss */
+.flag-martinique { background-position: 0 53.521127%; background-size: 100%; }
+
+/* line 214, flags-sprites.scss */
+.flag-mauritania { background-position: 0 53.873239%; background-size: 100%; }
+
+/* line 215, flags-sprites.scss */
+.flag-mauritius { background-position: 0 54.225352%; background-size: 100%; }
+
+/* line 216, flags-sprites.scss */
+.flag-mayotte { background-position: 0 54.577465%; background-size: 100%; }
+
+/* line 217, flags-sprites.scss */
+.flag-mexico { background-position: 0 54.929577%; background-size: 100%; }
+
+/* line 218, flags-sprites.scss */
+.flag-micronesia { background-position: 0 55.28169%; background-size: 100%; }
+
+/* line 219, flags-sprites.scss */
+.flag-moldova { background-position: 0 55.633803%; background-size: 100%; }
+
+/* line 220, flags-sprites.scss */
+.flag-monaco { background-position: 0 55.985915%; background-size: 100%; }
+
+/* line 221, flags-sprites.scss */
+.flag-mongolia { background-position: 0 56.338028%; background-size: 100%; }
+
+/* line 222, flags-sprites.scss */
+.flag-montenegro { background-position: 0 56.690141%; background-size: 100%; }
+
+/* line 223, flags-sprites.scss */
+.flag-montserrat { background-position: 0 57.042254%; background-size: 100%; }
+
+/* line 224, flags-sprites.scss */
+.flag-morocco { background-position: 0 57.394366%; background-size: 100%; }
+
+/* line 225, flags-sprites.scss */
+.flag-mozambique { background-position: 0 57.746479%; background-size: 100%; }
+
+/* line 226, flags-sprites.scss */
+.flag-myanmar-burma { background-position: 0 58.098592%; background-size: 100%; }
+
+/* line 227, flags-sprites.scss */
+.flag-nato { background-position: 0 58.450704%; background-size: 100%; }
+
+/* line 228, flags-sprites.scss */
+.flag-namibia { background-position: 0 58.802817%; background-size: 100%; }
+
+/* line 229, flags-sprites.scss */
+.flag-nauru { background-position: 0 59.15493%; background-size: 100%; }
+
+/* line 230, flags-sprites.scss */
+.flag-nepal { background-position: 0 59.507042%; background-size: 100%; }
+
+/* line 231, flags-sprites.scss */
+.flag-netherlands-antilles { background-position: 0 59.859155%; background-size: 100%; }
+
+/* line 232, flags-sprites.scss */
+.flag-netherlands { background-position: 0 60.211268%; background-size: 100%; }
+
+/* line 233, flags-sprites.scss */
+.flag-new-zealand { background-position: 0 60.56338%; background-size: 100%; }
+
+/* line 234, flags-sprites.scss */
+.flag-new-caledonia { background-position: 0 60.915493%; background-size: 100%; }
+
+/* line 235, flags-sprites.scss */
+.flag-nicaragua { background-position: 0 61.267606%; background-size: 100%; }
+
+/* line 236, flags-sprites.scss */
+.flag-niger { background-position: 0 61.619718%; background-size: 100%; }
+
+/* line 237, flags-sprites.scss */
+.flag-nigeria { background-position: 0 61.971831%; background-size: 100%; }
+
+/* line 238, flags-sprites.scss */
+.flag-niue { background-position: 0 62.323944%; background-size: 100%; }
+
+/* line 239, flags-sprites.scss */
+.flag-norfolk { background-position: 0 62.676056%; background-size: 100%; }
+
+/* line 240, flags-sprites.scss */
+.flag-north-korea { background-position: 0 63.028169%; background-size: 100%; }
+
+/* line 241, flags-sprites.scss */
+.flag-northern-cyprus { background-position: 0 63.380282%; background-size: 100%; }
+
+/* line 242, flags-sprites.scss */
+.flag-northern-ireland { background-position: 0 63.732394%; background-size: 100%; }
+
+/* line 243, flags-sprites.scss */
+.flag-northern-mariana { background-position: 0 64.084507%; background-size: 100%; }
+
+/* line 244, flags-sprites.scss */
+.flag-norway { background-position: 0 64.43662%; background-size: 100%; }
+
+/* line 245, flags-sprites.scss */
+.flag-oas { background-position: 0 64.788732%; background-size: 100%; }
+
+/* line 246, flags-sprites.scss */
+.flag-oecd { background-position: 0 65.140845%; background-size: 100%; }
+
+/* line 247, flags-sprites.scss */
+.flag-opec { background-position: 0 65.492958%; background-size: 100%; }
+
+/* line 248, flags-sprites.scss */
+.flag-olimpic-movement { background-position: 0 65.84507%; background-size: 100%; }
+
+/* line 249, flags-sprites.scss */
+.flag-oman { background-position: 0 66.197183%; background-size: 100%; }
+
+/* line 250, flags-sprites.scss */
+.flag-pakistan { background-position: 0 66.549296%; background-size: 100%; }
+
+/* line 251, flags-sprites.scss */
+.flag-palau { background-position: 0 66.901408%; background-size: 100%; }
+
+/* line 252, flags-sprites.scss */
+.flag-palestine { background-position: 0 67.253521%; background-size: 100%; }
+
+/* line 253, flags-sprites.scss */
+.flag-panama { background-position: 0 67.605634%; background-size: 100%; }
+
+/* line 254, flags-sprites.scss */
+.flag-papua-new-guinea { background-position: 0 67.957746%; background-size: 100%; }
+
+/* line 255, flags-sprites.scss */
+.flag-paraguay { background-position: 0 68.309859%; background-size: 100%; }
+
+/* line 256, flags-sprites.scss */
+.flag-peru { background-position: 0 68.661972%; background-size: 100%; }
+
+/* line 257, flags-sprites.scss */
+.flag-philippines { background-position: 0 69.014085%; background-size: 100%; }
+
+/* line 258, flags-sprites.scss */
+.flag-pitcairn { background-position: 0 69.366197%; background-size: 100%; }
+
+/* line 259, flags-sprites.scss */
+.flag-poland { background-position: 0 69.71831%; background-size: 100%; }
+
+/* line 260, flags-sprites.scss */
+.flag-portugal { background-position: 0 70.070423%; background-size: 100%; }
+
+/* line 261, flags-sprites.scss */
+.flag-puerto-rico { background-position: 0 70.422535%; background-size: 100%; }
+
+/* line 262, flags-sprites.scss */
+.flag-qatar { background-position: 0 70.774648%; background-size: 100%; }
+
+/* line 263, flags-sprites.scss */
+.flag-quebec { background-position: 0 71.126761%; background-size: 100%; }
+
+/* line 264, flags-sprites.scss */
+.flag-red-cross { background-position: 0 71.478873%; background-size: 100%; }
+
+/* line 265, flags-sprites.scss */
+.flag-reunion { background-position: 0 71.830986%; background-size: 100%; }
+
+/* line 266, flags-sprites.scss */
+.flag-romania { background-position: 0 72.183099%; background-size: 100%; }
+
+/* line 267, flags-sprites.scss */
+.flag-russian-federation { background-position: 0 72.535211%; background-size: 100%; }
+
+/* line 268, flags-sprites.scss */
+.flag-rwanda { background-position: 0 72.887324%; background-size: 100%; }
+
+/* line 269, flags-sprites.scss */
+.flag-saint-barthelemy { background-position: 0 73.239437%; background-size: 100%; }
+
+/* line 270, flags-sprites.scss */
+.flag-saint-helena { background-position: 0 73.591549%; background-size: 100%; }
+
+/* line 271, flags-sprites.scss */
+.flag-saint-lucia { background-position: 0 73.943662%; background-size: 100%; }
+
+/* line 272, flags-sprites.scss */
+.flag-saint-martin { background-position: 0 74.295775%; background-size: 100%; }
+
+/* line 273, flags-sprites.scss */
+.flag-saint-pierre-and-miquelon { background-position: 0 74.647887%; background-size: 100%; }
+
+/* line 274, flags-sprites.scss */
+.flag-samoa { background-position: 0 75%; background-size: 100%; }
+
+/* line 275, flags-sprites.scss */
+.flag-san-marino { background-position: 0 75.352113%; background-size: 100%; }
+
+/* line 276, flags-sprites.scss */
+.flag-sao-tome-principe { background-position: 0 75.704225%; background-size: 100%; }
+
+/* line 277, flags-sprites.scss */
+.flag-saudi-arabia { background-position: 0 76.056338%; background-size: 100%; }
+
+/* line 278, flags-sprites.scss */
+.flag-scotland { background-position: 0 76.408451%; background-size: 100%; }
+
+/* line 279, flags-sprites.scss */
+.flag-senegal { background-position: 0 76.760563%; background-size: 100%; }
+
+/* line 280, flags-sprites.scss */
+.flag-serbia-yugoslavia { background-position: 0 77.112676%; background-size: 100%; }
+
+/* line 281, flags-sprites.scss */
+.flag-seychelles { background-position: 0 77.464789%; background-size: 100%; }
+
+/* line 282, flags-sprites.scss */
+.flag-sierra-leone { background-position: 0 77.816901%; background-size: 100%; }
+
+/* line 283, flags-sprites.scss */
+.flag-singapore { background-position: 0 78.169014%; background-size: 100%; }
+
+/* line 284, flags-sprites.scss */
+.flag-sint-maarten { background-position: 0 78.521127%; background-size: 100%; }
+
+/* line 285, flags-sprites.scss */
+.flag-slovakia { background-position: 0 78.873239%; background-size: 100%; }
+
+/* line 286, flags-sprites.scss */
+.flag-slovenia { background-position: 0 79.225352%; background-size: 100%; }
+
+/* line 287, flags-sprites.scss */
+.flag-solomon-islands { background-position: 0 79.577465%; background-size: 100%; }
+
+/* line 288, flags-sprites.scss */
+.flag-somalia { background-position: 0 79.929577%; background-size: 100%; }
+
+/* line 289, flags-sprites.scss */
+.flag-somaliland { background-position: 0 80.28169%; background-size: 100%; }
+
+/* line 290, flags-sprites.scss */
+.flag-south-africa { background-position: 0 80.633803%; background-size: 100%; }
+
+/* line 291, flags-sprites.scss */
+.flag-south-georgia-and-south-sandwich { background-position: 0 80.985915%; background-size: 100%; }
+
+/* line 292, flags-sprites.scss */
+.flag-south-korea { background-position: 0 81.338028%; background-size: 100%; }
+
+/* line 293, flags-sprites.scss */
+.flag-southern-sudan { background-position: 0 81.690141%; background-size: 100%; }
+
+/* line 294, flags-sprites.scss */
+.flag-spain { background-position: 0 82.042254%; background-size: 100%; }
+
+/* line 295, flags-sprites.scss */
+.flag-sri-lanka { background-position: 0 82.394366%; background-size: 100%; }
+
+/* line 296, flags-sprites.scss */
+.flag-st-kitts-nevis { background-position: 0 82.746479%; background-size: 100%; }
+
+/* line 297, flags-sprites.scss */
+.flag-st-vincent-the-grenadines { background-position: 0 83.098592%; background-size: 100%; }
+
+/* line 298, flags-sprites.scss */
+.flag-sudan { background-position: 0 83.450704%; background-size: 100%; }
+
+/* line 299, flags-sprites.scss */
+.flag-suriname { background-position: 0 83.802817%; background-size: 100%; }
+
+/* line 300, flags-sprites.scss */
+.flag-svalbard-and-jan-mayen { background-position: 0 84.15493%; background-size: 100%; }
+
+/* line 301, flags-sprites.scss */
+.flag-swaziland { background-position: 0 84.507042%; background-size: 100%; }
+
+/* line 302, flags-sprites.scss */
+.flag-sweden { background-position: 0 84.859155%; background-size: 100%; }
+
+/* line 303, flags-sprites.scss */
+.flag-switzerland { background-position: 0 85.211268%; background-size: 100%; }
+
+/* line 304, flags-sprites.scss */
+.flag-syria { background-position: 0 85.56338%; background-size: 100%; }
+
+/* line 305, flags-sprites.scss */
+.flag-tahiti-french-polinesia { background-position: 0 85.915493%; background-size: 100%; }
+
+/* line 306, flags-sprites.scss */
+.flag-taiwan { background-position: 0 86.267606%; background-size: 100%; }
+
+/* line 307, flags-sprites.scss */
+.flag-tajikistan { background-position: 0 86.619718%; background-size: 100%; }
+
+/* line 308, flags-sprites.scss */
+.flag-tanzania { background-position: 0 86.971831%; background-size: 100%; }
+
+/* line 309, flags-sprites.scss */
+.flag-thailand { background-position: 0 87.323944%; background-size: 100%; }
+
+/* line 310, flags-sprites.scss */
+.flag-timor-leste { background-position: 0 87.676056%; background-size: 100%; }
+
+/* line 311, flags-sprites.scss */
+.flag-togo { background-position: 0 88.028169%; background-size: 100%; }
+
+/* line 312, flags-sprites.scss */
+.flag-tokelau { background-position: 0 88.380282%; background-size: 100%; }
+
+/* line 313, flags-sprites.scss */
+.flag-tonga { background-position: 0 88.732394%; background-size: 100%; }
+
+/* line 314, flags-sprites.scss */
+.flag-trinidad-tobago { background-position: 0 89.084507%; background-size: 100%; }
+
+/* line 315, flags-sprites.scss */
+.flag-tristan-da-cunha { background-position: 0 89.43662%; background-size: 100%; }
+
+/* line 316, flags-sprites.scss */
+.flag-tunisia { background-position: 0 89.788732%; background-size: 100%; }
+
+/* line 317, flags-sprites.scss */
+.flag-turkey { background-position: 0 90.140845%; background-size: 100%; }
+
+/* line 318, flags-sprites.scss */
+.flag-turkmenistan { background-position: 0 90.492958%; background-size: 100%; }
+
+/* line 319, flags-sprites.scss */
+.flag-turks-and-caicos-islands { background-position: 0 90.84507%; background-size: 100%; }
+
+/* line 320, flags-sprites.scss */
+.flag-tuvalu { background-position: 0 91.197183%; background-size: 100%; }
+
+/* line 321, flags-sprites.scss */
+.flag-unesco { background-position: 0 91.549296%; background-size: 100%; }
+
+/* line 322, flags-sprites.scss */
+.flag-unicef { background-position: 0 91.901408%; background-size: 100%; }
+
+/* line 323, flags-sprites.scss */
+.flag-uganda { background-position: 0 92.253521%; background-size: 100%; }
+
+/* line 324, flags-sprites.scss */
+.flag-ukraine { background-position: 0 92.605634%; background-size: 100%; }
+
+/* line 325, flags-sprites.scss */
+.flag-united-arab-emirates { background-position: 0 92.957746%; background-size: 100%; }
+
+/* line 326, flags-sprites.scss */
+.flag-united-kingdom-great-britain { background-position: 0 93.309859%; background-size: 100%; }
+
+/* line 327, flags-sprites.scss */
+.flag-united-states-minor-outlying { background-position: 0 93.661972%; background-size: 100%; }
+
+/* line 328, flags-sprites.scss */
+.flag-usa { background-position: 0 94.014085%; background-size: 100%; }
+
+/* line 329, flags-sprites.scss */
+.flag-united-nations { background-position: 0 94.366197%; background-size: 100%; }
+
+/* line 330, flags-sprites.scss */
+.flag-uruguay { background-position: 0 94.71831%; background-size: 100%; }
+
+/* line 331, flags-sprites.scss */
+.flag-uzbekistan { background-position: 0 95.070423%; background-size: 100%; }
+
+/* line 332, flags-sprites.scss */
+.flag-vanutau { background-position: 0 95.422535%; background-size: 100%; }
+
+/* line 333, flags-sprites.scss */
+.flag-vatican-city { background-position: 0 95.774648%; background-size: 100%; }
+
+/* line 334, flags-sprites.scss */
+.flag-venezuela { background-position: 0 96.126761%; background-size: 100%; }
+
+/* line 335, flags-sprites.scss */
+.flag-viet-nam { background-position: 0 96.478873%; background-size: 100%; }
+
+/* line 336, flags-sprites.scss */
+.flag-virgin-islands-british { background-position: 0 96.830986%; background-size: 100%; }
+
+/* line 337, flags-sprites.scss */
+.flag-virgin-islands-us { background-position: 0 97.183099%; background-size: 100%; }
+
+/* line 338, flags-sprites.scss */
+.flag-who { background-position: 0 97.535211%; background-size: 100%; }
+
+/* line 339, flags-sprites.scss */
+.flag-wto { background-position: 0 97.887324%; background-size: 100%; }
+
+/* line 340, flags-sprites.scss */
+.flag-wales { background-position: 0 98.239437%; background-size: 100%; }
+
+/* line 341, flags-sprites.scss */
+.flag-wallis-and-futuna { background-position: 0 98.591549%; background-size: 100%; }
+
+/* line 342, flags-sprites.scss */
+.flag-western-sahara { background-position: 0 98.943662%; background-size: 100%; }
+
+/* line 343, flags-sprites.scss */
+.flag-yemen { background-position: 0 99.295775%; background-size: 100%; }
+
+/* line 344, flags-sprites.scss */
+.flag-zambia { background-position: 0 99.647887%; background-size: 100%; }
+
+/* line 345, flags-sprites.scss */
+.flag-zimbabwe { background-position: 0 100%; background-size: 100%; }
+
+/* line 1, shirts-sprites.scss */
+.team-new-178, .team-afb-187, .team-ajx-408, .team-alv-334, .team-ame-1, .team-and, .team-ang-409, .team-ars-174, .team-asl, .team-asm-376, .team-ast-223, .team-asv-184, .team-atb-201, .team-atl-2, .team-atm-196, .team-aug-394, .team-bar-211, .team-bay-229, .team-ben-221, .team-bet-203, .team-bfc-337, .team-bha, .team-bjk-373, .team-bvb-378, .team-carp-240, .team-caz-4, .team-cb-379, .team-cel, .team-cel-208, .team-cel-374, .team-che-175, .team-chi-3, .team-cor-384, .team-cp-189, .team-cska-220, .team-dar-399, .team-dep-195, .team-dor-214, .team-dyk-233, .team-dzg-231, .team-ein-390, .team-esp-199, .team-eve-176, .team-fcb-369, .team-fck-380, .team-fey, .team-fre-392, .team-gal-222, .team-gdl-5, .team-ge-238, .team-get-209, .team-gir, .team-gnt-236, .team-gra-200, .team-gui-411, .team-ham-397, .team-hcfc-336, .team-her-389, .team-hof-388, .team-hud, .team-ing-398, .team-jua-383, .team-kol-391, .team-lec-185, .team-leg-333, .team-leg-377, .team-lei-386, .team-leo-6, .team-lev-198, .team-lev-227, .team-liv-193, .team-lob-487, .team-lud-371, .team-m05-393, .team-mac-191, .team-mal-194, .team-mal-217, .team-mau-177, .team-mfc-335, .team-mgb-225, .team-min-385, .team-mor-8, .team-mos, .team-mta-234, .team-mty-7, .team-mur, .team-nap-372, .team-nec-331, .team-noc-186, .team-oax, .team-ol-237, .team-oly-230, .team-osa-332, .team-pac-9, .team-pal-206, .team-por-232, .team-psg-215, .team-psg-410, .team-psv-219, .team-pue-10, .team-rav-197, .team-rm-212, .team-rom-226, .team-ros-375, .team-rso-205, .team-san-12, .team-sch-395, .team-scp-370, .team-sde-210, .team-sev-204, .team-sfh-241, .team-shk-216, .team-soh-179, .team-son, .team-spo-202, .team-stc-180, .team-sun-192, .team-swb-396, .team-swc-181, .team-tap, .team-tig-13, .team-tij-14, .team-tm, .team-tol-15, .team-tot-188, .team-uae, .team-udg, .team-val-207, .team-ven, .team-ver-18, .team-vill-213, .team-wat-182, .team-wba-183, .team-whu-190, .team-wol-218, .team-zac, .team-zen-235, .team-qro-11, .team-ats-2 { height: 25px; width: 20px; max-width: 100%; background-size: 100%; background-image: url("shirts.png"); }
+
+/* line 31, shirts-sprites.scss */
+.team-new-178 { background-position: 0 0%; background-size: 100%; }
+
+/* line 32, shirts-sprites.scss */
+.team-afb-187 { background-position: 0 7.297333%; background-size: 1296.385542%; }
+
+/* line 33, shirts-sprites.scss */
+.team-ajx-408 { background-position: 0 7.973995%; background-size: 1296.385542%; }
+
+/* line 34, shirts-sprites.scss */
+.team-alv-334 { background-position: 0 8.650657%; background-size: 1296.385542%; }
+
+/* line 35, shirts-sprites.scss */
+.team-ame-1 { background-position: 0 9.327319%; background-size: 1296.385542%; }
+
+/* line 36, shirts-sprites.scss */
+.team-and { background-position: 0 10.00398%; background-size: 1296.385542%; }
+
+/* line 37, shirts-sprites.scss */
+.team-ang-409 { background-position: 0 10.680642%; background-size: 1296.385542%; }
+
+/* line 38, shirts-sprites.scss */
+.team-ars-174 { background-position: 0 11.357304%; background-size: 1296.385542%; }
+
+/* line 39, shirts-sprites.scss */
+.team-asl { background-position: 0 12.033966%; background-size: 1296.385542%; }
+
+/* line 40, shirts-sprites.scss */
+.team-asm-376 { background-position: 0 12.710628%; background-size: 1296.385542%; }
+
+/* line 41, shirts-sprites.scss */
+.team-ast-223 { background-position: 0 13.387289%; background-size: 1296.385542%; }
+
+/* line 42, shirts-sprites.scss */
+.team-asv-184 { background-position: 0 14.063951%; background-size: 1296.385542%; }
+
+/* line 43, shirts-sprites.scss */
+.team-atb-201 { background-position: 0 14.740613%; background-size: 1296.385542%; }
+
+/* line 44, shirts-sprites.scss */
+.team-atl-2 { background-position: 0 15.417275%; background-size: 1296.385542%; }
+
+/* line 45, shirts-sprites.scss */
+.team-atm-196 { background-position: 0 16.093937%; background-size: 1296.385542%; }
+
+/* line 46, shirts-sprites.scss */
+.team-aug-394 { background-position: 0 16.770598%; background-size: 1296.385542%; }
+
+/* line 47, shirts-sprites.scss */
+.team-bar-211 { background-position: 0 17.44726%; background-size: 1296.385542%; }
+
+/* line 48, shirts-sprites.scss */
+.team-bay-229 { background-position: 0 18.123922%; background-size: 1296.385542%; }
+
+/* line 49, shirts-sprites.scss */
+.team-ben-221 { background-position: 0 18.800584%; background-size: 1296.385542%; }
+
+/* line 50, shirts-sprites.scss */
+.team-bet-203 { background-position: 0 19.477246%; background-size: 1296.385542%; }
+
+/* line 51, shirts-sprites.scss */
+.team-bfc-337 { background-position: 0 20.153907%; background-size: 1296.385542%; }
+
+/* line 52, shirts-sprites.scss */
+.team-bha { background-position: 0 20.830569%; background-size: 1296.385542%; }
+
+/* line 53, shirts-sprites.scss */
+.team-bjk-373 { background-position: 0 21.507231%; background-size: 1296.385542%; }
+
+/* line 54, shirts-sprites.scss */
+.team-bvb-378 { background-position: 0 22.183893%; background-size: 1296.385542%; }
+
+/* line 55, shirts-sprites.scss */
+.team-carp-240 { background-position: 0 22.860555%; background-size: 1296.385542%; }
+
+/* line 56, shirts-sprites.scss */
+.team-caz-4 { background-position: 0 23.537216%; background-size: 1296.385542%; }
+
+/* line 57, shirts-sprites.scss */
+.team-cb-379 { background-position: 0 24.213878%; background-size: 1296.385542%; }
+
+/* line 58, shirts-sprites.scss */
+.team-cel { background-position: 0 24.89054%; background-size: 1296.385542%; }
+
+/* line 59, shirts-sprites.scss */
+.team-cel-208 { background-position: 0 25.567202%; background-size: 1296.385542%; }
+
+/* line 60, shirts-sprites.scss */
+.team-cel-374 { background-position: 0 26.243864%; background-size: 1296.385542%; }
+
+/* line 61, shirts-sprites.scss */
+.team-che-175 { background-position: 0 26.920525%; background-size: 1296.385542%; }
+
+/* line 62, shirts-sprites.scss */
+.team-chi-3 { background-position: 0 27.597187%; background-size: 1296.385542%; }
+
+/* line 63, shirts-sprites.scss */
+.team-cor-384 { background-position: 0 28.273849%; background-size: 1296.385542%; }
+
+/* line 64, shirts-sprites.scss */
+.team-cp-189 { background-position: 0 28.950511%; background-size: 1296.385542%; }
+
+/* line 65, shirts-sprites.scss */
+.team-cska-220 { background-position: 0 29.627173%; background-size: 1296.385542%; }
+
+/* line 66, shirts-sprites.scss */
+.team-dar-399 { background-position: 0 30.303834%; background-size: 1296.385542%; }
+
+/* line 67, shirts-sprites.scss */
+.team-dep-195 { background-position: 0 30.980496%; background-size: 1296.385542%; }
+
+/* line 68, shirts-sprites.scss */
+.team-dor-214 { background-position: 0 31.657158%; background-size: 1296.385542%; }
+
+/* line 69, shirts-sprites.scss */
+.team-dyk-233 { background-position: 0 32.33382%; background-size: 1296.385542%; }
+
+/* line 70, shirts-sprites.scss */
+.team-dzg-231 { background-position: 0 33.010482%; background-size: 1296.385542%; }
+
+/* line 71, shirts-sprites.scss */
+.team-ein-390 { background-position: 0 33.687143%; background-size: 1296.385542%; }
+
+/* line 72, shirts-sprites.scss */
+.team-esp-199 { background-position: 0 34.363805%; background-size: 1296.385542%; }
+
+/* line 73, shirts-sprites.scss */
+.team-eve-176 { background-position: 0 35.040467%; background-size: 1296.385542%; }
+
+/* line 74, shirts-sprites.scss */
+.team-fcb-369 { background-position: 0 35.717129%; background-size: 1296.385542%; }
+
+/* line 75, shirts-sprites.scss */
+.team-fck-380 { background-position: 0 36.393791%; background-size: 1296.385542%; }
+
+/* line 76, shirts-sprites.scss */
+.team-fey { background-position: 0 37.070452%; background-size: 1296.385542%; }
+
+/* line 77, shirts-sprites.scss */
+.team-fre-392 { background-position: 0 37.747114%; background-size: 1296.385542%; }
+
+/* line 78, shirts-sprites.scss */
+.team-gal-222 { background-position: 0 38.423776%; background-size: 1296.385542%; }
+
+/* line 79, shirts-sprites.scss */
+.team-gdl-5 { background-position: 0 39.100438%; background-size: 1296.385542%; }
+
+/* line 80, shirts-sprites.scss */
+.team-ge-238 { background-position: 0 39.7771%; background-size: 1296.385542%; }
+
+/* line 81, shirts-sprites.scss */
+.team-get-209 { background-position: 0 40.453761%; background-size: 1296.385542%; }
+
+/* line 82, shirts-sprites.scss */
+.team-gir { background-position: 0 41.130423%; background-size: 1296.385542%; }
+
+/* line 83, shirts-sprites.scss */
+.team-gnt-236 { background-position: 0 41.807085%; background-size: 1296.385542%; }
+
+/* line 84, shirts-sprites.scss */
+.team-gra-200 { background-position: 0 42.483747%; background-size: 1296.385542%; }
+
+/* line 85, shirts-sprites.scss */
+.team-gui-411 { background-position: 0 43.160409%; background-size: 1296.385542%; }
+
+/* line 86, shirts-sprites.scss */
+.team-ham-397 { background-position: 0 43.83707%; background-size: 1296.385542%; }
+
+/* line 87, shirts-sprites.scss */
+.team-hcfc-336 { background-position: 0 44.513732%; background-size: 1296.385542%; }
+
+/* line 88, shirts-sprites.scss */
+.team-her-389 { background-position: 0 45.190394%; background-size: 1296.385542%; }
+
+/* line 89, shirts-sprites.scss */
+.team-hof-388 { background-position: 0 45.867056%; background-size: 1296.385542%; }
+
+/* line 90, shirts-sprites.scss */
+.team-hud { background-position: 0 46.543718%; background-size: 1296.385542%; }
+
+/* line 91, shirts-sprites.scss */
+.team-ing-398 { background-position: 0 47.220379%; background-size: 1296.385542%; }
+
+/* line 92, shirts-sprites.scss */
+.team-jua-383 { background-position: 0 47.897041%; background-size: 1296.385542%; }
+
+/* line 93, shirts-sprites.scss */
+.team-kol-391 { background-position: 0 48.573703%; background-size: 1296.385542%; }
+
+/* line 94, shirts-sprites.scss */
+.team-lec-185 { background-position: 0 49.250365%; background-size: 1296.385542%; }
+
+/* line 95, shirts-sprites.scss */
+.team-leg-333 { background-position: 0 49.927027%; background-size: 1296.385542%; }
+
+/* line 96, shirts-sprites.scss */
+.team-leg-377 { background-position: 0 50.603688%; background-size: 1296.385542%; }
+
+/* line 97, shirts-sprites.scss */
+.team-lei-386 { background-position: 0 51.28035%; background-size: 1296.385542%; }
+
+/* line 98, shirts-sprites.scss */
+.team-leo-6 { background-position: 0 51.957012%; background-size: 1296.385542%; }
+
+/* line 99, shirts-sprites.scss */
+.team-lev-198 { background-position: 0 52.633674%; background-size: 1296.385542%; }
+
+/* line 100, shirts-sprites.scss */
+.team-lev-227 { background-position: 0 53.310336%; background-size: 1296.385542%; }
+
+/* line 101, shirts-sprites.scss */
+.team-liv-193 { background-position: 0 53.986997%; background-size: 1296.385542%; }
+
+/* line 102, shirts-sprites.scss */
+.team-lob-487 { background-position: 0 54.663659%; background-size: 1296.385542%; }
+
+/* line 103, shirts-sprites.scss */
+.team-lud-371 { background-position: 0 55.340321%; background-size: 1296.385542%; }
+
+/* line 104, shirts-sprites.scss */
+.team-m05-393 { background-position: 0 56.016983%; background-size: 1296.385542%; }
+
+/* line 105, shirts-sprites.scss */
+.team-mac-191 { background-position: 0 56.693645%; background-size: 1296.385542%; }
+
+/* line 106, shirts-sprites.scss */
+.team-mal-194 { background-position: 0 57.370306%; background-size: 1296.385542%; }
+
+/* line 107, shirts-sprites.scss */
+.team-mal-217 { background-position: 0 58.046968%; background-size: 1296.385542%; }
+
+/* line 108, shirts-sprites.scss */
+.team-mau-177 { background-position: 0 58.72363%; background-size: 1296.385542%; }
+
+/* line 109, shirts-sprites.scss */
+.team-mfc-335 { background-position: 0 59.400292%; background-size: 1296.385542%; }
+
+/* line 110, shirts-sprites.scss */
+.team-mgb-225 { background-position: 0 60.076954%; background-size: 1296.385542%; }
+
+/* line 111, shirts-sprites.scss */
+.team-min-385 { background-position: 0 60.753615%; background-size: 1296.385542%; }
+
+/* line 112, shirts-sprites.scss */
+.team-mor-8 { background-position: 0 61.430277%; background-size: 1296.385542%; }
+
+/* line 113, shirts-sprites.scss */
+.team-mos { background-position: 0 62.106939%; background-size: 1296.385542%; }
+
+/* line 114, shirts-sprites.scss */
+.team-mta-234 { background-position: 0 62.783601%; background-size: 1296.385542%; }
+
+/* line 115, shirts-sprites.scss */
+.team-mty-7 { background-position: 0 63.460263%; background-size: 1296.385542%; }
+
+/* line 116, shirts-sprites.scss */
+.team-mur { background-position: 0 64.136925%; background-size: 1296.385542%; }
+
+/* line 117, shirts-sprites.scss */
+.team-nap-372 { background-position: 0 64.813586%; background-size: 1296.385542%; }
+
+/* line 118, shirts-sprites.scss */
+.team-nec-331 { background-position: 0 65.490248%; background-size: 1296.385542%; }
+
+/* line 119, shirts-sprites.scss */
+.team-noc-186 { background-position: 0 66.16691%; background-size: 1296.385542%; }
+
+/* line 120, shirts-sprites.scss */
+.team-oax { background-position: 0 66.843572%; background-size: 1296.385542%; }
+
+/* line 121, shirts-sprites.scss */
+.team-ol-237 { background-position: 0 67.520234%; background-size: 1296.385542%; }
+
+/* line 122, shirts-sprites.scss */
+.team-oly-230 { background-position: 0 68.196895%; background-size: 1296.385542%; }
+
+/* line 123, shirts-sprites.scss */
+.team-osa-332 { background-position: 0 68.873557%; background-size: 1296.385542%; }
+
+/* line 124, shirts-sprites.scss */
+.team-pac-9 { background-position: 0 69.550219%; background-size: 1296.385542%; }
+
+/* line 125, shirts-sprites.scss */
+.team-pal-206 { background-position: 0 70.226881%; background-size: 1296.385542%; }
+
+/* line 126, shirts-sprites.scss */
+.team-por-232 { background-position: 0 70.903543%; background-size: 1296.385542%; }
+
+/* line 127, shirts-sprites.scss */
+.team-psg-215 { background-position: 0 71.580204%; background-size: 1296.385542%; }
+
+/* line 128, shirts-sprites.scss */
+.team-psg-410 { background-position: 0 72.256866%; background-size: 1296.385542%; }
+
+/* line 129, shirts-sprites.scss */
+.team-psv-219 { background-position: 0 72.933528%; background-size: 1296.385542%; }
+
+/* line 130, shirts-sprites.scss */
+.team-pue-10 { background-position: 0 73.61019%; background-size: 1296.385542%; }
+
+/* line 131, shirts-sprites.scss */
+.team-rav-197 { background-position: 0 74.286852%; background-size: 1296.385542%; }
+
+/* line 132, shirts-sprites.scss */
+.team-rm-212 { background-position: 0 74.963513%; background-size: 1296.385542%; }
+
+/* line 133, shirts-sprites.scss */
+.team-rom-226 { background-position: 0 75.640175%; background-size: 1296.385542%; }
+
+/* line 134, shirts-sprites.scss */
+.team-ros-375 { background-position: 0 76.316837%; background-size: 1296.385542%; }
+
+/* line 135, shirts-sprites.scss */
+.team-rso-205 { background-position: 0 76.993499%; background-size: 1296.385542%; }
+
+/* line 136, shirts-sprites.scss */
+.team-san-12 { background-position: 0 77.670161%; background-size: 1296.385542%; }
+
+/* line 137, shirts-sprites.scss */
+.team-sch-395 { background-position: 0 78.346822%; background-size: 1296.385542%; }
+
+/* line 138, shirts-sprites.scss */
+.team-scp-370 { background-position: 0 79.023484%; background-size: 1296.385542%; }
+
+/* line 139, shirts-sprites.scss */
+.team-sde-210 { background-position: 0 79.700146%; background-size: 1296.385542%; }
+
+/* line 140, shirts-sprites.scss */
+.team-sev-204 { background-position: 0 80.376808%; background-size: 1296.385542%; }
+
+/* line 141, shirts-sprites.scss */
+.team-sfh-241 { background-position: 0 81.05347%; background-size: 1296.385542%; }
+
+/* line 142, shirts-sprites.scss */
+.team-shk-216 { background-position: 0 81.730131%; background-size: 1296.385542%; }
+
+/* line 143, shirts-sprites.scss */
+.team-soh-179 { background-position: 0 82.406793%; background-size: 1296.385542%; }
+
+/* line 144, shirts-sprites.scss */
+.team-son { background-position: 0 83.083455%; background-size: 1296.385542%; }
+
+/* line 145, shirts-sprites.scss */
+.team-spo-202 { background-position: 0 83.760117%; background-size: 1296.385542%; }
+
+/* line 146, shirts-sprites.scss */
+.team-stc-180 { background-position: 0 84.436779%; background-size: 1296.385542%; }
+
+/* line 147, shirts-sprites.scss */
+.team-sun-192 { background-position: 0 85.11344%; background-size: 1296.385542%; }
+
+/* line 148, shirts-sprites.scss */
+.team-swb-396 { background-position: 0 85.790102%; background-size: 1296.385542%; }
+
+/* line 149, shirts-sprites.scss */
+.team-swc-181 { background-position: 0 86.466764%; background-size: 1296.385542%; }
+
+/* line 150, shirts-sprites.scss */
+.team-tap { background-position: 0 87.143426%; background-size: 1296.385542%; }
+
+/* line 151, shirts-sprites.scss */
+.team-tig-13 { background-position: 0 87.820088%; background-size: 1296.385542%; }
+
+/* line 152, shirts-sprites.scss */
+.team-tij-14 { background-position: 0 88.496749%; background-size: 1296.385542%; }
+
+/* line 153, shirts-sprites.scss */
+.team-tm { background-position: 0 89.173411%; background-size: 1296.385542%; }
+
+/* line 154, shirts-sprites.scss */
+.team-tol-15 { background-position: 0 89.850073%; background-size: 1296.385542%; }
+
+/* line 155, shirts-sprites.scss */
+.team-tot-188 { background-position: 0 90.526735%; background-size: 1296.385542%; }
+
+/* line 156, shirts-sprites.scss */
+.team-uae { background-position: 0 91.203397%; background-size: 1296.385542%; }
+
+/* line 157, shirts-sprites.scss */
+.team-udg { background-position: 0 91.880058%; background-size: 1296.385542%; }
+
+/* line 158, shirts-sprites.scss */
+.team-val-207 { background-position: 0 92.55672%; background-size: 1296.385542%; }
+
+/* line 159, shirts-sprites.scss */
+.team-ven { background-position: 0 93.233382%; background-size: 1296.385542%; }
+
+/* line 160, shirts-sprites.scss */
+.team-ver-18 { background-position: 0 93.910044%; background-size: 1296.385542%; }
+
+/* line 161, shirts-sprites.scss */
+.team-vill-213 { background-position: 0 94.586706%; background-size: 1296.385542%; }
+
+/* line 162, shirts-sprites.scss */
+.team-wat-182 { background-position: 0 95.263367%; background-size: 1296.385542%; }
+
+/* line 163, shirts-sprites.scss */
+.team-wba-183 { background-position: 0 95.940029%; background-size: 1296.385542%; }
+
+/* line 164, shirts-sprites.scss */
+.team-whu-190 { background-position: 0 96.616691%; background-size: 1296.385542%; }
+
+/* line 165, shirts-sprites.scss */
+.team-wol-218 { background-position: 0 97.293353%; background-size: 1296.385542%; }
+
+/* line 166, shirts-sprites.scss */
+.team-zac { background-position: 0 97.970015%; background-size: 1296.385542%; }
+
+/* line 167, shirts-sprites.scss */
+.team-zen-235 { background-position: 0 98.646676%; background-size: 1296.385542%; }
+
+/* line 168, shirts-sprites.scss */
+.team-qro-11 { background-position: 0 99.323338%; background-size: 1312.195122%; }
+
+/* line 169, shirts-sprites.scss */
+.team-ats-2 { background-position: 0 100%; background-size: 1515.492958%; }

@@ -556,7 +556,7 @@ function requestHandlerAPI(){
 		 * Registry entry to game
 		 * @param Object entry_data
 		 */
-		this.registerEntry = function(entry_data){
+		this.registerEmptyEntry = function(entry_data){
 
 			var data = {
 							pool_id			: parseInt(entry_data.pool_id),
@@ -565,28 +565,34 @@ function requestHandlerAPI(){
 							entry_payment	: 'real',
 							use_same_picks	: (typeof entry_data.use_same_picks !== 'undefined') ? entry_data.use_same_picks : 0,
 						};
-			console.log(data);
-			// return apiRH._ajaxRequest('POST', 'api/picks/save.json', data, 'json', true, app.render_entry_success);
-			return;
+			return apiRH._ajaxRequest('POST', 'api/picks/save.json', data, 'json', true, apiRH.render_entry_success);
 		};
 
 		/**
 		 * Entry success callback
 		 */
 		this.render_entry_success = function(response){
+
+			if(!response.success)
+				return app.toast('Error: No se pudo registrar a la quiniela');
+
 			app.toast('¡Te has registrado a la quiniela! Elige tus picks');
 			$('#registerNow').velocity('fadeOut');
+			$('#picksForm').find('#entry_id').val(response.entryId);
 			return;
 		};
 
 		/**
 		 * Edit existing entry picks
-		 * @param Integer entry_id
 		 * @param Object entry_data
 		 */
-		this.editEntry = function(entry_id, entry_data){
-
-			return;
+		this.editEntry = function(entry_data){
+			var data = {
+							pool_id			: parseInt(entry_data.pool_id),
+							entry_id 		: parseInt(entry_data.entry_id)
+						};
+			console.log(data);
+			// return apiRH._ajaxRequest('POST', 'api/picks/save.json', data, 'json', true, apiRH.render_edit_entry_success);
 		};
 		
 		/**
@@ -594,7 +600,7 @@ function requestHandlerAPI(){
 		 */
 		this.render_edit_entry_success = function(response){
 			
-			$('#registerNow').velocity('fadeOut');
+			app.toast('¡Se ha guardado tus picks!');
 			return;
 		};
 	}

@@ -29,7 +29,8 @@
 
 			/*** TODO: Get this shit into a catalogue ***/
 			window.catalogues 						= [];
-			window.filter_array 					= [];
+			window.filter_array 					= {};
+			// window.filter_array 					= {type: 'open', status: 'upcoming'};
 			window.catalogues.months 				= [ 'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre' ];
 			
 			/* IMPORTANT to set requests to be syncronous */
@@ -130,7 +131,7 @@
 				return ((total*100)/value).toFixed(2);
 			});
 			Handlebars.registerHelper('calcAmount', function(value, total) {
-				value = ((total/100)*value).toFixed(2);
+				value = (typeof value !== 'undefined' && value) ? ((total/100)*value).toFixed(2) : 0.00;
 				return value.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
 			});
 			Handlebars.registerHelper('formatDate', function(value, format) {
@@ -610,10 +611,6 @@
 		},
 		render_search_results : function(response_object){
 			app.appendView('search-results', response_object, '#insertResults');
-			return app.hideLoader();
-		},
-		render_entry_success : function(response){
-			app.appendView('entry-success', null, '.content');
 			return app.hideLoader();
 		},
 		render_create_private : function(url){

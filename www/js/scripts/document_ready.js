@@ -406,8 +406,22 @@ window.initializeEvents = function(){
 						event.preventDefault();
 						app.showLoader();
 						var entry_data	= app.getFormData(form, 'object');
-						console.log(entry_data);
-						return apiRH.registerEntry(entry_data);
+						return apiRH.registerEmptyEntry(entry_data);
+					}
+				});
+
+				$('#picksForm').validate({
+					rules:{
+						pool_id	 : "required"
+					},
+					messages:{
+						pool_id	 : "El Id de la quiniela no es válido"
+					},
+					submitHandler:function( form, event ){
+						event.preventDefault();
+						app.showLoader();
+						var entry_data	= app.getFormData(form, 'object');
+						return apiRH.editEntry(entry_data);
 					}
 				});
 

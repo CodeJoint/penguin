@@ -76,7 +76,7 @@
 
 			{{# each group_picks.items}}
 				<tr class="player_info">
-					<td class="player"><img src="{{avatar}}"> {{nick}}</td>
+					<td class="player"><figure class="profile_pic"><img src="{{avatar}}"></figure> {{nick}}</td>
 					{{# each picks}}
 						{{# if_eq @key pick}}
 							<td><img src="images/acierto.png"></td>

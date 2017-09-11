@@ -67,7 +67,7 @@
 
 		<div class="tabs_quiniela min clearfix">
 			<ul>
-				<li class="selected"><a class="hook missing_info" data-object="{{data.pool.id}}" data-extra="" data-resource="detail-postures" href="detail.html?registered=true&tab=postures">Picks</a></li>
+				<li class="selected"><a class="hook missing_info" data-object="{{data.pool.id}}" data-extra="" data-resource="detail" href="detail.html?registered=true&tab=postures">Picks</a></li>
 				<li><a class="hook missing_info" data-object="{{data.pool.id}}" data-extra="" data-resource="detail-prizes" href="detail.html?registered=true&tab=prizes">Premios</a></li>
 				<li><a class="hook missing_info" data-object="{{data.pool.id}}" data-extra="" data-resource="detail-participants" href="detail.html?registered=true&tab=participants">Participantes</a></li>
 			</ul>
@@ -75,8 +75,8 @@
 
 		<div id="tabContainer" class="tabs">
 			<form method="POST" action="" id="picksForm">
-				<input type="hidden" name="entry_id" id="entry_id" value="">
-				<input type="hidden" name="pool_id" id="pool_id" value="{{data.pool.id}}">
+				<input type="hidden" class="missing_entry" name="entry_id" id="entry_id" value="">
+				<input type="hidden" class="missing_pool" name="pool_id" id="pool_id" value="{{data.pool.id}}">
 				<div id="insertPartidos" class="partidos clearfix radio_group">
 
 				</div><!-- partidos -->
@@ -93,10 +93,13 @@
 										<span>{{label}}</span>
 									</div>
 									<div class="desempate_input">
+										<input type="hidden" name="user_tiebreakers[{{id}}][id]"  value="null">
+										<input type="hidden" class="missing_entry" name="user_tiebreakers[{{id}}][entry_id]" value="null">
+										<input type="hidden" name="user_tiebreakers[{{id}}][tiebreaker_id]" value="{{id}}">
 										<span>LOC</span>
-										<input type="tel" name="desempate_uno_local">
+										<input type="tel" name="user_tiebreakers[{{id}}][value][home]">
 										<span>-</span>
-										<input type="tel" name="desempate_uno_visitante">
+										<input type="tel" name="user_tiebreakers[{{id}}][value][away]">
 										<span>VIS</span>
 									</div><!-- desempate_input -->
 								
@@ -109,7 +112,10 @@
 										<span>{{label}}</span>
 									</div>
 									<div class="desempate_input">
-										<input type="tel" name="desempate_dos_minuto">
+										<input type="hidden" name="user_tiebreakers[{{id}}][id]"  value="null">
+										<input type="hidden" class="missing_entry" name="user_tiebreakers[{{id}}][entry_id]" value="null">
+										<input type="hidden" name="user_tiebreakers[{{id}}][tiebreaker_id]" value="{{id}}">
+										<input type="tel" name="user_tiebreakers[{{id}}][value]">
 									</div><!-- desempate_input -->
 								</div><!-- desempate_dos -->
 							{{/ if_eq }}
@@ -120,7 +126,10 @@
 										<span>{{label}}</span>
 									</div>
 									<div class="desempate_input">
-										<input type="tel" name="desempate_dos_minuto">
+										<input type="hidden" name="user_tiebreakers[{{id}}][id]"  value="null">
+										<input type="hidden" class="missing_entry" name="user_tiebreakers[{{id}}][entry_id]" value="null">
+										<input type="hidden" name="user_tiebreakers[{{id}}][tiebreaker_id]" value="{{id}}">
+										<input type="tel" name="user_tiebreakers[{{id}}][value]">
 									</div><!-- desempate_input -->
 								</div><!-- desempate_dos -->
 							{{/ if_eq }}
@@ -131,10 +140,13 @@
 										<span>{{label}}</span>
 									</div>
 									<div class="desempate_input">
+										<input type="hidden" name="user_tiebreakers[{{id}}][id]"  value="null">
+										<input type="hidden" class="missing_entry" name="user_tiebreakers[{{id}}][entry_id]" value="null">
+										<input type="hidden" name="user_tiebreakers[{{id}}][tiebreaker_id]" value="{{id}}">
 										<span>SI</span>
-										<input type="radio" name="desempate_tres" value="si">
+										<input type="radio" name="user_tiebreakers[{{id}}][value]" value="1">
 										<span>NO</span>
-										<input type="radio" name="desempate_tres" value="no">
+										<input type="radio" name="user_tiebreakers[{{id}}][value]" value="0">
 									</div><!-- desempate_input -->
 								</div><!-- desempate_tres -->
 							{{/ if_eq }}
@@ -143,7 +155,7 @@
 
 				</div><!-- dempates -->
 				<small class="info">Se tomarán los resultados únicamente de tiempo reglamentario. (No tiempos extras)</small>
-				<a id="savePicks" class="green_button">Guardar picks</a>
+				<input id="savePicks" class="green_button" type="submit" value="Guardar picks">
 			</form>
 		</div><!-- tabContainer -->
 
@@ -181,6 +193,7 @@
 				<form id="registerToQuinielaForm" method="POST" action="" >
 					<input type="hidden" name="pool_id" id="pool_id" value="{{data.pool.id}}">
 					<input type="hidden" name="entry_id" id="entry_id" value="">
+					<input type="hidden" name="entry_payment" id="entry_payment" value="real">
 					<div class="no_registros clearfix">
 						<span class="pregunta">¿Cuántos registros quieres para esta quiniela?</span>
 						<select class="no_check" name="num_entries" id="num_entries">

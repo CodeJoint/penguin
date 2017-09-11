@@ -18,6 +18,13 @@
 							</td>
 						</tr>
 					{{/ each}}
+					{{^ full_standings.items }}
+						<tr class="player_info">
+							<th>
+								<p class="empty">No hay participantes</p>
+							</th>
+						</tr>
+					{{/ full_standings.items }}
 				</tbody>
 			</table>
 		{{/ if}}

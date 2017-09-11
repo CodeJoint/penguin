@@ -2,7 +2,7 @@
 	{{!-- nothing --}}
 {{ else}}
 
-	<a class="link_wrapper hook" data-resource="{{# if closed}}detail-closed{{/ if}}{{# if_eq status 'live'}}detail-live{{/ if_eq}}{{# if upcoming}}detail{{/ if}}" data-object="{{id}}" {{# if first_entry}}data-extra="{{first_entry.id}}"{{/ if}} href="detail-quiniela.html?id={{id}}{{# if first_entry}}&entry={{first_entry.id}}{{/ if}}">
+	<a class="link_wrapper hook" data-resource="{{# if closed}}detail-closed{{/ if}}{{# if_eq status 'live'}}detail-live{{/ if_eq}}{{# if upcoming}}{{# if first_entry}}detail-live{{/ if}}{{^ if first_entry}}detail{{/ if}}{{/ if}}" data-object="{{id}}" {{# if first_entry}}data-extra="{{first_entry.id}}"{{/ if}} href="detail-quiniela.html?id={{id}}{{# if first_entry}}&entry={{first_entry.id}}{{/ if}}">
 		<div class="quiniela _noborder {{# if upcoming}}quiniela_open {{/ if}} {{# if featured}}featured {{/ if}} {{# if live}}quiniela_live {{/ if}} {{# if_eq status 'live'}}quiniela_live {{/ if_eq}} {{# if closed}}quiniela_closed {{/ if}} {{sport.name}} {{point_format}} garantizado clearfix">
 			<div class="quiniela_header clearfix">
 				<div class="quiniela_iconos clearfix">
@@ -19,29 +19,23 @@
 						<img src="{{cordova_full_path}}images/garantizado.png">
 					{{/ if }}
 				</div><!-- iconos -->
-				<h2>{{name_replaced}}</h2>
+				<h2>{{# if tournament_instances.0.tournament.flag_class}}<i class="flag {{tournament_instances.0.tournament.flag_class}}"></i>{{/ if}}{{name_replaced}}</h2>
 			</div><!-- quiniela_header -->
 			<div class="quiniela_content clearfix">
 				<div class="quiniela_info clearfix">
-					<span class="registros">REGISTROS: {{entry_count}}</span>
-					<span {{# if_less time_left 86400}}data-countdown="{{deadline_tz}}"{{/ if_less }} class="cierre">CIERRE: {{^ if_less time_left 86400}}{{formatDate deadline_tz 'lll'}}{{/ if_less }}</span>
-					{{# limited_capacity}}
-						<span class="limite">Limitado a {{max_entries}} entradas</span>
-					{{/ limited_capacity}}
 					{{# if_less time_left 1}}
 						<span class="limite">FINALIZÓ</span>
 					{{/ if_less }}
 					{{# if_eq status "live"}}
 						<span class="live">EN CURSO</span>
 					{{/ if_eq}}
+					<span class="registros">REGISTROS: {{entry_count}}</span>
+					<span {{# if_less time_left 86400}}data-countdown="{{deadline_tz}}"{{/ if_less }} class="cierre">CIERRE: {{^ if_less time_left 86400}}{{formatDate deadline_tz 'lll'}}{{/ if_less }}</span>
+					{{# limited_capacity}}
+						<span class="limite">Limitado a {{max_entries}} entradas</span>
+					{{/ limited_capacity}}
 					{{!-- <span class="aciertos">ACIERTOS: 3/15</span> --}}
 				</div><!-- quiniela_info -->
-				{{# first_entry.pick_count}}
-					<div class="quiniela_picks_ok clearfix">
-						<span class="titulo">PICKS</span>
-						<img src="{{cordova_full_path}}images/acierto.png">
-					</div>
-				{{/ first_entry.pick_count}}
 				<div class="quiniela_entrada clearfix">
 					<span class="titulo">ENTRADA</span>
 					{{# if_eq entry_currency 'real' }}
@@ -57,6 +51,12 @@
 						<img src="{{cordova_full_path}}images/billete.png">
 					<span class="number">${{ formatCurrency available}}</span>
 				</div>
+				{{# first_entry.pick_count}}
+					<div class="quiniela_picks_ok clearfix">
+						<span class="titulo">PICKS</span>
+						<img src="{{cordova_full_path}}images/acierto.png">
+					</div>
+				{{/ first_entry.pick_count}}
 			</div><!-- quiniela_content -->
 		</div><!-- quiniela -->
 	</a><!-- link_wrapper -->

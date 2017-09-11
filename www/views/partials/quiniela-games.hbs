@@ -7,7 +7,12 @@
 		<ul data-id="{{id}}" class="partido radio_group clearfix">
 			<li class="opcion_partido local clearfix">
 				{{^ finished}}
-					<input type="radio" id="local_{{id}}" name="{{id}}" value="pick-local-{{id}}">
+					<input type="hidden" name="picks[{{id}}][id]" value="null">
+					<input type="hidden" name="picks[{{id}}][fixture_id]" value="{{id}}">
+					<input type="hidden" class="missing_entry" name="picks[{{id}}][entry_id]" value="null">
+					<input type="hidden" name="picks[{{id}}][week_id]" value="{{week_id}}">
+					<input type="hidden" class="missing_pool" name="picks[{{id}}][pool_id]" value="">
+					<input type="radio" id="local_{{id}}" name="picks[{{id}}][pick]" value="home">
 				{{/ finished}}
 				<div class="check"></div>	
 				<label class="local_sel" for="local_{{id}}" >
@@ -19,8 +24,13 @@
 			</li><!-- opcion_partido -->
 			<li class="opcion_partido {{# if ../data.sport_allow_ties}} empate {{/ if}} cierre clearfix">
 				{{# if ../data.sport_allow_ties}}
-					<input type="radio" id="tie_{{id}}" name="{{id}}" value="pick-tie-{{id}}">
-					<div class="check"></div>	
+					<input type="hidden" name="picks[{{id}}][id]" value="null">
+					<input type="hidden" name="picks[{{id}}][fixture_id]" value="{{id}}">
+					<input type="hidden" class="missing_entry" name="picks[{{id}}][entry_id]" value="null">
+					<input type="hidden" name="picks[{{id}}][week_id]" value="{{week_id}}">
+					<input type="hidden" class="missing_pool" name="picks[{{id}}][pool_id]" value="">
+					<input type="radio" id="tie_{{id}}" name="picks[{{id}}][pick]" value="tie">
+					<div class="check"></div>
 					<label class="empate_sel" for="tie_{{id}}" >
 						<div class="equipo">
 							<span class="iniciales"></span>
@@ -49,7 +59,12 @@
 			</li><!-- opcion_partido -->
 			<li class="opcion_partido visitante clearfix">
 				{{^ finished}}
-					<input type="radio" id="away_{{id}}" name="{{id}}" value="pick-away-{{id}}">
+					<input type="hidden" name="picks[{{id}}][id]" value="null">
+					<input type="hidden" name="picks[{{id}}][fixture_id]" value="{{id}}">
+					<input type="hidden" class="missing_entry" name="picks[{{id}}][entry_id]" value="null">
+					<input type="hidden" name="picks[{{id}}][week_id]" value="{{week_id}}">
+					<input type="hidden" class="missing_pool" name="picks[{{id}}][pool_id]" value="">
+					<input type="radio" id="away_{{id}}" name="picks[{{id}}][pick]" value="away">
 				{{/ finished}}
 				<div class="check"></div>	
 				<label class="away_sel" for="away_{{id}}" >
@@ -81,7 +96,12 @@
 							<h3>{{name}} {{../home_team.abbreviation}} VS {{../away_team.abbreviation}}</h3>
 							<div class="opciones_prop tres_opciones clearfix">
 								<div class="opcion_prop opcion_partido local clearfix">
-									<input type="radio" id="prop_under_{{id}}" name="{{id}}" value="pick-prop-{{id}}">
+									<input type="hidden" name="picks_props[{{id}}][id]" value="null">
+									<input type="hidden" name="picks_props[{{id}}][fixture_id]" value="{{fixture_id}}">
+									<input type="hidden" class="missing_entry" name="picks_props[{{id}}][entry_id]" value="null">
+									<input type="hidden" name="picks_props[{{id}}][prop_id]" value="{{id}}">
+									<input type="hidden" class="missing_pool" name="picks_props[{{id}}][pool_id]" value="">
+									<input type="radio" id="prop_under_{{id}}" name="picks_props[{{id}}][pick]" value="under">
 									<div class="check"></div>	
 									<label class="under_sel" for="prop_under_{{id}}" >
 										<div class="equipo">
@@ -93,7 +113,12 @@
 									<span>{{value}}</span>
 								</div>
 								<div class="opcion_prop opcion_partido visitante clearfix">
-									<input type="radio" id="prop_over_{{id}}" name="{{id}}" value="pick-prop-{{id}}">
+									<input type="hidden" name="picks_props[{{id}}][id]" value="null">
+									<input type="hidden" name="picks_props[{{id}}][fixture_id]" value="{{fixture_id}}">
+									<input type="hidden" class="missing_entry" name="picks_props[{{id}}][entry_id]" value="null">
+									<input type="hidden" name="picks_props[{{id}}][prop_id]" value="{{id}}">
+									<input type="hidden" class="missing_pool" name="picks_props[{{id}}][pool_id]" value="">
+									<input type="radio" id="prop_over_{{id}}" name="picks_props[{{id}}][pick]" value="over">
 									<div class="check"></div>	
 									<label class="over_sel" for="prop_over_{{id}}" >
 										<div class="equipo">
@@ -112,7 +137,12 @@
 							<h3>{{name}} {{../home_team.abbreviation}} VS {{../away_team.abbreviation}}</h3>
 							<div class="opciones_prop dos_opciones clearfix">
 								<div class="opcion_prop opcion_partido local clearfix">
-									<input type="radio" id="prop_under_{{id}}" name="{{id}}" value="pick-prop-{{id}}">
+									<input type="hidden" name="picks_props[{{id}}][id]" value="null">
+									<input type="hidden" name="picks_props[{{id}}][fixture_id]" value="{{fixture_id}}">
+									<input type="hidden" class="missing_entry" name="picks_props[{{id}}][entry_id]" value="null">
+									<input type="hidden" name="picks_props[{{id}}][prop_id]" value="{{id}}">
+									<input type="hidden" class="missing_pool" name="picks_props[{{id}}][pool_id]" value="">
+									<input type="radio" id="prop_under_{{id}}" name="picks_props[{{id}}][pick]" value="1">
 									<div class="check"></div>	
 									<label class="yes_sel" for="prop_under_{{id}}" >
 										<div class="equipo">
@@ -124,7 +154,7 @@
 									<span></span>
 								</div>
 								<div class="opcion_prop opcion_partido visitante clearfix">
-									<input type="radio" id="prop_over_{{id}}" name="{{id}}" value="pick-prop-{{id}}">
+									<input type="radio" id="prop_over_{{id}}" name="picks_props[{{id}}][pick]" value="0">
 									<div class="check"></div>	
 									<label class="no_sel" for="prop_over_{{id}}" >
 										<div class="equipo">

@@ -278,6 +278,10 @@
 		/* Returns the values in a form as an associative array */
 		/* IMPORTANT: Does NOT include password type fields */
 		getFormData: function (selector, format) {
+			
+			if(format === 'multi-level')
+				return $(selector).serializeObject();
+
 			var result = [],
 				object = {},
 				data   = $(selector).serializeArray();
@@ -513,6 +517,14 @@
 				if(element.pick === 'over')
 					$over.trigger('click');
 
+			});
+			var myTiebreakers = _cache.entries.entry.user_tiebreakers;
+			myTiebreakers.forEach(function(element){
+				var $tiebreaker_input = $('.desempate[data-id='+element.tiebreaker_id+']').find('input');
+				var $tiebreaker_select = $('.desempate[data-id='+element.tiebreaker_id+']').find('select');
+				console.log($tiebreaker_input);
+				console.log($tiebreaker_select);
+				$tiebreaker_input.val(element.value);
 			});
 			return;
 		},

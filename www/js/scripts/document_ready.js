@@ -383,6 +383,7 @@ window.initializeEvents = function(){
 
 				var gameId 	= $('#detailQuiniela').data('id');
 				var weekId  = $('#detailQuiniela').data('weekid');
+				var entryId = $('#detailQuiniela').data('entry');
 
 				$('.menu li').removeClass('selected');
 				
@@ -404,6 +405,7 @@ window.initializeEvents = function(){
 					},
 					submitHandler:function( form, event ){
 						event.preventDefault();
+						event.stopPropagation();
 						app.showLoader();
 						var entry_data	= app.getFormData(form, 'object');
 						return apiRH.registerEmptyEntry(entry_data);
@@ -419,8 +421,13 @@ window.initializeEvents = function(){
 					},
 					submitHandler:function( form, event ){
 						event.preventDefault();
+						event.stopPropagation();
+						var entry_data	= app.getFormData(form, 'multi-level');
+						console.log(entry_data);
+						if(typeof entry_data.entry_id === 'undefined' || entry_data.entry_id === ''){
+							return app.toast('Para guardar tus picks primero debes registrarte en la quiniela.');
+						}
 						app.showLoader();
-						var entry_data	= app.getFormData(form, 'object');
 						return apiRH.editEntry(entry_data);
 					}
 				});
@@ -462,9 +469,11 @@ window.initializeEvents = function(){
 					app.render_similar_picks(entryId);
 				}
 
-				setTimeout(function(){
+				setTimeout( function(){
 					$('#filterComponent').hide();
-				}, 0);
+					if(entryId)
+						app.fill_entry_picks();
+				}, 620);
 
 				return initCountdownTimers();
 

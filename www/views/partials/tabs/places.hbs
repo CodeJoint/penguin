@@ -1,5 +1,5 @@
 	<div class="tab tab_posiciones clearfix">
-		{{# each pool_prizes}}
+		{{# if full_standings}}
 			<table>
 				<tr class="table_title">
 					<th>POS</th>
@@ -7,15 +7,21 @@
 					<th>ACIERTOS</th>
 					<th>A GANAR</th>
 				</tr>
-				{{# each prizes}}
+				{{# each full_standings.items}}
 					<tr class="player_info">
-						<td>{{position}}</td>
-						<td class="player"><img src="images/profile_placeholder.png"> Lorem Ipsum 123</td>
-						<td>12</td>
-						<td class="ganar"><img src="images/billete.png">${{formatCurrency }}</td>
+						<td>{{rank}}</td>
+
+						<td class="player">
+							<figure class="profile_pic" >
+								<img src="{{^ if_eq avatar '/img/profile-image-01.png'}}{{avatar}}{{/ if_eq}}{{# if_eq avatar '/img/profile-image-01.png'}}{{cordova_full_path}}images/profile_placeholder.png{{/ if_eq}}">
+							</figure>
+							{{nick}} {{# entry.number}}<sup>{{.}}</sup>{{/ entry.number}}
+						</td>
+						<td>{{points}}</td>
+						<td class="ganar"><img src="images/billete.png">${{formatCurrency prize_amount}}</td>
 					</tr>
 				{{/ each}}
 				
 			</table>
-		{{/ each}}
+		{{/ if}}
 	</div><!-- posiciones -->

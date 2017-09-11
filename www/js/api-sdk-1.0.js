@@ -577,8 +577,11 @@ function requestHandlerAPI(){
 				return app.toast('Error: No se pudo registrar a la quiniela');
 
 			app.toast('¡Te has registrado a la quiniela! Elige tus picks');
+			console.log(response);
 			$('#registerNow').velocity('fadeOut');
-			$('#picksForm').find('#entry_id').val(response.entryId);
+			$('#picksForm').find('.missing_entry').val(response.entryId);
+			$('#picksForm').find('.missing_pool').val(response.poolId);
+			$('#detailQuiniela').data(response.entryId)
 			return;
 		};
 
@@ -587,20 +590,19 @@ function requestHandlerAPI(){
 		 * @param Object entry_data
 		 */
 		this.editEntry = function(entry_data){
-			var data = {
-							pool_id			: parseInt(entry_data.pool_id),
-							entry_id 		: parseInt(entry_data.entry_id)
-						};
-			console.log(data);
-			// return apiRH._ajaxRequest('POST', 'api/picks/save.json', data, 'json', true, apiRH.render_edit_entry_success);
+
+			return apiRH._ajaxRequest('POST', 'api/picks/save.json', entry_data, 'json', true, apiRH.render_edit_entry_success);
 		};
 		
 		/**
 		 * Eedit entry success callback
 		 */
 		this.render_edit_entry_success = function(response){
-			
-			app.toast('¡Se ha guardado tus picks!');
+			console.log(response);
+			if(!response.picks)
+				return app.toast('Ocurrió un error guardando tus picks, intenta nuevamente.');
+			app.toast('¡Se ha guardado tus picks! Te estamos dirigiendo a tu quiniela');
+			// app.fetch_detail('detail.html', );
 			return;
 		};
 	}

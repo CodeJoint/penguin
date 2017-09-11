@@ -187,7 +187,7 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 .quiniela_content .quiniela_info span {display: block; margin-bottom: 2px;}
 .quiniela_content .quiniela_info span.limite {color: #F6A623;}
 .quiniela_content .quiniela_info span.live {color: #77BC1F; position: relative; line-height: 1rem;}
-.quiniela_content .quiniela_info span.live::after{ color: #77BC1F; content: "•"; font-size: 2rem; line-height: 0.75rem; position: relative; vertical-align: top; }
+.quiniela_content .quiniela_info span.live::after{ color: #77BC1F; content: "•"; font-size: 1.1rem; line-height: -0.5rem; position: relative; vertical-align: top; }
 
 .quiniela .quiniela_content div {float: left;}
 .quiniela .quiniela_content span {display: block;}
@@ -429,7 +429,7 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 .tabs_quiniela {width: 100%; background: #000; margin-top: 20px;  border-radius: 3px; border: 1px solid #414042;}
 .tabs_quiniela ul {list-style: none; margin: 0; padding: 0px;}
 .tabs_quiniela ul li {display: block; width: 100px; display: table-cell; white-space: nowrap; text-align: center; border-right: 1px solid #414042; height: 22px; padding-top: 3px;}
-.tabs_quiniela.min ul li { width: calc( 62% / 3 )!important; }
+.tabs_quiniela.min ul li { width: calc( 58% / 3 )!important; }
 .tabs_quiniela ul li:last-child {border-right: 0px; border-top-right-radius: 3px; border-bottom-right-radius: 3px; }
 .tabs_quiniela ul li:first-child {border-top-left-radius: 3px; border-bottom-left-radius: 3px; }
 .tabs_quiniela ul li.selected {background: #5ba433;}
@@ -443,14 +443,14 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 .tab_posiciones table th {border: none!important;}
 .tab_posiciones table td {border: none!important; padding: 5px 0;}
 .tab_posiciones table tr.player_info:nth-child(2n){background: #414042}
-.tab_posiciones .player img {width: 16px;  margin-right: 5px;}
+.tab_posiciones .player img {margin-right: 5px;}
 .tab_posiciones .ganar img {width: 16px; margin-right: 5px;}
 
 .tab_posiciones.participants td{ text-align: left; padding: 0.5rem; font-weight: 500; font-size: 0.85rem; letter-spacing: 0.5px; }
 .tab_posiciones.participants tbody{ max-height: 38vh!important; overflow: scroll; display: grid; }
-.tab_posiciones.participants td .profile{ width: 20px; height: 20px; margin: 0 0.5rem 0 0; padding: 0; -moz-border-radius: 50%; border-radius: 50%; display: inline-block; vertical-align: inherit; -webkit-border-radius: 50%; overflow: hidden; }
-.tab_posiciones.participants td .profile>img{ display: block; margin: 0; padding: 0; width: 100%; height: auto;}
 .tab_posiciones.participants sup{ vertical-align: super; font-size: 0.6rem;}
+	.profile_pic{ width: 20px; height: 20px; margin: 0 0.5rem 0 0; padding: 0; -moz-border-radius: 50%; border-radius: 50%; display: inline-block; vertical-align: inherit; -webkit-border-radius: 50%; overflow: hidden; }
+	.profile_pic>img{ display: block; margin: 0; padding: 0; width: 100%; height: auto;}
 
 
 .tab_premios { width: 100%;}
@@ -754,6 +754,8 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 	.tab_profile li .highlight{color: #2196F3;}
 	
 	small.info{ text-align: center; display: block; color: #77bc1f; font-size: 0.85rem; letter-spacing: 1px; }
+
+	.flag{ position: relative; display: inline-block; vertical-align: middle; width: 18px!important; height: 18px!important; margin: 0 0.25rem; }
 
 	/* CSS Created by CSS CHECKBOX */
 	/**********************************/

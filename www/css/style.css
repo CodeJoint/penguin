@@ -429,13 +429,21 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 .quiniela_registrada_single .registro_quiniela {width: 100%; text-align: center;}
 .quiniela_registrada_single .quiniela_info {margin-right: 10px; }
 
+.tabs_profile,
 .tabs_quiniela {width: 100%; background: #000; margin-top: 20px;  border-radius: 3px; border: 1px solid #414042;}
+.tabs_profile ul,
 .tabs_quiniela ul {list-style: none; margin: 0; padding: 0px;}
+.tabs_profile ul li,
 .tabs_quiniela ul li {display: block; width: 100px; display: table-cell; white-space: nowrap; text-align: center; border-right: 1px solid #414042; height: 22px; padding-top: 3px;}
+.tabs_profile.min ul li,
 .tabs_quiniela.min ul li { width: calc( 58% / 3 )!important; }
+.tabs_profile ul li:last-child,
 .tabs_quiniela ul li:last-child {border-right: 0px; border-top-right-radius: 3px; border-bottom-right-radius: 3px; }
+.tabs_profile ul li:first-child,
 .tabs_quiniela ul li:first-child {border-top-left-radius: 3px; border-bottom-left-radius: 3px; }
+.tabs_profile ul li.selected,
 .tabs_quiniela ul li.selected {background: #5ba433;}
+.tabs_profile ul li a,
 .tabs_quiniela ul li a {text-decoration: none; color: #fff;}
 
 .tab_posiciones {width: 100%;}
@@ -567,12 +575,20 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 /*** PROFILE ***/
 
 .profile {width: 100%; padding-top: 100px; font-size: 10px; padding-bottom: 10%;}
+.tabs_profile,
 .tabs_quiniela {width: 100%; background: #000; margin-top: 20px; margin-bottom: 10px; border-radius: 3px; border: 1px solid #414042; }
+.tabs_profile ul,
 .tabs_quiniela ul {list-style: none; margin: 0; padding: 0px;}
+.tabs_profile ul li,
+.tabs_profile ul li,
 .tabs_quiniela ul li {display: block; width: 100px; display: table-cell; white-space: nowrap; text-align: center; border-right: 1px solid #414042; height: 22px; padding: 10px 0;}
-.tabs_quiniela ul li:last-child {border-right: 0px; border-top-right-radius: 3px; border-bottom-right-radius: 3px; }
+.tabs_profile ul li:last-child,
+.tabs_quiniela ul li:last-child,.tabs_quiniela ul li:last-child {border-right: 0px; border-top-right-radius: 3px; border-bottom-right-radius: 3px; }
+.tabs_profile ul li:first-child,
 .tabs_quiniela ul li:first-child {border-top-left-radius: 3px; border-bottom-left-radius: 3px; }
+.tabs_profile ul li.selected,
 .tabs_quiniela ul li.selected {background: #5ba433;}
+.tabs_profile ul li a,
 .tabs_quiniela ul li a {text-decoration: none; color: #fff;}
 
 .radio_group {width: 100%; background: #000; padding: 5px; text-align: center;}
@@ -603,6 +619,11 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 .profile .legales {width: 100%; margin-top: 5%; text-align: center;}
 .profile .legales a.link_legal {font-size: 14px; color: #8A8A8D; display: inline-block; margin-bottom: 10%; text-decoration: none;}
 
+.tablelike span{text-align: center;}
+.tablelike .head span{border-right: 1px solid #FFF; padding: 0 0.25rem; text-align: center; text-transform: uppercase;}
+.tablelike .head span:last-of-type{border-right: none;}
+.tablelike .head span:first-of-type{padding-left: none;}
+
 /*** ABONAR ***/
 
 .abonar {width: 100%; padding-top: 100px; font-size: 10px;}
@@ -614,7 +635,6 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 .abonar form p {text-align: center; columns: #fff; font-size: 10px; margin-bottom: 20px; padding: 0 10%; line-height: 15px;}
 .abonar form input[type="text"] {width: 100%; border: 1px solid #8A8A8D; background: transparent; font-size: 12px; padding: 10px 5px; margin-bottom: 10px; color: #fff; border-radius: 3px;}
 .abonar form input::placeholder {color: #fff;}
-.abonar form input[type="submit"] {width: 92px; height: 36px; background: url('../images/comprar.png') no-repeat; border: none!important; text-indent: -100000px; text-align: center;}
 .abonar form .fecha_vencimiento select {width: 20%; float: left; margin-right: 10px; background: transparent; font-size: 12px; padding: 10px 5px; margin-bottom: 10px; color: #fff; border-radius: 3px;}
 .abonar form .fecha_vencimiento input[type="text"] {width: 30%; border: 1px solid #8A8A8D; background: transparent; font-size: 12px; padding: 10px 5px; margin-bottom: 10px; color: #fff; border-radius: 3px;}
 
@@ -629,7 +649,6 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 .abonar p.legales {text-align: center; padding: 0 5%; color: #8A8A8D; }
 
 .abonar_tiendas .legales { margin-bottom: 20%;}
-.abonar_tiendas form input[type="submit"] { width: 108px; height: 36px; background: url('../images/vercodigo.png') no-repeat; border: none!important; text-indent: -100000px; text-align: center;}
 
 #other_amount{ position: absolute; top: 0; left: 0; width: 100%; height: 100%; margin: 0; padding: 0.25rem; background-color: #5ba433; color: #FFF; letter-spacing: 1px; font-weight: 300;}
 #other_amount::before{content: "$";}

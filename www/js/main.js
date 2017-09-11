@@ -389,7 +389,6 @@
 			var cachedFeed = app.fetchCacheElement('lobby-feed');
 			if( cachedFeed.length && cachedFeed.timestamp )
 				return app.render_lobby_feed_callback(cachedFeed, true);
-
 			return apiRH._ajaxRequest('GET', 'api/pools/available.json', null, 'json', true, app.render_lobby_feed_callback);
 		},
 		render_lobby_feed_callback : function( response, cached ){
@@ -573,6 +572,7 @@
 			}else if(tab == 'withraw'){
 				dynamic_params.template = 'profile-withraw'
 				dynamic_params.profile_title = 'Retirar fondos';
+				app.render_profile_callback({});
 			}else if(tab == 'history'){
 				dynamic_params.template = 'profile-history'
 				dynamic_params.profile_title = 'Historial de transacciones';
@@ -580,6 +580,7 @@
 			}else if(tab == 'notifications'){
 				dynamic_params.template = 'profile-notifications'
 				dynamic_params.profile_title = 'Centro de notificaciones';
+				app.render_profile_callback({});
 			}else{
 				dynamic_params.template = 'profile'
 				dynamic_params.profile_title = 'Métodos de pago';
@@ -616,7 +617,7 @@
 			app.check_or_renderContainer();
 			app.data_temp = app.gatherEnvironment(null, "Agregar fondos a tu cuenta");
 			app.data_temp.selected_deposit = true;
-			return app.switchView('deposit-stores', app.data_temp, '#exoskeleton', url, 'deposit stores');
+			return app.switchView('deposit-stores', app.data_temp, '#tabContainer', url, 'deposit stores');
 		},
 		render_private_search : function(url){
 

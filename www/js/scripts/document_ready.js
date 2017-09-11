@@ -579,6 +579,9 @@ window.initializeEvents = function(){
 					$('#filterComponent').hide();
 					$('#logoutComponent').show();
 
+					$('.footermenu ul li').removeClass('selected');
+					$('.menu_perfil').addClass('selected');
+					
 					/* Log Out from the API */
 					$('#logoutComponent').on('click', function(e){
 						/* TODO: Requesting logout from server */
@@ -586,8 +589,13 @@ window.initializeEvents = function(){
 						app.render_login();
 						return;
 					});
-					$('.footermenu ul li').removeClass('selected');
-					$('.menu_perfil').addClass('selected');
+
+					$('.tabs_profile a').on('click', function(e){
+						$(e.target).parent().siblings().each(function(index,element){
+							$(element).removeClass('selected');
+						});
+						$(e.target).parent().addClass('selected');
+					});
 
 				/* Payment methods tab */
 				if($('#profileTabs').hasClass('methods')){
@@ -668,38 +676,6 @@ window.initializeEvents = function(){
 
 			} // END detailQuiniela scope
 		
-
-			if($('#depositStores').length){
-
-				$('.menu li').removeClass('selected');
-				$('.menu_abonar').addClass('selected');
-				$('#filterComponent').hide();
-				$('#depositStoresForm').validate({
-					rules:{
-						amount : "required"
-					},
-					messages:{
-						amount : "Es necesario que especifiques una cantidad"
-					},
-					submitHandler:function( form, event ){
-						event.preventDefault();
-						app.showLoader();
-						var deposit_data 	= app.getFormData(form, 'object');
-						console.log(deposit_data);
-						return apiRH.depositStores(deposit_data);						
-					}
-				});
-				
-				/** Select amount and set hidden input value **/
-				$('.botones_abono li').on('click', function(){
-					var $mySelection = $(this);
-					$('.botones_abono li').removeClass('selected');
-					$mySelection.addClass('selected');
-					$('input[name=amount]').val($mySelection.data('amount'));
-				});
-
-			} // END depositStores scope
-			
 			if($('#depositCard').length){
 
 				$('.menu li').removeClass('selected');
@@ -722,9 +698,25 @@ window.initializeEvents = function(){
 						return apiRH.depositCard(deposit_data);
 					}
 				});
+
+				$('#depositStoresForm').validate({
+					rules:{
+						amount : "required"
+					},
+					messages:{
+						amount : "Es necesario que especifiques una cantidad"
+					},
+					submitHandler:function( form, event ){
+						event.preventDefault();
+						app.showLoader();
+						var deposit_data 	= app.getFormData(form, 'object');
+						console.log(deposit_data);
+						return apiRH.depositStores(deposit_data);						
+					}
+				});
 				
 				/** Select amount and set hidden input value **/
-				$('.botones_abono li').on('click', function(){
+				$('.botones_abono:not(.stores) li').on('click', function(){
 					var $mySelection = $(this);
 					$('.botones_abono li').removeClass('selected');
 					$mySelection.addClass('selected');
@@ -733,7 +725,24 @@ window.initializeEvents = function(){
 						$('#other_amount').show().focus();
 					}
 				});
-			} // END depositCard scope
+
+				/** Select amount and set hidden input value **/
+				$('.botones_abono.stores li').on('click', function(){
+					var $mySelection = $(this);
+					$('.botones_abono li').removeClass('selected');
+					$mySelection.addClass('selected');
+					$('input[name=amount]').val($mySelection.data('amount'));
+				});
+
+				$('.botones.deposit a').on('click', function(e){
+					$(e.target).siblings().each(function(index,element){
+						console.log($(element));
+						$(element).removeClass('selected');
+					});
+					$(e.target).addClass('selected');
+				});
+
+			} // END deposit scope
 		
 		}, 200); // END General Timeout
 

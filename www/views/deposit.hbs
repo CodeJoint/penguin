@@ -1,56 +1,59 @@
 
 	<div id="depositCard" class="content abonar">
 		<h3>FORMA DE PAGO</h3>
-		<div class="botones clearfix">
-			<a class="selected" >Tarjeta de crédito</a>
+		<div class="botones deposit clearfix">
+			<a class="selected hook" data-resource="deposit" href="deposit.html">Tarjeta de crédito</a>
 			<a class="hook" data-resource="deposit-stores" href="deposit-stores.html">Tienda de conveniencia</a>
 		</div>
-		<form id="depositCardForm" method="POST" action="">
-			<ul class="botones_abono clearfix">
-				<li data-amount="1"><img src="{{cordova_full_path}}images/billete.png">$25</li>
-				<li data-amount="2"><img src="{{cordova_full_path}}images/billete.png">$50</li>
-				<li class="selected" data-amount="3"><img src="{{cordova_full_path}}images/billete.png">$100</li>
-				<li data-amount="4"><img src="{{cordova_full_path}}images/billete.png">$200</li>
-				<li data-amount="other" style="position: relative;" >Otra cantidad <input id="other_amount" type="text" placeholder="$" name="other_amount" style="display: none;"></li>
-			</ul>
-			<div class="abonar_form clearfix">
-					<input id="populate_value" type="hidden" name="amount" value="3">
-					<ul class="formas_pago clearfix">
-						<li><img src="{{cordova_full_path}}images/openpay.png"></li>
-						<li><img src="{{cordova_full_path}}images/securetrans.png"></li>
-						<li><img src="{{cordova_full_path}}images/mastercard.png"></li>
-						<li><img src="{{cordova_full_path}}images/visa.png"></li>
-						<li><img src="{{cordova_full_path}}images/amex.png"></li>
+		<div id="tabContainer" class="tabs">
+			<div class="tab_content deposit_stores">
+				<form id="depositCardForm" method="POST" action="">
+					<ul class="botones_abono clearfix">
+						<li data-amount="1"><img src="{{cordova_full_path}}images/billete.png">$25</li>
+						<li data-amount="2"><img src="{{cordova_full_path}}images/billete.png">$50</li>
+						<li class="selected" data-amount="3"><img src="{{cordova_full_path}}images/billete.png">$100</li>
+						<li data-amount="4"><img src="{{cordova_full_path}}images/billete.png">$200</li>
+						<li data-amount="other" style="position: relative;" >Otra cantidad <input id="other_amount" type="text" placeholder="$" name="other_amount" style="display: none;"></li>
 					</ul>
-					<div class="tab_profile radio_group tarjetas selection" >
-						<p>Selecciona una tarjeta para realizar tu compra.</p>
-						<ul>
-							{{# data.cards}}	
-								<li class="clearfix">
-									<input type="radio" id="{{brand}}_{{id}}" name="card_id" value="{{id}}">
-									<div class="check"></div>	
-									<label for="{{brand}}_{{id}}" >
-										<img src="{{cordova_full_path}}images/{{brand}}.png">
-										<span class="terminacion">{{bank_name}} ************ {{card_number}}</span>
-										<span class="expires">{{expiration_month}}/{{expiration_year}}</span>
-									</label>						
-								</li>
-							{{/ data.cards}}
+					<div class="abonar_form clearfix">
+							<input id="populate_value" type="hidden" name="amount" value="3">
+							<ul class="formas_pago clearfix">
+								<li><img src="{{cordova_full_path}}images/openpay.png"></li>
+								<li><img src="{{cordova_full_path}}images/securetrans.png"></li>
+								<li><img src="{{cordova_full_path}}images/mastercard.png"></li>
+								<li><img src="{{cordova_full_path}}images/visa.png"></li>
+								<li><img src="{{cordova_full_path}}images/amex.png"></li>
+							</ul>
+							<div class="tab_profile radio_group tarjetas selection" >
+								<p>Selecciona una tarjeta para realizar tu compra.</p>
+								<ul>
+									{{# data.cards}}	
+										<li class="clearfix">
+											<input type="radio" id="{{brand}}_{{id}}" name="card_id" value="{{id}}">
+											<div class="check"></div>	
+											<label for="{{brand}}_{{id}}" >
+												<img src="{{cordova_full_path}}images/{{brand}}.png">
+												<span class="terminacion">{{bank_name}} ************ {{card_number}}</span>
+												<span class="expires">{{expiration_month}}/{{expiration_year}}</span>
+											</label>						
+										</li>
+									{{/ data.cards}}
 
-							{{^ data.cards}}
-								<li class="clearfix">
-									<p>No tienes ningún método de pago registrado. Para registrar una tarjeta <a class="hook" data-resource="profile-methods" href="profile.html?method=methods">ve a tu perfil.</a></p>					
-								</li>
-							{{/ data.cards}}
-						</ul>
+									{{^ data.cards}}
+										<li class="clearfix">
+											<p>No tienes ningún método de pago registrado. Para registrar una tarjeta <a class="hook" data-resource="profile-methods" href="profile.html?method=methods">ve a tu perfil.</a></p>					
+										</li>
+									{{/ data.cards}}
+								</ul>
+							</div>
+							<div class="submit_holder">
+								<input type="submit" id="addFunds" class="green_button" value="Abonar">
+							</div>
 					</div>
-					<div class="submit_holder">
-						<a id="savePicks" class="green_button">Comprar</a>
-					</div>
-			</div>
-		</form>
-		<p class="legales">Los cargos a tu tarjeta de crédito serán realizados a tráves de OpenPay.</p>
-
-		<p class="legales">Te recordamos que una vez depositado, tendrás que haber jugado al menos<br /> el 80% de lo que hayas depositado para poder solicitar retiros de fondos.</p>
+				</form>
+				<p class="legales">Los cargos a tu tarjeta de crédito serán realizados a tráves de OpenPay.</p>
+				<p class="legales">Te recordamos que una vez depositado, tendrás que haber jugado al menos<br /> el 80% de lo que hayas depositado para poder solicitar retiros de fondos.</p>
+			</div> <!-- tab_content -->
+		</div> <!-- tabContainer -->
 	</div><!-- content -->
 	

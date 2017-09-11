@@ -1,40 +1,25 @@
 
-	<div id="profileTabs" class="container clearfix">
-
-		<div class="content profile">
-			
-			<div class="tabs_quiniela clearfix">
-				<ul>
-					<li><a class="hook" data-resource="profile-methods" href="profile.html">Tarjetas</a></li>
-					<li><a class="hook" data-resource="profile-documents" href="profile.html?method=documents">Documentos</a></li>
-					<li><a class="hook" data-resource="profile-withraw" href="profile.html?method=withraw">Retirar fondos</a></li>
-					<li class="selected"><a>Historial</a></li>
-					<li><a class="hook" data-resource="profile-notifications" href="profile.html?method=notifications">Notificaciones</a></li>
-				</ul>
-			</div>
-			<div class="tab_profile transactions">
-				<ul>
-					{{# data.transactions}}
-						<li class="clearfix">
-							<span style="width: 12%; display: inline-block;" class="highlight">{{id}}</span> 
-							<span style="width: 51%; display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{concept}}</span> 
-							<span style="width: 16%; display: inline-block;" class="highlight">${{formatCurrency amount}}</span> 
-							<span style="width: 19%; display: inline-block;">{{ formatDate created 'L'}} </span>					
-						</li>
-					{{/ data.transactions}}
-					{{^ data.transactions}}
-						<li class="clearfix">
-							<p class="empty">No tienes documentos guardados.</p>				
-						</li>
-					{{/ data.transactions}}
-				</ul>
-			</div>
-			
-			<div class="legales clearfix">
-				<a class="link_legal" onclick="window.open('https://www.pickwin.net/terminos-y-condiciones', '_blank', 'location=yes')" >Términos y condiciones | </a>
-				<a class="link_legal" onclick="window.open('https://www.pickwin.net/aviso-de-privacidad', '_blank', 'location=yes')" >Política de privacidad</a>
-			</div>
-		</div><!-- content -->
-
-	</div><!-- container -->
+	<div class="tab_profile transactions">
+		<ul class="tablelike">
+			<li class="clearfix head">
+				<span style=" font-weight: 500; width: 12%; display: inline-block;">Id</span> 
+				<span style=" font-weight: 500; width: 51%; display: inline-block;">Concepto</span> 
+				<span style=" font-weight: 500; width: 16%; display: inline-block;">Cantidad</span>					
+				<span style=" font-weight: 500; width: 19%; display: inline-block;">Fecha</span>					
+			</li>
+			{{# data.transactions}}
+				<li class="clearfix">
+					<span style="width: 12%; display: inline-block;" class="highlight">{{id}}</span> 
+					<span style="width: 51%; display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{concept}}</span> 
+					<span style="width: 16%; display: inline-block;" class="highlight">${{formatCurrency amount}}</span> 
+					<span style="width: 19%; display: inline-block;">{{ formatDate created 'L'}} </span>					
+				</li>
+			{{/ data.transactions}}
+			{{^ data.transactions}}
+				<li class="clearfix">
+					<p class="empty">No tienes documentos guardados.</p>				
+				</li>
+			{{/ data.transactions}}
+		</ul>
+	</div><!-- transactions -->
 	

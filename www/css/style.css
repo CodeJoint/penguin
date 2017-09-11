@@ -187,7 +187,7 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 .quiniela_content .quiniela_info span {display: block; margin-bottom: 2px;}
 .quiniela_content .quiniela_info span.limite {color: #F6A623;}
 .quiniela_content .quiniela_info span.live {color: #77BC1F; position: relative; line-height: 1rem;}
-.quiniela_content .quiniela_info span.live::after{ color: #77BC1F; content: "•"; font-size: 1.1rem; line-height: -0.5rem; position: relative; vertical-align: top; }
+.quiniela_content .quiniela_info span.live::after{ color: #77BC1F; content: "•"; font-size: 1.1rem; line-height: -0.5rem; position: relative; vertical-align: top; margin-left: 0.25rem; }
 
 .quiniela .quiniela_content div {float: left;}
 .quiniela .quiniela_content span {display: block;}
@@ -257,7 +257,7 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 
 .quiniela_single {padding-top: 100px; padding-bottom: 70px; font-size: 12px; position: relative;}
 .quiniela_single .quiniela {width: 100%;}
-.quiniela_single .registro_quiniela {width: 100%; text-align: center; margin: 1rem 0;}
+.quiniela_single .registro_quiniela {width: 100%; text-align: center; margin: 1rem 0 0 0;}
 .quiniela_single .quiniela_info { margin-right: 10px; display: block; }
 
 .error_inline{ display: block; clear: both; margin: 2rem 0 0 0; text-align: center; color: #FF8D00; text-transform: uppercase; font-size: 10px;}
@@ -267,7 +267,7 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 .quinielas_dropdowns select.unique {width: 100%;}
 .quinielas_dropdowns select:last-child { margin-right: 0px;}
 
-.quiniela_single .partidos {width: 100%; border-top: 1px solid #77BC1F;}
+.quiniela_single .partidos { position: relative; width: 100%; border-top: 1px solid #77BC1F; margin-top: 2rem;}
 .quiniela_single .partidos h3 {font-weight: 300; margin-top: 10px; margin-bottom: 10px; text-align: center; font-size: 12px;}
 .quiniela_single .partidos .opciones_partido {width: 100%; padding: 10px 0; border-top: 1px solid #8A8A8D;  margin-bottom: 0;}
 .quiniela_single .partidos .opciones_partido span { width: 33.33%; float: left; display: block; text-align: center; font-size: 12px; font-weight: 500; letter-spacing: 0.5px;}
@@ -287,9 +287,12 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 .quiniela_single .partidos .partido .opcion_partido.visitante input {float: right; margin-left: 10px;}
 .quiniela_single .partidos .partido .opcion_partido.visitante img {float: right;}
 
-.quiniela_single .partidos .partido .opcion_partido span.linea { width: 33%!important; display: block; margin-top: -1.5rem; color: #FF8D00; font-weight: 700; position: absolute; top: 1.8rem; text-align: center; left: 0; letter-spacing: 1px;}
+.quiniela_single .partidos .partido .opcion_partido span.linea { width: 33%!important; display: block; margin-top: -1.5rem; color: #FF8D00; font-weight: 700; position: absolute; top: 1.2rem; text-align: center; left: 0; letter-spacing: 1px;}
 .quiniela_single .partidos .partido .opcion_partido span.linea.pd{left: 33%;}
 .quiniela_single .partidos .partido .opcion_partido span.linea.away{left: 66%;}
+
+.instructions{ position: absolute; top: -1.5rem; left: 19vw; width: 60%; text-align: center; font-weight: 500; background-color: #2962FF; -webkit-border-radius: 2px; -moz-border-radius: 2px; border-radius: 2px; padding: 0.25rem;}
+.instructions::before{ height: 0; width: 0; border-left: 6px solid transparent; border-right: 6px solid transparent; border-top: 6px solid #2962ff; content: ""; position: absolute; bottom: -5px; top: initial; left: 46%; }
 
 /*Extra*/
 .quiniela_single .opcion_partido .equipo .iniciales {font-size: 1rem; letter-spacing: 0.5px;}
@@ -338,7 +341,8 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 .desempates .desempate {width: 100%; margin-bottom: 20px;}
 .desempates .desempate .desempate_left {width: 50%; float: left;}
 .desempates .desempate span {padding-top: 10px; display: block; float: left;}
-.desempates .desempate .desempate_input {width: 40%; float: right; position: relative;}
+.desempates .desempate .desempate_input { width: 40%; float: right; position: relative; }
+.desempates .desempate .desempate_input select{background-color: #FFF; border-radius: 2px; padding: 0.25rem;}
 .desempates .desempate .desempate_input input[type="text"],
 .desempates .desempate .desempate_input input[type="tel"] {background: transparent; border-radius: 5px; border: 1px solid #8A8A8D; height: 30px; color: #fff; font-weight: 300; font-family: 'Lato'; padding: 5px; }
 .desempates .desempate.desempate_uno .desempate_input span {float: left; margin-right: 5px; padding-top: 7px;}
@@ -423,7 +427,6 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 .quiniela_registrada_single .quiniela {width: 100%;}
 .quiniela_registrada_single .quiniela_live {border-left: 3px solid #F6A623;}
 .quiniela_registrada_single .registro_quiniela {width: 100%; text-align: center;}
-.quiniela_registrada_single .registro_quiniela a:first-child {margin-right: 10px;}
 .quiniela_registrada_single .quiniela_info {margin-right: 10px; }
 
 .tabs_quiniela {width: 100%; background: #000; margin-top: 20px;  border-radius: 3px; border: 1px solid #414042;}
@@ -434,7 +437,6 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 .tabs_quiniela ul li:first-child {border-top-left-radius: 3px; border-bottom-left-radius: 3px; }
 .tabs_quiniela ul li.selected {background: #5ba433;}
 .tabs_quiniela ul li a {text-decoration: none; color: #fff;}
-
 
 .tab_posiciones {width: 100%;}
 .tab_posiciones table {width: 100%; border: none!important; font-size: 10px; text-align: center;}
@@ -595,7 +597,6 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 .profile .agregartarjeta form p {text-align: center; columns: #fff; font-size: 10px; margin-bottom: 20px; padding: 0 10%; line-height: 15px;}
 .profile .agregartarjeta form input[type="text"] {width: 100%; border: 1px solid #8A8A8D; background: transparent; font-size: 12px; padding: 10px 5px; margin-bottom: 10px; color: #fff; border-radius: 3px;}
 .profile .agregartarjeta form input::placeholder {color: #fff;}
-.profile .agregartarjeta form input[type="submit"] {width: 92px; height: 36px; background: url('../images/guardar.png') no-repeat; border: none!important; text-indent: -100000px; text-align: center;}
 .profile .agregartarjeta form .fecha_vencimiento select {width: 20%; float: left; margin-right: 10px; background: transparent; font-size: 12px; padding: 10px 5px; margin-bottom: 10px; color: #fff; border-radius: 3px;}
 .profile .agregartarjeta form .fecha_vencimiento input[type="text"] {width: 30%; border: 1px solid #8A8A8D; background: transparent; font-size: 12px; padding: 10px 5px; margin-bottom: 10px; color: #fff; border-radius: 3px;}
 
@@ -688,7 +689,9 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 
 	.rootContainer{ min-height: 100vh!important;}
 	.form input.submit_green{ background-color: #5ba433; border-color: #aaca7d; border-style: groove; text-transform: uppercase; letter-spacing: 1.5px; font-size: 1.25rem; width: 240px; -webkit-border-radius: 2px; -moz-border-radius: 2px; border-radius: 2px;}
-	.green_button{ background-color: #5ba433; border-color: #9dc16b; border-style: outset; border-width: 1.5px; text-transform: uppercase; text-align: center; font-family: 'Lato'!important; font-weight: 300; letter-spacing: 1.5px; font-size: 1rem; width: 180px; -webkit-border-radius: 2px; -moz-border-radius: 2px; border-radius: 2px; color: #FFF; padding: 0.5rem 1rem; text-decoration: none; margin: 0.5rem auto; display: block; }
+	.red_button,
+	.green_button{ background-color: #5ba433; border-color: #9dc16b; border-style: outset; border-width: 1.5px; text-transform: uppercase; text-align: center; font-family: 'Lato'!important; font-weight: 300; letter-spacing: 1.5px; font-size: 0.85rem; width: 180px; -webkit-border-radius: 2px; -moz-border-radius: 2px; border-radius: 2px; color: #FFF; padding: 0.5rem 1rem; text-decoration: none; margin: 0.5rem auto; display: block; }
+	.red_button{ background-color: #d93146; border-color: #e2223a; }
 	form label.error{ color: #FF8D00; text-align: left; float: none; display: block; font-size: 0.85rem; letter-spacing: 1px; margin: 0 0 1rem 0;}
 	
 	.view,
@@ -723,8 +726,8 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 	
 	p.empty{font-size: 1rem; letter-spacing: 1px; text-align: center; margin: 3rem 0;}
 	
-	.backed_modal{ position: fixed; background-color: #000; left: 5%; top: 22vh; width: 90%; z-index: 100;}
-	.backed_modal::before { content: ""; pointer-events: none; display: block; position: fixed; top: 0; left: 0; z-index: -1; width: 100%; height: 100vh; background: url(../images/bg_trans_negro.png) repeat; opacity: 0.35;}
+	.backed_modal{ position: fixed; background-color: #000; left: 5%; top: 31vh; width: 90%; z-index: 100; border-color: #4e4e4e; border-width: 0 0.5px 0.5px 0.5px; border-style: solid;}
+	.backed_modal::before { content: ""; pointer-events: none; display: block; position: fixed; top: 0; left: 0; z-index: -1; width: 100%; height: 100vh; background: url(../images/bg_trans_negro.png) repeat; opacity: 0.5;}
 	
 	.header .header_right .header_user_info{width: 84%;}
 	.header .header_right .header_filtros{ width: 68px; float: right; text-align: center; position: absolute; top: 2rem; right: 0;}

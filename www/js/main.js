@@ -29,8 +29,9 @@
 
 			/*** TODO: Get this shit into a catalogue ***/
 			window.catalogues 						= [];
+			/**** Initial filtering values ****/
 			window.filter_array 					= {};
-			// window.filter_array 					= {type: 'open', status: 'upcoming'};
+			// window.filter_array 					= {sport: 'all', type: 'open', status: 'upcoming'};
 			window.catalogues.months 				= [ 'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre' ];
 			
 			/* IMPORTANT to set requests to be syncronous */
@@ -522,14 +523,19 @@
 			myTiebreakers.forEach(function(element){
 				var $tiebreaker_input = $('.desempate[data-id='+element.tiebreaker_id+']').find('input');
 				var $tiebreaker_select = $('.desempate[data-id='+element.tiebreaker_id+']').find('select');
-				console.log($tiebreaker_input);
-				console.log($tiebreaker_select);
+				if($tiebreaker_select){
+					$tiebreaker_select.find('option[value='+element.value+']').prop('selected', true).change();
+					return;
+				}
 				$tiebreaker_input.val(element.value);
 			});
 			return;
 		},
-		render_similar_picks : function(object_id){
+		render_similar_bypool_picks : function(object_id){
 			return apiRH._ajaxRequest('GET', 'api/entries/similarByPool/'+object_id+'.json', null, 'json', true, app.similar_picks_callback);
+		},
+		render_similar_picks : function(object_id){
+			return apiRH._ajaxRequest('GET', 'api/entries/similar/'+object_id+'.json', null, 'json', true, app.similar_picks_callback);
 		},
 		similar_picks_callback : function(response){
 
@@ -544,11 +550,11 @@
 			window._cache['entries'] = response;
 			return app.render_partial('other-entries', response, '#lesDrops');
 		},
-		// render profile
+		// fetch profile
 		render_profile : function(url, tab){
 			if(!app.initialized) 
 				app.initialize();
-			app.check_or_renderContainer(true);
+			// app.check_or_renderContainer(true);
 			setTimeout(function(){
 				app.showLoader();
 			}, 220);
@@ -577,15 +583,17 @@
 			}else{
 				dynamic_params.template = 'profile'
 				dynamic_params.profile_title = 'Métodos de pago';
-				console.log(dynamic_params);
 				apiRH._ajaxRequest('GET', 'api/openpay_cards/index.json', null, 'json',true, app.render_profile_callback);
 			}
 		},
-		// fetch profile
+		// render profile
 		render_profile_callback : function(response){
 			app.data_temp = app.gatherEnvironment(response, dynamic_params.profile_title);
-			console.log(app.data_temp);
-			return app.switchView( dynamic_params.template, app.data_temp, '#exoskeleton', dynamic_params.url, 'user-profile '+dynamic_params._tab );
+			setTimeout(function(){
+				if(dynamic_params._tab === 'documents' || dynamic_params._tab === 'withraw' || dynamic_params._tab === 'history' || dynamic_params._tab === 'notifications')
+					return app.appendView(dynamic_params.template, app.data_temp, '#tabContainer');
+				return app.switchView( dynamic_params.template, app.data_temp, '#exoskeleton', dynamic_params.url, 'user-profile '+dynamic_params._tab );
+			}, 400);
 		},
 		render_add_funds : function(url){
 

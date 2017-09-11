@@ -570,6 +570,7 @@ function requestHandlerAPI(){
 
 		/**
 		 * Entry success callback
+		 * @param Object response
 		 */
 		this.render_entry_success = function(response){
 
@@ -590,15 +591,14 @@ function requestHandlerAPI(){
 		 * @param Object entry_data
 		 */
 		this.editEntry = function(entry_data){
-
 			return apiRH._ajaxRequest('POST', 'api/picks/save.json', entry_data, 'json', true, apiRH.render_edit_entry_success);
 		};
 		
 		/**
-		 * Eedit entry success callback
+		 * Edit entry success callback
+		 * @param Object response
 		 */
 		this.render_edit_entry_success = function(response){
-			console.log(response);
 			if(!response.picks)
 				return app.toast('Ocurrió un error guardando tus picks, intenta nuevamente.');
 			app.toast('¡Se ha guardado tus picks! Te estamos dirigiendo a tu quiniela');

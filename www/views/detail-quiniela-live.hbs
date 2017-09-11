@@ -55,19 +55,17 @@
 			</div><!-- quiniela -->
 		</a><!-- link_wrapper -->
 
-		{{# if data.pool.entry_id}}
-			<div class="registro_quiniela clearfix">
-				<a id="reg_outta_game" class="red_button">Cancelar registro</a>
-			</div><!-- opciones registro -->
-		{{/ if }}
-
 		<div id="lesDrops" class="quinielas_dropdowns live clearfix">
 
 		</div> <!-- dropdowns -->
+		
+		<div class="registro_quiniela clearfix">
+			<a style="display: none;" id="reg_outta_game" data-extra="" class="red_button missing_info">Cancelar registro</a>
+		</div><!-- opciones registro -->
 
 		<div class="tabs_quiniela clearfix">
 			<ul>
-				<li class="selected"><a class="hook missing_info" data-object="{{data.pool.id}}" data-extra="" data-resource="detail-live" href="detail.html?registered=true&tab=postures">Picks</a></li>
+				<li class="selected"><a class="hook missing_info" data-object="{{data.pool.id}}" data-extra="" data-resource="detail-live" href="detail.html?registered=true&tab=postures&id={{data.pool.id}}&entry=">Picks</a></li>
 				<li><a class="hook missing_info" data-object="{{data.pool.id}}" data-extra="" data-resource="detail-places" href="detail.html?registered=true&tab=places">Posiciones</a></li>
 				<li><a class="hook missing_info" data-object="{{data.pool.id}}" data-extra="" data-resource="detail-chat" href="detail.html?registered=true&tab=chat">Chat</a></li>
 				<li><a class="hook missing_info" data-object="{{data.pool.id}}" data-extra="" data-resource="detail-prizes" href="detail.html?registered=true&tab=prizes">Premios</a></li>
@@ -128,7 +126,9 @@
 									<input type="hidden" name="user_tiebreakers[{{id}}][id]"  value="null">
 									<input type="hidden" class="missing_entry" name="user_tiebreakers[{{id}}][entry_id]" value="null">
 									<input type="hidden" name="user_tiebreakers[{{id}}][tiebreaker_id]" value="{{id}}">
-									<input type="tel" name="user_tiebreakers[{{id}}][value]">
+									<select name="user_tiebreakers[{{id}}][value]" >
+										{{{numberOptions config_parsed.min config_parsed.max}}}
+									</select>
 								</div><!-- desempate_input -->
 							</div><!-- desempate_dos -->
 						{{/ if_eq }}

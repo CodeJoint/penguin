@@ -433,7 +433,7 @@ window.initializeEvents = function(){
 				});
 
 				$('.missing_info').each(function(){
-					$(this).data('extra', entryId)
+					$(this).attr('data-extra', entryId)
 							.removeClass('missing_info');
 				});
 
@@ -480,16 +480,22 @@ window.initializeEvents = function(){
 			} // END detailQuiniela scope
 			
 			if($('#detailQuinielaRegistered').length){
-				
-				$('#detailQuinielaRegistered').data('entry', _cache.entry_id);
+
+				$('#detailQuinielaRegistered').attr('data-entry', _cache.entry_id);
 				var gameId 	= $('#detailQuinielaRegistered').data('id');
 				var entryId = $('#detailQuinielaRegistered').data('entry');
 				var weekId  = $('#detailQuinielaRegistered').data('weekid');
 
-				$('.missing_info').each(function(){
-					$(this).data('extra', entryId)
-							.removeClass('missing_info');
-				});
+				var onCancelConfirm = function() {
+					apiRH._ajaxRequest('DELETE', 'api/entries/cancel/'+window.cancel_entryId+'.json', {}, 'json', true, onCancelCallback);
+				}
+				var onCancelCallback = function(response) {
+					if(!response.success){
+						return app.toast('Ocurrió un error al eliminar tu registro, intenta nuevamente.')
+					}
+					app.toast('Registro eliminado satisfactoriamente.');
+					return app.render_lobby(null, false);
+				}
 
 				$('.menu li').removeClass('selected');
 				$('#filterComponent').hide();
@@ -501,12 +507,32 @@ window.initializeEvents = function(){
 					$(e.target).parent().addClass('selected');
 				});
 
+				/**** Cancel registry ****/
+				$('#reg_outta_game').on('click', function(e){
+					window.cancel_entryId = $(this).data('extra');
+					navigator.notification.confirm(
+						'¿Cancelar tu registro a esta quiniela?',
+						 onCancelConfirm,
+						'Cancelar registro',
+						['Si','No']
+					);
+				});
+
 				/** Call Render quiniela games and picks selectors **/
 				app.render_games(gameId);
 
 				/** Call Render similar picks **/
-				if(entryId)
+				if(entryId){
 					app.render_other_entries(entryId);
+					$('#reg_outta_game').show();
+					$('.missing_info').each(function(){
+						$(this).attr('data-extra', entryId)
+								.removeClass('missing_info');
+					});
+					setTimeout( function(){
+						app.fill_entry_picks()
+					}, 620);
+				}
 				
 				/** Call prize distribution **/
 				app.fetch_prize_distribution(gameId);
@@ -514,11 +540,13 @@ window.initializeEvents = function(){
 				app.fetch_standings(gameId);
 				/** Call group picks **/
 				app.fetch_group_picks(gameId, weekId);
+				/** Render similar picks **/
+				if(!entryId){
+					app.render_similar_bypool_picks(gameId);
+				} else{
+					app.render_similar_picks(entryId);
+				}
 
-				setTimeout( function(){
-					if(entryId)
-						app.fill_entry_picks()
-				}, 620);
 				return initCountdownTimers();
 
 			} // END detailQuinielaRegistered scope

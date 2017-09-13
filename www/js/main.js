@@ -65,7 +65,7 @@
 			var is_feed 	= window.is_feed;
 			_user 			= JSON.parse( app.keeper.getItem('user') );
 			if(is_access)
-				return app.render_lobby();
+				return app.render_lobby('lobby.html')
 			return this.initialized;
 			// setTimeout(function(){
 
@@ -375,8 +375,8 @@
 		render_lobby : function(url, reloadExoskeleton){
 
 			if(!app.initialized || !_user) app.initialize();
-
 			var reload = (reloadExoskeleton || typeof reloadExoskeleton == 'undefined') ? true : false;
+
 			app.check_or_renderContainer(reload);
 			app.data_temp 	= app.gatherEnvironment( null, "Lobby container" );
 			app.data_temp.selected_lobby = true;
@@ -509,14 +509,20 @@
 			var myPropPicks = _cache.entries.entry.picks_props;
 			myPropPicks.forEach(function(element){
 
-				var $under = $('.prop[data-fixture='+element.fixture_id+']').find('.under_sel');
-				var $over  = $('.prop[data-fixture='+element.fixture_id+']').find('.over_sel');
-
-				if(element.pick === 'under')
+				var $under 	= $('.prop[data-prop='+element.prop_id+']').find('.under_sel');
+				var $over  	= $('.prop[data-prop='+element.prop_id+']').find('.over_sel');
+				var $yes 	= $('.prop[data-prop='+element.prop_id+']').find('.yes_sel');
+				var $no  	= $('.prop[data-prop='+element.prop_id+']').find('.no_sel');
+				console.log(element);
+				if(element.pick === 'under'){
 					$under.trigger('click');
-				if(element.pick === 'over')
+					$yes.trigger('click');
+				}
+				if(element.pick === 'over'){
 					$over.trigger('click');
-
+					$no.trigger('click');
+				}
+				
 			});
 			var myTiebreakers = _cache.entries.entry.user_tiebreakers;
 			myTiebreakers.forEach(function(element){

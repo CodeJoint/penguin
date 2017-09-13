@@ -11,7 +11,7 @@
 					{{# each full_standings.items}}
 						<tr class="player_info">
 							<td class="player">
-								<figure class="profile" >
+								<figure class="profile_pic" >
 									<img src="{{^ if_eq avatar '/img/profile-image-01.png'}}{{avatar}}{{/ if_eq}}{{# if_eq avatar '/img/profile-image-01.png'}}{{cordova_full_path}}images/profile_placeholder.png{{/ if_eq}}">
 								</figure>
 								{{nick}} {{# number}}<sup>{{.}}</sup>{{/ number}}

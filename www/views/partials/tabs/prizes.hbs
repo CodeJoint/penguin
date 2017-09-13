@@ -2,7 +2,9 @@
 		<table>
 			<tr class="table_title">
 				<th>LUGAR</th>
-				<th>PORCENTAJE</th>
+				{{# if_eq type 'percentage'}}
+					<th>PORCENTAJE</th>
+				{{/ if_eq }}
 				<th>MONTO</th>
 			</tr>
 			{{# prize_distribution.pool_prizes }}
@@ -10,7 +12,6 @@
 					<tr class="player_info">
 						<td>{{position}}º </td>
 						{{# if_eq type 'fixed'}}
-							<td>{{calcPercentage amount ../available}}%</td>
 							<td class="ganar"><img src="{{cordova_full_path}}images/billete.png">${{formatCurrency amount}} MXN</td>
 						{{/ if_eq }}
 						{{# if_eq type 'percentage'}}

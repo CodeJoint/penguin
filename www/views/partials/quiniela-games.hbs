@@ -18,7 +18,7 @@
 				<label class="local_sel" for="local_{{id}}" >
 					<img src="{{cordova_full_path}}images/camisaverde.png">
 					<div class="equipo">
-						<span class="iniciales">{{home_team.abbreviation}}</span>
+						<span class="iniciales">{{home_team.abbreviation}} {{# period}}<i class="period">{{.}}</i>{{/ period}}</span>
 					</div><!-- equipo -->
 				</label>
 			</li><!-- opcion_partido -->
@@ -70,7 +70,7 @@
 				<label class="away_sel" for="away_{{id}}" >
 					<img src="{{cordova_full_path}}images/camisaazul.png">
 					<div class="equipo">
-						<span class="iniciales">{{away_team.abbreviation}}</span>
+						<span class="iniciales">{{away_team.abbreviation}} {{# period}}<i class="period">{{.}}</i>{{/ period}}</span>
 					</div><!-- equipo -->
 				</label>						
 				<div class="linea">

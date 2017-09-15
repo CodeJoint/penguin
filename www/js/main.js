@@ -31,7 +31,7 @@
 			window.catalogues 						= [];
 			/**** Initial filtering values ****/
 			window.filter_array 					= {};
-			// window.filter_array 					= {sport: 'all', type: 'open', status: 'upcoming'};
+			window.filter_array 					= {sport: 'all', type: 'open', status: 'upcoming'};
 			window.catalogues.months 				= [ 'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre' ];
 			
 			/* IMPORTANT to set requests to be syncronous */
@@ -720,7 +720,7 @@
 			var myPool 	= app.data_temp.data.pools_unfiltered;
 			var newPool	= [];
 			
-			if(typeof myFilters.real_money !== 'undefined' ){
+			if(typeof myFilters.real_money !== 'undefined' && myFilters.real_money !== 'all' ){
 				
 				/*** min: 0-50, med: 51-250, max: 251-10000 ***/
 				var min_value = (myFilters.real_money === 'min') ?  0 	: 251;
@@ -733,7 +733,7 @@
 						newPool.push( myPool[index] );
 				});
 			}
-			if(typeof myFilters.fake_money !== 'undefined' ){
+			if(typeof myFilters.fake_money !== 'undefined' && myFilters.fake_money !== 'all' ){
 				
 				/*** min: 0-50, med: 51-250, max: 251-10000 ***/
 				var min_value = (myFilters.real_money === 'min') ?  0 	: 251;
@@ -749,21 +749,27 @@
 			if(typeof myFilters.status !== 'undefined' )
 				myPool.forEach( function(element, index){
 
-					if( element.status === myFilters.status )
+					var lePool = newPool.filter(function(element){ return element.});
+					if( element.status === myFilters.status && !lePool.length )
 						newPool.push( myPool[index] );
 				});
 
-			if(typeof myFilters.sport !== 'undefined' )
+			if(typeof myFilters.sport !== 'undefined' && myFilters.sport !== 'all' ){
+				console.log(myPool[index]);
 				myPool.forEach( function(element, index){
 					if( element.sport.id === parseInt(myFilters.sport) )
 						newPool.push( myPool[index] );
 				});
+			}
 
 			if(typeof myFilters.type != 'undefined' ){
 				var type_compare = (myFilters.type === 'open') ? false : true;
+				console.log(myPool[0]);
 				myPool.forEach( function(element, index){
-					if( element.limited_capacity === type_compare )
+					var lePool = newPool.filter(function(find){ return find.id === element.id});
+					if( element.limited_capacity === type_compare && !lePool.length ){
 						newPool.push( myPool[index] );
+					}
 				});
 			}
 

@@ -331,44 +331,46 @@ window.initializeEvents = function(){
 
 				if($('#misQuinielas').length){
 
-						// Call render sidebar feed
-						app.render_myfeed_sidebar();
+					// Call render sidebar feed
+					app.render_myfeed_sidebar();
 
-						var positiveMargin = false;
-						$('.misquinielas').on('click', function(){
+					var positiveMargin = false;
+					$('.misquinielas').on('click', function(){
 
-							$('.menu li').removeClass('selected');
-							if (!positiveMargin) {
-								var left = "0%";
-								var padd = "5%";
-								positiveMargin = true;
-								$('.menu .menu_quinielas').addClass('selected');
-								setTimeout(function(){
-									$('.misquinielas').addClass('open');
-								}, 200);
-								$('#insertFeed').addClass('noscroll');
-							} else {
-								var left = "97%";
-								var padd = "1%";
-								positiveMargin = false;
-								$('.menu .menu_quinielas').removeClass('selected');
-								$('.menu .menu_lobby').addClass('selected');
-								$('.misquinielas').removeClass('open');
-								$('#insertFeed').removeClass('noscroll');
-							}
-							$('.misquinielas').velocity( {
-															marginLeft: left,
-															paddingLeft: padd,
-														}, 
-														{
-															duration: 500,
-															complete: function() { }
-														});
-						});
+						$('.menu li').removeClass('selected');
+						if (!positiveMargin) {
+							var left = "0%";
+							var padd = "5%";
+							positiveMargin = true;
+							$('.menu .menu_quinielas').addClass('selected');
+							setTimeout(function(){
+								$('.misquinielas').addClass('open');
+							}, 200);
+							$('#insertFeed').addClass('noscroll');
+						} else {
+							var left = "97%";
+							var padd = "1%";
+							positiveMargin = false;
+							$('.menu .menu_quinielas').removeClass('selected');
+							$('.menu .menu_lobby').addClass('selected');
+							$('.misquinielas').removeClass('open');
+							$('#insertFeed').removeClass('noscroll');
+						}
+						$('.misquinielas').velocity( {
+														marginLeft: left,
+														paddingLeft: padd,
+													}, 
+													{
+														duration: 500,
+														complete: function() { }
+													});
+					});
 
-						return initHooks();
+					initHooks();
 				} // END misQuinielas scope
 			
+				app.apply_filters();
+
 				if($('#deporte_soccer').length){
 
 					app.render_filter_tournaments();

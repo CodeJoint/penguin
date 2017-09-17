@@ -36,6 +36,12 @@
 					{{/ limited_capacity}}
 					{{!-- <span class="aciertos">ACIERTOS: 3/15</span> --}}
 				</div><!-- quiniela_info -->
+				{{# first_entry.pick_count}}
+					<div class="quiniela_picks_ok clearfix">
+						<span class="titulo">PICKS</span>
+						<img src="{{cordova_full_path}}images/acierto.png">
+					</div>
+				{{/ first_entry.pick_count}}
 				<div class="quiniela_entrada clearfix">
 					<span class="titulo">ENTRADA</span>
 					{{# if_eq entry_currency 'real' }}
@@ -51,12 +57,6 @@
 						<img src="{{cordova_full_path}}images/billete.png">
 					<span class="number">${{ formatCurrency available}}</span>
 				</div>
-				{{# first_entry.pick_count}}
-					<div class="quiniela_picks_ok clearfix">
-						<span class="titulo">PICKS</span>
-						<img src="{{cordova_full_path}}images/acierto.png">
-					</div>
-				{{/ first_entry.pick_count}}
 			</div><!-- quiniela_content -->
 		</div><!-- quiniela -->
 	</a><!-- link_wrapper -->

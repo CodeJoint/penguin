@@ -749,7 +749,7 @@
 			if(typeof myFilters.status !== 'undefined' )
 				myPool.forEach( function(element, index){
 
-					var lePool = newPool.filter(function(element){ return element.});
+					var lePool = newPool.filter(function(element){ return find.id === element.id; });
 					if( element.status === myFilters.status && !lePool.length )
 						newPool.push( myPool[index] );
 				});
@@ -766,7 +766,7 @@
 				var type_compare = (myFilters.type === 'open') ? false : true;
 				console.log(myPool[0]);
 				myPool.forEach( function(element, index){
-					var lePool = newPool.filter(function(find){ return find.id === element.id});
+					var lePool = newPool.filter(function(find){ return find.id === element.id; });
 					if( element.limited_capacity === type_compare && !lePool.length ){
 						newPool.push( myPool[index] );
 					}

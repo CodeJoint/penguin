@@ -30,7 +30,7 @@
 						<span class="live">EN CURSO</span>
 					{{/ if_eq}}
 					<span class="registros">REGISTROS: {{entry_count}}</span>
-					<span {{# if_less time_left 86400}}data-countdown="{{deadline_tz}}"{{/ if_less }} class="cierre">CIERRE: {{^ if_less time_left 86400}}{{formatDate deadline_tz 'lll'}}{{/ if_less }}</span>
+					<span {{# if_less time_left 86400}}data-countdown="{{deadline_tz}}"{{/ if_less }} class="cierre">CIERRE: <strong class="timer_active">{{^ if_less time_left 86400}}{{formatDate deadline_tz 'lll'}}{{/ if_less }}</strong></span>
 					{{# limited_capacity}}
 						<span class="limite">Limitado a {{max_entries}} entradas</span>
 					{{/ limited_capacity}}
@@ -42,6 +42,11 @@
 						<img src="{{cordova_full_path}}images/acierto.png">
 					</div>
 				{{/ first_entry.pick_count}}
+				<div class="quiniela_aganar clearfix">
+					<span class="titulo">BOLSA</span>
+					<img src="{{cordova_full_path}}images/billete.png">
+					<span class="number">${{ formatCurrency available}}</span>
+				</div>
 				<div class="quiniela_entrada clearfix">
 					<span class="titulo">ENTRADA</span>
 					{{# if_eq entry_currency 'real' }}
@@ -51,11 +56,6 @@
 						<img src="{{cordova_full_path}}images/pickcoin.png">
 					{{/ if_eq }}
 					<span class="number">${{ formatCurrency entry_fee}}</span>
-				</div>
-				<div class="quiniela_aganar clearfix">
-					<span class="titulo">BOLSA</span>
-						<img src="{{cordova_full_path}}images/billete.png">
-					<span class="number">${{ formatCurrency available}}</span>
 				</div>
 			</div><!-- quiniela_content -->
 		</div><!-- quiniela -->

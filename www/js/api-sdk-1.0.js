@@ -345,7 +345,9 @@ function requestHandlerAPI(){
 				console.log(endpoint);
 				var myHeaders = (typeof includeHeaders !== 'undefined' && includeHeaders ) ? apiRH.headers : {};
 					myHeaders['Content-Type'] = (typeof contentType === 'undefined' || contentType === 'json' ) ? apiRH.headers['Content-Type'] : 'application/x-www-form-urlencoded';
+				console.log(myHeaders);
 				var myData 	= (!data) ? "" : JSON.stringify(data);
+				console.log(myData);
 				var xhr 	= new XMLHttpRequest();
 				xhr.open(methodType, window.api_base_url+endpoint, true);
 				for (var property in myHeaders) {
@@ -566,7 +568,7 @@ function requestHandlerAPI(){
 							entry_payment	: 'real',
 							use_same_picks	: (typeof entry_data.use_same_picks !== 'undefined') ? entry_data.use_same_picks : 0,
 						};
-						console.log(data);
+			console.log(data);
 			return apiRH._ajaxRequest('POST', 'api/picks/save.json', data, 'json', true, apiRH.render_entry_success);
 		};
 

@@ -381,6 +381,7 @@ window.initializeEvents = function(){
 
 			} // END lobbyContainer scope
 		
+			// Detail of an upcoming game with no entries (Event scope)
 			if($('#detailQuiniela').length){
 
 				var gameId 	= $('#detailQuiniela').data('id');
@@ -466,12 +467,13 @@ window.initializeEvents = function(){
 				/** Call full standings **/
 				app.fetch_standings(gameId);
 				
-				/** Render similar picks **/
-				if(!entryId){
-					app.render_similar_bypool_picks(gameId);
-				} else{
-					app.render_similar_picks(entryId);
-				}
+				/** Render similar picks select **/
+				if(_cache.pool.upcoming)
+					if(!entryId){
+						app.render_similar_bypool_picks(gameId);
+					} else{
+						app.render_similar_picks(entryId);
+					}
 
 				setTimeout( function(){
 					$('#filterComponent').hide();
@@ -483,6 +485,7 @@ window.initializeEvents = function(){
 
 			} // END detailQuiniela scope
 			
+			// Detail of an upcoming or live game with or without entries (Event scope)
 			if($('#detailQuinielaRegistered').length){
 
 				$('#detailQuinielaRegistered').attr('data-entry', _cache.entry_id);

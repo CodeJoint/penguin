@@ -1,3 +1,11 @@
-{{# data.similar_entries}}
-	<option value="{{id}}">{{pool.name_replaced}}</option>
-{{/ data.similar_entries}}
+
+{{# if data.similar_entries}}
+	<form id="pickActionsForm" action="" method="POST">
+		<select id="select_copy_picks" class="unique" name="select_copy_picks">
+			<option value="">Copiar picks</option>
+			{{# each data.similar_entries}}
+				<option value="{{id}}">{{pool.name_replaced}}{{# number}}<sup>({{.}})</sup>{{/ number}}</option>
+			{{/ each}}
+		</select>
+	</form>
+{{/ if}}

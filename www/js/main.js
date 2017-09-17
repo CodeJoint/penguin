@@ -159,7 +159,7 @@
 			});
 			Handlebars.registerHelper('numberOptions', function(base, limit) {
 				var html = '';
-				for(var i = base; i<=limit; i++){
+				for(var i = parseInt(base); i<= parseInt(limit); i++){
 					html += '<option value="'+i+'" >'+i+'</option>';
 				}
 				return html;
@@ -228,7 +228,7 @@
 			    
 			    AndroidFullScreen.immersiveMode();
 			}
-
+			window.open = cordova.InAppBrowser.open;
 			// try{
 			// 	codePush.sync();
 			// } catch(err){
@@ -543,10 +543,10 @@
 			return apiRH._ajaxRequest('GET', 'api/entries/similar/'+object_id+'.json', null, 'json', true, app.similar_picks_callback);
 		},
 		similar_picks_callback : function(response){
-
+			window._cache['similar_entries'] = response;
 			var extra_data = (response) ? response : [];
 			app.data_temp = app.gatherEnvironment(extra_data, null);
-			return app.render_partial('similar-picks', app.data_temp, '#select_copy_picks');
+			return app.render_partial('similar-picks', app.data_temp, '#lesDrops');
 		},
 		render_other_entries : function(entry_id){
 			return apiRH._ajaxRequest('GET', 'api/entries/get/'+entry_id+'.json', null, 'json', true, app.render_other_entries_callback);

@@ -288,21 +288,22 @@ function requestHandlerAPI(){
 								};
 
 
-		var deposit_store_callback = function(response){
+		var deposit_store_callback = function(serviceResponse){
 
-			if(!response.success || typeof response.payment_method === 'undefined' || !response.payment_method)
-				return app.toast("No se ha podido procesar tu pedido, por favor intenta nuevamente.")
-
-			var ref = cordova.InAppBrowser.open(apiRH.openpay_base_url+response.response.payment_method.reference, '_system', 'location=yes');
-			return;
+			if(!serviceResponse.success || typeof serviceResponse.response.payment_method === 'undefined' ){
+				app.toast("No se ha podido procesar tu pedido, por favor intenta nuevamente.");
+				return false;
+			}
+			var ref = window.open(apiRH.openpay_base_url+serviceResponse.response.payment_method.reference, '_system', 'location=yes');
+			return true;
 		};
 
-		var deposit_card_callback = function(response){
+		var deposit_card_callback = function(serviceResponse){
 
-			if(!response.success || typeof response.payment_method === 'undefined' || !response.payment_method)
+			if(!serviceResponse.success || typeof serviceResponse.response.status !== 'completed' )
 				return app.toast("No se ha podido procesar tu pedido, por favor intenta nuevamente.");
 
-			return alert("¡Se han abonado $"+response.amount+" a tu cuenta!", null, "Pickwin", "Jugar");
+			return alert("¡Se han abonado $"+serviceResponse.amount+" a tu cuenta!", null, "Pickwin", "Jugar");
 		};
 
 		/*! 
@@ -553,7 +554,7 @@ function requestHandlerAPI(){
 		};
 
 		/**
-		 * Registry entry to game
+		 * Register entry to game
 		 * @param Object entry_data
 		 */
 		this.registerEmptyEntry = function(entry_data){
@@ -565,6 +566,7 @@ function requestHandlerAPI(){
 							entry_payment	: 'real',
 							use_same_picks	: (typeof entry_data.use_same_picks !== 'undefined') ? entry_data.use_same_picks : 0,
 						};
+						console.log(data);
 			return apiRH._ajaxRequest('POST', 'api/picks/save.json', data, 'json', true, apiRH.render_entry_success);
 		};
 
@@ -573,16 +575,17 @@ function requestHandlerAPI(){
 		 * @param Object response
 		 */
 		this.render_entry_success = function(response){
-
+			console.log(response);
 			if(!response.success)
 				return app.toast('Error: No se pudo registrar a la quiniela');
 
 			app.toast('¡Te has registrado a la quiniela! Elige tus picks');
-			console.log(response);
 			$('#registerNow').velocity('fadeOut');
+			$('.instructions').velocity('fadeIn');
 			$('#picksForm').find('.missing_entry').val(response.entryId);
 			$('#picksForm').find('.missing_pool').val(response.poolId);
-			$('#detailQuiniela').data(response.entryId)
+			$('#detailQuiniela').data(response.entryId);
+			$('#savePicks').trigger('click');
 			return;
 		};
 
@@ -591,6 +594,7 @@ function requestHandlerAPI(){
 		 * @param Object entry_data
 		 */
 		this.editEntry = function(entry_data){
+			console.log(entry_data);
 			return apiRH._ajaxRequest('POST', 'api/picks/save.json', entry_data, 'json', true, apiRH.render_edit_entry_success);
 		};
 		

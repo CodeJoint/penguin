@@ -64,10 +64,6 @@
 		</a><!-- link_wrapper -->
 	{{^ data.closed}}
 
-		<div id="lesDrops" class="quinielas_dropdowns live clearfix">
-
-		</div> <!-- dropdowns -->
-
 		<div class="tabs_quiniela min clearfix">
 			<ul>
 				<li class="selected"><a class="hook missing_info" data-object="{{data.pool.id}}" data-extra="" data-resource="detail" href="detail.html?registered=true&tab=postures">Picks</a></li>
@@ -75,6 +71,8 @@
 				<li><a class="hook missing_info" data-object="{{data.pool.id}}" data-extra="" data-resource="detail-participants" href="detail.html?registered=true&tab=participants">Participantes</a></li>
 			</ul>
 		</div>
+		
+		<div id="lesDrops" class="quinielas_dropdowns live"></div> <!-- dropdowns -->
 
 		<div id="tabContainer" class="tabs">
 			<form method="POST" action="" id="picksForm">
@@ -132,7 +130,9 @@
 										<input type="hidden" name="user_tiebreakers[{{id}}][id]"  value="null">
 										<input type="hidden" class="missing_entry" name="user_tiebreakers[{{id}}][entry_id]" value="null">
 										<input type="hidden" name="user_tiebreakers[{{id}}][tiebreaker_id]" value="{{id}}">
-										<input type="tel" name="user_tiebreakers[{{id}}][value]">
+										<select id="tie_{{id}}_select" class="no_check styled-select gray semi-square" name="user_tiebreakers[{{id}}][value]">
+											{{{ numberOptions config_parsed.min config_parsed.max}}}
+										</select>
 									</div><!-- desempate_input -->
 								</div><!-- desempate_dos -->
 							{{/ if_eq }}
@@ -157,8 +157,10 @@
 					{{/ each}}
 
 				</div><!-- dempates -->
+				<div class="botones clearfix">
+					<input id="savePicks" class="green_button" type="submit" value="Guardar picks">
+				</div>
 				<small class="info">Se tomarán los resultados únicamente de tiempo reglamentario. (No tiempos extras)</small>
-				<input id="savePicks" class="green_button" type="submit" value="Guardar picks">
 			</form>
 		</div><!-- tabContainer -->
 

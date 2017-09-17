@@ -410,6 +410,7 @@ window.initializeEvents = function(){
 						event.stopPropagation();
 						app.showLoader();
 						var entry_data	= app.getFormData(form, 'object');
+						console.log(entry_data);
 						return apiRH.registerEmptyEntry(entry_data);
 					}
 				});
@@ -425,9 +426,9 @@ window.initializeEvents = function(){
 						event.preventDefault();
 						event.stopPropagation();
 						var entry_data	= app.getFormData(form, 'multi-level');
-						console.log(entry_data);
 						if(typeof entry_data.entry_id === 'undefined' || entry_data.entry_id === ''){
-							return app.toast('Para guardar tus picks primero debes registrarte en la quiniela.');
+							$('#registerNow').velocity('fadeIn');
+							return;
 						}
 						app.showLoader();
 						return apiRH.editEntry(entry_data);
@@ -454,6 +455,7 @@ window.initializeEvents = function(){
 				});
 
 					$('#num_entries').on('change', function(){
+						// TO DO: Multiply entry fee according to selection
 						console.log($(this).val());
 					});
 				
@@ -466,7 +468,7 @@ window.initializeEvents = function(){
 				
 				/** Render similar picks **/
 				if(!entryId){
-					app.render_similar_picks(gameId);
+					app.render_similar_bypool_picks(gameId);
 				} else{
 					app.render_similar_picks(entryId);
 				}
@@ -717,18 +719,19 @@ window.initializeEvents = function(){
 					}
 				});
 				
-				/** Select amount and set hidden input value **/
+				/** CARD PAYMENT Select amount and set hidden input value **/
 				$('.botones_abono:not(.stores) li').on('click', function(){
 					var $mySelection = $(this);
 					$('.botones_abono li').removeClass('selected');
 					$mySelection.addClass('selected');
 					$('input[name=amount]').val($mySelection.data('amount'));
+					$('#other_amount').hide().blur();
 					if($mySelection.data('amount') === 'other'){
 						$('#other_amount').show().focus();
 					}
 				});
 
-				/** Select amount and set hidden input value **/
+				/** STORES PAYMENT Select amount and set hidden input value  **/
 				$('.botones_abono.stores li').on('click', function(){
 					var $mySelection = $(this);
 					$('.botones_abono li').removeClass('selected');

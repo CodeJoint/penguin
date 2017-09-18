@@ -7,7 +7,7 @@
  */
 		
 window.initializeEvents = function(){
-	console.log("General event initialization");
+
 	window.initCountdownTimers = function(){
 		$('[data-countdown]').each(function(index, element) {
 			var $this = $(element), finalDate = $(element).data('countdown');

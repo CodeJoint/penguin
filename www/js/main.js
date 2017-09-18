@@ -325,7 +325,7 @@
 
 			if( typeof window.has_exo == 'undefined' ){
 				var data = app.gatherEnvironment(null, null);
-				window.has_exo;
+				window.has_exo = true;
 				$.when( app.switchView('exoskeleton', data, '.view', null, '', true, true, false) )
 				 .then( function(){
 					return apiRH._ajaxRequest('GET', 'api/users/details.json', null, 'json', true, app.render_header);
@@ -389,15 +389,17 @@
 			var reload = (reloadExoskeleton || typeof reloadExoskeleton == 'undefined') ? true : false;
 			app.data_temp 	= app.gatherEnvironment( null, "Lobby container" );
 			app.data_temp.selected_lobby = true;
+			app.showLoader();
 			
 			// Subscribing to has_exo event
-			window.addEventListener('has_exo', function(e){
-				e.preventDefault();
-				app.showLoader();
-				console.log($('#exoskeleton').length);
-				return app.switchView('lobby', app.data_temp, '#exoskeleton', url, 'quiniela-feed', true, true, true );
-			});
-			return app.check_or_renderContainer(reload);
+			if(!window.has_exo){
+				window.addEventListener('has_exo', function(e){
+					e.preventDefault();
+					return app.switchView('lobby', app.data_temp, '#exoskeleton', url, 'quiniela-feed', true, true, true );
+				});
+				return app.check_or_renderContainer(reload);
+			}
+			return app.switchView('lobby', app.data_temp, '#exoskeleton', url, 'quiniela-feed', true, true, true );
 		},
 		render_lobby_feed : function(){
 			var cachedFeed = app.fetchCacheElement('lobby-feed');
@@ -423,7 +425,7 @@
 			console.log(app.data_temp);
 			$('#insertFeed').html( template(app.data_temp) )
 							.css({ "opacity": 0, "display": "block"})
-							.velocity({ opacity: 1 }, 220);
+							.velocity({ opacity: 1 }, 0);
 			return setTimeout( function(){ initHooks(); initCountdownTimers();  app.hideLoader(); $('#filterComponent').velocity('fadeIn'); initFilterActions(); }, 100);
 		},
 		render_myfeed_sidebar : function(){
@@ -833,8 +835,6 @@
 																			}
 															} );
 				}else{
-					console.log("With transition "+newTemplate);
-					console.log($(targetSelector));
 					$(targetSelector).html( template(data) ).css({"opacity": 0.7, "display": "block", "width": "100%"})
 															 .velocity(	{
 																			'margin-left'	: 0,

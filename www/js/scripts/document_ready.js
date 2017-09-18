@@ -7,7 +7,7 @@
  */
 		
 window.initializeEvents = function(){
-	
+	console.log("General event initialization");
 	window.initCountdownTimers = function(){
 		$('[data-countdown]').each(function(index, element) {
 			var $this = $(element), finalDate = $(element).data('countdown');
@@ -19,7 +19,7 @@ window.initializeEvents = function(){
 		});
 	};
 	window.initFilterActions = function(){
-
+		console.log("init filter actions");
 		$('.header_filtros').unbind();
 		
 		/*** FILTERS ***/
@@ -47,7 +47,13 @@ window.initializeEvents = function(){
 			$(this).addClass('selected');
 		});
 
-		$('#filterComponent').velocity('fadeIn');
+		if(!$('#filterComponent:visible').length)
+			$('#filterComponent').velocity('fadeIn');
+		
+		// setTimeout(function(){
+		// 	console.log("apply_filters");
+		// 	app.apply_filters();
+		// }, 400);
 	};
 
 	jQuery(document).ready(function($) {
@@ -368,8 +374,6 @@ window.initializeEvents = function(){
 
 					initHooks();
 				} // END misQuinielas scope
-			
-				app.apply_filters();
 
 				if($('#deporte_soccer').length){
 

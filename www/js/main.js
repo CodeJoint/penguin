@@ -55,6 +55,10 @@
 			window._user 		= [];
 			app.keeper 			= window.localStorage;
 
+			// Define has exoskeleton event to trigger chain rendering
+			app.events 	= [];
+			app.initCustomEvents();
+
 			/*----------------------- Routing user accordingly ---------------------------*/
 			if( !is_logged_in ){
 				return app.render_login();
@@ -183,6 +187,11 @@
 					Handlebars.registerPartial(filename, Handlebars.templates[filename]);
 			});
 		},
+		initCustomEvents: function() {
+			app.events.has_exo = document.createEvent('Event');
+			app.events.has_exo.initEvent('has_exo', true, true);
+
+		},
 		bindEvents: function() {
 			document.addEventListener('deviceready', app.onDeviceReady, false);
 			document.addEventListener('mobileinit', app.onDMobileInit, false);
@@ -310,22 +319,23 @@
 				var html 	 = container_template();
 				$('.rootContainer').html( html );
 			}
-			return (render_exoskeleton) ? app.render_exoskeleton() : null;
+			return (render_exoskeleton) ? app.render_exoskeleton() : true;
 		},
 		render_exoskeleton : function(){
 
 			if( typeof window.has_exo == 'undefined' ){
 				var data = app.gatherEnvironment(null, null);
 				window.has_exo;
-				$.when( app.switchView('exoskeleton', data, '.view', null, '', true, true, false) ).then( function(){
+				$.when( app.switchView('exoskeleton', data, '.view', null, '', true, true, false) )
+				 .then( function(){
 					return apiRH._ajaxRequest('GET', 'api/users/details.json', null, 'json', true, app.render_header);
-				} );
+				});
 			}
 		},
 		render_header : function(user_data, filters){
 
 			var saved 	= apiRH.save_user_data_clientside(user_data);
-			var extra_data = app.gatherEnvironment(null, "");
+			var extra_data = app.gatherEnvironment(user_data, "");
 			extra_data.selected_lobby = (filters) ? true : false;
 			$.when($('#theHeader').remove())
 			 .then( app.render_partial('header', extra_data, '#loadHeader') );
@@ -375,15 +385,19 @@
 		render_lobby : function(url, reloadExoskeleton){
 
 			if(!app.initialized || !_user) app.initialize();
-			var reload = (reloadExoskeleton || typeof reloadExoskeleton == 'undefined') ? true : false;
 
-			app.check_or_renderContainer(reload);
+			var reload = (reloadExoskeleton || typeof reloadExoskeleton == 'undefined') ? true : false;
 			app.data_temp 	= app.gatherEnvironment( null, "Lobby container" );
 			app.data_temp.selected_lobby = true;
-			setTimeout( function(data){
+			
+			// Subscribing to has_exo event
+			window.addEventListener('has_exo', function(e){
+				e.preventDefault();
 				app.showLoader();
+				console.log($('#exoskeleton').length);
 				return app.switchView('lobby', app.data_temp, '#exoskeleton', url, 'quiniela-feed', true, true, true );
-			}, 400);
+			});
+			return app.check_or_renderContainer(reload);
 		},
 		render_lobby_feed : function(){
 			var cachedFeed = app.fetchCacheElement('lobby-feed');
@@ -406,11 +420,11 @@
 			if(typeof cached === 'undefined' || !cached){
 				app.data_temp.data.pools_unfiltered = app.data_temp.data.pools;
 			}
-
+			console.log(app.data_temp);
 			$('#insertFeed').html( template(app.data_temp) )
 							.css({ "opacity": 0, "display": "block"})
 							.velocity({ opacity: 1 }, 220);
-			return setTimeout( function(){ initHooks(); initCountdownTimers(); $('#filterComponent').velocity('fadeIn'); initFilterActions(); app.hideLoader(); }, 100);
+			return setTimeout( function(){ initHooks(); initCountdownTimers();  app.hideLoader(); $('#filterComponent').velocity('fadeIn'); initFilterActions(); }, 100);
 		},
 		render_myfeed_sidebar : function(){
 			return apiRH._ajaxRequest('GET', 'api/users/pools.json', null, 'json', true, app.render_myfeed_callback);
@@ -802,45 +816,60 @@
 			}
 			$(targetSelector).velocity('fadeIn', function(){
 
-				if(targetClass) $(targetSelector).attr('class','view').addClass(targetClass);
+				if(targetClass) 
+					$(targetSelector).attr('class','view').addClass(targetClass);
 
 				if(!leNiceTransition){
 
 					$(targetSelector).html( template(data) ).css({ "opacity": 0, "display": "block"})
 															 .velocity(	{
 																opacity: 1
-															}, 420);
+															},
+															{ 
+																duration: 420, 
+																complete: 	function(){ 
+																				if(newTemplate === 'exoskeleton') 
+																					window.dispatchEvent(app.events.has_exo);
+																			}
+															} );
 				}else{
-
-					$(targetSelector).html( template(data) ).css("opacity", 0.7)
-															 .css("display", "block")
-															 // .css("margin-left", "48px")
-															 .css("width", "100%")
+					console.log("With transition "+newTemplate);
+					console.log($(targetSelector));
+					$(targetSelector).html( template(data) ).css({"opacity": 0.7, "display": "block", "width": "100%"})
 															 .velocity(	{
-																			'margin-left': "0",
-																			opacity: 1
-																		}, 420, 'swing');
+																			'margin-left'	: 0,
+																			'opacity'		: 1
+																		},
+																		{ 
+																			duration: 420, 
+																			easing: 'spring', 
+																			complete: 	function(){ 
+																							if(newTemplate === 'exoskeleton') 
+																								window.dispatchEvent(app.events.has_exo);
+																						}
+																		} );
 				}
 				
 			});
 			
 			if(!keepLoader)
 				return setTimeout(function(){
+					$(window).resize();
 					if(window.firstTime)
 						window.firstTime = false;				
 					app.hideLoader();
 					if(initEvents || typeof initEvents == 'undefined') 
 						initializeEvents();
-					$(window).resize();
-				}, 420);
+				}, 600);
 
 			return setTimeout(function(){
+					$(window).resize();
 					if(window.firstTime)
 						window.firstTime = false;				
 					if(initEvents || typeof initEvents == 'undefined') 
 						initializeEvents();
-					$(window).resize();
-				}, 220);
+					console.log("About to dispatch "+newTemplate);
+				}, 600);
 		},
 		appendView: function( newTemplate, data, targetSelector ){
 

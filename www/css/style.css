@@ -174,7 +174,7 @@ body {width: 100%; margin: 0 auto; font-weight: 300; font-family: 'Lato'!importa
 /*** LOBBY ***/
 
 .lobby { background-image: url(../images/background.png); background-position: center top; background-attachment: fixed; background-size: auto; background-repeat: no-repeat; }
-.quinielas {padding-top: 90px; padding-bottom: 70px;}
+.quinielas {padding-top: 98px; padding-bottom: 70px;}
 
 /*** QUINIELAS ***/
 .content.quinielas{position: relative; min-height: 100vh; width: 97%;}
@@ -210,7 +210,7 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 
 /*quiniela_live*/
 
-.quiniela.quiniela_live .quiniela_content .quiniela_info {width: 30%; float: left;}
+.quiniela.quiniela_live .quiniela_content .quiniela_info {width: 32%; float: left;}
 .quiniela.quiniela_live .quiniela_content .quiniela_picks_ok {width: 12%; float: left;}
 .quiniela .quiniela_content .quiniela_aganar {width: 25%; float: left;}
 .quiniela .quiniela_content .quiniela_entrada { width: 20%; float: right; text-align: center;}
@@ -249,7 +249,7 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 
 /*** MIS QUINIELAS OVERLAY ***/
 
-.misquinielas { position: fixed; top: 95px; width: 100%; margin-left: 95%; background-color: rgba(47, 45, 45, 0.8); height: 100vh; overflow: auto; padding: 1% 1% 11rem 1%; z-index: 100; }
+.misquinielas { position: fixed; top: 95px; width: 100%; margin-left: 95%; background-color: rgba(47, 45, 45, 0.8); height: 100vh; overflow: auto; padding: 0.4rem 0.8rem 11rem 0.8rem; z-index: 100; }
 .misquinielas .link_wrapper{pointer-events: none; display: block;}
 .misquinielas.open .link_wrapper{pointer-events: initial;}
 .quiniela_open:not(._noborder) {border-left: 3px solid #DDDDDD;}

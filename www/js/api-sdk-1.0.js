@@ -342,12 +342,12 @@ function requestHandlerAPI(){
 			 * @return JSON encoded response
 			 */
 			this._ajaxRequest = function(methodType, endpoint, data, contentType, includeHeaders, callback){
-				console.log(endpoint);
+				// console.log(endpoint);
 				var myHeaders = (typeof includeHeaders !== 'undefined' && includeHeaders ) ? apiRH.headers : {};
 					myHeaders['Content-Type'] = (typeof contentType === 'undefined' || contentType === 'json' ) ? apiRH.headers['Content-Type'] : 'application/x-www-form-urlencoded';
-				console.log(myHeaders);
+				// console.log(myHeaders);
 				var myData 	= (!data) ? "" : JSON.stringify(data);
-				console.log(myData);
+				// console.log(myData);
 				var xhr 	= new XMLHttpRequest();
 				xhr.open(methodType, window.api_base_url+endpoint, true);
 				for (var property in myHeaders) {

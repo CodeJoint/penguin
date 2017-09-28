@@ -596,7 +596,6 @@ function requestHandlerAPI(){
 		 * @param Object entry_data
 		 */
 		this.editEntry = function(entry_data){
-			console.log(entry_data);
 			return apiRH._ajaxRequest('POST', 'api/picks/save.json', entry_data, 'json', true, apiRH.render_edit_entry_success);
 		};
 		
@@ -605,7 +604,8 @@ function requestHandlerAPI(){
 		 * @param Object response
 		 */
 		this.render_edit_entry_success = function(response){
-			console.log(response);
+			console.log(response.pool_id);
+			console.log(response.entry_id);
 			if(!response.picks)
 				return app.toast('Ocurrió un error guardando tus picks, intenta nuevamente.');
 			app.toast('¡Se ha guardado tus picks! Te estamos dirigiendo a tu quiniela');

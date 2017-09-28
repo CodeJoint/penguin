@@ -440,9 +440,9 @@ window.initializeEvents = function(){
 					}
 				});
 
-				$('.radio_group input').on('change', function(e){
+				$('.opcion_partido label').on('click', function(e){
 					console.log("moiwowjdo");
-					$('.instructions').text('Guarda tus picks al terminar');
+					$('.instructions').html('Guarda tus picks al terminar');
 				});
 
 				$('.missing_info').each(function(){

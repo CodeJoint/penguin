@@ -8,12 +8,7 @@
 		{{/ data.closed}}
 	
 		<a class="link_wrapper">
-			<div class="quiniela
-			{{# if data.pool.upcoming}}quiniela_open{{/ if}} 
-			{{# if data.pool.live}}quiniela_live{{/ if}} 
-			{{# if_eq data.pool.status 'live'}}quiniela_live{{/ if_eq}} 
-			{{# if data.pool.closed}}quiniela_closed{{/ if}} {{data.pool.sport.name}}
-			{{# if_eq data.pool.format "natural" }} natural {{/ if_eq }} garantizado clearfix">
+			<div class="quiniela {{# if_eq data.pool.format "natural" }} natural {{/ if_eq }} garantizado clearfix">
 				<div class="quiniela_header clearfix">
 					<div class="quiniela_iconos clearfix">
 						<img src="{{cordova_full_path}}images/{{data.pool.sport.icon}}.png">
@@ -32,7 +27,7 @@
 				<div class="quiniela_content clearfix">
 					<div class="quiniela_info clearfix">
 						<span class="registros">REG: {{data.pool.entry_count}}</span>
-						<span class="cierre">{{^ if data.pool.closed}}CIERRE{{/ if}}{{# if data.pool.closed}}CERRÓ{{/ if}}: {{formatDate data.pool.deadline_tz 'lll'}}</span>
+						<span class="cierre">{{^ if data.pool.closed}}CIERRE{{/ if}}{{# if data.pool.closed}}CERRÓ{{/ if}}: <br/> <strong class="timer_active">{{formatDate data.pool.deadline_tz 'lll'}}</strong></span>
 						{{# data.pool.limited_capacity}}
 							<span class="limite">Limitado a {{data.pool.max_entries}} entradas</span>
 						{{/ data.pool.limited_capacity}}
@@ -72,7 +67,7 @@
 			</ul>
 		</div>
 		
-		<div id="lesDrops" class="quinielas_dropdowns live"></div> <!-- dropdowns -->
+		<div id="lesDrops" class="quinielas_dropdowns live clearfix"></div> <!-- dropdowns -->
 
 		<div id="tabContainer" class="tabs">
 			<form method="POST" action="" id="picksForm">
@@ -205,7 +200,7 @@
 							{{{ numberOptions 1 40}}}
 						</select>
 					</div><!-- no_registros -->
-					<div class="copiar_picks clearfix">
+					<div id="samePicksOption" class="copiar_picks clearfix" style="display: none;" >
 						<span class="pregunta"></span>
 						<input type="checkbox" id="use_same_picks" name="use_same_picks" class="css-checkbox lrg" value="1">
 						<label for="use_same_picks" name="use_same_picks" class="css-label lrg vlad">Utilizar los picks elegidos para todos los registros</label>
@@ -231,13 +226,13 @@
 							{{# if_eq data.pool.entry_currency 'real' }}
 								<div class="descontaran_dinero">
 									<img src="{{cordova_full_path}}images/billete.png">
-									<p data-realbalance="{{ formatCurrency me.balanceReal}}">${{ formatCurrency data.pool.entry_fee}} MXN</p>
+									<p class="affect" data-fee="{{ formatCurrency data.pool.entry_fee}}">${{ formatCurrency data.pool.entry_fee}} MXN</p>
 								</div><!-- descontaran dinero -->
 							{{/ if_eq }}
 							{{# if_eq data.pool.entry_currency 'pickcoin' }}
 								<div class="descontaran_coins">
 									<img src="{{cordova_full_path}}images/pickcoin.png">
-									<p data-pcbalance="{{ formatCurrency me.balancePc}}">{{ formatCurrency data.pool.entry_fee}}</p>
+									<p class="affect" data-fee="{{ formatCurrency data.pool.entry_fee}}">{{ formatCurrency data.pool.entry_fee}}</p>
 								</div><!-- descontaran coins -->
 							{{/ if_eq }}
 						</div><!-- descontaran -->
@@ -246,13 +241,13 @@
 							{{# if_eq data.pool.entry_currency 'real' }}
 								<div class="total_dinero">
 									<img src="{{cordova_full_path}}images/billete.png">
-									<p>${{ formatCurrency data.pool.real_entry_fee}} MXN + ${{ formatCurrency data.pool.commission_fee}} comisión</p>
+									<p class="affect" data-fee="{{ formatCurrency data.pool.real_entry_fee}}" data-commission="{{ formatCurrency data.pool.commission_fee}}">${{ formatCurrency data.pool.real_entry_fee}} MXN + ${{ formatCurrency data.pool.commission_fee}} comisión</p>
 								</div><!-- total dinero -->
 							{{/ if_eq }}
 							{{# if_eq data.pool.entry_currency 'pickcoin' }}
 								<div class="total_coins">
 									<img src="{{cordova_full_path}}images/pickcoin.png">
-									<p>{{ formatCurrency data.pool.real_entry_fee}} + {{ formatCurrency data.pool.commission_fee}} comisión</p>
+									<p  class="affect" data-fee="{{ formatCurrency data.pool.real_entry_fee}}" data-commission="{{ formatCurrency data.pool.commission_fee}}">{{ formatCurrency data.pool.real_entry_fee}} + {{ formatCurrency data.pool.commission_fee}} comisión</p>
 								</div><!-- total coins -->
 							{{/ if_eq }}
 						</div><!-- total -->

@@ -129,7 +129,7 @@
 				}
 			});
 			Handlebars.registerHelper('formatCurrency', function(value) {
-				value = (value/100).toFixed(2);
+				value = (value/100).toFixed();
 				return value.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
 			});
 			Handlebars.registerHelper('calcPercentage', function(value, total) {
@@ -771,7 +771,7 @@
 				});
 
 			if(typeof myFilters.sport !== 'undefined' && myFilters.sport !== 'all' ){
-				console.log(myPool[index]);
+				console.log(myPool[0]);
 				myPool.forEach( function(element, index){
 					if( element.sport.id === parseInt(myFilters.sport) )
 						newPool.push( myPool[index] );

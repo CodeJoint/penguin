@@ -1,8 +1,8 @@
 
 {{# if data.similar_entries}}
 	<form id="pickActionsForm" action="" method="POST">
-		<select id="select_copy_picks" class="unique" name="select_copy_picks styled-select gray">
-			<option value="">Copiar picks</option>
+		<select id="select_copy_picks" class="unique no_check styled-select gray semi-square" name="select_copy_picks styled-select gray">
+			<option value="">Copiar picks de otra postura</option>
 			{{# each data.similar_entries}}
 				<option value="{{id}}">{{pool.name_replaced}}{{# number}}<sup>({{.}})</sup>{{/ number}}</option>
 			{{/ each}}

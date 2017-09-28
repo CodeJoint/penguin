@@ -440,6 +440,11 @@ window.initializeEvents = function(){
 					}
 				});
 
+				$('.radio_group input').on('change', function(e){
+					console.log("moiwowjdo");
+					$('.instructions').text('Guarda tus picks al terminar');
+				});
+
 				$('.missing_info').each(function(){
 					$(this).attr('data-extra', entryId)
 							.removeClass('missing_info');
@@ -461,7 +466,22 @@ window.initializeEvents = function(){
 
 					$('#num_entries').on('change', function(){
 						// TO DO: Multiply entry fee according to selection
-						console.log($(this).val());
+						var mult = $(this).val();
+						$('#samePicksOption').hide();
+						if(mult>1)
+							$('#samePicksOption').show();
+						$('.affect').each(function(index, element){
+
+							if(!$(element).data('commission') && $(element).data('fee')){
+								var newFee =  parseInt($(element).data('fee'))*mult;
+								$(element).text('$'+newFee+' MXN');
+								return;
+							}
+							var newFee =  parseInt($(element).data('fee'))*mult;
+							var newCommission =  parseInt($(element).data('commission'))*mult;
+							$(element).text('$'+newFee+' MXN + $'+newCommission+' comisión');
+							return;
+						});
 					});
 				
 				/** Call Render quiniela games and picks selectors **/
@@ -516,6 +536,10 @@ window.initializeEvents = function(){
 						$(element).removeClass('selected');
 					});
 					$(e.target).parent().addClass('selected');
+				});
+				
+				$('.radio_group input').on('change', function(e){
+					$('.instructions').text('Guarda tus picks al terminar');
 				});
 
 				/**** Cancel registry ****/

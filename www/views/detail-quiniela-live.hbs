@@ -2,10 +2,7 @@
 	<div id="detailQuinielaRegistered" data-id="{{data.pool.id}}" data-entry="{{data.pool.entry_id}}" data-weekid="{{data.pool.week_id}}" class="content quiniela_single quiniela_registrada_single">
 		
 		<a class="link_wrapper">
-			<div class="quiniela {{# if data.pool.upcoming}}quiniela_open{{/ if}} 
-			{{# if data.pool.live}}quiniela_live{{/ if}} 
-			{{# if_eq data.pool.status 'live'}}quiniela_live{{/ if_eq}} 
-			{{# if data.pool.closed}}quiniela_closed{{/ if}} {{data.pool.sport.name}}
+			<div class="quiniela {{data.pool.sport.name}}
 			{{# if_eq data.pool.point_format "natural" }} natural {{/ if_eq }}  clearfix">
 				<div class="quiniela_header clearfix">
 					<div class="quiniela_iconos clearfix">
@@ -25,7 +22,7 @@
 				<div class="quiniela_content clearfix">
 					<div class="quiniela_info clearfix">
 						<span class="registros">REG: {{data.pool.entry_count}}</span>
-						<span class="cierre">{{^ if data.pool.closed}}CIERRE{{/ if}}{{# if data.pool.closed}}CERRÓ{{/ if}}: {{formatDate data.pool.deadline_tz 'lll'}}</span>
+						<span class="cierre">{{^ if data.pool.closed}}CIERRE{{/ if}}{{# if data.pool.closed}}CERRÓ{{/ if}}:  <br/><strong class="timer_active">{{formatDate data.pool.deadline_tz 'lll'}}</strong></span>
 						{{# data.pool.limited_capacity}}
 							<span class="limite">Limitado a {{data.pool.max_entries}} entradas</span>
 						{{/ data.pool.limited_capacity}}
@@ -38,7 +35,7 @@
 
 					</div><!-- quiniela_info -->
 					
-					<div class="quiniela_bolsa clearfix">
+					<div class="quiniela_aganar clearfix">
 						<span class="titulo">BOLSA</span>
 						<img src="{{cordova_full_path}}images/billete.png">
 						<span class="number">${{ formatCurrency data.pool.available}}</span>
@@ -151,6 +148,9 @@
 				{{/ each}}
 
 			</div><!-- dempates -->
+			<div class="botones clearfix">
+				<input id="savePicks" class="green_button" type="submit" value="Guardar picks">
+			</div>
 			<small class="info">Se tomarán los resultados únicamente de tiempo reglamentario. (No tiempos extras)</small>
 		</div>
 		

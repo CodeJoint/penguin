@@ -581,7 +581,10 @@ function requestHandlerAPI(){
 			if(!response.success)
 				return app.toast('Error: No se pudo registrar a la quiniela');
 
-			app.toast('¡Te has registrado a la quiniela! Elige tus picks');
+			app.toast('¡Te has registrado a la quiniela! Te estamos llevando al lobby');
+			// Save entry registry options to pass to the redirection
+			_cache.pool_id 	= response.pool_id;
+			_cache.entry_id = response.entry_id;
 			$('#registerNow').velocity('fadeOut');
 			$('.instructions').velocity('fadeIn');
 			$('#picksForm').find('.missing_entry').val(response.entryId);
@@ -604,11 +607,12 @@ function requestHandlerAPI(){
 		 * @param Object response
 		 */
 		this.render_edit_entry_success = function(response){
-			console.log(response.pool_id);
-			console.log(response.entry_id);
+			console.log(response);
+			console.log(_cache.pool_id);
+			console.log(_cache.entry_id);
 			if(!response.picks)
 				return app.toast('Ocurrió un error guardando tus picks, intenta nuevamente.');
-			app.toast('¡Se ha guardado tus picks! Te estamos dirigiendo a tu quiniela');
-			return app.fetch_detail('detail.html', response.pool_id, 'live', response.entry_id);
+			// app.toast('¡Se ha guardado tus picks! Te estamos dirigiendo a tu quiniela');
+			return app.fetch_detail('detail.html', _cache.pool_id, 'live', _cache.entry_id);
 		};
 	}

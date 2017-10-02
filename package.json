@@ -34,17 +34,17 @@
         "code-push": "^2.0.1-beta",
         "cordova-android": "^6.2.3",
         "cordova-browser": "^4.1.0",
-        "cordova-ios": "^4.5.0",
+        "cordova-ios": "^4.4.0",
         "cordova-plugin-browsersync": "^0.1.6",
         "cordova-plugin-code-push": "^1.9.7-beta",
-        "cordova-plugin-compat": "^1.1.0",
+        "cordova-plugin-compat": "^1.2.0",
         "cordova-plugin-console": "~1.0.5",
         "cordova-plugin-device": "^1.1.6",
         "cordova-plugin-dialogs": "^1.3.3",
         "cordova-plugin-facebook4": "^1.9.1",
         "cordova-plugin-file": "^4.3.3",
         "cordova-plugin-file-transfer": "^1.6.3",
-        "cordova-plugin-fullscreen": "^1.1.0",
+        "cordova-plugin-fullscreen": "^1.2.0",
         "cordova-plugin-inappbrowser": "~1.6.1",
         "cordova-plugin-ios-longpress-fix": "^1.1.0",
         "cordova-plugin-keyboard": "^1.1.5",
@@ -52,6 +52,6 @@
         "cordova-plugin-whitelist": "1",
         "cordova-plugin-x-toast": "~2.6.0",
         "cordova-plugin-zip": "^3.1.0",
-        "onesignal-cordova-plugin": "^2.1.2"
+        "onesignal-cordova-plugin": "^2.2.1"
     }
 }

@@ -1,4 +1,4 @@
-	<a class="link_wrapper hook" data-resource="{{# if closed}}detail-closed{{/ if}}{{# if_eq status 'live'}}detail-live{{/ if_eq}}{{# if upcoming}}{{# if first_entry}}detail-live{{/ if}}{{^ if first_entry}}detail{{/ if}}{{/ if}}" data-object="{{pool_id}}" data-extra="{{id}}" href="detail-quiniela.html?id={{pool_id}}&entry={{id}}">
+	<a class="link_wrapper hook" data-resource="detail-live" data-object="{{pool_id}}" data-extra="{{id}}" href="detail-quiniela.html?id={{pool_id}}&entry={{id}}">
 		<div class="quiniela {{# if_eq status 'upcoming'}}quiniela_open {{/ if_eq}} {{# if_eq status 'featured'}}featured {{/ if_eq}} {{# if_eq status 'live'}}quiniela_live {{/ if_eq}} {{# if_eq status 'closed'}}quiniela_closed {{/ if_eq}} 
 		{{sport.name}} {{point_format}} garantizado clearfix">
 			<div class="quiniela_header clearfix">

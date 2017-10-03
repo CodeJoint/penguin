@@ -31,7 +31,8 @@
 			window.catalogues 						= [];
 			/**** Initial filtering values ****/
 			window.filter_array 					= {};
-			window.filter_array 					= {sport: 'all', type: 'open', status: 'upcoming'};
+			window.filter_array 					= {sport: 'all', type: 'open', status: 'upcoming', entry: false};
+			window.initial_filter_array				= {sport: 'all', type: 'open', status: 'upcoming', entry: false};
 			window.catalogues.months 				= [ 'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre' ];
 			
 			/* IMPORTANT to set requests to be syncronous */
@@ -402,19 +403,21 @@
 			return app.switchView('lobby', app.data_temp, '#exoskeleton', url, 'quiniela-feed', true, true, true );
 		},
 		render_lobby_feed : function(){
+			
 			var cachedFeed = app.fetchCacheElement('lobby-feed');
 			if( cachedFeed.length && cachedFeed.timestamp )
-				return app.render_lobby_feed_callback(cachedFeed, true);
+				return app.render_lobby_feed_callback(cachedFeed, true, true);
 			return apiRH._ajaxRequest('GET', 'api/pools/available.json', null, 'json', true, app.render_lobby_feed_callback);
 		},
-		render_lobby_feed_callback : function( response, cached ){
+		render_lobby_feed_callback : function( response, cached, apply_filters ){
 
 			var cached 	 = (cached) ? cached : false;
+			var apply_filters 	 = (typeof apply_filters === 'undefined' || apply_filters === true) ? true : false;
 			var template = Handlebars.templates['lobby-feed'];
-			if(!template){
-				console.log("Template doesn't exist");
+			
+			if(!template)
 				return false;
-			}
+
 			app.stackCacheElement('lobby-feed', response, cached);
 			app.data_temp	= app.gatherEnvironment( response, "Lobby feed" );
 			app.data_temp.selected_lobby = true;
@@ -422,11 +425,11 @@
 			if(typeof cached === 'undefined' || !cached){
 				app.data_temp.data.pools_unfiltered = app.data_temp.data.pools;
 			}
-			console.log(app.data_temp);
 			$('#insertFeed').html( template(app.data_temp) )
 							.css({ "opacity": 0, "display": "block"})
 							.velocity({ opacity: 1 }, 0);
-			return setTimeout( function(){ initHooks(); initCountdownTimers();  app.hideLoader(); $('#filterComponent').velocity('fadeIn'); initFilterActions(); }, 100);
+
+			return setTimeout( function(){ initHooks(); app.hideLoader(); $('#filterComponent').show(); if(apply_filters) { app.apply_filters(); } initCountdownTimers(); }, 860);
 		},
 		render_myfeed_sidebar : function(){
 			return apiRH._ajaxRequest('GET', 'api/users/pools.json', null, 'json', true, app.render_myfeed_callback);
@@ -719,19 +722,20 @@
 				return false;
 			var pool = app.data_temp.data.pools;
 			filter_array[filter] = value;
-			return app.apply_filters();
+			app.apply_filters();
 		},
 		/*** Clears specific filter or all filters if parameter is not set ***/
 		clear_filters : function( filter ){
 			if(filter == 'all' || typeof filter == 'undefined')
-				return filter_array = [];
+				return filter_array = initial_filter_array;
 			return delete filter_array[filter];
 		},
 		apply_filters : function(){
-
+			
+			console.log("Apply filters");
 			/*** TODO Start with unfiltered feed from temporary memory, then apply filters ***/
 			var myFilters = window.filter_array;
-			console.log(myFilters);
+
 			/*** TODO Check temp data before assigning value ***/
 			var myPool 	= app.data_temp.data.pools_unfiltered;
 			var newPool	= [];
@@ -762,16 +766,18 @@
 						newPool.push( myPool[index] );
 				});
 			}
-			if(typeof myFilters.status !== 'undefined' )
+			if(typeof myFilters.status !== 'undefined' ){
+
 				myPool.forEach( function(element, index){
 
 					var lePool = newPool.filter(function(element){ return find.id === element.id; });
 					if( element.status === myFilters.status && !lePool.length )
 						newPool.push( myPool[index] );
 				});
+			}
 
 			if(typeof myFilters.sport !== 'undefined' && myFilters.sport !== 'all' ){
-				console.log(myPool[0]);
+
 				myPool.forEach( function(element, index){
 					if( element.sport.id === parseInt(myFilters.sport) )
 						newPool.push( myPool[index] );
@@ -779,8 +785,8 @@
 			}
 
 			if(typeof myFilters.type != 'undefined' ){
+
 				var type_compare = (myFilters.type === 'open') ? false : true;
-				console.log(myPool[0]);
 				myPool.forEach( function(element, index){
 					var lePool = newPool.filter(function(find){ return find.id === element.id; });
 					if( element.limited_capacity === type_compare && !lePool.length ){
@@ -789,10 +795,23 @@
 				});
 			}
 
-			newPool = newPool.filter(function(){return true;});
-			console.log(newPool.length);
+			if(typeof myFilters.entry != 'undefined' ){
+
+				myPool.forEach( function(element, index){
+					var lePool = newPool.filter(function(find){ return find.id === element.id; });
+					if( element.entries.length && !lePool.length ){
+						console.log(myPool[index]);
+						newPool.push( myPool[index] );
+					}
+				});
+			}
+
+			newPool = newPool.filter(function(){ return true; });
 			app.data_temp.data.pools = newPool;
-			return app.render_lobby_feed_callback(app.data_temp.data, true);
+			setTimeout(function(){
+				console.log(newPool.length);
+				app.render_lobby_feed_callback(app.data_temp.data, true, false);
+			}, 8690);
 		},
 		fetch_prize_distribution : function(gameId){
 			return apiRH._ajaxRequest('GET', 'pools/prize_distribution/'+gameId+'.json', null, 'json', true, function(response){ window._cache.prize_distribution = response; });

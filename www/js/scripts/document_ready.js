@@ -12,6 +12,7 @@ window.initializeEvents = function(){
 		$('[data-countdown]').each(function(index, element) {
 			var $this = $(element), finalDate = $(element).data('countdown');
 			var date = moment(finalDate).format('YYYY-MM-DD HH:mm:ss');
+			console.log(date);
 			if(date !== 'Invalid date')
 				$this.countdown(date, function(event) {
 					$this.html('<strong class="timer_active">CIERRE: '+event.strftime('%H:%M:%S')+'</strong>');
@@ -19,6 +20,7 @@ window.initializeEvents = function(){
 		});
 	};
 	window.initFilterActions = function(){
+		
 		console.log("init filter actions");
 		$('.header_filtros').unbind();
 		
@@ -50,10 +52,6 @@ window.initializeEvents = function(){
 		if(!$('#filterComponent:visible').length)
 			$('#filterComponent').velocity('fadeIn');
 		
-		// setTimeout(function(){
-		// 	console.log("apply_filters");
-		// 	app.apply_filters();
-		// }, 400);
 	};
 
 	jQuery(document).ready(function($) {

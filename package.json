@@ -5,8 +5,7 @@
     "cordova": {
         "platforms": [
             "android",
-            "browser",
-            "ios"
+            "browser"
         ],
         "plugins": {
             "cordova-plugin-whitelist": {},
@@ -34,7 +33,7 @@
         "code-push": "^2.0.1-beta",
         "cordova-android": "^6.2.3",
         "cordova-browser": "^4.1.0",
-        "cordova-ios": "^4.4.0",
+        "cordova-ios": "^4.5.1",
         "cordova-plugin-browsersync": "^0.1.6",
         "cordova-plugin-code-push": "^1.9.7-beta",
         "cordova-plugin-compat": "^1.2.0",

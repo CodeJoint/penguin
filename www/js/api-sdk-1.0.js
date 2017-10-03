@@ -300,7 +300,7 @@ function requestHandlerAPI(){
 
 		var deposit_card_callback = function(serviceResponse){
 
-			if(!serviceResponse.success || typeof serviceResponse.response.status !== 'completed' )
+			if(!serviceResponse.success || typeof serviceResponse.response.status === 'undefined' || serviceResponse.response.status !== 'completed' )
 				return app.toast("No se ha podido procesar tu pedido, por favor intenta nuevamente.");
 
 			return alert("¡Se han abonado $"+serviceResponse.amount+" a tu cuenta!", null, "Pickwin", "Jugar");

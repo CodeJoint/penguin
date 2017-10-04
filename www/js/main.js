@@ -431,6 +431,9 @@
 
 			return setTimeout( function(){ initHooks(); app.hideLoader(); $('#filterComponent').show(); if(apply_filters) { app.apply_filters(); } initCountdownTimers(); }, 860);
 		},
+		render_myfeed_archive : function(url){
+			return apiRH._ajaxRequest('GET', 'api/users/pools.json', null, 'json', true, app.render_myfeed_callback);
+		},
 		render_myfeed_sidebar : function(){
 			return apiRH._ajaxRequest('GET', 'api/users/pools.json', null, 'json', true, app.render_myfeed_callback);
 		},

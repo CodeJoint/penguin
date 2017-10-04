@@ -303,7 +303,7 @@ function requestHandlerAPI(){
 			if(!serviceResponse.success || typeof serviceResponse.response.status === 'undefined' || serviceResponse.response.status !== 'completed' )
 				return app.toast("No se ha podido procesar tu pedido, por favor intenta nuevamente.");
 
-			return alert("¡Se han abonado $"+serviceResponse.amount+" a tu cuenta!", null, "Pickwin", "Jugar");
+			return alert("¡Se han abonado $"+serviceResponse.amount+" a tu cuenta!", null, "Pickwin", "¡A Jugar!");
 		};
 
 		/*! 
@@ -312,7 +312,7 @@ function requestHandlerAPI(){
 		 * @see OpenPay
 		 */
 		this.depositStores = 	function(deposit_info){
-									app.toast("Estamos procesando tu pago...");
+									app.toast("Estamos generando tu código de pago...");
 									return apiRH._ajaxRequest('POST', 'api/users/depositConvenience.json', deposit_info, 'json', true, deposit_store_callback);
 								};
 
@@ -583,9 +583,8 @@ function requestHandlerAPI(){
 
 			app.toast('¡Te has registrado a la quiniela! Te estamos llevando al lobby');
 			// Save entry registry options to pass to the redirection
-			_cache.pool_id 	= response.pool_id;
-			console.log(response);
-			_cache.entry_id = response.entry_id;
+			_cache.pool_id 	= response.poolId;
+			_cache.entry_id = response.entryId;
 			$('#registerNow').velocity('fadeOut');
 			$('.instructions').velocity('fadeIn');
 			$('#picksForm').find('.missing_entry').val(response.entryId);

@@ -95,12 +95,8 @@ window.initializeEvents = function(){
 				if( resource == "privates-create" )
 					return app.render_create_private( resource_href );
 				if( resource == "my_lobby" ){
-					if($('#misQuinielas').length){
-						$('#misQuinielas').trigger('click');
-						return app.hideLoader();
-					}
-					/** check if sidebar is present or reroute otherwise **/
-					app.render_lobby( resource_href, false );
+					
+					app.render_myfeed_archive( resource_href );
 					setTimeout(function(){
 						$('#misQuinielas').trigger('click');
 					}, 1200);
@@ -346,7 +342,7 @@ window.initializeEvents = function(){
 					var openCloseSidebar = function(){
 						$('.menu li').removeClass('selected');
 						var left = positiveMargin ? "93%" : "0%";
-						$('.misquinielas').velocity( {
+						$('.misquinielas').velocity({
 														marginLeft: left
 													}, 
 													{

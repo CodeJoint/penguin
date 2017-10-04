@@ -555,6 +555,13 @@ window.initializeEvents = function(){
 					);
 				});
 
+				$('.tabs_quiniela a').on('click', function(e){
+					$(e.target).parent().siblings().each(function(index,element){
+						$(element).removeClass('selected');
+					});
+					$(e.target).parent().addClass('selected');
+				});
+
 				/** Call Render quiniela games and picks selectors **/
 				app.render_games(gameId);
 
@@ -626,14 +633,7 @@ window.initializeEvents = function(){
 						app.render_login();
 						return;
 					});
-
-					$('.tabs_profile a').on('click', function(e){
-						$(e.target).parent().siblings().each(function(index,element){
-							$(element).removeClass('selected');
-						});
-						$(e.target).parent().addClass('selected');
-					});
-
+					
 				/* Payment methods tab */
 				if($('#profileTabs').hasClass('methods')){
 					var card_id = null;
@@ -682,6 +682,14 @@ window.initializeEvents = function(){
 					});
 
 				} // END profileTabs (methods)
+
+				$('.tabs_profile a').on('click', function(e){
+					console.log("ofjoierjf");
+					$(e.target).parent().siblings().each(function(index,element){
+						$(element).removeClass('selected');
+					});
+					$(e.target).parent().addClass('selected');
+				});
 
 			} // END profileTabs scope
 		

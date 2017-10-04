@@ -465,7 +465,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#777777', end
 .tab_posiciones table tr th {font-size: 10px; font-weight: normal!important;}
 .tab_posiciones table th {border: none!important;}
 .tab_posiciones table td {border: none!important; padding: 5px 0;}
-.tab_posiciones table tr.player_info:nth-child(2n){background: #414042}
+.tab_posiciones table tr.player_info:nth-child(2n){background: #414042; }
+.tab_posiciones table tr.player_info .player{text-align: left;}
 .tab_posiciones .player img {margin-right: 5px;}
 .tab_posiciones .ganar img {width: 16px; margin-right: 5px;}
 

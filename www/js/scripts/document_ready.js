@@ -14,7 +14,7 @@ window.initializeEvents = function(){
 			var $this = $(element);
 			console.log($this);
 			var finalDate = $(element).data('countdown');
-			var date = moment(finalDate).format('YYYY-MM-DD HH:mm:ss');
+			var date = moment(finalDate).format('MM-dd-yyyy HH:mm:ss');
 			console.log(date);
 			if(date !== 'Invalid date')
 				$this.countdown(date, function(event) {
@@ -452,13 +452,6 @@ window.initializeEvents = function(){
 							.removeClass('missing_info');
 				});
 
-				$('.tabs_quiniela a').on('click', function(e){
-					$(e.target).parent().siblings().each(function(index,element){
-						$(element).removeClass('selected');
-					});
-					$(e.target).parent().addClass('selected');
-				});
-
 				/**** Register modal ****/
 				$('#reg_into_game').on('click', function(e){
 					$('#registerNow').velocity('fadeIn');
@@ -501,6 +494,13 @@ window.initializeEvents = function(){
 						app.render_similar_picks(entryId);
 					}
 
+				$('.tabs_quiniela a').on('click', function(e){
+					$(e.target).parent().siblings().each(function(index,element){
+						$(element).removeClass('selected');
+					});
+					$(e.target).parent().addClass('selected');
+				});
+
 				setTimeout( function(){
 					$('#filterComponent').hide();
 					if(entryId)
@@ -532,14 +532,7 @@ window.initializeEvents = function(){
 
 				$('.menu li').removeClass('selected');
 				$('#filterComponent').hide();
-
-				$('.tabs_quiniela a').on('click', function(e){
-					$(e.target).parent().siblings().each(function(index,element){
-						$(element).removeClass('selected');
-					});
-					$(e.target).parent().addClass('selected');
-				});
-				
+	
 				$('.radio_group input').on('change', function(e){
 					$('.instructions').text('Guarda tus picks al terminar');
 				});
@@ -553,13 +546,6 @@ window.initializeEvents = function(){
 						'Cancelar registro',
 						['Si','No']
 					);
-				});
-
-				$('.tabs_quiniela a').on('click', function(e){
-					$(e.target).parent().siblings().each(function(index,element){
-						$(element).removeClass('selected');
-					});
-					$(e.target).parent().addClass('selected');
 				});
 
 				/** Call Render quiniela games and picks selectors **/
@@ -590,6 +576,13 @@ window.initializeEvents = function(){
 				} else{
 					app.render_similar_picks(entryId);
 				}
+
+				$('.tabs_quiniela a').on('click', function(e){
+					$(e.target).parent().siblings().each(function(index,element){
+						$(element).removeClass('selected');
+					});
+					$(e.target).parent().addClass('selected');
+				});
 
 				return initCountdownTimers();
 

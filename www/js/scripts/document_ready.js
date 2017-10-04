@@ -13,8 +13,8 @@ window.initializeEvents = function(){
 		$('[data-countdown]').each(function(index, element) {
 			var $this = $(element);
 			console.log($this);
-			var finalDate = $(element).data('countdown');
-			var date = moment(finalDate).format('MM-dd-yyyy HH:mm:ss');
+			var finalDate = $(element).attr('data-countdown');
+			var date = moment(finalDate).format('YYYY-MM-DD HH:mm:ss');
 			console.log(date);
 			if(date !== 'Invalid date')
 				$this.countdown(date, function(event) {

@@ -173,7 +173,7 @@ body {width: 100%; margin: 0 auto; font-weight: 300; font-family: 'Lato'!importa
 
 /*** LOBBY ***/
 
-.lobby { background-image: url(../images/background.png); background-position: center top; background-attachment: fixed; background-size: auto; background-repeat: no-repeat; }
+/*.lobby { background-image: url(../images/background.png); background-position: center top; background-attachment: fixed; background-size: auto; background-repeat: no-repeat; }*/
 .quinielas {padding-top: 98px; padding-bottom: 70px;}
 
 /*** QUINIELAS ***/
@@ -714,7 +714,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#777777', end
 		animation: spin 1s infinite linear;
 	}
 
-	.container{ font-weight: 500; }
+	.container{ font-weight: 500; background-image: url(../images/background.png); background-position: center top; background-attachment: fixed; background-size: auto; background-repeat: no-repeat; }
 	.hidden{ display: none!important; }
 	.header .header_right .header_user_info .user_info .avatar_container{ width: 24px; height: 24px; -webkit-border-radius: 50%; -moz-border-radius: 50%; border-radius: 50%; overflow: hidden; float: left; margin-right: 7px;}
 	.header .header_right .header_user_info .user_info img { width: 100%; height: auto; }

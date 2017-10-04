@@ -9,8 +9,11 @@
 window.initializeEvents = function(){
 
 	window.initCountdownTimers = function(){
+		console.log("init countdown clockers");
 		$('[data-countdown]').each(function(index, element) {
-			var $this = $(element), finalDate = $(element).data('countdown');
+			var $this = $(element);
+			console.log($this);
+			var finalDate = $(element).data('countdown');
 			var date = moment(finalDate).format('YYYY-MM-DD HH:mm:ss');
 			console.log(date);
 			if(date !== 'Invalid date')
@@ -338,39 +341,44 @@ window.initializeEvents = function(){
 					// Call render sidebar feed
 					app.render_myfeed_sidebar();
 
-					var positiveMargin = false;
-					$('.misquinielas').on('click', function(){
-
+					// Manage sidebar animations
+					window.positiveMargin = false;
+					var openCloseSidebar = function(){
 						$('.menu li').removeClass('selected');
+						var left = positiveMargin ? "93%" : "0%";
+						$('.misquinielas').velocity( {
+														marginLeft: left
+													}, 
+													{
+														duration: 420,
+														easing: 'easeInOutQuint',
+														complete: function() { }
+													});
 						if (!positiveMargin) {
-							var left = "0%";
-							var padd = "5%";
+							
 							positiveMargin = true;
 							$('.menu .menu_quinielas').addClass('selected');
-							setTimeout(function(){
-								$('.misquinielas').addClass('open');
-							}, 200);
-							$('#insertFeed').addClass('noscroll');
+							$('.misquinielas').addClass('open');
+							$('#insertFeed').addClass('noscroll semitransparent');
+						
 						} else {
-							var left = "97%";
-							var padd = "1%";
+							
 							positiveMargin = false;
+							$('#insertFeed').removeClass('noscroll semitransparent');
 							$('.menu .menu_quinielas').removeClass('selected');
 							$('.menu .menu_lobby').addClass('selected');
 							$('.misquinielas').removeClass('open');
-							$('#insertFeed').removeClass('noscroll');
+						
 						}
-						$('.misquinielas').velocity( {
-														marginLeft: left,
-														paddingLeft: padd,
-													}, 
-													{
-														duration: 500,
-														complete: function() { }
-													});
+					};
+
+					$('.misquinielas').swipe({
+						swipeLeft: openCloseSidebar,
+						swipeRight: openCloseSidebar
 					});
 
 					initHooks();
+
 				} // END misQuinielas scope
 
 				if($('#deporte_soccer').length){

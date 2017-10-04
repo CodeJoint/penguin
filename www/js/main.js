@@ -882,12 +882,13 @@
 				}, 600);
 
 			return setTimeout(function(){
+					
 					$(window).resize();
 					if(window.firstTime)
 						window.firstTime = false;				
 					if(initEvents || typeof initEvents == 'undefined') 
 						initializeEvents();
-					console.log("About to dispatch "+newTemplate);
+
 				}, 600);
 		},
 		appendView: function( newTemplate, data, targetSelector ){

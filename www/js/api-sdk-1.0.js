@@ -584,6 +584,7 @@ function requestHandlerAPI(){
 			app.toast('¡Te has registrado a la quiniela! Te estamos llevando al lobby');
 			// Save entry registry options to pass to the redirection
 			_cache.pool_id 	= response.pool_id;
+			console.log(response);
 			_cache.entry_id = response.entry_id;
 			$('#registerNow').velocity('fadeOut');
 			$('.instructions').velocity('fadeIn');

@@ -10,17 +10,17 @@ window.initializeEvents = function(){
 
 	window.initCountdownTimers = function(){
 		console.log("init countdown clockers");
-		$('[data-countdown]').each(function(index, element) {
-			var $this = $(element);
-			console.log($this);
-			var finalDate = $(element).attr('data-countdown');
-			var date = moment(finalDate).format('YYYY-MM-DD HH:mm:ss');
-			console.log(date);
-			if(date !== 'Invalid date')
-				$this.countdown(date, function(event) {
-					$this.html('<strong class="timer_active">CIERRE: '+event.strftime('%H:%M:%S')+'</strong>');
-				});
-		});
+		// $('[data-countdown]').each(function(index, element) {
+		// 	var $this = $(element);
+		// 	console.log($this);
+		// 	var finalDate = $(element).attr('data-countdown');
+		// 	var date = moment(finalDate).format('YYYY-MM-DD HH:mm:ss');
+		// 	console.log(date);
+		// 	if(date !== 'Invalid date')
+		// 		$this.countdown(date, function(event) {
+		// 			$this.html('<strong class="timer_active">CIERRE: '+event.strftime('%H:%M:%S')+'</strong>');
+		// 		});
+		// });
 	};
 	window.initFilterActions = function(){
 		

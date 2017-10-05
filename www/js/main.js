@@ -141,9 +141,11 @@
 				return value.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
 			});
 			Handlebars.registerHelper('formatDate', function(value, format) {
-				var date 	  = Date.parse(value);
-				var my_format = (typeof format === 'undefined' || !format || format == '') ? 'lll' : format;
+
 				moment.locale('es');
+				var my_format = (typeof format === 'undefined' || !format || format == '') ? 'lll' : format;
+				var arr = value.split(/[- : T]/),
+    				date = new Date(arr[0], arr[1]-1, arr[2], arr[3], arr[4], arr[5]);
 				return moment(date).format(my_format);
 			});
 			Handlebars.registerHelper('unixTime', function(value) {

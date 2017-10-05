@@ -144,8 +144,8 @@
 
 				moment.locale('es');
 				var my_format = (typeof format === 'undefined' || !format || format == '') ? 'lll' : format;
-				var arr = value.split(/[- : T]/),
-    				date = new Date(arr[0], arr[1]-1, arr[2], arr[3], arr[4], arr[5]);
+				var arr = value.split(/[- : T]/);
+    			var	date = new Date(arr[0], arr[1]-1, arr[2], arr[3], arr[4]);
 				return moment(date).format(my_format);
 			});
 			Handlebars.registerHelper('unixTime', function(value) {

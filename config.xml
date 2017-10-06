@@ -1,29 +1,28 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="net.pickwin.app" version="1.1.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Pickwin</name>
+    <description>
+		PickWin mobile app
+	</description>
+    <author email="john@tallerdecodigo.com" href="http://tallerdecodigo.com">
+		John Falcon for Pickwin
+	</author>
+    <content src="index.html" />
+    <feature name="StatusBar">
+        <param name="ios-package" onload="true" value="CDVStatusBar" />
+    </feature>
+    <preference name="AndroidLaunchMode" value="singleInstance" />
+    <preference name="AutoHideSplashScreen" value="true" />
+    <preference name="SplashScreenDelay" value="2000" />
     <preference name="FullScreen" value="true" />
     <preference name="SetFullScreen" value="true" />
+    <preference name="StatusBarOverlaysWebView" value="blackopaque" />
+    <preference name="StatusBarStyle" value="lightcontent" />
+    <preference name="StatusBarBackgroundColor" value="#000000" />
     <preference name="Orientation" value="portrait" />
-    <preference name="AndroidLaunchMode" value="singleInstance" />
     <preference name="DisallowOverscroll" value="true" />
-    <preference name="StatusBarOverlaysWebView" value="true" />
     <preference name="KeepRunning" value="true" />
-    <description>
-        PickWin mobile app
-    </description>
-    <author email="john@tallerdecodigo.com" href="http://tallerdecodigo.com">
-        John Falcon for Taller de Código
-    </author>
-    <content src="index.html" />
     <access origin="*" />
-    <allow-intent href="http://*/*" />
-    <allow-intent href="*localhost:8001*" />
-    <allow-intent href="https://facebook.com/connect/*" />
-    <allow-intent href="https://*/*" />
-    <allow-intent href="tel:*" />
-    <allow-intent href="sms:*" />
-    <allow-intent href="mailto:*" />
-    <allow-intent href="geo:*" />
     <access origin="https://*.google.com" />
     <access origin="https://*.googleapis.com" />
     <access origin="https://*.gstatic.com" />
@@ -32,10 +31,16 @@
     <access origin="https://pickwin.net/*" />
     <access origin="http://pickwin.astrata.mx/*" />
     <access origin="*://*.googleapis.com/*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="*localhost:8001*" />
+    <allow-intent href="https://facebook.com/connect/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
     <allow-navigation href="https://pickwin.net/*" />
     <allow-navigation href="*://*.googleapis.com/*" />
-    <preference name="AutoHideSplashScreen" value="true" />
-    <preference name="SplashScreenDelay" value="2000" />
     <platform name="android">
         <allow-intent href="market:*" />
         <icon density="ldpi" src="res/icons/android/icon-36-ldpi.png" />
@@ -84,6 +89,7 @@
     </platform>
     <engine name="android" spec="^6.2.3" />
     <engine name="browser" spec="^4.1.0" />
+    <engine name="ios" spec="^4.4.0" />
     <plugin name="cordova-plugin-browsersync" spec="^0.1.6" />
     <plugin name="cordova-plugin-code-push" spec="^1.9.7-beta" />
     <plugin name="cordova-plugin-console" spec="~1.0.5" />
@@ -100,6 +106,7 @@
     <plugin name="cordova-plugin-ios-longpress-fix" spec="^1.1.0" />
     <plugin name="cordova-plugin-keyboard" spec="^1.1.5" />
     <plugin name="cordova-plugin-splashscreen" spec="~4.0.1" />
+    <plugin name="cordova-plugin-statusbar" spec="^2.2.3" />
     <plugin name="cordova-plugin-whitelist" spec="1" />
     <plugin name="cordova-plugin-x-toast" spec="~2.6.0" />
     <plugin name="onesignal-cordova-plugin" spec="^2.2.1" />

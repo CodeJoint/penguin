@@ -146,7 +146,8 @@
 				var my_format = (typeof format === 'undefined' || !format || format == '') ? 'lll' : format;
 				var arr = value.split(/[- : T]/);
     			var	date = new Date(arr[0], arr[1]-1, arr[2], arr[3], arr[4]);
-				return moment(date).format(my_format);
+				// return moment(date.toLocaleString()).format(my_format);
+				return moment(date.toString()).format(my_format);
 			});
 			Handlebars.registerHelper('unixTime', function(value) {
 				moment.locale('es');
@@ -191,9 +192,9 @@
 			});
 		},
 		initCustomEvents: function() {
+
 			app.events.has_exo = document.createEvent('Event');
 			app.events.has_exo.initEvent('has_exo', true, true);
-
 		},
 		bindEvents: function() {
 			document.addEventListener('deviceready', app.onDeviceReady, false);
@@ -843,7 +844,7 @@
 			$(targetSelector).velocity('fadeIn', function(){
 
 				if(targetClass) 
-					$(targetSelector).attr('class','view').addClass(targetClass);
+					$(targetSelector).addClass(targetClass);
 
 				if(!leNiceTransition){
 

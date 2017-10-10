@@ -372,7 +372,6 @@ window.initializeEvents = function(){
 						swipeRight: openCloseSidebar
 					});
 
-					initHooks();
 
 				} // END misQuinielas scope
 
@@ -383,6 +382,13 @@ window.initializeEvents = function(){
 						$('#deporte_soccer').hide();
 					}, 320);
 				} // END deporte_soccer
+				
+				initFilterActions();
+				setTimeout(function(){
+
+					app.apply_filters();
+
+				}, 2220);	
 
 			} // END lobbyContainer scope
 		

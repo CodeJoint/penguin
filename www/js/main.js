@@ -32,7 +32,7 @@
 			/**** Initial filtering values ****/
 			window.filter_array 					= {};
 			window.filter_array 					= {sport: 'all', type: 'open', status: 'upcoming', entry: false};
-			window.initial_filter_array				= {sport: 'all', type: 'open', status: 'upcoming', entry: false};
+			window.initial_filter_array				= filter_array;
 			window.catalogues.months 				= [ 'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre' ];
 			
 			/* IMPORTANT to set requests to be syncronous */
@@ -407,9 +407,16 @@
 		},
 		render_lobby_feed : function(){
 			
-			var cachedFeed = app.fetchCacheElement('lobby-feed');
-			if( cachedFeed.length && cachedFeed.timestamp )
-				return app.render_lobby_feed_callback(cachedFeed, true, true);
+			var unformattedJSON = app.fetchCacheElement('lobby-feed');
+			if(unformattedJSON & unformattedJSON !== ''){
+				
+				var cachedFeed = JSON.parse( app.fetchCacheElement('lobby-feed') );
+				console.log(cachedFeed);
+				// if( cachedFeed && cachedFeed.data.timestamp ){
+				// 	console.log("valid");
+				// 	return app.render_lobby_feed_callback(cachedFeed.data.data, true, true);
+				// }
+			}
 			return apiRH._ajaxRequest('GET', 'api/pools/available.json', null, 'json', true, app.render_lobby_feed_callback);
 		},
 		render_lobby_feed_callback : function( response, cached, apply_filters ){
@@ -425,6 +432,7 @@
 			app.data_temp	= app.gatherEnvironment( response, "Lobby feed" );
 			app.data_temp.selected_lobby = true;
 			app.data_temp.data.pools 	 = app.sort_pool();
+
 			if(typeof cached === 'undefined' || !cached){
 				app.data_temp.data.pools_unfiltered = app.data_temp.data.pools;
 			}
@@ -432,7 +440,7 @@
 							.css({ "opacity": 0, "display": "block"})
 							.velocity({ opacity: 1 }, 0);
 
-			return setTimeout( function(){ initHooks(); app.hideLoader(); $('#filterComponent').show(); if(apply_filters) { app.apply_filters(); } initCountdownTimers(); }, 860);
+			return setTimeout( function(){ $('#filterComponent').show(); app.hideLoader(); initCountdownTimers(); initHooks(); }, 860);
 		},
 		render_myfeed_archive : function(url){
 			return apiRH._ajaxRequest('GET', 'api/users/pools.json', null, 'json', true, app.render_myfeed_callback);
@@ -690,19 +698,6 @@
 							}, 120);
 			app.hideLoader();
 		},
-		sort_pool : function( filter, value ){
-
-			if(!app.data_temp.data.pools)
-				return false;
-			var pool = app.data_temp.data.pools;
-			if(filter == 'chronological' || typeof filter == 'undefined')
-				pool.sort(
-					firstBy( function (v) { return v.closed; } )
-						.thenBy( function (v) { return !v.featured; } )
-						.thenBy('deadline_tz')
-				);
-			return pool;
-		},
 		render_filter_tournaments : function( ){
 
 			return apiRH._ajaxRequest('GET', 'api/sports/index.json', null, 'json', true, app.filter_tournaments_callback);
@@ -721,6 +716,18 @@
 			app.appendView('filter-tournaments', obj_temp.futbol, '#deporte_soccer');
 			app.appendView('filter-tournaments', obj_temp.baseball, '#deporte_baseball');
 			$('#deporte_baseball, #deporte_soccer').hide();
+		},
+		sort_pool : function( ){
+
+			if(!app.data_temp.data.pools)
+				return false;
+			var pool = app.data_temp.data.pools;
+			pool.sort(
+				firstBy( function (v) { return v.closed; } )
+					.thenBy( function (v) { return !v.featured; } )
+					.thenBy('deadline_tz')
+			);
+			return pool;
 		},
 		stack_filter : function( filter, value ){
 			/** Filters are stored in a global variable **/
@@ -741,83 +748,106 @@
 			console.log("Apply filters");
 			/*** TODO Start with unfiltered feed from temporary memory, then apply filters ***/
 			var myFilters = window.filter_array;
+			console.log(myFilters);
 
 			/*** TODO Check temp data before assigning value ***/
 			var myPool 	= app.data_temp.data.pools_unfiltered;
 			var newPool	= [];
 			
-			if(typeof myFilters.real_money !== 'undefined' && myFilters.real_money !== 'all' ){
-				
-				/*** min: 0-50, med: 51-250, max: 251-10000 ***/
-				var min_value = (myFilters.real_money === 'min') ?  0 	: 251;
-					min_value = (myFilters.real_money === 'med') ?  51 	: min_value;
-				var max_value = (myFilters.real_money === 'min') ?  50 	: 10000;
-					max_value = (myFilters.real_money === 'med') ? 250	: max_value;
+			if(typeof myFilters.sport !== 'undefined' && myFilters.sport !== 'all' ){
+
 				myPool.forEach( function(element, index){
-					var entry = element.entry_fee/100;
-					if( entry >= min_value && entry <= max_value )
+
+					var foundInFinalPool = newPool.filter(function(element){ return find.id === element.id; });
+					// Add matching elements to final array
+					if( element.sport.id === parseInt(myFilters.sport) && !foundInFinalPool.length  )
 						newPool.push( myPool[index] );
+					// Remove not matching from final array
+					if( element.sport.id !== parseInt(myFilters.sport) && foundInFinalPool.length )
+						delete(newPool[index]);
 				});
 			}
-			if(typeof myFilters.fake_money !== 'undefined' && myFilters.fake_money !== 'all' ){
+
+			
+
+			// if(typeof myFilters.real_money !== 'undefined' && myFilters.real_money !== 'all' ){
 				
-				/*** min: 0-50, med: 51-250, max: 251-10000 ***/
-				var min_value = (myFilters.real_money === 'min') ?  0 	: 251;
-					min_value = (myFilters.real_money === 'med') ?  51 	: min_value;
-				var max_value = (myFilters.real_money === 'min') ?  50 	: 10000;
-					max_value = (myFilters.real_money === 'med') ? 250	: max_value;
-				myPool.forEach( function(element, index){
-					var entry = element.entry_fee/100;
-					if( entry >= min_value && entry <= max_value )
-						newPool.push( myPool[index] );
-				});
-			}
+			// 	/*** min: 0-50, med: 51-250, max: 251-10000 ***/
+			// 	var min_value = (myFilters.real_money === 'min') ?  0 	: 251;
+			// 		min_value = (myFilters.real_money === 'med') ?  51 	: min_value;
+			// 	var max_value = (myFilters.real_money === 'min') ?  50 	: 10000;
+			// 		max_value = (myFilters.real_money === 'med') ? 250	: max_value;
+			// 	myPool.forEach( function(element, index){
+			// 		var entry = element.entry_fee/100;
+			// 		if( entry >= min_value && entry <= max_value )
+			// 			newPool.push( myPool[index] );
+			// 	});
+			// }
+			// if(typeof myFilters.fake_money !== 'undefined' && myFilters.fake_money !== 'all' ){
+				
+			// 	/*** min: 0-50, med: 51-250, max: 251-10000 ***/
+			// 	var min_value = (myFilters.real_money === 'min') ?  0 	: 251;
+			// 		min_value = (myFilters.real_money === 'med') ?  51 	: min_value;
+			// 	var max_value = (myFilters.real_money === 'min') ?  50 	: 10000;
+			// 		max_value = (myFilters.real_money === 'med') ? 250	: max_value;
+			// 	myPool.forEach( function(element, index){
+			// 		var entry = element.entry_fee/100;
+			// 		if( entry >= min_value && entry <= max_value )
+			// 			newPool.push( myPool[index] );
+			// 	});
+			// }
+			
+
+			// if(typeof myFilters.type !== 'undefined' ){
+
+			// 	var type_compare = (myFilters.type === 'open') ? false : true;
+			// 	myPool.forEach( function(element, index){
+					
+			// 		var foundInFinalPool = newPool.filter(function(find){ return find.id === element.id; });
+			// 		// Add matching elements to final array
+			// 		if( element.limited_capacity == type_compare && !foundInFinalPool.length )
+			// 			newPool.push( myPool[index] );
+			// 		// Remove not matching from final array
+			// 		if( element.limited_capacity != type_compare && foundInFinalPool.length )
+			// 			delete(newPool[index]);
+
+			// 	});
+			// }
+
 			if(typeof myFilters.status !== 'undefined' ){
 
 				myPool.forEach( function(element, index){
 
-					var lePool = newPool.filter(function(element){ return find.id === element.id; });
-					if( element.status === myFilters.status && !lePool.length )
+					var foundInFinalPool = newPool.filter(function(element){ return find.id === element.id; });
+					// Add matching elements to final array
+					if( element.status === myFilters.status && !foundInFinalPool.length )
 						newPool.push( myPool[index] );
+					// Remove not matching from final array
+					if( element.status !== myFilters.status && foundInFinalPool.length )
+						delete(newPool[index]);
 				});
 			}
 
-			if(typeof myFilters.sport !== 'undefined' && myFilters.sport !== 'all' ){
+			if( typeof myFilters.entry !== 'undefined' ){
 
-				myPool.forEach( function(element, index){
-					if( element.sport.id === parseInt(myFilters.sport) )
-						newPool.push( myPool[index] );
-				});
-			}
+				myPool.forEach( function( element, index ){
 
-			if(typeof myFilters.type != 'undefined' ){
-
-				var type_compare = (myFilters.type === 'open') ? false : true;
-				myPool.forEach( function(element, index){
-					var lePool = newPool.filter(function(find){ return find.id === element.id; });
-					if( element.limited_capacity === type_compare && !lePool.length ){
-						newPool.push( myPool[index] );
-					}
-				});
-			}
-
-			if(typeof myFilters.entry != 'undefined' ){
-
-				myPool.forEach( function(element, index){
-					var lePool = newPool.filter(function(find){ return find.id === element.id; });
-					if( element.entries.length && !lePool.length ){
-						console.log(myPool[index]);
-						newPool.push( myPool[index] );
-					}
+					var foundInFinalPool = newPool.filter(function(find){ return find.id === element.id; });
+					if(foundInFinalPool.length)
+						console.log(foundInFinalPool);
+					// Remove not matching from final array
+					// console.log( typeof element.first_entry !== 'undefined');
+					// if( typeof element.first_entry !== 'undefined' && foundInFinalPool.length ){
+					// 	console.log(newPool[index]);
+					// 	delete(newPool[index]);
+					// }
 				});
 			}
 
 			newPool = newPool.filter(function(){ return true; });
+			// console.log(newPool);
 			app.data_temp.data.pools = newPool;
-			setTimeout(function(){
-				console.log(newPool.length);
-				app.render_lobby_feed_callback(app.data_temp.data, true, false);
-			}, 8690);
+			app.render_lobby_feed_callback(app.data_temp.data, true, false);
 		},
 		fetch_prize_distribution : function(gameId){
 			return apiRH._ajaxRequest('GET', 'pools/prize_distribution/'+gameId+'.json', null, 'json', true, function(response){ window._cache.prize_distribution = response; });

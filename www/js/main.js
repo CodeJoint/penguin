@@ -431,7 +431,7 @@
 			app.stackCacheElement('lobby-feed', response, cached);
 			app.data_temp	= app.gatherEnvironment( response, "Lobby feed" );
 			app.data_temp.selected_lobby = true;
-			app.data_temp.data.pools 	 = app.sort_pool();
+			app.data_temp.data.pools 	 = app.pre_sort_pool();
 
 			if(typeof cached === 'undefined' || !cached){
 				app.data_temp.data.pools_unfiltered = app.data_temp.data.pools;
@@ -546,7 +546,7 @@
 				var $over  	= $('.prop[data-prop='+element.prop_id+']').find('.over_sel');
 				var $yes 	= $('.prop[data-prop='+element.prop_id+']').find('.yes_sel');
 				var $no  	= $('.prop[data-prop='+element.prop_id+']').find('.no_sel');
-				console.log(element);
+
 				if(element.pick === 'under'){
 					$under.trigger('click');
 					$yes.trigger('click');
@@ -717,7 +717,15 @@
 			app.appendView('filter-tournaments', obj_temp.baseball, '#deporte_baseball');
 			$('#deporte_baseball, #deporte_soccer').hide();
 		},
-		sort_pool : function( ){
+		update_bank : function( ){
+
+			return apiRH._ajaxRequest( 'GET', 'api/users/me.json', null, 'json', true, app.sync_header_callback);
+		},
+		sync_header_callback : function( response ){
+
+			console.log(response);
+		},
+		pre_sort_pool : function( ){
 
 			if(!app.data_temp.data.pools)
 				return false;
@@ -725,6 +733,7 @@
 			pool.sort(
 				firstBy( function (v) { return v.closed; } )
 					.thenBy( function (v) { return !v.featured; } )
+					.thenBy('name_replaced')
 					.thenBy('deadline_tz')
 			);
 			return pool;
@@ -758,73 +767,87 @@
 
 				myPool.forEach( function(element, index){
 
-					var foundInFinalPool = newPool.filter(function(element){ return find.id === element.id; });
+					var foundInFinalPool = newPool.find(function(_find){ return _find.id === element.id; });
 					// Add matching elements to final array
-					if( element.sport.id === parseInt(myFilters.sport) && !foundInFinalPool.length  )
+					if( element.sport.id === parseInt(myFilters.sport) && typeof foundInFinalPool === 'undefined' ){
 						newPool.push( myPool[index] );
+					}
 					// Remove not matching from final array
-					if( element.sport.id !== parseInt(myFilters.sport) && foundInFinalPool.length )
+					else if(!element.featured){
 						delete(newPool[index]);
+					}
 				});
 			}
 
 			
 
-			// if(typeof myFilters.real_money !== 'undefined' && myFilters.real_money !== 'all' ){
+			if(typeof myFilters.real_money !== 'undefined' && myFilters.real_money !== 'all' ){
 				
-			// 	/*** min: 0-50, med: 51-250, max: 251-10000 ***/
-			// 	var min_value = (myFilters.real_money === 'min') ?  0 	: 251;
-			// 		min_value = (myFilters.real_money === 'med') ?  51 	: min_value;
-			// 	var max_value = (myFilters.real_money === 'min') ?  50 	: 10000;
-			// 		max_value = (myFilters.real_money === 'med') ? 250	: max_value;
-			// 	myPool.forEach( function(element, index){
-			// 		var entry = element.entry_fee/100;
-			// 		if( entry >= min_value && entry <= max_value )
-			// 			newPool.push( myPool[index] );
-			// 	});
-			// }
-			// if(typeof myFilters.fake_money !== 'undefined' && myFilters.fake_money !== 'all' ){
+				/*** min: 0-50, med: 51-250, max: 251-10000 ***/
+				var min_value = (myFilters.real_money === 'min') ?  0 	: 251;
+					min_value = (myFilters.real_money === 'med') ?  51 	: min_value;
+				var max_value = (myFilters.real_money === 'min') ?  50 	: 10000;
+					max_value = (myFilters.real_money === 'med') ? 250	: max_value;
+				myPool.forEach( function(element, index){
+					var entry = element.entry_fee/100;
+					var foundInFinalPool = newPool.find(function(_find){ return typeof _find !== 'undefined' && _find.id === element.id; });
+					if( (entry >= min_value && entry <= max_value) &&  typeof foundInFinalPool === 'undefined' ){
+						newPool.push( myPool[index] );
+					}else{
+						delete(newPool[index]);
+					}
+				});
+			}
+			if(typeof myFilters.fake_money !== 'undefined' && myFilters.fake_money !== 'all' ){
 				
-			// 	/*** min: 0-50, med: 51-250, max: 251-10000 ***/
-			// 	var min_value = (myFilters.real_money === 'min') ?  0 	: 251;
-			// 		min_value = (myFilters.real_money === 'med') ?  51 	: min_value;
-			// 	var max_value = (myFilters.real_money === 'min') ?  50 	: 10000;
-			// 		max_value = (myFilters.real_money === 'med') ? 250	: max_value;
-			// 	myPool.forEach( function(element, index){
-			// 		var entry = element.entry_fee/100;
-			// 		if( entry >= min_value && entry <= max_value )
-			// 			newPool.push( myPool[index] );
-			// 	});
-			// }
+				/*** min: 0-50, med: 51-250, max: 251-10000 ***/
+				var min_value = (myFilters.real_money === 'min') ?  0 	: 251;
+					min_value = (myFilters.real_money === 'med') ?  51 	: min_value;
+				var max_value = (myFilters.real_money === 'min') ?  50 	: 10000;
+					max_value = (myFilters.real_money === 'med') ? 250	: max_value;
+				myPool.forEach( function(element, index){
+					var entry = element.entry_fee/100;
+					var foundInFinalPool = newPool.find(function(_find){ return typeof _find !== 'undefined' && _find.id === element.id; });
+					if( (entry >= min_value && entry <= max_value) && typeof foundInFinalPool === 'undefined' ){
+						newPool.push( myPool[index] );
+					}else{
+						delete(newPool[index]);
+					}
+				});
+			}
 			
 
-			// if(typeof myFilters.type !== 'undefined' ){
+			if(typeof myFilters.type !== 'undefined' ){
 
-			// 	var type_compare = (myFilters.type === 'open') ? false : true;
-			// 	myPool.forEach( function(element, index){
+				var type_compare = (myFilters.type === 'open') ? false : true;
+				myPool.forEach( function(element, index){
 					
-			// 		var foundInFinalPool = newPool.filter(function(find){ return find.id === element.id; });
-			// 		// Add matching elements to final array
-			// 		if( element.limited_capacity == type_compare && !foundInFinalPool.length )
-			// 			newPool.push( myPool[index] );
-			// 		// Remove not matching from final array
-			// 		if( element.limited_capacity != type_compare && foundInFinalPool.length )
-			// 			delete(newPool[index]);
+					var foundInFinalPool = newPool.find(function(_find){ return typeof _find !== 'undefined' && _find.id === element.id; });
+					// Add matching elements to final array
+					if( element.limited_capacity === type_compare && typeof foundInFinalPool === 'undefined' ){
+						newPool.push( myPool[index] );
+					}
+					// Remove not matching from final array
+					else if(!element.featured){
+						delete(newPool[index]);
+					}
 
-			// 	});
-			// }
+				});
+			}
 
 			if(typeof myFilters.status !== 'undefined' ){
 
 				myPool.forEach( function(element, index){
 
-					var foundInFinalPool = newPool.filter(function(element){ return find.id === element.id; });
+					var foundInFinalPool = newPool.find(function(_find){ return typeof _find !== 'undefined' && _find.id === element.id; });
 					// Add matching elements to final array
-					if( element.status === myFilters.status && !foundInFinalPool.length )
+					if( element.status === myFilters.status &&  typeof foundInFinalPool === 'undefined' ){
 						newPool.push( myPool[index] );
+					}
 					// Remove not matching from final array
-					if( element.status !== myFilters.status && foundInFinalPool.length )
+					else if(!element.upcoming ){
 						delete(newPool[index]);
+					}
 				});
 			}
 
@@ -832,20 +855,18 @@
 
 				myPool.forEach( function( element, index ){
 
-					var foundInFinalPool = newPool.filter(function(find){ return find.id === element.id; });
-					if(foundInFinalPool.length)
-						console.log(foundInFinalPool);
+					var foundInFinalPool = newPool.find(function(_find){ return typeof _find !== 'undefined' && _find.id === element.id; });
 					// Remove not matching from final array
-					// console.log( typeof element.first_entry !== 'undefined');
-					// if( typeof element.first_entry !== 'undefined' && foundInFinalPool.length ){
-					// 	console.log(newPool[index]);
-					// 	delete(newPool[index]);
-					// }
+					if( typeof element.first_entry !== 'undefined' &&  typeof foundInFinalPool !== 'undefined' ){
+						console.log(newPool[index]);
+						delete(newPool[index]);
+					}
+
 				});
 			}
 
 			newPool = newPool.filter(function(){ return true; });
-			// console.log(newPool);
+			console.log(newPool.length);
 			app.data_temp.data.pools = newPool;
 			app.render_lobby_feed_callback(app.data_temp.data, true, false);
 		},

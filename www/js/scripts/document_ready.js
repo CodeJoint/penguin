@@ -340,7 +340,7 @@ window.initializeEvents = function(){
 					var openCloseSidebar = function(event, direction, distance, duration, fingers){
 						
 						$('.menu li').removeClass('selected');
-						var left = positiveMargin ? "93%" : "0%";
+						var left = positiveMargin ? "90.5%" : "0%";
 						$('.misquinielas').velocity({
 														marginLeft: left
 													}, 

@@ -22,7 +22,7 @@
 				<div class="quiniela_content clearfix">
 					<div class="quiniela_info clearfix">
 						<span class="registros">REG: {{data.pool.entry_count}}</span>
-						<span class="cierre">{{^ if data.pool.closed}}CIERRE{{/ if}}{{# if data.pool.closed}}CERRÓ{{/ if}}:  <br/><strong class="timer_active">{{formatDate data.pool.deadline_tz 'lll'}}</strong></span>
+						<span class="cierre">{{^ if data.pool.closed}}CIERRE{{/ if}}{{# if data.pool.closed}}CERRÓ{{/ if}}: <strong class="timer_active">{{formatDate data.pool.deadline_tz 'lll'}}</strong></span>
 						{{# data.pool.limited_capacity}}
 							<span class="limite">Limitado a {{data.pool.max_entries}} entradas</span>
 						{{/ data.pool.limited_capacity}}

@@ -607,9 +607,7 @@ function requestHandlerAPI(){
 		 * @param Object response
 		 */
 		this.render_edit_entry_success = function(response){
-			console.log(response);
-			console.log(_cache.pool_id);
-			console.log(_cache.entry_id);
+			
 			if(!response.picks)
 				return app.toast('Ocurrió un error guardando tus picks, intenta nuevamente.');
 			// app.toast('¡Se ha guardado tus picks! Te estamos dirigiendo a tu quiniela');

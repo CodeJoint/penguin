@@ -84,6 +84,7 @@ body {width: 100%; margin: 0 auto; font-weight: 300; font-family: 'Lato'!importa
 /*** LOGIN ***/
 
 .login {text-align: center;}
+.login .content{ height: 100vh; top: 0; padding: 1rem; }
 .login .splash_logo {padding-top: 30%; margin-bottom: 5%;}
 .login .form {width: 100%; margin-bottom: 20%;}
 .login .form input {width: 100%; background: none; border: 1px solid #d8d8d8; border-radius: 5px; margin-bottom: 3%; color: #d8d8d8; font-family: 'Lato'; font-size: 14px; padding: 3.5% 2%; }
@@ -179,7 +180,7 @@ body {width: 100%; margin: 0 auto; font-weight: 300; font-family: 'Lato'!importa
 .quinielas {padding-top: 98px; padding-bottom: 70px;}
 
 /*** QUINIELAS ***/
-.content.quinielas{position: relative; min-height: 100vh; width: 97%; width: 97%; margin: 0; padding: 0.4rem 1rem 10rem 1rem; position: absolute!important; top: 95px; min-height: initial; height: calc( 100vh - 147px ); overflow-x: hidden; overflow-y: scroll; -webkit-overflow-scrolling: touch;}
+.content.quinielas{ position: relative; min-height: 100vh; width: 97%; width: 97%; margin: 0; padding: 0.4rem 1rem 2rem 1rem; position: absolute!important; top: 95px; min-height: initial; height: calc( 100vh - 147px ); overflow-x: hidden; overflow-y: scroll; -webkit-overflow-scrolling: touch;}
 .content.quinielas:empty::after{ content: "Cargando quinielas en el lobby..."; position: fixed; width: 100%; top: 49vh; left: 0; text-align: center; font-size: 0.9rem; letter-spacing: 0.5px; z-index: 999; }
 a.link_wrapper {color: inherit; text-decoration: none;}
 .quiniela {width: 99%; min-height: 92px; background: #000; color: #FFF; border: 1px solid #414042; padding: 0.5rem; border-radius: 3px; margin-top: 10px; text-align: left; position: relative;}
@@ -251,7 +252,7 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 
 /*** MIS QUINIELAS OVERLAY ***/
 
-.misquinielas { position: fixed!important; top: 95px!important; width: 100%; margin-left: 93%; height: 100vh; overflow: auto; padding: 0.4rem 0.8rem 11rem 0.8rem; z-index: 100; }
+.misquinielas { position: fixed!important; top: 95px!important; width: 100%; margin-left: 90.5%; height: 100vh; overflow: auto; padding: 0.4rem 0.8rem 11rem 1.2rem; z-index: 100;}
 .misquinielas .link_wrapper{pointer-events: none; display: block;}
 .misquinielas.open { background-color: rgba(47, 45, 45, 0.8);}
 .misquinielas.open .link_wrapper{pointer-events: initial;}
@@ -459,7 +460,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#777777', end
 .tabs_profile ul li a,
 .tabs_quiniela ul li a {text-decoration: none; color: #fff;}
 
-.tab_posiciones {width: 100%;}
+.tab_posiciones {width: 100%; background-color: #000;}
 .tab_posiciones table {width: 100%; border: none!important; font-size: 10px; text-align: center;}
 .tab_posiciones table .table_title {border-bottom: 1px solid #fff; line-height: 20px;}
 .tab_posiciones table tr th {font-size: 10px; font-weight: normal!important;}
@@ -477,7 +478,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#777777', end
 	.profile_pic>img{ display: block; margin: 0; padding: 0; width: 100%; height: auto;}
 
 
-.tab_premios { width: 100%;}
+.tab_premios { width: 100%; background-color: #000;}
 .tab_premios table {width: 100%; border: none!important; font-size: 10px; text-align: center;}
 .tab_premios table .table_title {border-bottom: 1px solid #fff; line-height: 20px;}
 .tab_premios table tr th {font-size: 10px; font-weight: normal!important;}
@@ -486,7 +487,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#777777', end
 .tab_premios table tr.player_info:nth-child(2n){background: #414042}
 .tab_premios .ganar img {width: 16px; margin-right: 5px; }
 
-.tab_picks_grupo { width: 100%;  white-space: nowrap; margin-right: 10%; overflow-x: scroll }
+.tab_picks_grupo { width: 100%;  white-space: nowrap; margin-right: 10%; overflow-x: scroll; background-color: #000;}
 .tab_picks_grupo table { border: none!important; font-size: 10px; text-align: center; white-space:nowrap; margin-right: 10%;}
 .tab_picks_grupo table .table_title { border-bottom: 1px solid #fff; line-height: 20px;}
 .tab_picks_grupo table tr th { font-size: 10px; font-weight: normal!important; white-space:nowrap; background: }
@@ -499,7 +500,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#777777', end
 .tab_picks_grupo .ganar img { width: 16px; margin-right: 5px;}
 .tab_picks_grupo .this_player { background: #5A7849!important;}
 
-.tab_marcadores {width: 100%;}
+.tab_marcadores {width: 100%; background-color: #000;}
 .tab_marcadores .marcador {width: 50%; float: left; border-right: 1px solid #fff; padding: 5px; border-bottom: 1px solid #fff;}
 .tab_marcadores .marcador:nth-child(2n) {border-right: none;}
 .tab_marcadores table {text-align: right; font-size: 10px;}
@@ -729,7 +730,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#777777', end
 	.green_button{ background: rgb(100, 185, 53); background: -moz-linear-gradient(top, rgb(140, 182, 59) 0%, rgb(100, 132, 56) 100%); background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(91,164,51,1)), color-stop(100%, rgba(106,138,58,1))); background: -webkit-linear-gradient(top, rgb(140, 182, 59) 0%, rgb(100, 132, 56) 100%); background: -o-linear-gradient(top, rgb(140, 182, 59) 0%, rgb(100, 132, 56) 100%); background: -ms-linear-gradient(top, rgb(140, 182, 59) 0%, rgb(100, 132, 56) 100%); background: linear-gradient(to bottom, rgb(140, 182, 59) 0%, rgb(100, 132, 56) 100%); filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5ba433', endColorstr='#6a8a3a', GradientType=0 ); border-color: #9dc16b; border-style: outset; border-width: 1.5px; text-transform: uppercase; text-align: center; font-family: 'Lato'!important; font-weight: 300; letter-spacing: 1.5px; font-size: 0.85rem; width: auto; -webkit-appearance: none; -webkit-border-radius: 2px!important; -moz-border-radius: 2px!important; border-radius: 2px!important; color: #FFF; padding: 0.75rem 1.25rem; text-decoration: none; margin: 0.5rem auto; display: inline-block; }
 	.red_button{ border-color: #e73744; background-color: rgb(100, 185, 53); background-color: -moz-linear-gradient(top, rgb(255, 82, 107) 0%, rgb(249, 121, 134) 100%); background-color: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(91,164,51,1)), color-stop(100%, rgba(106,138,58,1))); background-color: -webkit-linear-gradient(top, rgb(255, 82, 107) 0%, rgb(249, 121, 134) 100%); background-color: -o-linear-gradient(top, rgb(255, 82, 107) 0%, rgb(249, 121, 134) 100%); background-color: -ms-linear-gradient(top, rgb(255, 82, 107) 0%, rgb(249, 121, 134) 100%); background-color: linear-gradient(to bottom, rgb(255, 82, 107) 0%, rgb(249, 121, 134) 100%); filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5ba433', endColorstr='#6a8a3a', GradientType=0 ); }
 	.green_button{ width: 100%;}
-	.red_button.mini{background-image: url(../images/cancel.png); background-repeat: no-repeat; background-size: 14px; background-position-x: 0.5px; padding: 0.55rem; position: absolute; top: 0rem; right: 0.5rem; border-width: 0.5px; border-color: #fa3457;}
+	.red_button.mini{ background-image: url(../images/cancel.png); background-repeat: no-repeat; background-size: 16px; background-position: 3px 2px; padding: 0.8rem; position: absolute; top: 0rem; right: 0.5rem; border-width: 0.5px; border-color: #880f24;}
 	form label.error{ color: #FF8D00; text-align: left; float: none; display: block; font-size: 0.85rem; letter-spacing: 1px; margin: 0 0 1rem 0;}
 	
 	.view,

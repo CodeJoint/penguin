@@ -253,6 +253,7 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 /*** MIS QUINIELAS OVERLAY ***/
 
 .misquinielas { position: fixed!important; top: 95px!important; width: 100%; margin-left: 90.5%; height: 100vh; overflow: auto; padding: 0.4rem 0.8rem 11rem 1.2rem; z-index: 100;}
+.misquinielas.leftie{margin-left: -89.5%;}
 .misquinielas .link_wrapper{pointer-events: none; display: block;}
 .misquinielas.open { background-color: rgba(47, 45, 45, 0.8);}
 .misquinielas.open .link_wrapper{pointer-events: initial;}
@@ -261,9 +262,14 @@ a.link_wrapper {color: inherit; text-decoration: none;}
 .quiniela_closed:not(._noborder) {border-left: 3px solid #FF576C;}
 .quiniela_otra:not(._noborder) {border-left: 3px solid #4A90E2;}
 
+/*** MIS QUINIELAS CONTAINER ***/
+.misquinielas.container{margin-left: 0;}
+.misquinielas.container .quiniela{border: none;}
+
 /*** QUINIELA SINGLE ***/
 
 .quiniela_single {padding-top: 104px; padding-bottom: 70px; font-size: 12px; position: relative;}
+.quiniela_single.quiniela_registrada_single{left: 1.75rem; width: 93%;}
 .quiniela_single .quiniela {width: 100%;}
 .quiniela_single .registro_quiniela {width: 100%; text-align: center; margin: 0;}
 .quiniela_single .quiniela_info { margin-right: 10px; display: block; }
@@ -508,7 +514,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#777777', end
 /*** QUINIELAS PRIVADAS ***/
 
 .quiniela_privada_uno {}
-.quiniela_privada_uno .busqueda_quinielas {padding-top: 110px; width: 100%;}
+.quiniela_privada_uno .busqueda_quinielas {padding-top: 1rem; width: 100%;}
 .quiniela_privada_uno .botones {width: 100%; margin-bottom: 20px;}
 .quiniela_privada_uno .botones a {display: block; width: 50%; float: left; border:1px solid #414042; text-align: center;  padding-top: 10px; padding-bottom: 10px; font-size: 12px; text-decoration: none; color: #fff; background: #000; border-radius: 3px;}
 .quiniela_privada_uno .botones a.selected {background: #5ba433;}
@@ -739,6 +745,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#777777', end
 	.content h1{ font-size: 1.6rem; font-weight: 300; text-transform: uppercase; letter-spacing: 1px; margin: 1rem auto;}
 	.registro .fb_registry {width: 70%; margin-bottom: 0;}
 	.registro .form { margin-bottom: 2.8rem;}
+
+	.content.abonar{ padding-top: 1rem;}
 
 	.login .form p {font-size: 14px; color: #d8d8d8; margin-bottom: 1.5rem;}
 	.menu>ul>li>a{ display: block; width: 100%; height: 100%;}

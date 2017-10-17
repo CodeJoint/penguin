@@ -9,7 +9,7 @@
 window.initializeEvents = function(){
 
 	window.initCountdownTimers = function(){
-		console.log("init countdown clockers");
+
 		$('[data-countdown]').each(function(index, element) {
 			var $this = $(element);
 			var finalDate = $(element).attr('data-countdown');
@@ -92,13 +92,8 @@ window.initializeEvents = function(){
 					return app.render_private_search( resource_href );
 				if( resource == "privates-create" )
 					return app.render_create_private( resource_href );
-				if( resource == "my_lobby" ){
-					
-					app.render_myfeed_archive( resource_href );
-					setTimeout(function(){
-						$('#misQuinielas').trigger('click');
-					}, 1200);
-				}
+				if( resource == "my_lobby" )
+					return app.render_myfeed_archive( resource_href );
 				if( resource == "detail" )
 					return app.fetch_detail( resource_href, resource_object );
 				if( resource == "detail-closed" )
@@ -321,59 +316,70 @@ window.initializeEvents = function(){
 			if($('#theHeader').length){
 
 			} // END theHeader
+
+			if($('#misQuinielas').length){
+
+				// Call render sidebar feed
+				app.render_myfeed_sidebar();
+
+				// Manage sidebar animations
+				window.positiveMargin = false;
+				var openCloseSidebar = function(event, direction, distance, duration, fingers){
+					
+					app.init_menu_status();
+
+					var left = positiveMargin ? "90.5%" : "0%";
+					if($('.misquinielas').hasClass('leftie'))
+						left =  positiveMargin ? "-89.5%" : "0%";
+					$('.misquinielas').velocity({
+													marginLeft: left
+												}, 
+												{
+													duration: 420,
+													easing: 'easeInOutQuint',
+													complete: function() { }
+												});
+					if (!positiveMargin) {
+						
+						positiveMargin = true;
+						$('.menu .menu_quinielas').addClass('selected');
+						$('.misquinielas').addClass('open');
+						$('#insertFeed').addClass('noscroll semitransparent');
+						$('#detailQuinielaRegistered').addClass('noscroll semitransparent');
+					
+					} else {
+						
+						positiveMargin = false;
+						$('#insertFeed').removeClass('noscroll semitransparent');
+						$('#detailQuinielaRegistered').removeClass('noscroll semitransparent');
+						$('.menu .menu_quinielas').removeClass('selected');
+						$('.menu .menu_lobby').addClass('selected');
+						$('.misquinielas').removeClass('open');
+					
+					}
+				};
+
+				$('.misquinielas').swipe({
+					swipeLeft: openCloseSidebar,
+					swipeRight: openCloseSidebar
+				});
+
+
+			} // END misQuinielas scope
+
+			if($('#misQuinielasContainer').length){
+
+				app.init_menu_status('quinielas');
+
+			} // END misQuinielasContainer scope
 			
 			if($('#lobbyContainer').length){
 				
 				// TODO: cache this request and save it for a couple of hours
 				app.render_lobby_feed(true);
 
-				$('.footermenu ul li').removeClass('selected');
-				$('.menu_lobby').addClass('selected');
-
-				if($('#misQuinielas').length){
-
-					// Call render sidebar feed
-					app.render_myfeed_sidebar();
-
-					// Manage sidebar animations
-					window.positiveMargin = false;
-					var openCloseSidebar = function(event, direction, distance, duration, fingers){
-						
-						$('.menu li').removeClass('selected');
-						var left = positiveMargin ? "90.5%" : "0%";
-						$('.misquinielas').velocity({
-														marginLeft: left
-													}, 
-													{
-														duration: 420,
-														easing: 'easeInOutQuint',
-														complete: function() { }
-													});
-						if (!positiveMargin) {
-							
-							positiveMargin = true;
-							$('.menu .menu_quinielas').addClass('selected');
-							$('.misquinielas').addClass('open');
-							$('#insertFeed').addClass('noscroll semitransparent');
-						
-						} else {
-							
-							positiveMargin = false;
-							$('#insertFeed').removeClass('noscroll semitransparent');
-							$('.menu .menu_quinielas').removeClass('selected');
-							$('.menu .menu_lobby').addClass('selected');
-							$('.misquinielas').removeClass('open');
-						
-						}
-					};
-
-					$('.misquinielas').swipe({
-						swipeLeft: openCloseSidebar,
-						swipeRight: openCloseSidebar
-					});
-
-
-				} // END misQuinielas scope
+				app.init_menu_status('lobby');
+				app.render_header(null, true);
 
 				if($('#deporte_soccer').length){
 
@@ -386,7 +392,7 @@ window.initializeEvents = function(){
 				initFilterActions();
 				setTimeout(function(){
 
-					app.apply_filters();
+					// app.apply_filters();
 
 				}, 2220);	
 
@@ -399,7 +405,7 @@ window.initializeEvents = function(){
 				var weekId  = $('#detailQuiniela').data('weekid');
 				var entryId = $('#detailQuiniela').data('entry');
 
-				$('.menu li').removeClass('selected');
+				app.init_menu_status();
 				
 				// Remove empty select controls from the view
 				$('select:not(.no_check)').each(function(){
@@ -535,11 +541,31 @@ window.initializeEvents = function(){
 					return app.render_lobby(null, false);
 				}
 
-				$('.menu li').removeClass('selected');
+				app.init_menu_status('lobby');
 				$('#filterComponent').hide();
 	
 				$('.radio_group input').on('change', function(e){
 					$('.instructions').text('Guarda tus picks al terminar');
+				});
+
+				$('#picksForm').validate({
+					rules:{
+						pool_id	 : "required"
+					},
+					messages:{
+						pool_id	 : "El Id de la quiniela no es válido"
+					},
+					submitHandler:function( form, event ){
+						event.preventDefault();
+						event.stopPropagation();
+						var entry_data	= app.getFormData(form, 'multi-level');
+						if(typeof entry_data.entry_id === 'undefined' || entry_data.entry_id === ''){
+							$('#registerNow').velocity('fadeIn');
+							return;
+						}
+						app.showLoader();
+						return apiRH.editEntry(entry_data);
+					}
 				});
 
 				/**** Cancel registry ****/
@@ -564,6 +590,7 @@ window.initializeEvents = function(){
 						$(this).attr('data-extra', entryId)
 								.removeClass('missing_info');
 					});
+					$('#picksForm').find('.missing_entry').val(entryId);
 					setTimeout( function(){
 						app.fill_entry_picks()
 					}, 620);
@@ -621,15 +648,13 @@ window.initializeEvents = function(){
 					$('#filterComponent').hide();
 					$('#logoutComponent').show();
 
-					$('.footermenu ul li').removeClass('selected');
-					$('.menu_perfil').addClass('selected');
+					app.init_menu_status('perfil');
 					
 					/* Log Out from the API */
 					$('#logoutComponent').on('click', function(e){
 						/* TODO: Requesting logout from server */
 						app.keeper.clear();
-						app.render_login();
-						return;
+						return app.render_login();
 					});
 					
 				/* Payment methods tab */
@@ -693,8 +718,7 @@ window.initializeEvents = function(){
 		
 			if($('.privates').length){
 
-				$('.menu li').removeClass('selected');
-				$('.menu_privadas').addClass('selected');
+				app.init_menu_status('privadas');
 
 				$('#busquedaQuinielas').validate({
 					rules:{
@@ -721,8 +745,8 @@ window.initializeEvents = function(){
 		
 			if($('#depositCard').length){
 
-				$('.menu li').removeClass('selected');
-				$('.menu_abonar').addClass('selected');
+				app.init_menu_status('abonar');
+
 				$('#filterComponent').hide();
 				$('#depositCardForm').validate({
 					rules:{

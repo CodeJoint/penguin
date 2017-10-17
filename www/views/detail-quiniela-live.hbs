@@ -1,3 +1,4 @@
+	<div id="misQuinielas" class="misquinielas leftie overlay"></div>
 
 	<div id="detailQuinielaRegistered" data-id="{{data.pool.id}}" data-entry="{{data.pool.entry_id}}" data-weekid="{{data.pool.week_id}}" class="content quiniela_single quiniela_registrada_single">
 		
@@ -69,89 +70,93 @@
 		
 
 		<div id="tabContainer" class="tabs">
-			<div id="insertPartidos" class="partidos clearfix radio_group">
-				<div id="lesDrops" class="quinielas_dropdowns live clearfix">
-				</div> <!-- lesDrops -->
-			</div><!-- partidos -->
-			<div class="desempates clearfix">
-				<h3>DESEMPATE</h3>
-				{{# each data.tiebreakers_iter}}
-					{{# each .}}
-					
-						{{# if_eq type 'score'}}
-							<div class="desempate desempate_uno clearfix" data-id="{{id}}">
-								
-								<div class="desempate_left">
-									<span>{{label}}</span>
-								</div>
-								<div class="desempate_input">
-									<input type="hidden" name="user_tiebreakers[{{id}}][id]"  value="null">
-									<input type="hidden" class="missing_entry" name="user_tiebreakers[{{id}}][entry_id]" value="null">
-									<input type="hidden" name="user_tiebreakers[{{id}}][tiebreaker_id]" value="{{id}}">
-									<span>LOC</span>
-									<input type="tel" name="user_tiebreakers[{{id}}][value][home]">
-									<span>-</span>
-									<input type="tel" name="user_tiebreakers[{{id}}][value][away]">
-									<span>VIS</span>
-								</div><!-- desempate_input -->
-							
-							</div><!-- desempate_uno -->
-						{{/ if_eq }}
-
-						{{# if_eq type 'number'}}
-							<div class="desempate desempate_dos clearfix" data-id="{{id}}">
-								<div class="desempate_left">
-									<span>{{label}}</span>
-								</div>
-								<div class="desempate_input">
-									<input type="hidden" name="user_tiebreakers[{{id}}][id]"  value="null">
-									<input type="hidden" class="missing_entry" name="user_tiebreakers[{{id}}][entry_id]" value="null">
-									<input type="hidden" name="user_tiebreakers[{{id}}][tiebreaker_id]" value="{{id}}">
-									<input type="tel" name="user_tiebreakers[{{id}}][value]">
-								</div><!-- desempate_input -->
-							</div><!-- desempate_dos -->
-						{{/ if_eq }}
+			<form method="POST" action="" id="picksForm">
+				<input type="hidden" class="missing_entry" name="entry_id" id="entry_id" value="{{data.pool.first_entry.id}}">
+				<input type="hidden" class="missing_pool" name="pool_id" id="pool_id" value="{{data.pool.id}}">
+				<div id="insertPartidos" class="partidos clearfix radio_group">
+					<div id="lesDrops" class="quinielas_dropdowns live clearfix">
+					</div> <!-- lesDrops -->
+				</div><!-- partidos -->
+				<div class="desempates clearfix">
+					<h3>DESEMPATE</h3>
+					{{# each data.tiebreakers_iter}}
+						{{# each .}}
 						
-						{{# if_eq type 'week_goals'}}
-							<div class="desempate desempate_dos clearfix" data-id="{{id}}">
-								<div class="desempate_left">
-									<span>{{label}}</span>
-								</div>
-								<div class="desempate_input">
-									<input type="hidden" name="user_tiebreakers[{{id}}][id]"  value="null">
-									<input type="hidden" class="missing_entry" name="user_tiebreakers[{{id}}][entry_id]" value="null">
-									<input type="hidden" name="user_tiebreakers[{{id}}][tiebreaker_id]" value="{{id}}">
-									<select name="user_tiebreakers[{{id}}][value]" >
-										{{{numberOptions config_parsed.min config_parsed.max}}}
-									</select>
-								</div><!-- desempate_input -->
-							</div><!-- desempate_dos -->
-						{{/ if_eq }}
+							{{# if_eq type 'score'}}
+								<div class="desempate desempate_uno clearfix" data-id="{{id}}">
+									
+									<div class="desempate_left">
+										<span>{{label}}</span>
+									</div>
+									<div class="desempate_input">
+										<input type="hidden" name="user_tiebreakers[{{id}}][id]"  value="null">
+										<input type="hidden" class="missing_entry" name="user_tiebreakers[{{id}}][entry_id]" value="null">
+										<input type="hidden" name="user_tiebreakers[{{id}}][tiebreaker_id]" value="{{id}}">
+										<span>LOC</span>
+										<input type="tel" name="user_tiebreakers[{{id}}][value][home]">
+										<span>-</span>
+										<input type="tel" name="user_tiebreakers[{{id}}][value][away]">
+										<span>VIS</span>
+									</div><!-- desempate_input -->
+								
+								</div><!-- desempate_uno -->
+							{{/ if_eq }}
 
-						{{# if_eq type 'other'}}
-							<div class="desempate desempate_tres clearfix" data-id="{{id}}">
-								<div class="desempate_left">
-									<span>{{label}}</span>
-								</div>
-								<div class="desempate_input">
-									<input type="hidden" name="user_tiebreakers[{{id}}][id]"  value="null">
-									<input type="hidden" class="missing_entry" name="user_tiebreakers[{{id}}][entry_id]" value="null">
-									<input type="hidden" name="user_tiebreakers[{{id}}][tiebreaker_id]" value="{{id}}">
-									<span>SI</span>
-									<input type="radio" name="user_tiebreakers[{{id}}][value]" value="1">
-									<span>NO</span>
-									<input type="radio" name="user_tiebreakers[{{id}}][value]" value="0">
-								</div><!-- desempate_input -->
-							</div><!-- desempate_tres -->
-						{{/ if_eq }}
+							{{# if_eq type 'number'}}
+								<div class="desempate desempate_dos clearfix" data-id="{{id}}">
+									<div class="desempate_left">
+										<span>{{label}}</span>
+									</div>
+									<div class="desempate_input">
+										<input type="hidden" name="user_tiebreakers[{{id}}][id]"  value="null">
+										<input type="hidden" class="missing_entry" name="user_tiebreakers[{{id}}][entry_id]" value="null">
+										<input type="hidden" name="user_tiebreakers[{{id}}][tiebreaker_id]" value="{{id}}">
+										<input type="tel" name="user_tiebreakers[{{id}}][value]">
+									</div><!-- desempate_input -->
+								</div><!-- desempate_dos -->
+							{{/ if_eq }}
+							
+							{{# if_eq type 'week_goals'}}
+								<div class="desempate desempate_dos clearfix" data-id="{{id}}">
+									<div class="desempate_left">
+										<span>{{label}}</span>
+									</div>
+									<div class="desempate_input">
+										<input type="hidden" name="user_tiebreakers[{{id}}][id]"  value="null">
+										<input type="hidden" class="missing_entry" name="user_tiebreakers[{{id}}][entry_id]" value="null">
+										<input type="hidden" name="user_tiebreakers[{{id}}][tiebreaker_id]" value="{{id}}">
+										<select name="user_tiebreakers[{{id}}][value]" >
+											{{{numberOptions config_parsed.min config_parsed.max}}}
+										</select>
+									</div><!-- desempate_input -->
+								</div><!-- desempate_dos -->
+							{{/ if_eq }}
+
+							{{# if_eq type 'other'}}
+								<div class="desempate desempate_tres clearfix" data-id="{{id}}">
+									<div class="desempate_left">
+										<span>{{label}}</span>
+									</div>
+									<div class="desempate_input">
+										<input type="hidden" name="user_tiebreakers[{{id}}][id]"  value="null">
+										<input type="hidden" class="missing_entry" name="user_tiebreakers[{{id}}][entry_id]" value="null">
+										<input type="hidden" name="user_tiebreakers[{{id}}][tiebreaker_id]" value="{{id}}">
+										<span>SI</span>
+										<input type="radio" name="user_tiebreakers[{{id}}][value]" value="1">
+										<span>NO</span>
+										<input type="radio" name="user_tiebreakers[{{id}}][value]" value="0">
+									</div><!-- desempate_input -->
+								</div><!-- desempate_tres -->
+							{{/ if_eq }}
+						{{/ each}}
 					{{/ each}}
-				{{/ each}}
 
-			</div><!-- dempates -->
-			<div class="botones clearfix">
-				<input id="savePicks" class="green_button" type="submit" value="Guardar picks">
-			</div>
-			<small class="info">Se tomarán los resultados únicamente de tiempo reglamentario. (No tiempos extras)</small>
+				</div><!-- dempates -->
+				<div class="botones clearfix">
+					<input id="savePicks" class="green_button" type="submit" value="Guardar picks">
+				</div>
+				<small class="info">Se tomarán los resultados únicamente de tiempo reglamentario. (No tiempos extras)</small>
+			</form>
 		</div>
 		
 		

@@ -1,7 +1,15 @@
 
-	<div id="misQuinielas" class="misquinielas container lobby clearfix">
+	<div id="misQuinielasContainer" class="misquinielas container lobby clearfix">
 		
+		{{# data.entries}}
+			{{> each-my-quiniela}}
+		{{/ data.entries}}
 
+		{{# if data.mypools}}
+			{{# data.mypools}}
+				{{> each-my-quiniela}}
+			{{/ data.mypools}}
+		{{/ if}}
 	</div><!-- container -->
 	
 	{{> filters}}

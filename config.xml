@@ -89,7 +89,7 @@
     </platform>
     <engine name="android" spec="^6.2.3" />
     <engine name="browser" spec="^4.1.0" />
-    <engine name="ios" spec="^4.5.1" />
+    <engine name="ios" spec="^4.4.0" />
     <plugin name="cordova-plugin-browsersync" spec="^0.1.6" />
     <plugin name="cordova-plugin-code-push" spec="^1.9.7-beta" />
     <plugin name="cordova-plugin-console" spec="~1.0.5" />

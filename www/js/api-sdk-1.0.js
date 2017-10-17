@@ -302,7 +302,7 @@ function requestHandlerAPI(){
 
 			if(!serviceResponse.success || typeof serviceResponse.response.status === 'undefined' || serviceResponse.response.status !== 'completed' )
 				return app.toast("No se ha podido procesar tu pedido, por favor intenta nuevamente.");
-
+			app.update_bank();
 			return alert("¡Se han abonado $"+serviceResponse.amount+" a tu cuenta!", null, "Pickwin", "¡A Jugar!");
 		};
 
@@ -611,6 +611,10 @@ function requestHandlerAPI(){
 			if(!response.picks)
 				return app.toast('Ocurrió un error guardando tus picks, intenta nuevamente.');
 			// app.toast('¡Se ha guardado tus picks! Te estamos dirigiendo a tu quiniela');
-			return app.fetch_detail('detail.html', _cache.pool_id, 'live', _cache.entry_id);
+			console.log(_cache.pool_id);
+			console.log(_cache.pool.id);
+			console.log(_cache.entry_id);
+			var poolId = (typeof _cache.pool_id !== 'undefined') ? _cache.pool_id : _cache.pool.id;
+			return app.fetch_detail('detail.html', poolId, 'live', _cache.entry_id);
 		};
 	}

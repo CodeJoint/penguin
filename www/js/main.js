@@ -141,7 +141,8 @@
 				return value.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
 			});
 			Handlebars.registerHelper('formatDate', function(value, format) {
-
+				if(value === null)
+					return value;
 				moment.locale('es');
 				var my_format = (typeof format === 'undefined' || !format || format == '') ? 'lll' : format;
 				var arr = value.split(/[- : T]/);
@@ -341,6 +342,7 @@
 			var saved 	= apiRH.save_user_data_clientside(user_data);
 			var extra_data = app.gatherEnvironment(user_data, "");
 			extra_data.selected_lobby = (filters) ? true : false;
+			extra_data.filters = (filters) ? true : false;
 			$.when($('#theHeader').remove())
 			 .then( app.render_partial('header', extra_data, '#loadHeader') );
 		},
@@ -411,7 +413,6 @@
 			if(unformattedJSON & unformattedJSON !== ''){
 				
 				var cachedFeed = JSON.parse( app.fetchCacheElement('lobby-feed') );
-				console.log(cachedFeed);
 				// if( cachedFeed && cachedFeed.data.timestamp ){
 				// 	console.log("valid");
 				// 	return app.render_lobby_feed_callback(cachedFeed.data.data, true, true);
@@ -436,14 +437,15 @@
 			if(typeof cached === 'undefined' || !cached){
 				app.data_temp.data.pools_unfiltered = app.data_temp.data.pools;
 			}
-			$('#insertFeed').html( template(app.data_temp) )
-							.css({ "opacity": 0, "display": "block"})
-							.velocity({ opacity: 1 }, 0);
+			if(!apply_filters)
+				$('#insertFeed').html( template(app.data_temp) )
+								.css({ "opacity": 0, "display": "block"})
+								.velocity({ opacity: 1 }, 0);
 
-			return setTimeout( function(){ $('#filterComponent').show(); app.hideLoader(); initCountdownTimers(); initHooks(); }, 860);
+			return setTimeout( function(){ $('#filterComponent').show(); app.hideLoader(); initCountdownTimers(); initHooks(); if(apply_filters) app.apply_filters();}, 860);
 		},
 		render_myfeed_archive : function(url){
-			return apiRH._ajaxRequest('GET', 'api/users/pools.json', null, 'json', true, app.render_myfeed_callback);
+			return apiRH._ajaxRequest('GET', 'api/users/pools.json', null, 'json', true, app.render_myfeed_archive_callback);
 		},
 		render_myfeed_sidebar : function(){
 			return apiRH._ajaxRequest('GET', 'api/users/pools.json', null, 'json', true, app.render_myfeed_callback);
@@ -459,6 +461,11 @@
 			$('#misQuinielas').html( template(data) ).css({ "opacity": 0, "display": "block"})
 													 .velocity(	{ opacity: 1 }, 220);
 			return;
+		},
+		render_myfeed_archive_callback : function(response){
+	
+			app.data_temp = app.gatherEnvironment(response, "My Lobby");
+			return app.switchView('my-lobby-archive', app.data_temp, '#exoskeleton', 'my-lobby.html', 'my-lobby' );
 		},
 		render_detail : function(response){
 
@@ -717,13 +724,12 @@
 			app.appendView('filter-tournaments', obj_temp.baseball, '#deporte_baseball');
 			$('#deporte_baseball, #deporte_soccer').hide();
 		},
-		update_bank : function( ){
+		update_bank : function(){
 
-			return apiRH._ajaxRequest( 'GET', 'api/users/me.json', null, 'json', true, app.sync_header_callback);
+			return apiRH._ajaxRequest( 'GET', 'api/users/details.json', null, 'json', true, app.sync_header_callback);
 		},
 		sync_header_callback : function( response ){
-
-			console.log(response);
+			return app.render_header(response, false);
 		},
 		pre_sort_pool : function( ){
 
@@ -878,6 +884,11 @@
 		},
 		fetch_group_picks : function(gameId, weekId){
 			return apiRH._ajaxRequest('GET', 'api/standings/group_picks/'+gameId+'/'+weekId+'.json', null, 'json', true, function(response){ window._cache.group_picks = response; });
+		},
+		init_menu_status : function(whereis){
+			
+			$('.footermenu ul li').removeClass('selected');
+			$('.menu_'+whereis).addClass('selected');
 		},
 		render_dialog : function(title, message, options){
 			return app.showLoader();

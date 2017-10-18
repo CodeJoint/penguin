@@ -547,6 +547,10 @@ window.initializeEvents = function(){
 				$('.radio_group input').on('change', function(e){
 					$('.instructions').text('Guarda tus picks al terminar');
 				});
+				
+				$('#select_copy_picks').on('change', function(e){
+					// Copy picks
+				});
 
 				$('#picksForm').validate({
 					rules:{

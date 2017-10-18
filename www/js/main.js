@@ -776,7 +776,7 @@
 					var foundInFinalPool = newPool.find(function(_find){ return _find.id === element.id; });
 					// Add matching elements to final array
 					if( element.sport.id === parseInt(myFilters.sport) && typeof foundInFinalPool === 'undefined' ){
-						newPool.push( myPool[index] );
+						newPool.push( element );
 					}
 					// Remove not matching from final array
 					else if(!element.featured){
@@ -784,7 +784,6 @@
 					}
 				});
 			}
-
 			
 
 			if(typeof myFilters.real_money !== 'undefined' && myFilters.real_money !== 'all' ){
@@ -798,7 +797,7 @@
 					var entry = element.entry_fee/100;
 					var foundInFinalPool = newPool.find(function(_find){ return typeof _find !== 'undefined' && _find.id === element.id; });
 					if( (entry >= min_value && entry <= max_value) &&  typeof foundInFinalPool === 'undefined' ){
-						newPool.push( myPool[index] );
+						newPool.push( element );
 					}else{
 						delete(newPool[index]);
 					}
@@ -815,7 +814,7 @@
 					var entry = element.entry_fee/100;
 					var foundInFinalPool = newPool.find(function(_find){ return typeof _find !== 'undefined' && _find.id === element.id; });
 					if( (entry >= min_value && entry <= max_value) && typeof foundInFinalPool === 'undefined' ){
-						newPool.push( myPool[index] );
+						newPool.push( element );
 					}else{
 						delete(newPool[index]);
 					}
@@ -828,10 +827,10 @@
 				var type_compare = (myFilters.type === 'open') ? false : true;
 				myPool.forEach( function(element, index){
 					
-					var foundInFinalPool = newPool.find(function(_find){ return typeof _find !== 'undefined' && _find.id === element.id; });
+					var foundInFinalPool = newPool.findIndex(function(_find){ return typeof _find !== 'undefined' && _find.id === element.id; });
 					// Add matching elements to final array
-					if( element.limited_capacity === type_compare && typeof foundInFinalPool === 'undefined' ){
-						newPool.push( myPool[index] );
+					if( element.limited_capacity === type_compare && foundInFinalPool ){
+						newPool.push( element );
 					}
 					// Remove not matching from final array
 					else if(!element.featured){
@@ -840,15 +839,16 @@
 
 				});
 			}
+			console.log(newPool);
 
 			if(typeof myFilters.status !== 'undefined' ){
 
 				myPool.forEach( function(element, index){
 
-					var foundInFinalPool = newPool.find(function(_find){ return typeof _find !== 'undefined' && _find.id === element.id; });
+					var foundInFinalPool = newPool.findIndex(function(_find){ return typeof _find !== 'undefined' && _find.id === element.id; });
 					// Add matching elements to final array
-					if( element.status === myFilters.status &&  typeof foundInFinalPool === 'undefined' ){
-						newPool.push( myPool[index] );
+					if( element.status === myFilters.status &&  foundInFinalPool !== -1 ){
+						newPool.push( element );
 					}
 					// Remove not matching from final array
 					else if(!element.upcoming ){
@@ -856,20 +856,23 @@
 					}
 				});
 			}
+			console.log(newPool);
 
 			if( typeof myFilters.entry !== 'undefined' ){
 
 				myPool.forEach( function( element, index ){
 
-					var foundInFinalPool = newPool.find(function(_find){ return typeof _find !== 'undefined' && _find.id === element.id; });
+					var foundInFinalPool = newPool.find(function(_find, _where){ return typeof _find !== 'undefined' && _find.id === element.id; });
 					// Remove not matching from final array
-					if( typeof element.first_entry !== 'undefined' &&  typeof foundInFinalPool !== 'undefined' ){
+					if( typeof element.first_entry !== 'undefined'  &&  typeof foundInFinalPool !== 'undefined' ){
 						console.log(newPool[index]);
+						console.log(foundInFinalPool);
 						delete(newPool[index]);
 					}
 
 				});
 			}
+			console.log(newPool);
 
 			newPool = newPool.filter(function(){ return true; });
 			console.log(newPool.length);

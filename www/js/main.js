@@ -862,7 +862,7 @@
 
 				myPool.forEach( function( element, index ){
 
-					var foundInFinalPool = newPool.find(function(_find, _where){ return typeof _find !== 'undefined' && _find.id === element.id; });
+					var foundInFinalPool = newPool.find(function(_find){ return typeof _find !== 'undefined' && _find.id === element.id; });
 					// Remove not matching from final array
 					if( typeof element.first_entry !== 'undefined'  &&  typeof foundInFinalPool !== 'undefined' ){
 						console.log(newPool[index]);

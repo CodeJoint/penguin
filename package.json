@@ -1,56 +1,56 @@
 {
-  "name": "app.pickwin.net",
-  "version": "1.0.0",
-  "displayName": "PickWin",
-  "cordova": {
-    "platforms": [
-      "browser"
-    ],
-    "plugins": {
-      "cordova-plugin-whitelist": {},
-      "cordova-plugin-device": {},
-      "cordova-plugin-file": {},
-      "cordova-plugin-console": {},
-      "cordova-plugin-file-transfer": {},
-      "cordova-plugin-fullscreen": {},
-      "cordova-plugin-ios-longpress-fix": {},
-      "cordova-plugin-keyboard": {},
-      "onesignal-cordova-plugin": {},
-      "cordova-plugin-x-toast": {},
-      "cordova-plugin-dialogs": {},
-      "cordova-plugin-inappbrowser": {},
-      "cordova-plugin-splashscreen": {},
-      "cordova-plugin-browsersync": {},
-      "cordova-plugin-code-push": {},
-      "cordova-plugin-facebook4": {
-        "APP_ID": "973176056074364",
-        "APP_NAME": "Pickwin"
-      },
-      "cordova-plugin-statusbar": {}
+    "name": "app.pickwin.net",
+    "version": "1.0.0",
+    "displayName": "PickWin",
+    "cordova": {
+        "platforms": [
+            "browser"
+        ],
+        "plugins": {
+            "cordova-plugin-whitelist": {},
+            "cordova-plugin-device": {},
+            "cordova-plugin-file": {},
+            "cordova-plugin-console": {},
+            "cordova-plugin-file-transfer": {},
+            "cordova-plugin-fullscreen": {},
+            "cordova-plugin-ios-longpress-fix": {},
+            "cordova-plugin-keyboard": {},
+            "onesignal-cordova-plugin": {},
+            "cordova-plugin-x-toast": {},
+            "cordova-plugin-dialogs": {},
+            "cordova-plugin-inappbrowser": {},
+            "cordova-plugin-splashscreen": {},
+            "cordova-plugin-browsersync": {},
+            "cordova-plugin-code-push": {},
+            "cordova-plugin-facebook4": {
+                "APP_ID": "973176056074364",
+                "APP_NAME": "Pickwin"
+            },
+            "cordova-plugin-statusbar": {}
+        }
+    },
+    "dependencies": {
+        "code-push": "^2.0.1-beta",
+        "cordova-browser": "^4.1.0",
+        "cordova-ios": "^4.5.2",
+        "cordova-plugin-browsersync": "^0.1.6",
+        "cordova-plugin-code-push": "^1.9.7-beta",
+        "cordova-plugin-compat": "^1.2.0",
+        "cordova-plugin-console": "~1.0.5",
+        "cordova-plugin-device": "^1.1.6",
+        "cordova-plugin-dialogs": "^1.3.3",
+        "cordova-plugin-facebook4": "^1.9.1",
+        "cordova-plugin-file": "^4.3.3",
+        "cordova-plugin-file-transfer": "^1.6.3",
+        "cordova-plugin-fullscreen": "^1.2.0",
+        "cordova-plugin-inappbrowser": "~1.6.1",
+        "cordova-plugin-ios-longpress-fix": "^1.1.0",
+        "cordova-plugin-keyboard": "^1.1.5",
+        "cordova-plugin-splashscreen": "~4.0.1",
+        "cordova-plugin-statusbar": "^2.2.3",
+        "cordova-plugin-whitelist": "1",
+        "cordova-plugin-x-toast": "~2.6.0",
+        "cordova-plugin-zip": "^3.1.0",
+        "onesignal-cordova-plugin": "^2.2.1"
     }
-  },
-  "dependencies": {
-    "code-push": "^2.0.1-beta",
-    "cordova-browser": "^4.1.0",
-    "cordova-ios": "^4.5.2",
-    "cordova-plugin-browsersync": "^0.1.6",
-    "cordova-plugin-code-push": "^1.9.7-beta",
-    "cordova-plugin-compat": "^1.2.0",
-    "cordova-plugin-console": "~1.0.5",
-    "cordova-plugin-device": "^1.1.6",
-    "cordova-plugin-dialogs": "^1.3.3",
-    "cordova-plugin-facebook4": "^1.9.1",
-    "cordova-plugin-file": "^4.3.3",
-    "cordova-plugin-file-transfer": "^1.6.3",
-    "cordova-plugin-fullscreen": "^1.2.0",
-    "cordova-plugin-inappbrowser": "~1.6.1",
-    "cordova-plugin-ios-longpress-fix": "^1.1.0",
-    "cordova-plugin-keyboard": "^1.1.5",
-    "cordova-plugin-splashscreen": "~4.0.1",
-    "cordova-plugin-statusbar": "^2.2.3",
-    "cordova-plugin-whitelist": "1",
-    "cordova-plugin-x-toast": "~2.6.0",
-    "cordova-plugin-zip": "^3.1.0",
-    "onesignal-cordova-plugin": "^2.2.1"
-  }
 }
